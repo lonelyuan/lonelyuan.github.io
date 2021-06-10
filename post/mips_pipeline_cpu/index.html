@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>🤡的晦气 | lonelyuan&#39;s Blog</title>
+<title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释 | lonelyuan&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1623342361073">
 
@@ -210,27 +210,227 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    🤡的晦气
+                    基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-04-22 ·
+                        · 2021-06-09 ·
                     </time>
+                    
+                        <a href="https://lonelyuan.github.io/tag/Lz-SvRH-s/" class="post-tags">
+                            # CS
+                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <h2 id="0">0</h2>
-<p>多年以后，面对xx的照片，陈岩壁想起了x年前晦气刚走进实验室的那个下午。</p>
-<p>词性的改变，不仅反映了语言的简化，更是情感的投射。</p>
-<h2 id="3">3</h2>
-<p>我大约的确好久没见到晦气了。</p>
-<h2 id="n">n</h2>
-<p>观察屎可以得到很多有用的信息（如味道，颜色，粘度）。所以我不能忘记晦气，就好像……额，像你摩洛哥币。</p>
+                    <blockquote>
+<p>本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统”<br>
+项目官网： http://www.loongson.cn/business/general/teach/356.html；<br>
+相关资料代码：#TODO:: github仓库<br>
+PS：标题可简记为《基于基于的一种基于的一种实现》</p>
+</blockquote>
+<h1 id="吐槽时间">吐槽时间</h1>
+<p>快考试了，👴发觉👴计组学了个🔨，👴去年也学了个🔨，但是去年可以归因于晦气的晦气，今年只能说自己晦气。难道还要重蹈去年的晦气吗？👴本应该回去背课本，刷考研题，但是👴一看ppt就想起我们敬爱的《计算机组成原理》课的任课老师，丐哥老师反复强调的至理名言：“听不懂的举手（无停顿）都没举手，都听懂了，非常好。”本人十分钦佩丐哥老师对幽默感的独特理解。<br></p>
+<p><em>（但是特此声明：本人不了解、不认同其关于&quot;5G是个几把&quot;，&quot;高晓松很nb这个人&quot;，&quot;钱=浪漫&quot;等议题的看法）</em><br></p>
+<p>而且👴这人很怪，课本上的重点，不好玩；选做的实验，好玩！哎就是玩，怪不得卷不过别人，你也配卷？滚去考研吧。<br></p>
+<p>众所周知，计算机学生的本科生涯，如果能做到在自己设计的CPU上运行自己写的操作系统并用自己写的编译器跑代码，那就非常成功了。👴差不多，👴能在自己搜的代码上写自己的注释并用自己的电脑截图，都是三个&quot;自己&quot;。那么今天给大家爆个啥捏，流水线奥。<br></p>
+<h1 id="用计算机造计算机">“用”计算机→“造”计算机</h1>
+<p>上回书说到（#TODO:: CSAPP大篇），汇编器(as)让我们得到了机器能看懂的比特流，最后一步只需要连接器(ld)将其和其他调用一起载入内存。这回答了程序如何在CPU这个平台上运行的问题，然而一个更基本的问题是，这个现有的平台是如何实现的？一个粗略的认识是，我们知道这些足以实现CPU的复杂的逻辑，其最小单元总对应到简单的诸如逻辑门上面，但是落实到真正的物理实现之上，如何使效率最高？功耗最小？这些问题所跨越的复杂度的量级依然是一片巨大的迷雾。照亮这片迷雾的知识，大概隶属于IC学科。<br></p>
+<p>However，作为CS专业而不是IC专业，我们的目标仅在于理解所谓“组成原理”。在IC产业的复杂度规模数轴上，向下是专有芯片（又称嵌入式？），功能专用，规模较小；向上是通用芯片，即手机电脑等的核心，其难度不言而喻。位于中间的FPGA则既兼顾了自由度也考虑了速度，因此，这玩意能满足CS本科教学的需要（主要是便宜耐操）。<br></p>
+<h1 id="高贵的ic工程师都用啥轮子">高贵的IC工程师都用啥轮子</h1>
+<p>Vivado是一个FPGA集成设计平台（也算一个EDA？），他主界面左侧的工作流窗口很好的概括了利用FPGA开发的基本流程。即</p>
+<ul>
+<li>编写设计源码(Source)：使用Verilog语言编写逻辑或引入IP
+<ul>
+<li>设计仿真模拟(Simulation)：通过观察仿真波形图和编写testbench来对设计进行debug
+<ul>
+<li>综合(Systhesis)门级网表：从RTL级描述降维到门级网表
+<ul>
+<li>生成(Implementation)布局布线：根据管脚约束，将依然是虚拟的门级连线落实为实际的线路
+<ul>
+<li>进行硬件编程(program)：生成比特流并写入目标设备</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1623337903897.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>名词解释：<br>
+IC：集成电路<br>
+FPGA：现场可编程门阵列<br>
+Verilog：一种硬件描述语言，语法涵盖了自顶向下五个抽象层面：系统级、算法级、RTL级、门级、开关级。<br>
+RTL：寄存器传输级。一般使用最多的就是RTL级。<br>
+IP：Intellectual Property内核模块，可以理解为将代码封装为函数。分为，软IP内核(soft IP core)，固IP内核(firm IP core)和硬IP内核(hard IP core)3个层次，相当于集成电路的毛坯、半成品和成品。<br>
+SoC：片上系统，大概是芯片及其装载的第一层软件接口的集合，很宽泛的概念。<br>
+EDA：电子设计自动化。</p>
+</blockquote>
+<p>由此，我们可以大致探清了这片迷雾，CPU的设计如何从高抽象层次的逻辑，梳理成最底层的逻辑门，再实现为小小的芯片。那么我们有了轮子，要造一个CPU，还要确定目标指令集。由于本项目由龙芯公司赞助，那必然要选MIPS了。</p>
+<h1 id="mips指令集格式">MIPS指令集格式</h1>
+<p>啥叫指令集呢，学过几种语言就不难理解。高级程序语言规定每个ascii码对应的含义，指令集规定0和1的组合对应的寄存器，ALU的各种信号。MIPS指令集从属于RISC系列，最基本的指令有31条。<br></p>
+<p>讲到这里本应该打个表展示31条指令，但是👴懒得打了。<br></p>
+<p>.coe文件用于初始化IP核，本实验给出的.coe文件中存放了几条指令，不过是16进制数字，写个小脚本打印成可读的形式。</p>
+<pre><code class="language-python"># mips_dump.py
+with open(path,'r') as f:
+    hex_list = f.read().split('\n')
+    bin_list = list(map(lambda x:bin(int(x,16)),hex_list))
+    # bin_code_list = [&quot;{:0&gt;32}&quot;.format(i[2:],'b') for i in bin_list]
+    bin_code_list = [i[2:].zfill(32) for i in bin_list]
+
+IType_op_dict = {
+    '001000':'addi',
+    '001001':'addiu',
+    '001100':'ori',
+    '001101':'xori',
+    '001111':'lui',
+    '100011':'lw',
+    '101011':'sw',
+    '000100':'beq',
+    '000101':'bne',
+    '001010':'slti',
+    '001011':'sltiu'
+}
+
+RType_func_dict = {
+    '100000':'add',
+    '100001':'addu',
+    '100010':'sub',
+    '100011':'subu',
+    '100100':'and',
+    '100101':'or',
+    '100110':'xor',
+    '100111':'nor',
+    '101010':'slt',
+    '101011':'sltu',
+    '000000':'sll',
+    '000010':'srl',
+    '000011':'sra',
+    '000100':'sllv',
+    '000110':'srlv',
+    '000111':'srav',
+    '001000':'jr',
+}
+
+def f_hex(ori, width): # bin-&gt;hex
+    return &quot;0x&quot;+hex(int(ori,2))[2:].zfill(width)
+def f_reg(ori): # print register num
+    return &quot;$&quot;+str(int(ori,2)).zfill(2)
+def code_dump(type:str,inst:str,params:list):
+    if type == 'R':
+        s = inst.ljust(6) + &quot;, &quot;.join([f_reg(params[0]),f_reg(params[1]),f_reg(params[2]),f_hex(params[3],2)])
+    elif type == 'I':
+        s = inst.ljust(6) + &quot;, &quot;.join([f_reg(params[0]),f_reg(params[1]),f_hex(params[2],8)])
+    else:
+        s = inst.ljust(6) +'0x'+ hex(int(params[0],2))[2:].zfill(8)
+    return s
+
+assembly_list = []
+for _ in bin_code_list:
+    op = _[:6] # public field
+    try:
+        if op == '000000': # R-Type
+            rs = _[6:11]
+            rt = _[11:16]
+            rd = _[16:21]
+            shamt = _[21:26]
+            func = _[26:]
+            assembly_list.append(code_dump('R',RType_func_dict[func],[rs,rt,rd,shamt]))
+        elif op in ['000010', '000011']:  # J-Type
+            target = _[6:]
+            assembly_list.append(code_dump('J','j',[target]))
+        else: # I-Type
+            rs = _[6:12]
+            rt = _[12:18]
+            imm = _[18:]
+            assembly_list.append(code_dump('I',IType_op_dict[op],[rs, rt, imm]))
+    except Exception as e:
+        assembly_list.append(&quot;***** decode error! *****&quot;)
+
+head = &quot;+---hexdump----|--------- assembly ---------+&quot;
+print(head)
+addr = 0
+for i in range(len(bin_code_list)):
+    print(&quot;|&quot;+ f_hex(bin(addr),2) +&quot; &quot;+ hex_list[i] +&quot; | &quot;+ assembly_list[i].ljust(26) + &quot; |&quot;)
+    addr += 4
+tail = &quot;+&quot;+&quot;-&quot;*43+&quot;+&quot;
+print(tail)
+</code></pre>
+<p>打印出来👴傻了，给的代码有错误。</p>
+<pre><code>+---hexdump----|--------- assembly ---------+
+|0x00 24010001 | addiu $00, $04, 0x00000001 |
+|0x04 00011100 | sll   $00, $01, $02, 0x04  |
+|0x08 00411821 | addu  $02, $01, $03, 0x00  |
+|0x0c 00022082 | srl   $00, $02, $04, 0x02  |
+|0x10 28990005 | slti  $09, $36, 0x00000005 |
+|0x14 07210010 | ***** decode error! *****  |
+|0x18 00642823 | subu  $03, $04, $05, 0x00  |
+|0x1c AC050014 | sw    $00, $20, 0x00000014 |
+|0x20 00A23027 | nor   $05, $02, $06, 0x00  |
+|0x24 00C33825 | or    $06, $03, $07, 0x00  |
+|0x28 00E64026 | xor   $07, $06, $08, 0x00  |
+|0x2c AC08001C | sw    $00, $32, 0x0000001c |
+|0x30 11030002 | beq   $16, $12, 0x00000002 |
+|0x34 00C7482A | slt   $06, $07, $09, 0x00  |
+|0x38 24010008 | addiu $00, $04, 0x00000008 |
+|0x3c 8C2A0014 | lw    $02, $40, 0x00000014 |
+|0x40 15450004 | bne   $20, $20, 0x00000004 |
+|0x44 00415824 | and   $02, $01, $11, 0x00  |
+|0x48 AC2B001C | sw    $02, $44, 0x0000001c |
+|0x4c AC240010 | sw    $02, $16, 0x00000010 |
+|0x50 0C000019 | j     0x00000019           |
+|0x54 3C0C000C | lui   $00, $48, 0x0000000c |
+|0x58 004CD007 | srav  $02, $12, $26, 0x00  |
+|0x5c 003AD804 | sllv  $01, $26, $27, 0x00  |
+|0x60 0360F809 | ***** decode error! *****  |
+|0x64 A07A0005 | ***** decode error! *****  |
+|0x68 0063682B | sltu  $03, $03, $13, 0x00  |
+|0x6c 1DA00003 | ***** decode error! *****  |
+|0x70 00867004 | sllv  $04, $06, $14, 0x00  |
+|0x74 000E7883 | sra   $00, $14, $15, 0x02  |
+|0x78 002F8006 | srlv  $01, $15, $16, 0x00  |
+|0x7c 1A000008 | ***** decode error! *****  |
+|0x80 002F8007 | srav  $01, $15, $16, 0x00  |
+|0x84 240B008C | addiu $00, $44, 0x0000008c |
+|0x88 06000006 | ***** decode error! *****  |
+|0x8c 8D5C0003 | lw    $21, $48, 0x00000003 |
+|0x90 179D0007 | bne   $57, $52, 0x00000007 |
+|0x94 A0AF0008 | ***** decode error! *****  |
+|0x98 80B20008 | ***** decode error! *****  |
+|0x9c 90B30008 | ***** decode error! *****  |
+|0xa0 2DF8FFFF | sltiu $31, $35, 0x00003fff |
+|0xa4 0185E825 | or    $12, $05, $29, 0x00  |
+|0xa8 01600008 | jr    $11, $00, $00, 0x00  |
+|0xac 31F4FFFF | ori   $31, $19, 0x00003fff |
+|0xb0 35F5FFFF | xori  $31, $23, 0x00003fff |
+|0xb4 39F6FFFF | ***** decode error! *****  |
+|0xb8 08000000 | j     0x00000000           |
++-------------------------------------------+
+</code></pre>
+<h2 id="多周期流水线原理">多周期流水线原理</h2>
+<p>单周期</p>
+<h2 id="vivado使用">Vivado使用</h2>
+<p>计组实验让我们下载只有高贵的EE工程师才会用的Vivado，</p>
+<p>实例化IPCore，IPreport更新</p>
+<p>板子选错了</p>
+<p>继续搜bug，忘记设为顶层</p>
+<p>终于没有critical warning，泪目。<br>
+👴偷溜到没人的实验室，并留下以下珍贵画面</p>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://lonelyuan.github.io/post/web-ru-men-pian/" class="post-title gt-a-link">
+                    Web入门篇
+                </a>
+            </div>
         
 
         
