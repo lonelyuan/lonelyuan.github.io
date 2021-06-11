@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>APP基础 | lonelyuan&#39;s Blog</title>
+<title>about_blog | lonelyuan&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1623429252765">
 
@@ -210,95 +210,127 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    APP基础
+                    about_blog
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-02-20 ·
+                        · 2020-02-04 ·
                     </time>
                     
-                        <a href="https://lonelyuan.github.io/tag/1xnJbWNmoR/" class="post-tags">
-                            # android
+                        <a href="https://lonelyuan.github.io/tag/jfW5oU-O9S/" class="post-tags">
+                            # 博客
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>开始学安卓，目标是写一个日程类app帮助缓解拖延症。</p>
+                    <h1 id="博客技术介绍">博客技术介绍</h1>
 <blockquote>
-<h4 id="学习资料">学习资料</h4>
-<p>Android官方培训课程中文版(v0.9.7)——2016</p>
-<p>http://hukai.me/android-training-course-in-chinese/</p>
 <ul>
-<li>国人发起的开源翻译项目，貌似不太稳定？</li>
+<li>不要：不写博客，使用 CSDN 等国内垃圾博客平台</li>
+<li>推荐：利用 <a href="https://pages.github.com/">GitHub Pages</a> 搭建静态博客。注意，你的 git     仓库地址不是你的博客地址，假设仓库URL是 <a href="https://github.com/example/example.github.io/%EF%BC%8C%E5%8D%9A%E5%AE%A2URL%E4%B8%80%E8%88%AC%E6%98%AFhttps:/example.github.io/">https://github.com/example/example.github.io/，博客URL一般是https://example.github.io/</a></li>
+<li>推荐：在 VPS 上用 Wordpress 搭建博客，或者在     VPS 上搭建静态博客（都需要持续的维护成本）</li>
+<li>推荐：使用<a href="https://www.blogger.com/about/">Blogger</a>等国外平台</li>
 </ul>
-<p>《第一行代码》——2016</p>
-<p>[file:///D:/CS/_CS_Books/第一行代码%20Android%20第2版.pdf](file:///D:/CS/_CS_Books/第一行代码 Android 第2版.pdf)</p>
-<ul>
-<li>众人皆说入门经典，感觉就这么回事？</li>
-</ul>
-<p>谷歌官方开发者文档——英文版最新</p>
-<p><a href="https://developer.android.com/guide/components/activities/intro-activities?hl=zh_cn">https://developer.android.com/guide/</a></p>
-<ul>
-<li>很专业，中文翻译也挺不错，但要翻墙</li>
-<li>这tm不比任何书讲的都好</li>
-</ul>
-<p>Android Developer Fundamentals</p>
-<p>https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/</p>
-<ul>
-<li>国内可看的官方教程</li>
-</ul>
-<p>训练材料</p>
-<p>https://developer.android.google.cn/courses/fundamentals-training/overview-v2?hl=zh_cn</p>
+<p>来自 <a href="https://course.blue-whale.me/">https://course.blue-whale.me/</a></p>
 </blockquote>
-<h3 id="应用组件app-components">应用组件app components:</h3>
-<p>应用组件是 Android 应用的基本构建块。每个组件都是一个入口点，系统或用户可通过该入口点进入您的应用。有些组件会依赖于其他组件。</p>
-<p>所有组件均应作为相应类的子类实现。</p>
-<h5 id="操作activities">操作Activities</h5>
-<p><a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn">Activity</a> 类是 Android 应用的关键组件，而 Activity 的启动和组合方式则是该平台应用模型的基本组成部分。它表示拥有界面的单个屏幕。</p>
-<p><a href="https://developer.android.com/reference/androidx/fragment/app/Fragment.html?hl=zh_cn">Fragment</a>： Activity 的模块化组成部分</p>
-<h5 id="服务services">服务Services</h5>
-<p>后台运行的组件，用于执行长时间运行的操作或为远程进程执行作业。服务不提供界面。</p>
-<p>应用：音乐后台播放。</p>
-<h5 id="广播接收器broadcast-receivers">广播接收器Broadcast receivers</h5>
-<p>在常规用户流之外向应用传递事件，从而允许应用响应系统范围内的广播通知。</p>
-<p>应用：创建通知栏消息。</p>
-<p>每条广播都作为 <a href="https://developer.android.com/reference/android/content/Intent.html?hl=zh_cn">Intent</a> 对象进行传递。</p>
-<h5 id="内容提供程序content-providers">内容提供程序Content providers</h5>
-<p>管理一组共享的应用数据，这些数据存储在任何持久化存储位置：文件系统、SQLite 数据库、网络。优点：精细控制数据访问权限。</p>
-<p>应用：日历，联系人</p>
-<h3 id="启动组件">启动组件</h3>
-<p>Android 系统设计的独特之处在于，任何应用都可启动其他应用的组件。</p>
-<p>前三种组件均通过异步消息 <em>Intent</em> 进行启动。</p>
-<h3 id="配置清单">配置清单：</h3>
-<h5 id="声明activity">声明Activity：</h5>
+<h2 id="为什么要搞博客">为什么要搞博客？</h2>
+<p>必要性：没有。有时候维护博客比写博客更花时间。</p>
+<p>重要性：很大。学计算机的，没有技术博客说明你：</p>
 <ul>
-<li>在应用清单AndroidManifest.xml中添加 <a href="https://developer.android.com/guide/topics/manifest/activity-element.html?hl=zh_cn"></a> 元素作为 <a href="https://developer.android.com/guide/topics/manifest/application-element.html?hl=zh_cn"></a> 元素的子元素。</li>
+<li>不会搭，说明笨，建议马上转行。</li>
+<li>不想搭，说明懒，建议退学啃老。</li>
 </ul>
-<h5 id="声明intent过滤器">声明Intent过滤器：</h5>
+<p>总之只是搭好还是很简单的，不过要打磨的赏心悦目还是要费一番功夫。本文仅介绍主流框架，不讲具体操作。</p>
+<h2 id="自建站点">自建站点</h2>
+<p>要买服务器，之后可以自由搭建静态/动态博客。大牛都有自己的站点</p>
+<p>步骤：</p>
 <ul>
-<li>运行显式/隐式的intent启动activity。</li>
-<li>在 <a href="https://developer.android.com/guide/topics/manifest/activity-element.html?hl=zh_cn"></a> 元素中声明 <a href="https://developer.android.com/guide/topics/manifest/intent-filter-element.html?hl=zh_cn"></a> 属性。此元素的定义包括 <a href="https://developer.android.com/guide/topics/manifest/action-element.html?hl=zh_cn"></a> 元素，以及可选的 <a href="https://developer.android.com/guide/topics/manifest/category-element.html?hl=zh_cn"></a> 元素和/或 <a href="https://developer.android.com/guide/topics/manifest/data-element.html?hl=zh_cn"></a> 元素。</li>
+<li>买服务器，即vps：国内三大云（阿里，腾讯）都有10块一月的学生机，入门可用</li>
 </ul>
-<h5 id="声明权限">声明权限：</h5>
+<p><a href="https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/">https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/</a></p>
 <ul>
-<li>如果您为父 Activity     声明了 <a href="https://developer.android.com/guide/topics/manifest/uses-permission-element.html?hl=zh_cn"></a> 元素，则每个子     Activity 都必须具有匹配的 <a href="https://developer.android.com/guide/topics/manifest/uses-permission-element.html?hl=zh_cn"></a>元素。</li>
+<li>
+<p>购买域名：专用域名商或服务器商提供</p>
+</li>
+<li>
+<p>配置服务器：需要懂服务器运维的入门知识，</p>
+</li>
+<li>
+<p>部署博客：动态静态都可以（不知道区别的建议自尽）</p>
+</li>
+<li>
+<ul>
+<li>动态框架：即博客类的CMS。</li>
 </ul>
-<p>右键java文件夹，选择new→activity。IDE自动生成清单项</p>
-<h5 id="提供资源">提供资源</h5>
-<p>独立于代码之外，通过 XML 文件定义 Activity 界面的动画、菜单、样式、颜色和布局。</p>
-<p>res文件夹内，以R.开头来引用</p>
-<p>加载界面：setContentView(R.layout.xxx);</p>
-<p>可视化界面设计：Layout editor</p>
-<p>右侧设置属性：外观，布局，事件。</p>
-<h3 id="管理-activity-生命周期">管理 Activity 生命周期</h3>
-<p>创建操作类文件.java</p>
-<p>6个核心回调函数</p>
-<p><a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onCreate(android.os.Bundle)">onCreate()</a>、<a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onStart()">onStart()</a>、<a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onResume()">onResume()</a>、<a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onPause()">onPause()</a>、<a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onStop()">onStop()</a> 和 <a href="https://developer.android.com/reference/android/app/Activity.html?hl=zh_cn#onDestroy()">onDestroy()</a></p>
+</li>
+</ul>
+<p>如：wordpress，使用php。操作简单易上手。</p>
+<ul>
+<li>静态：后文提到的都可以。</li>
+</ul>
+<p>优势：功能强，部署自由</p>
+<p>劣势：需要持续运营成本（包括金钱和时间）</p>
+<h2 id="发表到博客平台">发表到博客平台</h2>
+<p>依托平台，具体操作依据平台而定</p>
+<p>优点：操作较自建站点简单（其实也不一定）</p>
+<p>缺点：功能较为受限。</p>
+<ul>
+<li>简书：</li>
+</ul>
+<p>和知乎等平台的区别在于注重文章和内容</p>
+<p>ui清爽，不过不可定制。</p>
+<p>另外这样的平台总有审查机制，这 不 自 由。</p>
+<ul>
+<li>博客园：</li>
+</ul>
+<p>老牌国内博客网站了，用的是.net框架。</p>
+<p>前端可高度定制，懒得搞后端可以试。</p>
+<p>随便一个例子：https://www.cnblogs.com/php09/</p>
+<ul>
+<li>CSDN：垃圾。</li>
+</ul>
+<p>说垃圾的原因是：抄袭严重，内容陈旧，吃相难看。</p>
+<ul>
+<li>Github pages：</li>
+</ul>
+<p>全球最大同性交友社区gayhub提供的静态网页托管服务，就是搭建静态博客用的。</p>
+<p>下面介绍几种静态博客：</p>
+<ul>
+<li><strong>typeecho</strong>：轻量级php框架</li>
+</ul>
+<p>https://www.jianshu.com/p/ed2e655c3741</p>
+<p>功能精简，是好也是坏</p>
+<ul>
+<li>**Hugo：**基于go</li>
+<li><strong>Jekyll</strong>：基于ruby</li>
+<li>**Hexo：**基于node.js的静态博客框架，目前使用规模最广的之一</li>
+</ul>
+<p>https://hexo.io/zh-cn/docs/</p>
+<p>https://easyhexo.com/</p>
+<p>步骤：使用githubpages的框架都大同小异</p>
+<ul>
+<li>
+<ul>
+<li>安装环境：git，node.js，npm，hexo</li>
+<li>配置SSH密钥对</li>
+<li>文章写作，上传，发布</li>
+<li>网站配置：主题，拓展</li>
+</ul>
+</li>
+</ul>
+<p>基于不同的语言，要配的环境也不同。光是配环境就难倒不少萌新。而且，想精心打磨自己的站点也是一路险坑。不过，做起来吧。谁让我们是学计算机的呢。</p>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://lonelyuan.github.io/post/CSAPP-datalab/" class="post-title gt-a-link">
+                    CSAPP-datalab
+                </a>
+            </div>
         
 
         
