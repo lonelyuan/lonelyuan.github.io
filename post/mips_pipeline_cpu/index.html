@@ -6,7 +6,7 @@
 
 <title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1623379491781">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1623379830628">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -187,7 +187,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623379491781"
+            <form id="gridea-search-form" style="position: relative" data-update="1623379830628"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -418,7 +418,9 @@ print(tail)
 <p>下一步，下一步，下一步，，，确认。<br>
 这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。</p>
 <h3 id="编写代码并仿真">编写代码并仿真</h3>
-<p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。下面讲解一下项目结构，所有实验都是类似的：<br>
+<p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，<code>resetn</code>应该为<code>{4{resetn}}</code>，写使能位宽应为为4。<br>
+<img src="https://lonelyuan.github.io/post-images/1623379687932.png" alt="" loading="lazy"></p>
+<p>下面讲解一下项目结构，所有实验都是类似的：<br>
 <img src="https://lonelyuan.github.io/post-images/1623374928604.png" alt="" loading="lazy"><br>
 三个顶层文件夹分别对应Add Source里的三类源文件：添加设计，添加仿真，添加约束。如果不需要上板，只完成仿真，那么只需要添加设计（几个.v），添加仿真（testbench.v/tb.v）就足够了，xxx_display.v也是上板需要的故而可以忽略。（实际上，图中我用箭头标记的都用不到）。</p>
 <p>编写tb，无非是给tb里声明为input的信号赋值，还可以使用<code>#xx</code>，让tb等待一段时间。</p>
@@ -428,7 +430,7 @@ print(tail)
 <li>红色的X代表信号不确定；</li>
 <li>蓝色的Z代表信号休眠。</li>
 </ul>
-<p>一般遇到红色的X，都是未初始化问题。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。</p>
+<p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。</p>
 <figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1623378896380.png" alt="" loading="lazy"></figure>
 <p>仿真需要注意的问题：</p>
 <ul>
