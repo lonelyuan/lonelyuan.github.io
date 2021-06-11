@@ -1,0 +1,517 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>单片机入门——jetbot智能小车尝鲜(一) | lonelyuan&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1623380552688">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            lonelyuan&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="https://lonelyuan.github.io/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="https://lonelyuan.github.io/post/friends" class="menu gt-a-link">
+                    友链
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1623380552688"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    单片机入门——jetbot智能小车尝鲜(一)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-01-21 ·
+                    </time>
+                    
+                        <a href="https://lonelyuan.github.io/tag/fA8mm7xfGv/" class="post-tags">
+                            # jetbot
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。</p>
+<p>小车的核心是NVIDIA家的jetson-nano开发板，这款19年三月才发布的微型AI计算机可谓是平民级核弹，四核A57的CPU，128核心Maxwell架构的GPU，4g内存，支持4k视频解码，而且这只五脏俱全的麻雀只需要5W的电源支持，任何一支充电宝都可以胜任。而它的定位是用它简单的搭建人工智能应用，非常的amazing。</p>
+<p>本文的目的,不完全是新手教程,还有自己学习过程的记录和分享.初次接触,多有疏漏,欢迎指教.</p>
+<p>【图片：主板证件照】</p>
+<blockquote>
+<p>给萌新理清几个概念：</p>
+<p>单片机：Single-Chip Microcomputer。</p>
+<p>树莓派：一款著名的微型电脑品牌（本文介绍的jetson-nano可以理解为是树莓派的竞品，相比树莓派，这款单片机价格更高，性能更好，主打AI应用）</p>
+<p>jetbot：以jetson-nano为平台搭建的ai机器人应用，也就是所谓智能小车</p>
+</blockquote>
+<h3 id="硬件组装积木和电工">硬件组装:积木和电工</h3>
+<p>本人拿到的是零件状态的小车，所以首先讲一讲组装的问题。有关具体步骤，官网教程十分详细，贴个连接给懒人吧：https://www.ncnynl.com/archives/201904/2927.html</p>
+<p>这里只讲一讲我作为初学者的一些理解。首先，玩单片机和玩积木的区别就在于编程。当然，入门单片机还需要其他技能。比如，电工技能：你需要进行线材的简单加工，引脚的焊接，准备基本的工具就好，毕竟那个男孩没有一根热热的棒子呢（指<strong>电烙铁</strong>）。然后，各个部件的拼接固定需要一些做手工的技巧，这个也不用怕，赫鲁晓夫曾经说过：<strong>热熔胶</strong>可以让我们创造奇迹。</p>
+<p>在这个层面上，初学者会浪费许多耗材，这是必要的练习手段，所以初学者也可以从最简单的芯片入手。同时你还要学习诊断硬件方面的问题，<strong>万用表</strong>会很有帮助。关于更详细的工具和耗材的需要，请自行查阅单片机入门有关资料。</p>
+<p>在本项目中，焊接工作已经完成，剩下的连接都是可插拔式的。我们只需要两把螺丝刀即可完成组装。即便如此，本人还是花了一晚上才把小车点亮，原因是我得到的线材损坏近半，只得自己寻找和修理。</p>
+<p>下面分析一下小车的结构:</p>
+<ul>
+<li>jetson-nano开发板:即本机的主板,可以看到有两层芯片,上层为核心层,包括cpu,gpu和内存可以像笔记本内存条一样拆卸;下层为主板,用于连接各种设备</li>
+<li>intel无线网卡:将上层拆下即可安装.令连出两根天线,缠绕机身即可.</li>
+<li>PiOLED显示器和拓展版:连接在I2C主线上</li>
+<li>相机模块:官方样例展示了只用一个摄像头通过深度学习进行自动避障的demo.</li>
+<li>马达和其驱动板:下文重点讲解</li>
+</ul>
+<p>开发板就可以运行一个完整的Ubuntu系统,其余设备是为其拓展功能的.</p>
+<h3 id="硬件架构驱动芯片和i2c主线">硬件架构：驱动芯片和I2C主线</h3>
+<p>我在玩小车的过程中耽误最长时间的就是电机（即马达）驱动了，借此讲一讲系统架构的事。</p>
+<p>让轮子前进要靠马达，给马达供电不能直接让主板来做，要让主板给另一块小芯片发送指令，这块小芯片连接着独立的电源，收到指令才会给马达通电。这块小芯片即是电机驱动板。</p>
+<p>驱动芯片是从硬件走向软件的第一道桥梁，可以类比PC的IO设备来理解。和物理世界交互的各种功能，都需要有专门的驱动芯片。包括马达，摄像头，扬声器，机械臂等等，只不过有的可以集成在一起，如：小车上的摄像头，PiOLED显示器等；有的出于体积，安全性，模块化的考虑需要分开，如电机和驱动板。</p>
+<h4 id="电机驱动板">电机驱动板</h4>
+<p>官方给出的电机驱动板型号为:DC-Stepper-Motor PCA9685+TB6612.可以驱动两个步进电机或四个直流电机。（四轴飞行器gkd）本项目只用到了两个直流电机。</p>
+<p>各个引脚的讲解：https://learn.adafruit.com/adafruit-stepper-dc-motor-featherwing/pinouts</p>
+<p>电机驱动板上共连接有10根跳线。一对电源输入，两对为马达输出。还需四根母-母杜邦线来连接至主板的<strong>I2C总线</strong>,具体来说,是在LED屏旁边的拓展板。分别是：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">驱动板引脚</th>
+<th style="text-align:center">主板I2C引脚</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3V3</td>
+<td style="text-align:center">3V3</td>
+<td style="text-align:center">为驱动板供电,即电源正极</td>
+</tr>
+<tr>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">接地,即电源负极</td>
+</tr>
+<tr>
+<td style="text-align:center">SDA</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">串行数据线，传输数据</td>
+</tr>
+<tr>
+<td style="text-align:center">SCL</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">串行时钟线，传输控制信号</td>
+</tr>
+</tbody>
+</table>
+<p>【图片：驱动板引脚】</p>
+<p>接错了有可能烧坏板子哦</p>
+<h4 id="i2c总线">I2C总线</h4>
+<p>所谓总线,可以理解为一条街道,每个设备就是街道两旁的房子,房内的住户出门走亲访友就是数据在不同设备间的传输。</p>
+<p>I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的双线结构(SCL+SDA),每个设备都有一个地址码,以此实现多个设备相互通讯。设备有主从之分，主设备/主端必须是带有CPU的逻辑模块，在同一总线上同一时刻使能有一个主端，可以有多个从端，从端的数量受地址空间和总线的最大电容 400pF的限制。</p>
+<p>可以使用i2c-tools调试i2c总线:</p>
+<ul>
+<li>检测有几组i2c总线在系统上<code>i2cdetect -l</code></li>
+<li>检测挂载在i2c-1上的设备<code>i2cdetect -r -y 1</code></li>
+</ul>
+<pre><code>  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
+  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
+  70: 70 -- -- -- -- -- -- --
+</code></pre>
+<ul>
+<li>
+<p>查看设备(地址为0x20)上所有寄存器的值i2cdump -f -y 1 0x20</p>
+</li>
+<li>
+<p>对单个寄存器进行读写:</p>
+<p><code>i2cset -f -y 1 0x20 0x77 0x3f</code>（设置i2c-1上0x20器件的0x77寄存器值为0x3f）</p>
+<p><code>i2cget -f -y 1 0x20 0x77</code>    （读取i2c-1上0x20器件的0x77寄存器值）</p>
+</li>
+</ul>
+<p>jetson-nano开发板提供了6条I2C主线,以及其他丰富的接口。理解这些接口是拓展各种设备的前提。</p>
+<h3 id="软件连接ssh远程桌面">软件连接:ssh远程桌面</h3>
+<p>从头开始的话，我们还需要往sd卡里烧写系统镜像，不过我拿到的已经完成了这一步骤，故不再赘述。</p>
+<p>在官方教程中,需要hdmi线连接显示屏,usb连接鼠标键盘,来进入jetson-nano的Ubuntu系统.其目的在于首次连接一个无线网络(手机热点),之后只要电脑和nano在同一网络,即可用电脑访问nano的IP(8888端口),直接操纵jetbot.</p>
+<p>由于我并没有hdmi线,只有一根网线,反正都能插,插谁不一样?所以用网线把小车和笔记本连接起来组成局域网.用ssh的方式进入nano的系统.具体步骤如下:</p>
+<ul>
+<li>
+<p>ip发现:在插入网线前后执行两次:<code>arp -a</code>,比较不同,会发现多出一个地址,类型为动态,此即为小车的内网IP.小车的led屏也会自动显示其ip.如<code>eth0:192.168.x.x</code></p>
+</li>
+<li>
+<p>(如此,我们可以直接从浏览器访问这个ip的8888端口,并能运行jupyter notebook了.但我们不能让小车拖着网线跑啊,所以还是要配置无线网络.)</p>
+</li>
+<li>
+<p>将笔记本的wifi连接设为对以太网可共享,这一步是为了让小车能通过笔记本联网</p>
+</li>
+<li>
+<p>端口扫描:<code>nmap -sT 192.168.x.x</code>发现22端口开放,故连接之:<code>ssh jetbot@192.168.x.x</code>,就用官方教程给的账户密码.</p>
+</li>
+<li>
+<p>连接成功后,就可以用命令行工具连接WiFi了,但还是安装一下远程桌面吧.</p>
+</li>
+<li>
+<p>配置远程桌面:执行以下命令:</p>
+<pre><code>sudo apt-get install tightvncserver
+sudo apt-get install xrdp
+sudo apt-get install vnc4server tightvncserver
+</code></pre>
+</li>
+<li>
+<p>之后在你的主机win+R，输入mstsc,进入远程登录桌面，输入小车的ip地址，点击连接</p>
+</li>
+<li>
+<p>在xrdp的登陆界面输入用户名密码即可打开远程桌面</p>
+<p>(这里我用jetbot用户登陆遭遇闪退,用root就可以,不清楚原因)(另外开了远程桌面内存疯涨,就很离谱)</p>
+</li>
+<li>
+<p>连接上wifi后,你能在小车的led板上看到另一个ip:<code>wlan0:192.168.x.x</code></p>
+</li>
+</ul>
+<p>不管怎样,连接上wifi之后的操作就很简单了.跟着教程,跑一跑demo,还是很有成就感的.</p>
+<h3 id="排查bug">排查bug</h3>
+<p>然而demo并没有让我跑出来,且指向同一个错误:</p>
+<pre><code>OSError: [Errno 121] Remote I/O error
+</code></pre>
+<p>沿着jupyter notebook的报错一直走,一直到了最底层,向设备写入数据报错,<code>remote IO error</code>.</p>
+<p>看起来像是硬件的问题。一步一步排查呗</p>
+<ul>
+<li>
+<p>怀疑跳线错误</p>
+<ul>
+<li>更换跳线——无果</li>
+<li>用万用表测量线两端的信号——正常，排除连接问题
+<ul>
+<li>时钟线保持3.3v每隔几秒跳到2.2v又回来，结合i2c的原理应该是正常现象？</li>
+<li>数据线同样保持3.3v，间断跳至2.3，2.0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>软件方法检验设备连接性</p>
+<ul>
+<li>用i2ctools可以检测到设备，拔下4根接线，在0x60,0x70处的设备消失（一个是i2c线，一个是逻辑供电？）</li>
+</ul>
+<pre><code> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --
+</code></pre>
+</li>
+</ul>
+<p>然而，在通电状态下，把连线拔下又插上之后，i2c又能检测到设备，然后示例代码就能运行了？？？</p>
+<p>迷惑。所以开机时机器并没能正确载入设备，反倒是重新连接后能识别了？？？本来我都要换驱动板了，orz。</p>
+<p>又或者是和驱动板上的reset按钮有关？等下次遇到问题再说吧。</p>
+<h3 id="拾遗">拾遗</h3>
+<h4 id="linux内存占用">linux内存占用</h4>
+<p>led屏会显示内存占用，然鹅时间长了总会到90%以上，可我并没有运行什么程序。</p>
+<p>经查阅此处显示的是实际占有的加上buffer和cached mem部分，可以理解为缓存的，随时清理，并不占用实际内存。</p>
+<p>可用top命令查看内存详情。</p>
+<h4 id="供电问题">供电问题</h4>
+<p>用充电宝供电方便，但是只要一断电系统就会重启，这对linux系统而言伤害很大。</p>
+<p>而在充电宝电量不满时，经常发生开不了机的问题，大概是因为电量不足导致电压不稳。</p>
+<h5 id="关机命令">关机命令：</h5>
+<p><code>sudo shutdown -h now</code></p>
+<h5 id="重启">重启：</h5>
+<p><code>shutdown -h now -r</code></p>
+<p><em>下一篇：操纵小车和AI初探</em></p>
+<h3 id="参考链接">参考链接</h3>
+<p>https://github.com/NVIDIA-AI-IOT/jetbot/wiki/Hardware-Setup</p>
+<p>https://robocarstore.cn/</p>
+<p>http://www.gpus.cn/gpus_list_page_techno_support_content?id=50</p>
+<p>https://www.jianshu.com/p/789944463fd7</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://lonelyuan.github.io/post/about/" class="post-title gt-a-link">
+                    About Me
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    // md5.min.js
+    !function(n){
+        "use strict";
+        function d(n,t){var r=(65535&n)+(65535&t);return(n>>16)+(t>>16)+(r>>16)<<16|65535&r}
+        function f(n,t,r,e,o,u){return d((c=d(d(t,n),d(e,u)))<<(f=o)|c>>>32-f,r);var c,f}
+        function l(n,t,r,e,o,u,c){return f(t&r|~t&e,n,t,o,u,c)}
+        function v(n,t,r,e,o,u,c){return f(t&e|r&~e,n,t,o,u,c)}
+        function g(n,t,r,e,o,u,c){return f(t^r^e,n,t,o,u,c)}
+        function m(n,t,r,e,o,u,c){return f(r^(t|~e),n,t,o,u,c)}
+        function i(n,t){var r,e,o,u,c;n[t>>5]|=128<<t%32,n[14+(t+64>>>9<<4)]=t;var f=1732584193,i=-271733879,a=-1732584194,h=271733878;for(r=0;r<n.length;r+=16)f=l(e=f,o=i,u=a,c=h,n[r],7,-680876936),h=l(h,f,i,a,n[r+1],12,-389564586),a=l(a,h,f,i,n[r+2],17,606105819),i=l(i,a,h,f,n[r+3],22,-1044525330),f=l(f,i,a,h,n[r+4],7,-176418897),h=l(h,f,i,a,n[r+5],12,1200080426),a=l(a,h,f,i,n[r+6],17,-1473231341),i=l(i,a,h,f,n[r+7],22,-45705983),f=l(f,i,a,h,n[r+8],7,1770035416),h=l(h,f,i,a,n[r+9],12,-1958414417),a=l(a,h,f,i,n[r+10],17,-42063),i=l(i,a,h,f,n[r+11],22,-1990404162),f=l(f,i,a,h,n[r+12],7,1804603682),h=l(h,f,i,a,n[r+13],12,-40341101),a=l(a,h,f,i,n[r+14],17,-1502002290),f=v(f,i=l(i,a,h,f,n[r+15],22,1236535329),a,h,n[r+1],5,-165796510),h=v(h,f,i,a,n[r+6],9,-1069501632),a=v(a,h,f,i,n[r+11],14,643717713),i=v(i,a,h,f,n[r],20,-373897302),f=v(f,i,a,h,n[r+5],5,-701558691),h=v(h,f,i,a,n[r+10],9,38016083),a=v(a,h,f,i,n[r+15],14,-660478335),i=v(i,a,h,f,n[r+4],20,-405537848),f=v(f,i,a,h,n[r+9],5,568446438),h=v(h,f,i,a,n[r+14],9,-1019803690),a=v(a,h,f,i,n[r+3],14,-187363961),i=v(i,a,h,f,n[r+8],20,1163531501),f=v(f,i,a,h,n[r+13],5,-1444681467),h=v(h,f,i,a,n[r+2],9,-51403784),a=v(a,h,f,i,n[r+7],14,1735328473),f=g(f,i=v(i,a,h,f,n[r+12],20,-1926607734),a,h,n[r+5],4,-378558),h=g(h,f,i,a,n[r+8],11,-2022574463),a=g(a,h,f,i,n[r+11],16,1839030562),i=g(i,a,h,f,n[r+14],23,-35309556),f=g(f,i,a,h,n[r+1],4,-1530992060),h=g(h,f,i,a,n[r+4],11,1272893353),a=g(a,h,f,i,n[r+7],16,-155497632),i=g(i,a,h,f,n[r+10],23,-1094730640),f=g(f,i,a,h,n[r+13],4,681279174),h=g(h,f,i,a,n[r],11,-358537222),a=g(a,h,f,i,n[r+3],16,-722521979),i=g(i,a,h,f,n[r+6],23,76029189),f=g(f,i,a,h,n[r+9],4,-640364487),h=g(h,f,i,a,n[r+12],11,-421815835),a=g(a,h,f,i,n[r+15],16,530742520),f=m(f,i=g(i,a,h,f,n[r+2],23,-995338651),a,h,n[r],6,-198630844),h=m(h,f,i,a,n[r+7],10,1126891415),a=m(a,h,f,i,n[r+14],15,-1416354905),i=m(i,a,h,f,n[r+5],21,-57434055),f=m(f,i,a,h,n[r+12],6,1700485571),h=m(h,f,i,a,n[r+3],10,-1894986606),a=m(a,h,f,i,n[r+10],15,-1051523),i=m(i,a,h,f,n[r+1],21,-2054922799),f=m(f,i,a,h,n[r+8],6,1873313359),h=m(h,f,i,a,n[r+15],10,-30611744),a=m(a,h,f,i,n[r+6],15,-1560198380),i=m(i,a,h,f,n[r+13],21,1309151649),f=m(f,i,a,h,n[r+4],6,-145523070),h=m(h,f,i,a,n[r+11],10,-1120210379),a=m(a,h,f,i,n[r+2],15,718787259),i=m(i,a,h,f,n[r+9],21,-343485551),f=d(f,e),i=d(i,o),a=d(a,u),h=d(h,c);return[f,i,a,h]}
+        function a(n){var t,r="",e=32*n.length;for(t=0;t<e;t+=8)r+=String.fromCharCode(n[t>>5]>>>t%32&255);return r}
+        function h(n){var t,r=[];for(r[(n.length>>2)-1]=void 0,t=0;t<r.length;t+=1)r[t]=0;var e=8*n.length;for(t=0;t<e;t+=8)r[t>>5]|=(255&n.charCodeAt(t/8))<<t%32;return r}
+        function e(n){var t,r,e="0123456789abcdef",o="";for(r=0;r<n.length;r+=1)t=n.charCodeAt(r),o+=e.charAt(t>>>4&15)+e.charAt(15&t);return o}
+        function r(n){return unescape(encodeURIComponent(n))}
+        function o(n){return a(i(h(t=r(n)),8*t.length));var t}
+        function u(n,t){return function(n,t){var r,e,o=h(n),u=[],c=[];for(u[15]=c[15]=void 0,16<o.length&&(o=i(o,8*n.length)),r=0;r<16;r+=1)u[r]=909522486^o[r],c[r]=1549556828^o[r];return e=i(u.concat(h(t)),512+8*t.length),a(i(c.concat(e),640))}(r(n),r(t))}
+        function t(n,t,r){return t?r?u(t,n):e(u(t,n)):r?o(n):e(o(n))}
+        "function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:n.md5=t;
+    }(this);
+</script>
+
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '51da5c60f4f56c7257ec',
+    clientSecret: 'c6208164907a36b5b54077802ac3319a9dc833f9',
+    repo: 'gitalk_comments',
+    owner: 'lonelyuan',
+    admin: ['lonelyuan'],
+    id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false       // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">>> 不要恐慌 | Don't Panic </div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://lonelyuan.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
