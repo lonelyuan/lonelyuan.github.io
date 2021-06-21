@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-06-16T07:35:30.838Z</updated>
+    <updated>2021-06-21T07:28:47.544Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -10,6 +10,230 @@
     <logo>https://lonelyuan.github.io/images/avatar.png</logo>
     <icon>https://lonelyuan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, lonelyuan&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[CISCN2021华东百赛区分区选拔赛AWD复盘]]></title>
+        <id>https://lonelyuan.github.io/post/awd-da-pian/</id>
+        <link href="https://lonelyuan.github.io/post/awd-da-pian/">
+        </link>
+        <updated>2021-06-16T08:54:30.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="耻辱归来">🛁耻辱归来</h2>
+<p>这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。</p>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
+<blockquote>
+<p>“终端越炫，嗨客越带；嗨客越带，帽子越带”</p>
+</blockquote>
+<!-- 
+在CISCN2021华东百赛区分区赛中，友队StudentUnion战队成功成为了CISCN2021华东百赛区分区赛的👴，喜提第三，逼平贵校历史最好成绩，并荣登学院公众号；👴率领的队伍则逼平👴们在CISCN2021线上初赛中的排名，我们都有美好的未来。
+-->
+<h2 id="awd复盘">🐐AWD复盘</h2>
+<p>首先根据参赛手册，进行一个规则的复制：</p>
+<pre><code class="language-plain">1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。
+2、 攻防赛部署若干道赛题，初始分值为10500分。
+3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。
+4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。
+5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。
+6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。
+7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。
+8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。
+。。。
+7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。
+8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。
+</code></pre>
+<ul>
+<li>比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。</li>
+</ul>
+<p>然后按照AWD开局的任务清单，进行一个盘的复：</p>
+<h3 id="准备阶段">准备阶段</h3>
+<ul>
+<li>ssh连接：
+<ul>
+<li>主办方提供了ssh密钥，和靶机ip
+<ul>
+<li>于是省略<code>ssh-copy-id -i ~/.ssh/id_rsa.pub root@xx.xx.xx.xx</code>环节。</li>
+</ul>
+</li>
+<li>但是万能的Windows Terminal连不上去（依然不知道为啥），👴只能用图形化ssh客户端添加私钥连接。</li>
+</ul>
+</li>
+<li>IP扫描：
+<ul>
+<li>共有7道题，3道web，4道pwn，每道题目一个独立靶机，有独立的ip地址。不同靶机d段不同，不同队伍c段不同，按初赛排名分配。平台上告知了全部的ip列表。
+<ul>
+<li>于是省略<code>nmap -sn xx.xx.xx.0/24</code>环节。</li>
+</ul>
+</li>
+<li>选手机和靶机池在一个局域网内。不同队伍c段不同，一个队伍内的不同电脑d段不同。</li>
+</ul>
+</li>
+<li>流量监控：
+<ul>
+<li>主办方贴心的提供了被打流量(但是只有下行流量)，直接在~/package目录下给出.pcap文件。
+<ul>
+<li>于是省略<code>tcpdump tcp -i eth0 -t -s 0 and dst port ! 22 and src net 192.168.1.0/24 -w ./target.cap</code>环节。</li>
+<li>(不过用户名叫xctf，权限卡的很死。不给流量的话估计也只能在站里上流量监控脚本)</li>
+</ul>
+</li>
+<li>更新速度很快，被打之后几乎可以立刻找到流量。于是手速很重要。</li>
+</ul>
+</li>
+</ul>
+<h3 id="开局阶段">开局阶段</h3>
+<ul>
+<li>备份源码：<code>tar -zcvf w.tar.gz /var/www/html</code>
+<ul>
+<li>结果<code>&gt; Permission Denied</code>，遂跳过</li>
+</ul>
+</li>
+<li>扫马删马：D盾
+<ul>
+<li>👴直接在图形化shell里下载代码，然后崩屎了几次，手速慢了。</li>
+<li>每个web题都有一个不明小文件，显然是小马，删除之。</li>
+</ul>
+</li>
+<li>备份数据库：<code>mysqldump -uctf -p --databases [dbname] &gt; /tmp/db.sql</code>
+<ul>
+<li>结果<code>&gt; Permission Denied</code>，遂跳过</li>
+</ul>
+</li>
+<li>改数据库密码：<code>mysql&gt;SET PASSWORD FOR ctf@localhost=PASSWORD('newpass');</code>
+<ul>
+<li>结果<code>&gt; Permission Denied</code>，(╯▔皿▔)╯玩nm<br>
+<img src="https://lonelyuan.github.io/post-images/1624253899126.gif" alt="" loading="lazy"></li>
+</ul>
+</li>
+<li>然后开始源码审计(❌)</li>
+<li>然后等待被打之后翻流量(✔️)</li>
+</ul>
+<h3 id="攻防阶段">攻防阶段</h3>
+<p>👴只看得懂web题目。三道web题全是cms，是经典lamp环境。可是👴看不懂cms，👴是five。</p>
+<h4 id="web1safecms">web1：safecms</h4>
+<ul>
+<li>比赛一开始，啪的一下很快啊，全场被打，翻流量抓到payload，是一个模板文件的任意读漏洞。直接批量拿flag。</li>
+<li>定位到路由，注释之，不好使，还是被打；删除这个.class.php，不好使；👴怀疑是运行时缓存不更新，直接<code>service restart apache2</code>
+<ul>
+<li>结果<code>&gt;Permission Denied</code>，👴佛了</li>
+</ul>
+</li>
+<li>就这样被打了好一会，才发现直接修改index.php，能直接生效，血亏。</li>
+</ul>
+<h4 id="web2eyou">web2：eyou</h4>
+<ul>
+<li>这道题被打的很少，被宕机的很多。抓流量，发现很多混淆流量。（日志写shell？）</li>
+<li>👴跟着流量尝试用过滤的方法修复，但是还是被宕。</li>
+<li>若干轮后，👴没办法，只好申请重置，并在下一轮被宕。</li>
+<li>若干轮后，👴没办法，只好申请重置，并在这一轮被宕。</li>
+<li>若干轮后，👴没办法，只好白给，并在某一轮恢复正常并坚持到最后。我？？？
+<ul>
+<li>该不会是某队或者裁判看我们太可怜帮我们重置了吧，世界上还有这么温柔的人，我真的哭死</li>
+</ul>
+</li>
+<li>这道题无了。（赛后才知道，有队伍找到sqli并登录后台，在后台关闭了站点并羊了管理员账号。修nm。</li>
+</ul>
+<h4 id="web3lol">web3：lol</h4>
+<ul>
+<li>这道题是最后三小时放的，👴这时候已经自闭了几个小时。于是👴痛定思痛，开局直接把admin.php羊了，然后奇迹般的守到了最后。坏了，好起来了。</li>
+<li>全场被打，翻流量找到payload，某路径下有白给shell，直接删马并反打。</li>
+<li>某队使用了在网页输出中塞随机字符串的防御方法，但是没破坏flag，且填充的字符是固定的，被我肉眼识破，我直接进行一个<code>if ip == xx: flag = flag[12:]</code>。虽然没什么卵用，但是很快乐。</li>
+</ul>
+<h4 id="pwn">pwn：</h4>
+<p>一看到4个pwn👴直接傻掉。👴觉得👴不会做，因此也没去看，但听大佬说，直接抓流量进行一个转发就能拿分，👴下次一定准备好pwntools。</p>
+<h2 id="自动化攻防框架">🔒自动化攻防框架</h2>
+<p>AWD中，手交flag实在是很浪费时间的行为。虽然有时候自动化不太好写只能手交，像这次十分钟一轮，有72支队伍，就算你手速惊奇，也没有时间审计源码了。因此打AWD重点就在一个自动化。网上能找到各种框架，但是用的时候总是不顺手，遇到bug也不会修。只有自己写的才最好用。</p>
+<p>先说说用处最大的工具，就是批量攻击框架/自动化攻击脚本。这个框架主要有以下要素：</p>
+<ul>
+<li>输入：
+<ul>
+<li>待攻击ip列表：通常写在ip.txt里</li>
+<li>攻击函数：即封装好的payload请求</li>
+<li>交flag函数：根据平台接口封装</li>
+</ul>
+</li>
+<li>输出：
+<ul>
+<li>批量攻击，输出攻击结果</li>
+<li>攻击成功则提交</li>
+<li>反馈得分结果</li>
+</ul>
+</li>
+</ul>
+<p>框架的核心无非以下逻辑：</p>
+<pre><code class="language-python">while True:
+    for j in challenge_list: # 攻击函数索引
+        for i in ip_list: # 首先生成ip列表
+            flag = get_flag(i,j) # 根据j找到相应攻击函数
+            if flag!='Attacked failed':
+                submit_flag(flag)
+    print_result(j)
+    time.sleep(round)
+</code></pre>
+<p>找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
+<p>为了提高稳定性和易用性，这套框架可以写的很复杂，甚至可以写一个网站来管理。详情请github自行搜索。</p>
+<!-- 一个细节是，由于我本次比赛web，pwn都有，用一套统一的框架不是很简单。一个方向套框架 -->
+<p>除了批量攻击脚本，用到的脚本还有：</p>
+<ul>
+<li>权限维持/批量shell脚本：用于管理多个shell
+<ul>
+<li>但是不死马被禁用，因此本次比赛中shell出现的不是很多。</li>
+<li>（👴还准备了拿到白给shell之后持久化的脚本，结果一个shell都没拿到，准备个🔨。</li>
+</ul>
+</li>
+<li>文件监控脚本：用于监控flag等重要文件被读取和修改的准确时间，可以帮助确定payload
+<ul>
+<li>再牛逼一点还可以提供系统备份和回复功能。</li>
+</ul>
+</li>
+</ul>
+<p>上述都是系统脚本，大多在本机用python写的。下面说几种网页脚本，即直接用require/include包含的php脚本</p>
+<ul>
+<li>流量监控脚本：区别于系统级流量监控，用于监控敏感流量以抓取payload</li>
+<li>通防脚本：也就是waf，可以进行很充分的过滤
+<ul>
+<li>本次比赛中被禁用，因为确实破坏游戏体验</li>
+</ul>
+</li>
+</ul>
+<p>这些脚本，用好了才是趁手的兵器。这次比赛中👴的手速远不够快，延误了很多战机。</p>
+<h2 id="快进到考试周破防">🌊快进到《考试周破防》</h2>
+<p>回顾整场比赛，相比正经的漏洞挖掘，随机应变的能力对分数也有很大影响。总结几个因素：</p>
+<ul>
+<li>
+<p>awd的得分是随时间积累的，因此要掌控全局，时刻盯紧每道题有无薄弱环节和突破口。本次比赛题目数量多达7道，👴队有大佬没来，还带了一个萌新，约等于二打四，出现了看不过来题的情况。</p>
+</li>
+<li>
+<p>还有就是手速，由于流量很及时，payload一被抓到，甚至可以在一轮check之内丢进批量攻击脚本，直接和首先挖掘到漏洞的队伍平分分数。这要求自动化脚本的熟练运用，尽量避免手交flag。</p>
+</li>
+<li>
+<p>最后还有一点策略问题。分析三种题目状态，列个表定性分析一波最优解：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">能反打</th>
+<th style="text-align:center">不能反打</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">场上大多数Attacked</td>
+<td style="text-align:center">先反打再修洞</td>
+<td style="text-align:center">不能修洞则down自己</td>
+</tr>
+<tr>
+<td style="text-align:center">场上大多数CheckDown</td>
+<td style="text-align:center">打他喵的</td>
+<td style="text-align:center">尽量别down</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>出现漏洞大部分人会被打，这时如果你不能立刻修补而能立刻反打，相当程度上是不亏的。如果你修不好也可以选择宕机，因为这样分摊了丢掉的分数。</li>
+<li>尽量避免被打+被宕，扣双倍分数属实是血亏。如果决定宕机，先摸清check的时间和结算的时间，最好在新一轮结算后立即删站down自己。</li>
+</ul>
+<p>10个小时的AWD，要全程保持敏感和机智，确实对身体素质有些要求。👴坐高铁到合肥坐了6小时，打比赛坐了10小时，好悬没给我痔疮坐出来。晚上回到青岛并进行最后一次夜店，快进到《考试周破防》。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释]]></title>
         <id>https://lonelyuan.github.io/post/mips_pipeline_cpu/</id>
@@ -1168,25 +1392,25 @@ Rage, rage against the dying of the light.</p>
 <p>//排名按时间顺序</p>
 <p><strong>文</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9633058"><label class="task-list-item-label" for="task-item-9633058"> 大刘</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4609688"><label class="task-list-item-label" for="task-item-4609688"> 王小波</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-527992"><label class="task-list-item-label" for="task-item-527992"> 《GEB》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4133083"><label class="task-list-item-label" for="task-item-4133083"> 《量子窃贼》三部曲</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7775583"><label class="task-list-item-label" for="task-item-7775583"> 大刘</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8317187"><label class="task-list-item-label" for="task-item-8317187"> 王小波</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8259139"><label class="task-list-item-label" for="task-item-8259139"> 《GEB》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5190741"><label class="task-list-item-label" for="task-item-5190741"> 《量子窃贼》三部曲</label></li>
 </ul>
 <p><strong>剧</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7158943"><label class="task-list-item-label" for="task-item-7158943"> Re:0</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6167565"><label class="task-list-item-label" for="task-item-6167565"> JOJO</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4067030"><label class="task-list-item-label" for="task-item-4067030"> 爱死机</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7708593"><label class="task-list-item-label" for="task-item-7708593"> Rick&Morty</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9133489"><label class="task-list-item-label" for="task-item-9133489"> 黑镜</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-846522"><label class="task-list-item-label" for="task-item-846522"> Re:0</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1824471"><label class="task-list-item-label" for="task-item-1824471"> JOJO</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2452381"><label class="task-list-item-label" for="task-item-2452381"> 爱死机</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1712593"><label class="task-list-item-label" for="task-item-1712593"> Rick&Morty</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1567077"><label class="task-list-item-label" for="task-item-1567077"> 黑镜</label></li>
 </ul>
 <p><strong>第九艺术</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2083846"><label class="task-list-item-label" for="task-item-2083846"> Minecraft</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1007111"><label class="task-list-item-label" for="task-item-1007111"> Bioshock: Infinity</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8328452"><label class="task-list-item-label" for="task-item-8328452"> Celeste</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5647331"><label class="task-list-item-label" for="task-item-5647331"> 戴森球计划</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6773289"><label class="task-list-item-label" for="task-item-6773289"> Minecraft</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6465281"><label class="task-list-item-label" for="task-item-6465281"> Bioshock: Infinity</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2221739"><label class="task-list-item-label" for="task-item-2221739"> Celeste</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7301374"><label class="task-list-item-label" for="task-item-7301374"> 戴森球计划</label></li>
 </ul>
 <!--
 
