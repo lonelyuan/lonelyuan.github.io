@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-06-21T12:37:58.713Z</updated>
+    <updated>2021-06-21T12:47:33.298Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -166,9 +166,15 @@
     print_result(j)
     time.sleep(round)
 </code></pre>
-<p>找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
-<p>为了提高稳定性和易用性，这套框架可以写的很复杂，甚至可以写一个网站来管理。详情请github自行搜索。</p>
-<!-- 一个细节是，由于我本次比赛web，pwn都有，用一套统一的框架不是很简单。一个方向套框架 -->
+<p>比赛时，找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
+<p>为了提高稳定性和易用性，这套框架可以写的很复杂。比如：</p>
+<ul>
+<li>加入多线程，让框架非阻塞的持续运行</li>
+<li>加入面向对象，写成类库</li>
+<li>自带一些trick，比如流量混淆器等。</li>
+<li>当然，还可以写一个网站来可视化管理</li>
+</ul>
+<p>这里就涉及框架编程了，能深挖的地方还有很多。</p>
 <p>除了批量攻击脚本，用到的脚本还有：</p>
 <ul>
 <li>权限维持/批量shell脚本：用于管理多个shell
@@ -1393,25 +1399,25 @@ Rage, rage against the dying of the light.</p>
 <p>//排名按时间顺序</p>
 <p><strong>文</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5300942"><label class="task-list-item-label" for="task-item-5300942"> 大刘</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3894754"><label class="task-list-item-label" for="task-item-3894754"> 王小波</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8492604"><label class="task-list-item-label" for="task-item-8492604"> 《GEB》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8258067"><label class="task-list-item-label" for="task-item-8258067"> 《量子窃贼》三部曲</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2272202"><label class="task-list-item-label" for="task-item-2272202"> 大刘</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-105940"><label class="task-list-item-label" for="task-item-105940"> 王小波</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3520447"><label class="task-list-item-label" for="task-item-3520447"> 《GEB》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-521108"><label class="task-list-item-label" for="task-item-521108"> 《量子窃贼》三部曲</label></li>
 </ul>
 <p><strong>剧</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2954017"><label class="task-list-item-label" for="task-item-2954017"> Re:0</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7036971"><label class="task-list-item-label" for="task-item-7036971"> JOJO</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1036586"><label class="task-list-item-label" for="task-item-1036586"> 爱死机</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6443128"><label class="task-list-item-label" for="task-item-6443128"> Rick&Morty</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5216261"><label class="task-list-item-label" for="task-item-5216261"> 黑镜</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5045938"><label class="task-list-item-label" for="task-item-5045938"> Re:0</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-701219"><label class="task-list-item-label" for="task-item-701219"> JOJO</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8364425"><label class="task-list-item-label" for="task-item-8364425"> 爱死机</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1334128"><label class="task-list-item-label" for="task-item-1334128"> Rick&Morty</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9609787"><label class="task-list-item-label" for="task-item-9609787"> 黑镜</label></li>
 </ul>
 <p><strong>第九艺术</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2034891"><label class="task-list-item-label" for="task-item-2034891"> Minecraft</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4442819"><label class="task-list-item-label" for="task-item-4442819"> Bioshock: Infinity</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-15219"><label class="task-list-item-label" for="task-item-15219"> Celeste</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7435893"><label class="task-list-item-label" for="task-item-7435893"> 戴森球计划</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3145677"><label class="task-list-item-label" for="task-item-3145677"> Minecraft</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9678442"><label class="task-list-item-label" for="task-item-9678442"> Bioshock: Infinity</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1818104"><label class="task-list-item-label" for="task-item-1818104"> Celeste</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5685444"><label class="task-list-item-label" for="task-item-5685444"> 戴森球计划</label></li>
 </ul>
 <!--
 

@@ -6,7 +6,7 @@
 
 <title>CISCN2021华东百赛区分区选拔赛AWD复盘 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1624278749770">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1624279650201">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -187,7 +187,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1624278749770"
+            <form id="gridea-search-form" style="position: relative" data-update="1624279650201"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -377,9 +377,15 @@
     print_result(j)
     time.sleep(round)
 </code></pre>
-<p>找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
-<p>为了提高稳定性和易用性，这套框架可以写的很复杂，甚至可以写一个网站来管理。详情请github自行搜索。</p>
-<!-- 一个细节是，由于我本次比赛web，pwn都有，用一套统一的框架不是很简单。一个方向套框架 -->
+<p>比赛时，找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
+<p>为了提高稳定性和易用性，这套框架可以写的很复杂。比如：</p>
+<ul>
+<li>加入多线程，让框架非阻塞的持续运行</li>
+<li>加入面向对象，写成类库</li>
+<li>自带一些trick，比如流量混淆器等。</li>
+<li>当然，还可以写一个网站来可视化管理</li>
+</ul>
+<p>这里就涉及框架编程了，能深挖的地方还有很多。</p>
 <p>除了批量攻击脚本，用到的脚本还有：</p>
 <ul>
 <li>权限维持/批量shell脚本：用于管理多个shell
