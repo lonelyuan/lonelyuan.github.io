@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-06-21T07:57:43.503Z</updated>
+    <updated>2021-06-21T11:58:03.751Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -16,7 +16,7 @@
         <link href="https://lonelyuan.github.io/post/awd-da-pian/">
         </link>
         <updated>2021-06-16T08:54:30.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="耻辱归来">🛁耻辱归来</h2>
+        <content type="html"><![CDATA[<h2 id="">🛁</h2>
 <p>这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。</p>
 <figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
 <blockquote>
@@ -1162,7 +1162,7 @@ camera.observe(update, names='value')
         <id>https://lonelyuan.github.io/post/jetbot-1/</id>
         <link href="https://lonelyuan.github.io/post/jetbot-1/">
         </link>
-        <updated>2019-09-30T16:25:55.000Z</updated>
+        <updated>2019-09-19T16:25:55.000Z</updated>
         <content type="html"><![CDATA[<p>那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。</p>
 <p>小车的核心是NVIDIA家的jetson-nano开发板，这款19年三月才发布的微型AI计算机可谓是平民级核弹，四核A57的CPU，128核心Maxwell架构的GPU，4g内存，支持4k视频解码，而且这只五脏俱全的麻雀只需要5W的电源支持，任何一支充电宝都可以胜任。而它的定位是用它简单的搭建人工智能应用，非常的amazing。</p>
 <p>本文的目的,不完全是新手教程,还有自己学习过程的记录和分享.初次接触,多有疏漏,欢迎指教.</p>
@@ -1392,25 +1392,25 @@ Rage, rage against the dying of the light.</p>
 <p>//排名按时间顺序</p>
 <p><strong>文</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4842000"><label class="task-list-item-label" for="task-item-4842000"> 大刘</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9978865"><label class="task-list-item-label" for="task-item-9978865"> 王小波</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3265962"><label class="task-list-item-label" for="task-item-3265962"> 《GEB》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6252949"><label class="task-list-item-label" for="task-item-6252949"> 《量子窃贼》三部曲</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7644486"><label class="task-list-item-label" for="task-item-7644486"> 大刘</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5155884"><label class="task-list-item-label" for="task-item-5155884"> 王小波</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3696111"><label class="task-list-item-label" for="task-item-3696111"> 《GEB》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7041814"><label class="task-list-item-label" for="task-item-7041814"> 《量子窃贼》三部曲</label></li>
 </ul>
 <p><strong>剧</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7997781"><label class="task-list-item-label" for="task-item-7997781"> Re:0</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1090255"><label class="task-list-item-label" for="task-item-1090255"> JOJO</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-625034"><label class="task-list-item-label" for="task-item-625034"> 爱死机</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1498387"><label class="task-list-item-label" for="task-item-1498387"> Rick&Morty</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7139700"><label class="task-list-item-label" for="task-item-7139700"> 黑镜</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4347637"><label class="task-list-item-label" for="task-item-4347637"> Re:0</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8038654"><label class="task-list-item-label" for="task-item-8038654"> JOJO</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6754726"><label class="task-list-item-label" for="task-item-6754726"> 爱死机</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4470131"><label class="task-list-item-label" for="task-item-4470131"> Rick&Morty</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5202551"><label class="task-list-item-label" for="task-item-5202551"> 黑镜</label></li>
 </ul>
 <p><strong>第九艺术</strong>：</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-408653"><label class="task-list-item-label" for="task-item-408653"> Minecraft</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5721855"><label class="task-list-item-label" for="task-item-5721855"> Bioshock: Infinity</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6270847"><label class="task-list-item-label" for="task-item-6270847"> Celeste</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7478312"><label class="task-list-item-label" for="task-item-7478312"> 戴森球计划</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1370987"><label class="task-list-item-label" for="task-item-1370987"> Minecraft</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4013554"><label class="task-list-item-label" for="task-item-4013554"> Bioshock: Infinity</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4905306"><label class="task-list-item-label" for="task-item-4905306"> Celeste</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8086489"><label class="task-list-item-label" for="task-item-8086489"> 戴森球计划</label></li>
 </ul>
 <!--
 
