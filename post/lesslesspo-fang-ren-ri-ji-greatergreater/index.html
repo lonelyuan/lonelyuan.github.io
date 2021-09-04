@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>深度学习入门——jetbot智能小车尝鲜（二） | lonelyuan&#39;s Blog</title>
+<title>《破防人日记》 | lonelyuan&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1630772476962">
 
@@ -210,157 +210,102 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    深度学习入门——jetbot智能小车尝鲜（二）
+                    《破防人日记》
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2019-10-01 ·
+                        · 2021-07-03 ·
                     </time>
                     
-                        <a href="https://lonelyuan.github.io/tag/fA8mm7xfGv/" class="post-tags">
-                            # jetbot
+                        <a href="https://lonelyuan.github.io/tag/skTq7y_uX/" class="post-tags">
+                            # Life
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。</p>
-<p>怎样才能让ai程序发挥好的效果呢？众所周知，所谓人工智能，有多少人工就有多智能。</p>
-<p>AI的发展离不开三个要素：<strong>算力</strong>，<strong>算法</strong>和<strong>算材</strong>。根据摩尔定律，算力的发展是不会停滞的（虽然定律快失效了）；进几年来的AI热正是算法的突破，即深度学习相关算法的突飞猛进；而算材就是用来训练模型的数据，未来几年AI应用的进一步落地离不开算材的进一步开发（中国在AI方面的最大优势正在于此）。数据集的丰富程度和有效程度直接影响了AI应用的效果，我将在下文详细说明。</p>
-<p>在jetbot项目中，我们也能体验到用“人工”换“智能”的快乐。作为视觉识别类的AI应用，我们要在预设环境里创建数据集，并为其标注。有了数据集，jetbot搭载的NVIDIA牌GPU在方寸之间就能完成海量计算，仅用一颗摄像头就能实现自动避障，目标追踪，自动巡线等等炫酷功能！不要1999，也不要999，只要99！99刀NVIDIA计算卡带回家！（妮维雅打钱）</p>
-<blockquote>
-<p>给萌新理清几个概念：</p>
-<p>人工智能，机器学习，深度学习的关系：</p>
+                    <h2 id="day0">Day0</h2>
+<p>👴专业课考了78，我是废物。👴上学期考了一个72，那时候我的排名就稳在30%的程度，我知道我已经保研无望了。但是今天为什么又破防了呢？因为👴这学期的状态比上学期要好，而努力没有得来回报。当然，或许这都是我的主观臆断，上学期我也是这样自己感动自己，破防几天，然后忘掉自己立下的宏愿，在家里混吃等死一个月，又是充满希望的新学期。所以这是又一次打破循环的尝试，我借着机会把自己隔离一个星期，停下来好好整理一番身心；用独处的时间，断绝我得以逃避的空间。</p>
+<p>这7天里，👴打算解决如下问题：</p>
 <ul>
-<li>深度学习：一种实现机器学习的技术；机器学习：一种实现人工智能的方法</li>
-<li>【包含关系图】</li>
+<li>我从哪里来：我为什么会破防，我应该破防吗</li>
+<li>我要到哪去：考研择校讨论</li>
+<li>今天吃什么：指大家都放假食堂关门我吃什么</li>
 </ul>
-<p>AI的发展路径：</p>
+<br>
+<iframe src="//player.bilibili.com/player.html?aid=333121081&bvid=BV1UA411G7aS&cid=336827109&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"width="400" height="300" > </iframe>
+<br>
+<h2 id="day1-73-25点32分">Day1 | 7/3 | 25点32分</h2>
+<p>总是不甘心自己是一个平庸的人。</p>
+<p>从高中时代站在第一梯队（其实也勉强）到大学一事无成的落差；从家人一句轻飘飘的”你为啥不保研呢“让我无法回答而产生的逃避；从大佬们有意or无意的装逼and卖弱带来的溅射伤害。这些外部因素对我的影响不可避免，但是这些应该不能打倒我。</p>
+<p>那么你被谁打倒了呢，因为努力没有得来回报吗。你努力了个锤子你努力，不还是靠那几天熬夜。<!--有本事熬夜，有本事别长痘啊，有本事别口腔溃疡啊。-->更何况，谁靠诉你努力必然有回报的，这个道理你不懂？</p>
+<p>所以我就是这种心态，平庸，不自律，困在过去的习惯里，而总幻想着未来；很容易自我感动，因为相信奇迹的人本身就很了不起对吧，这就是我的精神胜利法。</p>
+<p>今天中午很晴朗，大太阳晒着，却不知从什么地方飘来的碎雨滴，岛市的天气属实离谱。</p>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1625591902366.jpg" alt="这点云彩真的能携带雨吗" loading="lazy"></figure>
+<!--
+今日流水账：
+- 理发：下次就剪短吧
+- 岛市游计划：初步确定
+- 更新win11：真的丑
+-->
+<h2 id="day2-74-16点27分">Day2 | 7/4 | 16点27分</h2>
+<p>今天的主要活动是呆实验室打比赛，明明没干啥，还是很累。不过这次不是0团队贡献了，还行。</p>
+<figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1625591890597.jpg" alt="图文无关" loading="lazy"></figure>
+<!--
+今日流水账：
+- 出了一道misc
+- 夜店
+-->
+<p>大学三年至今，第一年由于信息闭塞错过转专业的快车，在化工班得过且过。直到有机化学考了个65，眼看自己绩点必不可能保研，在大二还是决定转专业。索性学校政策开明（迫真），转专业尚且自由，不过还是得延毕一年。第二年疫情来袭，埋下晦气的伏笔，不过这一年学业上也不是一无所获。第三年晦气事件爆发，暑假颓废了，现在还没完全逃离晦气的阴影。然后暑假结束前获得来自友人の认可，第二个学期我应该能恢复正轨吧，然后👴感动了自己，然后👴又破防辣。</p>
+<p>与之平行的是我在贵🐋的活动。刚开始啥都不知道，最后还是在某公众号上赶上了最后一班车差点没加上，👴大概是唯一靠脸皮厚成功入社的人。不过还是混到了现在，目前来看，对社团最大的贡献在于设计了纳新海报（还tm用ppt画的），估计得沿用3年。至于CTF竞技水平，混了3年了还是这个将将入门的样子。至于原因，👴以为有天赋的不足，有引领的缺失，更有自身的懒惰，此处按下不表。<!--贵🐋不是抽象的概念，就是那几个吊人，。不管怎样，有关贵🐋的一切大概是👴大学生涯为数不多的闪光点。--></p>
+<p>总之，就算幻想不断的破灭，我的日子总不至于过不去。可是你为什么不快乐呢？因为和他们同行的时候会想到自己能力的不足，会担忧自己的明天，可是你不敢说，你还是缩进舒适区里直到机会溜走。你知道只要你不主动提起别人就不会想起，就可以避免尴尬，于是你笑得最大声，于是你一副满不在乎的样子，最终大家都忘了你的口嗨，甚至忘了你的存在；从各个方面，你错过了多少机会，换来了多少妥协？你不敢面对这样的未来，你还是让它发生了。</p>
+<h2 id="day3-75-xx点xx分">Day3 | 7/5 | xx点xx分</h2>
+<p>今天玩了一天缺氧，这个吊游戏属实杀时间。改天好好批判一番。</p>
+<p>于是我发现，自己一个人不还是该玩电脑玩电脑，该十点起十点起，三天憋不出一个屁来。</p>
+<h2 id="day4-76-21点35分">Day4 | 7/6 | 21点35分</h2>
+<p>如何重建意义。</p>
+<p>给分数盖棺定论吧。经过几天的了解，这个学期普遍分都不高，贵系压分压得比较厉害，<!--在此希望某些老师的母亲的身体健康。-->更何况，分数从来就不能代表专业水平。所谓的努力得不到回报也不尽然，回报比大致没有超过误差范围。尽管如此，相对的差距没有改变，👴还是破防了。</p>
+<p>于是我顿感计算这些没有意义，我们能且只能和自己比较。我渴望无限的进步和成长，我痛恨一成不变的生活。可我只能预料到我将长期处于这个停滞的阶段，我只能得出“靠自己的力量不可能改变自己”这个结论。那么，我将以怎样的姿态迎接下一次大考<!--，即**全国硕士研究生统一招生考试**-->？如果我坚持困难模式而不可避免的迎来了失败，我将如何接受命运？如果我选择简单模式，漫漫长夜我又该如何说服自己重建人生意义？要么痛苦，要么麻木。</p>
+<p>西西弗斯仅仅靠对众神的藐视，就能摆脱永世劳碌的痛苦吗；仅仅靠说服自己认为推石头很幸福，就能让自己幸福吗？</p>
+<p>这不是我想要的答案。说到底，神话故事也好，别人的各种“经”也罢，这些都不能完全映射到自己的人生，也就不能保证得出正确的结论。更何况，何谓正确呢。</p>
+<p>不过倒是有一条自己的结论并且验证过有效，那就是：永远准备好失败。</p>
+<p>【大一的藏书；大四的藏书】</p>
+<!-- 
+今日流水账：
+- 写反思4h
+- 
+-->
+<h2 id="day5-77-25点4x分">Day5 | 7/7 | 25点4x分</h2>
+<p>I know what I don't know.</p>
+<p>👴的理想，独特性，核心竞争力，这些脑海中的想法统称为S。问题是，即使想法实现了又如何？你写的东西一个月后你自己看了都尬死，你指望这一篇就能比肩《狂人日记》？S是抽象的，你的内心世界没人感兴趣；S是杂乱的，更多基于直觉而不是逻辑，更多基于情绪而不是理性。（尽管理性经常出现，但这种对理性狂热的崇拜不也是感性的吗）</p>
+<p>假设S真的有对应的完备模型X，目前的你并没有完整描述X的知识储备，也没有构建X并将其投射到现实的执行力，更没有用X影响周围人的表达能力。所以，为了获得X，我应当拓展自己所有的能力边界。而这恰恰是是我目前对X的定义。</p>
+<p>这样递归的定义能否导出有效的方法论呢？不完备性定理告诉我们，不能。因此，目前我只能根据X的低阶近似导出并相信一些世俗的方法论，并理所当然的陷入了心理内耗之中。在漫长的一生中，我有无穷的时间和自己纠缠；在同样短暂的一生里，我不断和现实失之交臂。</p>
+<p>是那些外部因素塑造了你的外在？又是哪些外在塑造了你的思想。你已经知道了你永远无法在正确的时间得到正确答案，为什么还要把自己关在这里去后悔，去内耗？</p>
+<p>明天洗衣服，该买回家的票了。</p>
+<!-- 
+今日流水账：
+- 和高吃饭，被劝退
+- 进一步认识到考研的难度，对保本校的态度提高了
+ -->
+<h2 id="day6-78-01点32分">Day6 | 7/8 | 01点32分</h2>
+<p>回答昨天的问题，这是一次尝试。</p>
+<!-- 
+今日流水账：
+- 调式美感
+-->
+<h2 id="day7-79-01点32分">Day7 | 7/9 | 01点32分</h2>
+<p>大学的评判标准不只有一个</p>
+<p>暑假干什么：</p>
 <ul>
-<li>弱AI：单独领域工作效率超过人类→</li>
-<li>通用AI：可以广泛应用于大部分领域→</li>
-<li>强AI：有自主意识，即将灭绝人类（不是）→</li>
+<li>python后端：简历</li>
+<li>看三本书</li>
+<li></li>
 </ul>
-<p>现在AI发展到什么地步了：弱AI，有生之年可能见到通用AI</p>
-</blockquote>
-<p>推荐一波汉化的很好的wiki，也有自己原创的内容：http://www.waveshare.net/wiki/JetBot_AI_Kit</p>
-<p>本篇详细介绍两个demo的代码和可能遇到的问题，最后附上神经网络的入门笔记。同样是初次接触，大佬请绕道。</p>
-<h3 id="demo1自动避障">demo1：自动避障</h3>
-<p>小车如何实现自动避障的呢？用通俗的不能再通俗的说法，AI程序通过学习你给他的数据集，知道了什么样的图像是死路，什么样的图像是通路。得到新图像时就能判断是死路的概率有多少，在程序里可以很简单的看出，当这个概率大于0.5的时候就触发小车转向。</p>
-<p>具体而言，你要在你的环境里拍至少200张照片，100张标记为通路（free），100张标记为死路（blocked）。这便是你的数据集（dataset）。构建数据集的时候尽量分散在环境的各个位置和各个方向，可以沿边界环绕一圈，走一段距离停下，转一圈，收集8-10张图片。反正你的数据越多，标记的越准确，模型效果越好。</p>
-<p>下一步就开始训练模型了，从代码里看出，这个demo使用AlexNet模型，用pytorch实现（废话）。第一次运行你会下载一个244M左右的大文件，在<code>/home/jetbot/.torch/models</code>目录下会看到这个.pth文件。这便是AlexNet了。</p>
-<p>继续运行程序，完整的输出结果有三十行，每行后面的小数代表当前模型的准确度（？），程序最后会从这30个模型中选取准确度最高的作为最终模型，也是一个pth文件：<code>best_model.pth</code></p>
-<p>下载文件和训练模型都需要花挺长时间，看到kernel busy，也就是右上角的大黑点不要轻易打断。</p>
-<p>什么是模型呢？稍微解释一下机器学习的概念。</p>
-<p>模型就是函数，其要素为输入，输出，和变换关系。举例说明：</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>输入</th>
-<th>输出</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>细菌向养分移动</td>
-<td>外界环境的化学信号</td>
-<td>催动鞭毛的电信号</td>
-</tr>
-<tr>
-<td>学生参加高考</td>
-<td>试卷反射的光信号</td>
-<td>试卷上问题的答案</td>
-</tr>
-<tr>
-<td>小车自动避障</td>
-<td>摄像头传输图像信号</td>
-<td>前方被堵塞的概率</td>
-</tr>
-</tbody>
-</table>
-<p>实际上，知识的本质也是函数，生命延续的关键就在于该生命的模型是否适应环境。这里不深入解释了，觉得惊奇请参阅Yjango的频道https://space.bilibili.com/344849038他用机器学习的角度解释生物进化，非常颠覆三观。</p>
-<p>总之训练出来的模型就是这样一个函数。其输入为经过处理的摄像头的图形信号，输出一个0-1的数，越接近1越意味着模型认为小车要撞墙了。但是当他大于0.5的时候就会触发转向，也就实现了自动避障。</p>
-<blockquote>
-<p>AlexNet是2012年提出的一种卷积神经网络（即CNN）算法。首次实现gpu加速。</p>
-<p>主流深度学习框架：TensorFlow；PyTorch；Keras</p>
-</blockquote>
-<p>还挺好玩的😀</p>
-<h3 id="demo2目标追踪">demo2：目标追踪</h3>
-<p>基于上一个demo，我们还要下载一个模型，<a href="http://cocodataset.org/#home">coco数据集</a>神经网络，可以检测90种不同的物体。按教程把.engine文件下载到指定位置，顺着跑就完事了。（引入模型也要花挺长时间）</p>
-<p>如果有数据集里的物品，从输出里能看到蓝框标出，小车会自动转向物体，同时还保留了自动避障的程序。</p>
-<p>遇到bug：程序仅能读取一张图像进行识别，摄像头更新的功能无法执行。</p>
-<h3 id="修bug摄像头问题">修bug：摄像头问题</h3>
-<p>描述：摄像头只要调用了一次，后面就无法在其他地方调用。直接在jupyter上关闭输出并没有作用。而且只要在一个notebook里就能重复调用，换一个就不行。而且并没有报错信息，程序一直处在busy状态。</p>
-<p>找到源码，在jetbot/jetbot/camera.py，但是所有样例里面调用摄像头都是用的Camera.instance()方法，而这个instance是在traitlets库里的，于是找到trailets官方文档</p>
-<blockquote>
-<p>Traitlets是一个纯 python 库，支持：</p>
-<ul>
-<li>对 python 对象属性的强类型实施( 类型属性称为 &quot;特征&quot; ) ；</li>
-<li>动态计算的默认值；</li>
-<li>当尝试改变时，自动验证和强制特征属性；</li>
-<li>当特征值改变时注册接收通知；</li>
-<li>从文件或者 命令行 参数中读取值- 在traitlets上不同层，因这里可以在没有配置机器的情况下使用 traitlets。</li>
-</ul>
-<p>Traitlets支持IPython和Jupyter的配置系统，以及IPython交互小部件的声明性 API。</p>
-<p>ipython是一个 python 的交互式 shell，比默认的python shell 好用得多，支持变量自动补全，自动缩进，支持 bash shell 命令，内置了许多很有用的功能和函数。其中就包括traitlets库。</p>
-</blockquote>
-<p>https://traitlets.readthedocs.io/en/stable/config.html 在这里找到instance的功能：返回现有的类，如果没有就新建一个。</p>
-<p>下面是样例中调用摄像头的代码：</p>
-<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
-from IPython.display import display   #ipy的显示模块
-import traitlets                      
-from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
-camera = Camera.instance(width=500, height=500)#初始化摄像头对象
-image = widgets.Image(format='jpeg', width=400, height=400)#创建图像
-camera_link = traitlets.dlink((camera, 'value'), (image, 'value'), transform=bgr8_to_jpeg)     #连接摄像头到图像
-display(image)  #显示图像
-</code></pre>
-<p>尝试从camera.py里调用原始api。得到报错：<code>Each object must be HasTraits, not &lt;class 'NoneType'&gt;</code>，是说必须为对象指定类型。那么HasTraits这个类型是啥？文档说:任何具有trait属性的类都必须从 <code>HasTraits</code> 继承。</p>
-<p>再次梳理调用摄像头的流程：</p>
-<ul>
-<li>引入模型：<code>model.load_state_dict(torch.load('best_model.pth'))</code></li>
-<li>连接摄像头：见上文</li>
-<li>模型执行：</li>
-</ul>
-<pre><code class="language-python">def update():
-	...#此处为模型执行函数，将输入图像预处理后，执行模型
-update({'new': camera.value})  #初始化该函数
-camera.observe(update, names='value')  #将update函数设为camera.value的observer
-</code></pre>
-<p>研究一下observe用法：当对象发生变化时调用函数。</p>
-<p>https://traitlets.readthedocs.io/en/stable/using_traitlets.html#validation</p>
-<p>执行如下代码：</p>
-<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
-from IPython.display import display   #ipy的显示模块
-import traitlets                      
-from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
-camera = Camera.instance(width=500, height=500)#初始化摄像头对象
-def update(change):
-	x = change['new'] 
-	display(x)  #显示图像
-update({'new': camera.value})  
-camera.observe(update, names='value') 
-</code></pre>
-<p>输出一大堆数组，说明camera.value是这一大堆像素。而且observe正常运行，数据一直冒出。</p>
-<pre><code>array([[[122, 116, 130],
-        [126, 113, 127],
-        [125, 117, 129],
-        ...,
-        [ 84,  96, 107],
-        [ 82,  96, 113],
-        [ 93,  93, 113]],
-
-       [[120, 119, 130],
-        [122, 120, 119],
-        [118, 123, 130],
-        ...,
-</code></pre>
-<p>然而就是不实时更新数据，卒。</p>
-<p>👴佛了。</p>
-<h3 id="神经网络笔记">神经网络笔记</h3>
-<h3 id="alexnetcnn">AlexNet——CNN</h3>
-<p>2012年由Hinton学生Alex提出，是Lenet加宽版。其采用了一系列的新技术：成功的引用了relu、dropout和lrn等trick，首次采用gpu加速。其包含65万神经元，5个卷积层，三个后面带有池化层，最后用了三个全链接。</p>
-
+<h2 id="-今日流水账">&lt;!--<br>
+今日流水账：</h2>
+<p>--&gt;</p>
+<h2 id="dayn-xxxx-0218">DayN | xx/xx | 02:18</h2>
+<p>寂静的夜里，我再次审视自己，理性总是带来悲观，可总有一股奇异的激情涌现。在漆黑的阳台，我构思着演讲的精彩部分；在无人的走廊，我排练手势和动作。我知道若干年后，当我历尽艰险跨过沼泽，冲破循环，战胜了自己，我将向世人展示这一披荆斩棘，可歌可泣的过程。为了那一刻的完美呈现，现在的我可要抓紧时间准备。“他人成功的经验总是遥远的，出于低谷的你又如何相信那个光明的未来会到来呢。所以当我处于低谷时，记录了当时的感受‘寂静的夜里，我再次审视自己……’”这一定是最感动的高潮部分。</p>
+<!-- 写作目标：抓住瞬间的体验 -->
                 </div>
             </article>
         </div>
@@ -368,8 +313,8 @@ camera.observe(update, names='value')
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://lonelyuan.github.io/post/jetbot-1/" class="post-title gt-a-link">
-                    单片机入门——jetbot智能小车尝鲜(一)
+                <a href="https://lonelyuan.github.io/post/awd-da-pian/" class="post-title gt-a-link">
+                    CISCN2021华东百赛区分区选拔赛AWD复盘
                 </a>
             </div>
         
