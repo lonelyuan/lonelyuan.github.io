@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-09-04T16:23:31.507Z</updated>
+    <updated>2021-09-16T14:29:09.650Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -11,105 +11,579 @@
     <icon>https://lonelyuan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, lonelyuan&apos;s Blog</rights>
     <entry>
-        <title type="html"><![CDATA[从沙盘模拟经营游戏到系统工程]]></title>
-        <id>https://lonelyuan.github.io/post/cong-sha-pan-mo-ni-jing-ying-you-xi-kan-fu-za-ke-xue/</id>
-        <link href="https://lonelyuan.github.io/post/cong-sha-pan-mo-ni-jing-ying-you-xi-kan-fu-za-ke-xue/">
+        <title type="html"><![CDATA[不 要 让 开 发 停 下 来]]></title>
+        <id>https://lonelyuan.github.io/post/flask-supreme-tutorial/</id>
+        <link href="https://lonelyuan.github.io/post/flask-supreme-tutorial/">
         </link>
-        <updated>2021-07-03T12:42:43.000Z</updated>
+        <updated>2021-09-16T04:43:23.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
-<p>其实就是《缺氧》游戏评测</p>
+<p><a href="">上回书</a>说到，网站初具雏形，但经高人指点，还是有很多不足。<br>
+本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。<br>
+所以，不要停下来啊！👆</p>
 </blockquote>
+<hr>
+<h2 id="0x00-蓝图与重构">0x00 蓝图与重构</h2>
+<p>与之前相比，网站将增加以下功能：</p>
+<ul>
+<li>图库：文件上传模块</li>
+<li>评论：楼中楼功能</li>
+<li>后台：权限模块，后台模块</li>
+<li>优化：更健壮的数据库接口，更细致的权限控制</li>
+<li>plus功能：用 redis 实现热搜</li>
+</ul>
+<p>在开发这些功能之前，首先重整项目结构。如：</p>
+<ul>
+<li>完全蓝图化。<a href="https://blog.csdn.net/ldq_sd/article/details/104766636">参考</a>
+<ul>
+<li>模板也放入独立子目录里，蓝图注册时使用template_folder参数，不过这样容易产生bug，flask 官方推荐使用硬编码，汗。</li>
+</ul>
+</li>
+<li>清理依赖，不使用维护状态差的库。
+<ul>
+<li>开发新功能的时候，去哪里找最佳实践，找好用的库呢？有一个 Github 搜索小技巧，名为 &quot;awesome-xxx&quot; 的仓库通常是某技术的优质资源列表。如：https://github.com/humiaozuzu/awesome-flask</li>
+</ul>
+</li>
+</ul>
+<h2 id="0x01-文件系统">0x01 文件系统</h2>
+<blockquote>
+<p>本部分参考了<a href="greyli.com">李辉</a>大佬的系列文章，<br>
+https://zhuanlan.zhihu.com/p/23731819?refer=flask</p>
+</blockquote>
+<p>头像，照片……文件上传是绕不开的话题。在<a href="#shangyipian">上一篇</a>参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。</p>
+<p>注意踩坑！大部份资料推荐使用Flask_uploads插件，然而使用该插件时出现如下报错：</p>
+<pre><code>ImportError: cannot import name 'secure_filename' from 'werkzeug' 
+</code></pre>
+<p>查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：</p>
+<ul>
+<li>一是修改库源码</li>
+<li>二是换另一个库，维护良好且可无缝迁移，名为<a href="https://pypi.org/project/Flask-Reuploaded/">Flask-Reuploaded</a></li>
+</ul>
+<p>前者不利于后续部署，本人倾向于后者。然而，使用新库也遇到了诸多麻烦，使用<code>UploadSet.url()</code>方法时，报错如下：</p>
+<pre><code>werkzeug.routing.BuildError: Could not build url for endpoint '_uploads.uploaded_file' with values ['filename', 'setname']. 
+</code></pre>
+<p><code>UploadSet.url()</code>方法返回对应文件的可访问url，返回的url默认带有<code>_upload/</code>前缀，这是 Flask-Uploads 自带的路由，也被称为 autoserve 。<br>
+然而官方文档里有这样一句话</p>
+<blockquote>
+<p>autoserve of uploaded images now has been deactivated; this was a poorly documented “feature”, which even could have lead to unwanted data disclosure; if you want to activate the feature again, you need to set UPLOADS_AUTOSERVE=True</p>
+</blockquote>
+<p>看来 Flask-Reuploaded 的作者似乎认为文件读取功能与我无瓜。好吧，这部分我们自己实现。</p>
+<p>// 浪费了一晚上debug，结果只是因为文档没看明白，再次证明读文档的重要性。</p>
+<h3 id="flask-reuploaded-文件上传">Flask-Reuploaded: 文件上传</h3>
+<p>插件将上传的一类文件抽象成集合<code>UploadSet</code>。对每个 Set 有如下操作：</p>
+<ul>
+<li>配置文件类型：<code>photos = UploadSet('photos', IMAGES)</code> //类型包括：IMAGES、TEXT、AUDIO……</li>
+<li>配置存贮路径：<code>app.config['UPLOADED_PHOTOS_DEST']</code> // Photos 为 Set 的变量名</li>
+<li>保存文件：<code>filename = photos.save(request.files['photo'])</code></li>
+<li>返回链接：<code>photos.url(filename)</code></li>
+</ul>
+<p>最后，注册 Set 和插件注册类似：<code>configure_uploads(app, [avatars, photos])</code> //可一次性全部注册</p>
+<p>实现头像上传的步骤如下：</p>
+<ul>
+<li>模型层： User 添加 avatar 字段，储存头像的文件名。原<code>avatar()</code>方法作为默认头像。</li>
+<li>表单层： edit_profile 表单增加<code>FileField</code>字段</li>
+<li>视图层： 储存文件，向数据库提交文件名。</li>
+<li>模板层： 改用硬路由获取url。// 最终 .url() 还是有bug，再次说明不要乱用不知名的插件</li>
+</ul>
+<h3 id="图库模块">图库模块</h3>
+<p>本模块包括如下路由：</p>
+<ul>
+<li><code>/index</code>：主页显示瀑布流</li>
+<li><code>/upload</code>：上传接口：参考头像上传</li>
+<li><code>/detail</code>：详情，显示评论</li>
+<li><code>/delete</code>：删除接口：同时删除文件</li>
+</ul>
+<p>由于本项目前端框架是 Bootstrap ，👴不想写Jquery，所以直接刷新页面，也不弄无限滚动了，按钮了事。另外为了不同列长度尽量均匀，故采用取巧的方法，平均分配。根据大数定理，只要随机图片足够多肯定会差不多均匀。。。。</p>
+<h2 id="0x02-评论系统">0x02 评论系统</h2>
+<h3 id="数据库设计">数据库设计</h3>
+<p>评论包含了两个一对多关系，既是评论和文章的一对多关系，也是评论和用户的一对多。为此，只需要给User和Post添加关系即可。<br>
+然而，我们希望设计统一的Comment模型，评论的对象既可以是文章，也可以是图片，也可以是其他评论。为此，添加一个枚举类型的字段指示评论类型，从而采用不同的处理逻辑。</p>
+<h3 id="楼中楼">楼中楼</h3>
+<p>而主流网站不光支持对文章评论，还支持楼中楼。对楼中楼的实现有以下几种方案：</p>
+<ul>
+<li>按时间平铺：以原百度贴吧为例
+<ul>
+<li>添加 <code>reply_id</code> 字段，指示要回复的人</li>
+</ul>
+</li>
+<li>套娃式缩进：以某些老式bbs为例
+<ul>
+<li>添加 <code>parent_id</code> 字段，指示父评论（顶层评论则为本身id），在实体类中保存子评论列表</li>
+</ul>
+</li>
+<li>弹窗式查看：以知乎，b站为例
+<ul>
+<li>在按时间平铺的基础上，若 <code>reply_id</code>存在添加“查看对话”按钮，递归的构建对话并弹窗。</li>
+</ul>
+</li>
+</ul>
+<p>其中，第一种实现简单，用户不友好；第二种实现复杂，对多层级对话无法胜任；第三种是最主流的实现方式。</p>
+<p>通过以<code>reply_id</code>作为指针，所有评论连接成了一棵树，在任意一个节点进行“查看对话”操作，就是执行树的寻根。“查看对话”函数如下：</p>
+<pre><code class="language-python">    @staticmethod
+    def view_dialogue(c_id):
+        dialogue = [c_id]
+        while Comment.query.get(c_id).type == 'comment':
+            c_id = Comment.query.get(c_id).reply_id
+            if Comment.query.get(c_id) is None:
+                break
+            dialogue.append(c_id)
+        return dialogue
+</code></pre>
+<h2 id="0x03-网站后台">0x03 网站后台</h2>
+<p>网站的后台通常给管理员提供统一监管数据库的界面。有以下插件帮助实现：</p>
+<ul>
+<li>Flask-admin：一键生成后台页面，并可以自定义视图和模型。</li>
+<li>Flask-Security： 比admin层次更高，封装了常用视图和模板。但是文档少，且很多功能我们已经实现了，再使用它就要推翻重做。遂弃用。</li>
+</ul>
+<p>本教程中使用了 RBAC（Role-Based Access Control) 基于角色的访问控制，简单说就是设计一个角色表，用户表和角色表用关联表实现多对多关联。这样做的好处是，针对角色的权限分配，修改权限时无需修改每个用户。</p>
+<h2 id="0x04-热搜">0x04 热搜</h2>
+<p>本节再加入一个重量级内容，利用 redis 实现浏览量排行榜，也就是热搜。当然，真正的热搜榜单排名规则更加复杂，这里只通过简单的浏览量计数来练习 redis 的使用。</p>
+<p>【👴有时间再做】</p>
+<h2 id="不要让开发停下来">不要让开发停下来</h2>
+<p>可以加的功能还有很多：时间线，emoji支持，多媒体，前后端分离(Vue)，，</p>
+<p>除了功能，当面对更高量级的流量时，网站性能便更加重要，这时候消息队列，PRC，微服务/分布式，，，更让人头秃。</p>
+<p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[《破防人日记》]]></title>
-        <id>https://lonelyuan.github.io/post/lesslesspo-fang-ren-ri-ji-greatergreater/</id>
-        <link href="https://lonelyuan.github.io/post/lesslesspo-fang-ren-ri-ji-greatergreater/">
+        <title type="html"><![CDATA[年轻人的第二个网站 - The Flask Mega Tutorial]]></title>
+        <id>https://lonelyuan.github.io/post/flask-mega-tutorial/</id>
+        <link href="https://lonelyuan.github.io/post/flask-mega-tutorial/">
         </link>
-        <updated>2021-07-03T11:51:14.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="day0">Day0</h2>
-<p>👴专业课考了78，我是废物。👴上学期考了一个72，那时候我的排名就稳在30%的程度，我知道我已经保研无望了。但是今天为什么又破防了呢？因为👴这学期的状态比上学期要好，而努力没有得来回报。当然，或许这都是我的主观臆断，上学期我也是这样自己感动自己，破防几天，然后忘掉自己立下的宏愿，在家里混吃等死一个月，又是充满希望的新学期。所以这是又一次打破循环的尝试，我借着机会把自己隔离一个星期，停下来好好整理一番身心；用独处的时间，断绝我得以逃避的空间。</p>
-<p>这7天里，👴打算解决如下问题：</p>
+        <updated>2021-09-09T12:18:56.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>本文为 Flask 框架学习笔记，主要参考了 <a href="https://luhuisicnu.gitbook.io/the-flask-mega-tutorial-zh">The-Flask-Mega-Tutorial</a> 和 《Flask Web开发：基于Python的Web应用开发实战》两本书，并在原项目的基础上拓展。（下文统称这两个资源为“本教程”）<br>
+不熟悉 Flask 框架请先阅读<a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html">快速上手 - flask 中文文档</a> 。</p>
+<p>这两本书的作者是同一个人，就内容上说后者算是前者的豪华版。本教程的优点是内容全面，从入门到部署一站式服务；缺点是不够深入，且有些过时，书中举例的诸多插件均为作者为了此书而开发的，已经许久不再维护，导致很难在其示例项目上拓展。一看扉页，2015年出版，那没事了。<br>
+至于第一个网站？参见<a href="#%E6%88%91%E8%BF%98%E6%B2%A1%E5%86%99%E5%91%A2">#TODO:年轻人的第一个网站</a></p>
+</blockquote>
+<hr>
+<h2 id="0x00-大型项目结构">0x00 大型项目结构</h2>
+<p>在大部分面向初学者的 demo 中，应用以简单的项目结构甚至单文件表示。在大型项目中，网站的不同功能被拆分成独立的模块，以方便拓展和维护。一个更通用的 Flask 项目代码架构如下：（仅考虑业务代码）</p>
+<pre><code>microblog/ # 根目录
+  app/ # 项目源码
+    __init__.py # 项目初始化，当该包被import，首先执行__init__.py
+    routes.py
+    forms.py
+    ...
+  main.py # 框架入口
+  config.py # Config配置类
+  .flaskenv
+  ...
+</code></pre>
+<p>根目录下的文件有：</p>
 <ul>
-<li>我从哪里来：我为什么会破防，我应该破防吗</li>
-<li>我要到哪去：考研择校讨论</li>
-<li>今天吃什么：指大家都放假食堂关门我吃什么</li>
-</ul>
-<br>
-<iframe src="//player.bilibili.com/player.html?aid=333121081&bvid=BV1UA411G7aS&cid=336827109&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"width="400" height="300" > </iframe>
-<br>
-<h2 id="day1-73-25点32分">Day1 | 7/3 | 25点32分</h2>
-<p>总是不甘心自己是一个平庸的人。</p>
-<p>从高中时代站在第一梯队（其实也勉强）到大学一事无成的落差；从家人一句轻飘飘的”你为啥不保研呢“让我无法回答而产生的逃避；从大佬们有意or无意的装逼and卖弱带来的溅射伤害。这些外部因素对我的影响不可避免，但是这些应该不能打倒我。</p>
-<p>那么你被谁打倒了呢，因为努力没有得来回报吗。你努力了个锤子你努力，不还是靠那几天熬夜。<!--有本事熬夜，有本事别长痘啊，有本事别口腔溃疡啊。-->更何况，谁靠诉你努力必然有回报的，这个道理你不懂？</p>
-<p>所以我就是这种心态，平庸，不自律，困在过去的习惯里，而总幻想着未来；很容易自我感动，因为相信奇迹的人本身就很了不起对吧，这就是我的精神胜利法。</p>
-<p>今天中午很晴朗，大太阳晒着，却不知从什么地方飘来的碎雨滴，岛市的天气属实离谱。</p>
-<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1625591902366.jpg" alt="这点云彩真的能携带雨吗" loading="lazy"></figure>
-<!--
-今日流水账：
-- 理发：下次就剪短吧
-- 岛市游计划：初步确定
-- 更新win11：真的丑
--->
-<h2 id="day2-74-16点27分">Day2 | 7/4 | 16点27分</h2>
-<p>今天的主要活动是呆实验室打比赛，明明没干啥，还是很累。不过这次不是0团队贡献了，还行。</p>
-<figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1625591890597.jpg" alt="图文无关" loading="lazy"></figure>
-<!--
-今日流水账：
-- 出了一道misc
-- 夜店
--->
-<p>大学三年至今，第一年由于信息闭塞错过转专业的快车，在化工班得过且过。直到有机化学考了个65，眼看自己绩点必不可能保研，在大二还是决定转专业。索性学校政策开明（迫真），转专业尚且自由，不过还是得延毕一年。第二年疫情来袭，埋下晦气的伏笔，不过这一年学业上也不是一无所获。第三年晦气事件爆发，暑假颓废了，现在还没完全逃离晦气的阴影。然后暑假结束前获得来自友人の认可，第二个学期我应该能恢复正轨吧，然后👴感动了自己，然后👴又破防辣。</p>
-<p>与之平行的是我在贵🐋的活动。刚开始啥都不知道，最后还是在某公众号上赶上了最后一班车差点没加上，👴大概是唯一靠脸皮厚成功入社的人。不过还是混到了现在，目前来看，对社团最大的贡献在于设计了纳新海报（还tm用ppt画的），估计得沿用3年。至于CTF竞技水平，混了3年了还是这个将将入门的样子。至于原因，👴以为有天赋的不足，有引领的缺失，更有自身的懒惰，此处按下不表。<!--贵🐋不是抽象的概念，就是那几个吊人，。不管怎样，有关贵🐋的一切大概是👴大学生涯为数不多的闪光点。--></p>
-<p>总之，就算幻想不断的破灭，我的日子总不至于过不去。可是你为什么不快乐呢？因为和他们同行的时候会想到自己能力的不足，会担忧自己的明天，可是你不敢说，你还是缩进舒适区里直到机会溜走。你知道只要你不主动提起别人就不会想起，就可以避免尴尬，于是你笑得最大声，于是你一副满不在乎的样子，最终大家都忘了你的口嗨，甚至忘了你的存在；从各个方面，你错过了多少机会，换来了多少妥协？你不敢面对这样的未来，你还是让它发生了。</p>
-<h2 id="day3-75-xx点xx分">Day3 | 7/5 | xx点xx分</h2>
-<p>今天玩了一天缺氧，这个吊游戏属实杀时间。改天好好批判一番。</p>
-<p>于是我发现，自己一个人不还是该玩电脑玩电脑，该十点起十点起，三天憋不出一个屁来。</p>
-<h2 id="day4-76-21点35分">Day4 | 7/6 | 21点35分</h2>
-<p>如何重建意义。</p>
-<p>给分数盖棺定论吧。经过几天的了解，这个学期普遍分都不高，贵系压分压得比较厉害，<!--在此希望某些老师的母亲的身体健康。-->更何况，分数从来就不能代表专业水平。所谓的努力得不到回报也不尽然，回报比大致没有超过误差范围。尽管如此，相对的差距没有改变，👴还是破防了。</p>
-<p>于是我顿感计算这些没有意义，我们能且只能和自己比较。我渴望无限的进步和成长，我痛恨一成不变的生活。可我只能预料到我将长期处于这个停滞的阶段，我只能得出“靠自己的力量不可能改变自己”这个结论。那么，我将以怎样的姿态迎接下一次大考<!--，即**全国硕士研究生统一招生考试**-->？如果我坚持困难模式而不可避免的迎来了失败，我将如何接受命运？如果我选择简单模式，漫漫长夜我又该如何说服自己重建人生意义？要么痛苦，要么麻木。</p>
-<p>西西弗斯仅仅靠对众神的藐视，就能摆脱永世劳碌的痛苦吗；仅仅靠说服自己认为推石头很幸福，就能让自己幸福吗？</p>
-<p>这不是我想要的答案。说到底，神话故事也好，别人的各种“经”也罢，这些都不能完全映射到自己的人生，也就不能保证得出正确的结论。更何况，何谓正确呢。</p>
-<p>不过倒是有一条自己的结论并且验证过有效，那就是：永远准备好失败。</p>
-<p>【大一的藏书；大四的藏书】</p>
-<!-- 
-今日流水账：
-- 写反思4h
-- 
--->
-<h2 id="day5-77-25点4x分">Day5 | 7/7 | 25点4x分</h2>
-<p>I know what I don't know.</p>
-<p>👴的理想，独特性，核心竞争力，这些脑海中的想法统称为S。问题是，即使想法实现了又如何？你写的东西一个月后你自己看了都尬死，你指望这一篇就能比肩《狂人日记》？S是抽象的，你的内心世界没人感兴趣；S是杂乱的，更多基于直觉而不是逻辑，更多基于情绪而不是理性。（尽管理性经常出现，但这种对理性狂热的崇拜不也是感性的吗）</p>
-<p>假设S真的有对应的完备模型X，目前的你并没有完整描述X的知识储备，也没有构建X并将其投射到现实的执行力，更没有用X影响周围人的表达能力。所以，为了获得X，我应当拓展自己所有的能力边界。而这恰恰是是我目前对X的定义。</p>
-<p>这样递归的定义能否导出有效的方法论呢？不完备性定理告诉我们，不能。因此，目前我只能根据X的低阶近似导出并相信一些世俗的方法论，并理所当然的陷入了心理内耗之中。在漫长的一生中，我有无穷的时间和自己纠缠；在同样短暂的一生里，我不断和现实失之交臂。</p>
-<p>是那些外部因素塑造了你的外在？又是哪些外在塑造了你的思想。你已经知道了你永远无法在正确的时间得到正确答案，为什么还要把自己关在这里去后悔，去内耗？</p>
-<p>明天洗衣服，该买回家的票了。</p>
-<!-- 
-今日流水账：
-- 和高吃饭，被劝退
-- 进一步认识到考研的难度，对保本校的态度提高了
- -->
-<h2 id="day6-78-01点32分">Day6 | 7/8 | 01点32分</h2>
-<p>回答昨天的问题，这是一次尝试。</p>
-<!-- 
-今日流水账：
-- 调式美感
--->
-<h2 id="day7-79-01点32分">Day7 | 7/9 | 01点32分</h2>
-<p>大学的评判标准不只有一个</p>
-<p>暑假干什么：</p>
+<li><code>app/</code>所有网站源代码统一归到app目录下。
 <ul>
-<li>python后端：简历</li>
-<li>看三本书</li>
-<li></li>
+<li>在<code>app/</code>内部，不同的功能可进一步划分成独立模块，详见[模块化应用](#0x05 模块化应用：功能解耦)一章。</li>
 </ul>
-<h2 id="-今日流水账">&lt;!--<br>
-今日流水账：</h2>
-<p>--&gt;</p>
-<h2 id="dayn-xxxx-0218">DayN | xx/xx | 02:18</h2>
-<p>寂静的夜里，我再次审视自己，理性总是带来悲观，可总有一股奇异的激情涌现。在漆黑的阳台，我构思着演讲的精彩部分；在无人的走廊，我排练手势和动作。我知道若干年后，当我历尽艰险跨过沼泽，冲破循环，战胜了自己，我将向世人展示这一披荆斩棘，可歌可泣的过程。为了那一刻的完美呈现，现在的我可要抓紧时间准备。“他人成功的经验总是遥远的，出于低谷的你又如何相信那个光明的未来会到来呢。所以当我处于低谷时，记录了当时的感受‘寂静的夜里，我再次审视自己……’”这一定是最感动的高潮部分。</p>
-<!-- 写作目标：抓住瞬间的体验 -->]]></content>
+</li>
+<li><code>main.py</code>: 入口脚本，通过该文件引入app中的代码并生成应用实例（命名随意）</li>
+<li><code>.flaskenv</code>: flask环境变量，以配合flask命令。入口脚本被定义为<code>FLASK_APP</code>，执行<code>flask run</code>时将启动该脚本。</li>
+<li><code>config.py</code>: 配置脚本，整个项目的配置信息都写在Config类里。与环境变量的区别在于，因为是python脚本，功能更强大，可被任何地方的代码引用。</li>
+</ul>
+<h2 id="0x01-hello-world模板和视图">0x01 Hello world：模板和视图</h2>
+<p>最基本的 web 功能，无非接受请求、返回数据。其中，路由 (route) 用来区分不同的请求，模板 (templates) 用来生成不同的数据。</p>
+<h4 id="路由视图">路由/视图</h4>
+<p>在非前后端分离的项目中，视图函数直接返回渲染好的网页，由<code>@app.route()</code>修饰后，视图和路由便绑定在一起。<br>
+在mvc模型中更像controller控制器的角色，然而在flask生态中更喜欢称为视图函数。</p>
+<ul>
+<li><code>url_for()</code> 使用URL到视图函数的内部映射关系来生成URL，用来替换硬链接。在业务功能解耦后必须使用这种方式。
+<ul>
+<li>NOTE：当路由和视图函数名不一致，访问该路由可以正确响应，但是使用<code>url_for()</code>调用该视图时会报错</li>
+</ul>
+</li>
+<li><code>{{% extends &quot;base.html&quot; %}}</code> and <code>{{% include &quot;_post.html&quot; %}}</code> 使用子模板来实现网页公用的部分。如：页眉，页脚，列表项等。
+<ul>
+<li>模板和 Python 代码的关系有些类似与 JSP 和 Java 代码的关系，但模板语法并不是完整的脚本语言，相较而言限制更多，安全性更好。</li>
+</ul>
+</li>
+</ul>
+<h4 id="表单">表单</h4>
+<blockquote>
+<p>几乎所有成功的框架都有丰富的插件生态。下面引入新功能时，大多借助插件来方便的实现。大多数Flask插件使用<code>flask_&lt;name&gt;</code> 命名约定。</p>
+</blockquote>
+<p>Flask-WTF插件提供了对Web表单的抽象，只需定义表单类以及设置类属性即可。</p>
+<p>模板语法：</p>
+<ul>
+<li><code>{{ form.&lt;name&gt;.label }}</code>渲染标签</li>
+<li><code>{{ form.&lt;name&gt;() }}</code>获取属性值</li>
+<li><code>form.hidden_tag()</code>模板参数生成了一个隐藏字段，其中包含一个用于保护表单免受CSRF攻击的token</li>
+</ul>
+<p>将表单引入模板</p>
+<pre><code class="language-python">form = LoginForm() # 生成了一个实例传入模板
+return render_template('login.html', title='Sign In', form=form)
+</code></pre>
+<h4 id="flash-闪现消息">flash 闪现消息</h4>
+<p>flash 通过 session 储存，用于显示只出现一次的提示消息。用法：</p>
+<ul>
+<li>在路由中使用<code>flash()</code>，触发时消息便写入 session 中的 message 列表</li>
+<li>在模板中使用<code>get_flashed_messages()</code>，从 session 中读取</li>
+</ul>
+<h2 id="0x02-数据库-orm">0x02 数据库 ORM</h2>
+<p>很久很久以前，web网站和数据库交互还需要写很多很硬的 SQL 语句，效率低且容易出现注入漏洞(SQLi)。现代web开发都使用 ORM 框架简化数据库交互，且基本杜绝了 SQLi 漏洞。</p>
+<p>本项目使用如下插件打通数据库：</p>
+<ul>
+<li>Flask-SQLAlchemy: Python生态最知名的ORM框架</li>
+<li>Flask-Migrate: 本教程作者编写的数据库迁移框架</li>
+</ul>
+<blockquote>
+<p>插件首先要注册。统一流程: 初始化app实例，传入插件类作为插件实例的参数</p>
+<pre><code class="language-python"># app/__init__.py
+app = Flask(__name__) # flask基类
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+</code></pre>
+</blockquote>
+<h3 id="sqlalchemymodel层">SQLalchemy：model层</h3>
+<h4 id="模型定义">模型定义</h4>
+<p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：<br>
+<img src="https://lonelyuan.github.io/post-images/1631793936306.png" alt="" loading="lazy"></p>
+<p>Flask-SQLAlchemy 自动设置类名为小写来作为对应表的名称，也可以用<code>__tablename__</code>类属性来定义。</p>
+<pre><code class="language-python">class Post(db.Model): # 表
+    id = db.Column(db.Integer, primary_key=True) # 列
+    ....
+</code></pre>
+<h4 id="curd基本操作">CURD基本操作</h4>
+<p>ORM 框架通常集成了常用操作，但也支持更底层的数据库接口。</p>
+<blockquote>
+<p>在 Springboot Jpa 中，根据方法名的拼写来写自定义查询，而在 SQLalchemy 中，提供的接口通过链式调用拼接。</p>
+</blockquote>
+<p>在 SQLalchemy 中，基本操作大都有基于事务 (session) 的和基于查询 (query) 的两种方式。</p>
+<ul>
+<li>
+<p>查</p>
+<pre><code class="language-python">session.query(User)
+</code></pre>
+<p>query方法只有构造一个查询，只有在<code>Query.get()</code>、<code>Query.all()</code>、<code>Query.one()</code>等结束符之后才会执行查询</p>
+</li>
+<li>
+<p>增：</p>
+<pre><code class="language-python">db.session.add(user)
+db.session.commit()
+</code></pre>
+</li>
+<li>
+<p>删</p>
+<pre><code class="language-python">session.query(User).delete()
+# or
+session.delete(session.query(User).get(1))
+session.commit()
+</code></pre>
+</li>
+<li>
+<p>改</p>
+<pre><code class="language-python">query = (session
+	.query(User)
+	.filter_by(id=1)
+	.update({&quot;username&quot;: User.username + &quot;a&quot;}, synchronize_session=False)
+)
+# or
+user = (session.query(User).get(1))
+user.password = &quot;zxcv&quot;
+session.commit()
+</code></pre>
+</li>
+</ul>
+<h3 id="flask-migrate-数据库迁移">Flask-Migrate: 数据库迁移</h3>
+<p>配置数据库的初始数据框架，一般写成SQL脚本形式。<br>
+migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪数据模型的修改和数据库的切换。（这个框架还是本教程作者自己开发的，强）</p>
+<p>flask db子命令</p>
+<ul>
+<li><code>flask db init</code>：初始化，生成migrations目录</li>
+<li><code>flask db migrate</code>：生成迁移脚本，修改model后使其生效
+<ul>
+<li><code>flask db migrate -m &quot;posts table&quot;</code></li>
+</ul>
+</li>
+<li><code>flask db upgrade</code>：应用数据库修改（开发阶段默认使用sqlite数据库</li>
+<li><code>flask db downgrade</code>：回滚上次的迁移</li>
+</ul>
+<h2 id="0x03-开发范式用户系统">0x03 开发范式：用户系统</h2>
+<blockquote>
+<p>mixin：混入，多重继承的一种形式</p>
+</blockquote>
+<p>表单和数据库支持分别解决了前端和后端的基本需求，下面可以上线一个基本功能了，用户登录。<br>
+所需插件：Flask-Login。</p>
+<h4 id="usermixin类">UserMixin类</h4>
+<p>UserMixin类集成了login插件要求的用户模型属性，将其混入到 User 模型中，即可用<code>@login_required</code>实现权限控制。</p>
+<pre><code>@app.route('/result/', methods=['POST']) # NOTE：有顺序关系，反之则不生效
+@login_required 
+</code></pre>
+<p>用户系统，包括登录、登出、注册几个功能。编写这些功能的步骤其实很类似：</p>
+<ul>
+<li>设计数据库，在model.py中</li>
+<li>设计表单对象，在form.py中</li>
+<li>设计页面，在模板.html中</li>
+<li>设计视图函数，在routes.py中</li>
+</ul>
+<p>也对应了mvc框架的设计理念，比如设计表单就有些像 javaweb 中的 DAO 层。但也有区别， Flask 框架更希望业务逻辑写在数据库模型中，而视图函数尽量保持简洁，以方便单元测试。</p>
+<h4 id="prg-模式">PRG 模式</h4>
+<p>即为 <code>Post/Redirect/Get</code>，其格式大概如下：</p>
+<pre><code class="language-python">@bp.route('/some_form', methods=['GET', 'POST'])
+def some_form():
+    # prepare forms 
+    if form.validate_on_submit():
+        # submit modification
+        return redirect(url_for('main.some_form'))
+    elif request.method == 'GET':
+    	# GET data
+    return render_template('some_form.html', form=form)
+</code></pre>
+<p>默认情况，提交 POST 请求后，如果直接刷新浏览器，会重新在 POST 一次。使用PRG模式即可解决重复提交表单的问题。</p>
+<h2 id="0x04-深入数据库粉丝机制">0x04 深入数据库：粉丝机制</h2>
+<h3 id="数据库关系">数据库关系</h3>
+<p>要关注别人，就要让数据库记住我关注的人的名字，当然，只记住名字肯定不够，万一改名了呢。因此每个用户都需要有唯一有效的标识（其实更重要的是性能因素）。正因如此，数据库中每个表都要有一个唯一的列，称为<strong>主键</strong>(primary key)。当不同表之间存在关系，一个表要通过主键寻找其他表项，其他表的主键储存在本表中，称为<strong>外键</strong>(foreign key)。外键关联既可以表示一对一的关系，也可以一对多(1-&gt;n)。</p>
+<p>SQLalchemy 对关系的定义如下：</p>
+<ul>
+<li>外键：<code>db.ForeignKey('user.id')</code></li>
+<li>关系：<code>db.relationship('Post', backref='author', lazy='dynamic')</code>
+<ul>
+<li>参数1：所关联的表(n in 1-&gt;n)，这里是模型的变量名</li>
+<li>参数2：由 &quot;n&quot; 回调 &quot;1&quot; 的虚拟字段，用法：<code>post.author</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="粉丝机制">粉丝机制</h3>
+<p>然而，粉丝机制包括关注和被关注。这是一种多对多的关系，于是需要用含有两个外键的<strong>关联表</strong>表示。又因为关注者和被关注者在一个表里（User），这种关系又称为<strong>自引用</strong>。</p>
+<h4 id="模型">模型</h4>
+<ul>
+<li>
+<p>关联表只有引用类型，故不需要派生模型类</p>
+<pre><code class="language-python">followers = db.Table(
+    'followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
+</code></pre>
+</li>
+<li>
+<p>为User添加关系</p>
+<pre><code class="language-python">followed = db.relationship('User', # 右侧实体
+    secondary=followers, # 指定关联表
+    primaryjoin=(followers.c.follower_id == id), # 指定左关系
+    secondaryjoin=(followers.c.followed_id == id), # 指定右关系
+    backref=db.backref('followers', lazy='dynamic'), lazy='dynamic') # 指定回调
+</code></pre>
+</li>
+</ul>
+<h4 id="复杂查询">复杂查询</h4>
+<ul>
+<li>
+<p>查询粉丝列表</p>
+<ul>
+<li>
+<p>SQL 语句：<code>SELECT * FROM user, followers WHERE followers.follower_id = 3 AND followers.followed_id = user.id</code></p>
+</li>
+<li>
+<p>SQLalchemy 接口：<code>user.followers.all()</code></p>
+</li>
+<li>
+<p>实际执行的 SQL 语句：（打印 query 对象得到）</p>
+<pre><code>SELECT ,,,  FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id
+</code></pre>
+</li>
+<li>
+<p>NOTE：如果方法集成在model里，方法名不要和字段名相同，自己定义的方法会覆盖该字段。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>查看已关注用户的动态</p>
+<ul>
+<li>
+<p>SQL 语句：<code>SELECT * FROM post JOIN followers on followers.followed_id = post.user_id where followers.follower_id = 2</code></p>
+</li>
+<li>
+<p>SQLalchemy 接口：</p>
+</li>
+</ul>
+<pre><code class="language-sql">Post.query.join(
+  followers, (followers.c.followed_id == Post.user_id)).filter(
+    followers.c.follower_id == self.id).order_by(
+       Post.timestamp.desc())
+</code></pre>
+<ul>
+<li>
+<p>实际执行的SQL语句：</p>
+<pre><code class="language-sql">SELECT ,,, FROM 
+(SELECT ,,,
+   FROM post JOIN followers ON followers.followed_id = post.user_id 
+   WHERE followers.follower_id = ? 
+   UNION SELECT * 
+   FROM post 
+   WHERE post.user_id = ?
+) 
+AS anon_1 ORDER BY anon_1.post_timestamp DESC
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>由于python的弱类型特征，有时候很难明白函数之间传递的是什么对象。我们从上往下梳理一遍：</p>
+<ul>
+<li>请求到达路由函数，开始执行查询<code>Post.query.....</code>，此时只是在构造查询，并未取得数据，此时的对象类型：<code>&lt;class 'sqlalchemy.orm.query.Query'&gt;</code></li>
+<li>直到<code>get()</code>,<code>all()</code>,<code>paginate().items</code>结束符等出现，查询才被执行，返回数据类型实例，如User。</li>
+<li>数据类实例传入模板，并由<code>__str__</code>等方法参与渲染。</li>
+</ul>
+<h2 id="0x05-网站美化">0x05 网站美化</h2>
+<p>本教程提供的flask-bootstrap插件，较为简陋，且该插件年久失修，遂替换之。在此之前，先搞明白目前项目前端的架构</p>
+<pre><code>/templates
+   auth/
+   errors/
+   base.html
+   _posts.html
+   index.html
+   ... 
+</code></pre>
+<p>所有模板都有一个父模版：<code>base.html</code>，其结构如下：</p>
+<pre><code class="language-html">{% extends 'bootstrap/base.html' %}
+{% block title %}Hallo Wolrd{% endblock %}
+{% block head %} ... {% endblock %}
+{% block scripts %} ... {% endblock %}
+{% block navbar %} ... {% endblock %}
+{% block content %}
+    ...
+    {% block app_content %}{% endblock %}
+{% endblock %}
+</code></pre>
+<p><code>app_content</code>留空，即其余模板均在<code>app_content</code>内填充。</p>
+<p>进一步追溯<code>bootstrap/base.html</code>的源码，发现其它 block 诸如<code>navbar</code>也都留空或仅仅配置了 Bootstrap 的 cdn。 由此，只需将<code>base.html</code>迁移即可。</p>
+<p>在网上寻找新的UI模板，不要在中文互联网搜索，basically garbage。找到一个 <a href="https://demos.creative-tim.com/material-kit/index.html">Meterial 模板</a> 还算顺眼，遂用之。</p>
+<p>不熟悉 Bootstrap 布局的可以使用可视化工具来设计前端，如：http://www.ibootstrap.cn/</p>
+<p>对照模板，将<code>base.html</code>掏空，效果如下：</p>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1631795716824.png" alt="" loading="lazy"></figure>
+<p>遇到的bug有：</p>
+<ul>
+<li>下拉菜单失效：查询得知有可能是bootstrap版本冲突
+<ul>
+<li>//结果并不是，只是忘记引入js文件而已，我是傻逼。</li>
+</ul>
+</li>
+<li>文件上传按钮消失：本教程中，表单渲染采用<code>wtf.quick_form()</code>，这玩意还是来自<code>bootstrap/wtf.html</code></li>
+</ul>
+<p>最后决定整个🐏了 Flask-Bootstrap 插件。</p>
+<h4 id="富文本编辑器">富文本编辑器</h4>
+<p>在《Flask Web开发：基于Python的Web应用开发实战》中提到了markdown编辑器的实现。</p>
+<p>需要的包：</p>
+<ul>
+<li>PageDown: JS 版 Markdown 渲染器，用于客户端预览。</li>
+<li>Flask-PageDown: flask 集成插件。该插件需要注册</li>
+<li>Markdown: Python 版 Markdown 渲染器，用于服务端渲染。</li>
+<li>Bleach: HTML 清理器，保证安全性</li>
+</ul>
+<p>为了兼顾安全和效率，做法是同时保存 markdown 源文本和 HTML 文件。步骤如下：</p>
+<ul>
+<li>表单改为 <code>PageDownField</code></li>
+<li>模板引入 PageDown 宏，以实现即时预览</li>
+<li>为 Post 模型增加字段，并添加 markdown 渲染方法，该方法为类方法，需要<code>@staticmethod</code>修饰</li>
+<li>在模型外部监听数据库事件，仅当 markdown 文本出现变动时调用渲染方法。</li>
+<li>修改模板以显示服务端返回的 html 文本</li>
+</ul>
+<p>然而预览器过于简陋，也很难修改。在github仓库上发现该插件也是本教程作者写的，已经很久没有维护。顿时对本书作者有些不满。</p>
+<h2 id="0x06-模块化应用功能解耦">0x06 模块化应用：功能解耦</h2>
+<p>保持 app 作为全局变量的模式，可能会给后续引入新功能和单元测试带来麻烦。<br>
+要适应大型项目需求，需要把网站功能拆分成独立的模块。</p>
+<h3 id="blueprint化">Blueprint化</h3>
+<p>要实现解耦，一种功能的相关代码可以借助Blueprint归类到一个包里。其文件结构大致如下：</p>
+<pre><code class="language-angular2html">app/ 
+    some_fuction/                       &lt;-- blueprint package
+        __init__.py                     &lt;-- blueprint creation
+        ... other code ...
+    templates/
+        some_fuction/                   &lt;--  templates
+    __init__.py                         &lt;-- blueprint registration
+</code></pre>
+<p>创建blueprint与创建应用非常相似。</p>
+<pre><code class="language-python">from flask import Blueprint
+bp = Blueprint('func', __name__)
+from app.func import Func
+</code></pre>
+<p>而消灭了<code>app</code>，蓝图内部的引用统一变成了蓝图名。而外部诸如<code>url_for</code>的参数则需要加上<code>包名.</code>做前缀。</p>
+<h3 id="应用工厂模式">应用工厂模式</h3>
+<p>工厂函数是一个外部函数，在这个函数内部执行插件注册和配置工作，并通过他返回应用实例。</p>
+<pre><code class="language-python"># app/__init__.py
+db = SQLAlchemy()
+# ...
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    db.init_app(app)
+    # ...
+</code></pre>
+<p>返回后，flask提供的上下文对象<code>current_app</code>将指向应用实例。详见官方文档：<a href="http://docs.jinkan.org/docs/flask/appcontext.html">应用上下文</a></p>
+<h4 id="多线程">多线程</h4>
+<p><code>current_app</code>是线程绑定的，若要在诸如邮件服务的位于其他线程的功能调用他，则会发现没有赋值。<br>
+需要使用<code>current_app._get_current_object()</code>表达式。</p>
+<h4 id="python概念辨析包库插件">Python概念辨析：包，库，插件</h4>
+<blockquote>
+<p>包 (package) 是指一种代码结构，只要有文件夹和 <code>__init__.py</code> 都是包。<br>
+库 (library) 和插件 (plugin) 都是从外部引入的包，区别在于，插件要集成进应用，所以需要注册等步骤；而库更独立，可以随时随地调用</p>
+</blockquote>
+<h2 id="0x07-开发帮手">0x07 开发帮手</h2>
+<p>本节讲解一些杂项。</p>
+<h4 id="调试">调试</h4>
+<ul>
+<li><code>flask shell</code>命令：为避免每次调试都要重新import app，使用上下文调用解释器，用<code>@app.shell_context_processor</code>装饰上下文函数</li>
+</ul>
+<h4 id="单元测试">单元测试</h4>
+<p>unittest 库，详见<a href="">下一篇</a>。</p>
+<h4 id="记录日志到文件">记录日志到文件</h4>
+<p>logger 库</p>
+<pre><code class="language-python">    if not app.debug:
+        if not os.path.exists('logs'):
+            os.mkdir('logs')
+        file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
+                                           backupCount=10)
+        file_handler.setFormatter(logging.Formatter(
+            '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+
+        app.logger.setLevel(logging.INFO)
+        app.logger.info('Microblog startup')
+</code></pre>
+<h4 id="requirementtxt">requirement.txt</h4>
+<p>装的库太多怎么办？只需要两条命令：</p>
+<pre><code class="language-shell">pip freeze &gt; requirements.txt
+pip install -r requirements.txt
+</code></pre>
+<h2 id="0x08-网站上线">0x08 网站上线</h2>
+<p>最后简单列出几种网站部署的方法，详情参考本教程或自行搜索。</p>
+<h4 id="native模式">native模式</h4>
+<ul>
+<li>买主机
+<ul>
+<li>连主机：ssh</li>
+</ul>
+</li>
+<li>买域名
+<ul>
+<li>配域名</li>
+</ul>
+</li>
+<li>配环境
+<ul>
+<li>数据库</li>
+<li>服务器</li>
+<li>其他依赖</li>
+</ul>
+</li>
+<li>持续运维</li>
+</ul>
+<h4 id="容器化技术docker">容器化技术：docker</h4>
+<ul>
+<li>写dockerfile</li>
+<li>docker-compose up --build -d</li>
+</ul>
+<h4 id="云技术paas">云技术：PaaS</h4>
+<ul>
+<li>注册云平台账户</li>
+<li>写Procfile</li>
+<li>git push</li>
+</ul>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[CISCN2021华东百赛区分区选拔赛AWD复盘]]></title>
