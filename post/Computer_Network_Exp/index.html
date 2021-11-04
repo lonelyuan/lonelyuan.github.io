@@ -1,0 +1,444 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>从scapy和wireshark学计算机网络 | lonelyuan&#39;s Blog</title>
+
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1636017476404">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            lonelyuan&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="http://localhost:4000/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="http://localhost:4000/friends" class="menu gt-a-link">
+                    友链
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1636017476404"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    从scapy和wireshark学计算机网络
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-10-22 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个几把，建议带🔥去看英文原版。</p>
+<p>于是本文试图通过实验的方式学习计网的主要内容。主要用到以下工具：</p>
+<ul>
+<li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
+</ul>
+<blockquote>
+<p>下载：<a href="https://www.wireshark.org/download.html">https://www.wireshark.org/download.html</a><br>
+教程：<a href="https://www.javatpoint.com/wireshark">https://www.javatpoint.com/wireshark</a></p>
+</blockquote>
+<ul>
+<li>scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。
+<ul>
+<li>//不要和爬虫库scrapy混淆</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>scapy文档：<a href="https://scapy.readthedocs.io/en/latest/">https://scapy.readthedocs.io/en/latest/</a><br>
+中文版：<a href="https://www.osgeo.cn/scapy/introduction.html">https://www.osgeo.cn/scapy/introduction.html</a> //有些翻译错误</p>
+</blockquote>
+<h2 id="包">💣包</h2>
+<p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
+<p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包（package）有多个近义词，包括：报文(Datagram)，分组(Packet)，流量包(Data package)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。</p>
+<p>那么抓包和发包就不难理解了。本文的主要内容，就是用上述两工具把计算机网络从上到下玩个遍。</p>
+<p>不过在开玩之前，还需要理解一件事。</p>
+<h2 id="复杂系统方法分层layering">🍰复杂系统方法——分层(layering)</h2>
+<p>CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：</p>
+<blockquote>
+<ul>
+<li><strong>客户</strong>发货：把<em>货物</em>和<em>地址</em>交给快递点
+<ul>
+<li><strong>快递网点</strong>揽件：<em>包装</em>货物而变成包裹；包裹被送往最近的中转中心
+<ul>
+<li><strong>中转中心</strong>运输：根据包裹目的地不同，<em>分拣</em>并<em>装车</em>运输给不同的中转中心；若收到本片区的包裹，<em>卸车</em>并<em>分拣</em>给不同的网点</li>
+</ul>
+</li>
+<li><strong>快递网点</strong>派送：按包裹的<em>地址</em>，快递员送货上门</li>
+</ul>
+</li>
+<li><strong>客户</strong>取件：<em>拆箱</em>，拿到货物，确认无误签收<br>
+//上述流程不严谨，地址泛指地址电话重量等信息；不考虑菜鸟驿站等自取点情况</li>
+</ul>
+</blockquote>
+<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。</p>
+<p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
+<ul>
+<li>协议(Protocal)：同一层级内的交互规则。//横向</li>
+<li>接口(Interface)：不同层级间的交互规则。//纵向</li>
+<li>服务(Service)：每一层的工作，就是调用下层的接口，并为上层提供服务。</li>
+</ul>
+<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性了？每一层只关注自己的实现，大问题被分解成了小问题。我们并不需要完美的网络，我们只想让它很好用。</p>
+<!-- 
+实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
+
+- 端层/应用层：发出原始报文。
+- 网络层：负责建立网络连接。
+- 通信层：负责物理通信。 -->
+<p>上述类比中我特意标注了一些对应关系：</p>
+<ul>
+<li>载荷(Payload)：要运输的货物。每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。</li>
+<li>封包(Packaging)：信息在层次间传递的过程就是封包/解封的过程。比如对报文拆分成段，每段再加上首部/包头(header)，最终形成分组的过程；恰如对货物的包装并贴上标签，成为包裹的过程。</li>
+<li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
+<li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
+</ul>
+<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
+<h2 id="️开始实验">⌚️开始实验</h2>
+<blockquote>
+<p>实验来源有：</p>
+<ul>
+<li>自己设计</li>
+<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a><br>
+【想看哪个没更新的可以催我】</li>
+</ul>
+</blockquote>
+<h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
+<p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
+<h3 id="路由追踪">路由追踪 | ⭐</h3>
+<p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
+<p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
+<p>其实现大致如下：<br>
+<img src="http://localhost:4000/post-images/1636013930674.png" alt="" loading="lazy"><br>
+下面详细讲解：</p>
+<p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
+<ul>
+<li>sr()：send and receive，返回的两个参数分别是得到应答的数据包列表和未应答的包列表。</li>
+<li>IP()/TCP()：scapy重载了“/”表示协议栈的合成，可以链式的链接不同协议层实例，每层内部都可携带自己的参数</li>
+<li>ttl=(4,30)：ttl参数在IP层表示ICMP包的转发次数（跳数）。此外，传入tuple表示一个范围，sr函数将会为这个范围内的每个值生成一个发包。（如果有多个tuple参数，则会按笛卡尔积规则生成发包列表）</li>
+<li>TCP(flags=0x2)：在TCP头部设定flag字段的值，0x2对应ACK，即确认收到包。</li>
+<li>综合起来，这条代码将发送47个包，其ttl从1到50。并筛选返回ACK的包。</li>
+<li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
+</ul>
+<h3 id="基于icmp重定向的中间人攻击-todo">基于ICMP重定向的中间人攻击 | ⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</p>
+<h3 id="基于arp缓存投毒的中间人攻击-todo">基于ARP缓存投毒的中间人攻击 | ⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</p>
+<h3 id="tcp攻击-todo">TCP攻击 | ⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf</p>
+<p>TCP协议<br>
+SYN泛洪<br>
+TCP reset<br>
+TCP session hijacking反弹shell （重点）</p>
+<h3 id="dns本地攻击-todo">DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf</p>
+<h3 id="多线程web代理服务器-todo">多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
+<h3 id="vpn-todo">VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
+<p>探究VPN原理</p>
+<h3 id="v2ray协议学习-todo">V2Ray协议学习 | ？？？ | TODO</h3>
+<p>有生之年研究一下Vmess等协议</p>
+<!-- 省略的：
+- 防火墙iptables实验
+- mitnick攻击
+- BGP -->
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://localhost:4000/post/flask-supreme-tutorial/" class="post-title gt-a-link">
+                    年轻人的第二个网站（二） - flask-supreme-tutorial
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    // md5.min.js
+    !function(n){
+        "use strict";
+        function d(n,t){var r=(65535&n)+(65535&t);return(n>>16)+(t>>16)+(r>>16)<<16|65535&r}
+        function f(n,t,r,e,o,u){return d((c=d(d(t,n),d(e,u)))<<(f=o)|c>>>32-f,r);var c,f}
+        function l(n,t,r,e,o,u,c){return f(t&r|~t&e,n,t,o,u,c)}
+        function v(n,t,r,e,o,u,c){return f(t&e|r&~e,n,t,o,u,c)}
+        function g(n,t,r,e,o,u,c){return f(t^r^e,n,t,o,u,c)}
+        function m(n,t,r,e,o,u,c){return f(r^(t|~e),n,t,o,u,c)}
+        function i(n,t){var r,e,o,u,c;n[t>>5]|=128<<t%32,n[14+(t+64>>>9<<4)]=t;var f=1732584193,i=-271733879,a=-1732584194,h=271733878;for(r=0;r<n.length;r+=16)f=l(e=f,o=i,u=a,c=h,n[r],7,-680876936),h=l(h,f,i,a,n[r+1],12,-389564586),a=l(a,h,f,i,n[r+2],17,606105819),i=l(i,a,h,f,n[r+3],22,-1044525330),f=l(f,i,a,h,n[r+4],7,-176418897),h=l(h,f,i,a,n[r+5],12,1200080426),a=l(a,h,f,i,n[r+6],17,-1473231341),i=l(i,a,h,f,n[r+7],22,-45705983),f=l(f,i,a,h,n[r+8],7,1770035416),h=l(h,f,i,a,n[r+9],12,-1958414417),a=l(a,h,f,i,n[r+10],17,-42063),i=l(i,a,h,f,n[r+11],22,-1990404162),f=l(f,i,a,h,n[r+12],7,1804603682),h=l(h,f,i,a,n[r+13],12,-40341101),a=l(a,h,f,i,n[r+14],17,-1502002290),f=v(f,i=l(i,a,h,f,n[r+15],22,1236535329),a,h,n[r+1],5,-165796510),h=v(h,f,i,a,n[r+6],9,-1069501632),a=v(a,h,f,i,n[r+11],14,643717713),i=v(i,a,h,f,n[r],20,-373897302),f=v(f,i,a,h,n[r+5],5,-701558691),h=v(h,f,i,a,n[r+10],9,38016083),a=v(a,h,f,i,n[r+15],14,-660478335),i=v(i,a,h,f,n[r+4],20,-405537848),f=v(f,i,a,h,n[r+9],5,568446438),h=v(h,f,i,a,n[r+14],9,-1019803690),a=v(a,h,f,i,n[r+3],14,-187363961),i=v(i,a,h,f,n[r+8],20,1163531501),f=v(f,i,a,h,n[r+13],5,-1444681467),h=v(h,f,i,a,n[r+2],9,-51403784),a=v(a,h,f,i,n[r+7],14,1735328473),f=g(f,i=v(i,a,h,f,n[r+12],20,-1926607734),a,h,n[r+5],4,-378558),h=g(h,f,i,a,n[r+8],11,-2022574463),a=g(a,h,f,i,n[r+11],16,1839030562),i=g(i,a,h,f,n[r+14],23,-35309556),f=g(f,i,a,h,n[r+1],4,-1530992060),h=g(h,f,i,a,n[r+4],11,1272893353),a=g(a,h,f,i,n[r+7],16,-155497632),i=g(i,a,h,f,n[r+10],23,-1094730640),f=g(f,i,a,h,n[r+13],4,681279174),h=g(h,f,i,a,n[r],11,-358537222),a=g(a,h,f,i,n[r+3],16,-722521979),i=g(i,a,h,f,n[r+6],23,76029189),f=g(f,i,a,h,n[r+9],4,-640364487),h=g(h,f,i,a,n[r+12],11,-421815835),a=g(a,h,f,i,n[r+15],16,530742520),f=m(f,i=g(i,a,h,f,n[r+2],23,-995338651),a,h,n[r],6,-198630844),h=m(h,f,i,a,n[r+7],10,1126891415),a=m(a,h,f,i,n[r+14],15,-1416354905),i=m(i,a,h,f,n[r+5],21,-57434055),f=m(f,i,a,h,n[r+12],6,1700485571),h=m(h,f,i,a,n[r+3],10,-1894986606),a=m(a,h,f,i,n[r+10],15,-1051523),i=m(i,a,h,f,n[r+1],21,-2054922799),f=m(f,i,a,h,n[r+8],6,1873313359),h=m(h,f,i,a,n[r+15],10,-30611744),a=m(a,h,f,i,n[r+6],15,-1560198380),i=m(i,a,h,f,n[r+13],21,1309151649),f=m(f,i,a,h,n[r+4],6,-145523070),h=m(h,f,i,a,n[r+11],10,-1120210379),a=m(a,h,f,i,n[r+2],15,718787259),i=m(i,a,h,f,n[r+9],21,-343485551),f=d(f,e),i=d(i,o),a=d(a,u),h=d(h,c);return[f,i,a,h]}
+        function a(n){var t,r="",e=32*n.length;for(t=0;t<e;t+=8)r+=String.fromCharCode(n[t>>5]>>>t%32&255);return r}
+        function h(n){var t,r=[];for(r[(n.length>>2)-1]=void 0,t=0;t<r.length;t+=1)r[t]=0;var e=8*n.length;for(t=0;t<e;t+=8)r[t>>5]|=(255&n.charCodeAt(t/8))<<t%32;return r}
+        function e(n){var t,r,e="0123456789abcdef",o="";for(r=0;r<n.length;r+=1)t=n.charCodeAt(r),o+=e.charAt(t>>>4&15)+e.charAt(15&t);return o}
+        function r(n){return unescape(encodeURIComponent(n))}
+        function o(n){return a(i(h(t=r(n)),8*t.length));var t}
+        function u(n,t){return function(n,t){var r,e,o=h(n),u=[],c=[];for(u[15]=c[15]=void 0,16<o.length&&(o=i(o,8*n.length)),r=0;r<16;r+=1)u[r]=909522486^o[r],c[r]=1549556828^o[r];return e=i(u.concat(h(t)),512+8*t.length),a(i(c.concat(e),640))}(r(n),r(t))}
+        function t(n,t,r){return t?r?u(t,n):e(u(t,n)):r?o(n):e(o(n))}
+        "function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:n.md5=t;
+    }(this);
+</script>
+
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '51da5c60f4f56c7257ec',
+    clientSecret: 'c6208164907a36b5b54077802ac3319a9dc833f9',
+    repo: 'gitalk_comments',
+    owner: 'lonelyuan',
+    admin: ['lonelyuan'],
+    id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false       // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"> >> 不要恐慌 | Don't Panic </div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/lonelyuan" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+                <a href="https://twitter.com/FTrumpyeah" target="_blank">
+                    <i class="fab fa-twitter gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

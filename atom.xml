@@ -1,25 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://lonelyuan.github.io</id>
+    <id>http://localhost:4000</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-09-18T05:49:29.991Z</updated>
+    <updated>2021-11-04T09:21:40.173Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://lonelyuan.github.io"/>
-    <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle> &gt;&gt; 不要恐慌 | Don&apos;t Panic </subtitle>
-    <logo>https://lonelyuan.github.io/images/avatar.png</logo>
-    <icon>https://lonelyuan.github.io/favicon.ico</icon>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2021, lonelyuan&apos;s Blog</rights>
     <entry>
-        <title type="html"><![CDATA[不 要 让 开 发 停 下 来]]></title>
-        <id>https://lonelyuan.github.io/post/flask-supreme-tutorial/</id>
-        <link href="https://lonelyuan.github.io/post/flask-supreme-tutorial/">
+        <title type="html"><![CDATA[MOSPI-ChCore lab]]></title>
+        <id>http://localhost:4000/post/mospi-lab-1/</id>
+        <link href="http://localhost:4000/post/mospi-lab-1/">
+        </link>
+        <updated>2021-10-29T09:03:14.000Z</updated>
+        <content type="html"><![CDATA[<p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：</p>
+<p>那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲<strong>虚拟内存</strong>，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个<strong>多线程</strong>，看到没，线程上下文切换了。我特么直接三段<strong>系统调度</strong>（短期，中期，长期），然后我直接~就一个多核调度，我就调度到<strong>IPC</strong>，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出<strong>信号量</strong>直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，<strong>文件系统</strong>！加三段系统<strong>虚拟化</strong>（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。</p>
+<p><em>圣经原文：</em><a href="https://www.bilibili.com/video/BV1Jf4y1L7EZ">拖更云的鹰佐教学</a></p>
+<blockquote>
+<p>本系列为 ChCore lab 实验报告。<br>
+Lab源码：https://gitee.com/ipads-lab/chcore-lab<br>
+MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/</p>
+</blockquote>
+<h2 id="实验环境">实验环境</h2>
+<p>需要docker和qemu，docker不赘述。linux下安装qemu：<br>
+<code>sudo apt-get install qemu-system-arm</code><br>
+安装完成之后查看版本号：</p>
+<pre><code class="language-plain">$ qemu-system-aarch64 --version
+QEMU emulator version 4.2.0
+Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
+</code></pre>
+<p>5个实验在源码仓库分别以5个分支存在。 git clone  -b即可。</p>
+<h3 id="build-kernel">build kernel</h3>
+<ul>
+<li>用docker交叉编译内核：<code>make build</code></li>
+<li>启动qemu：<code>make qemu</code>
+<ul>
+<li>这里遇到报错：<code>Unable to init server: Could not connect: Connection refused gtk initialization failed</code></li>
+<li>解决方法：修改Makefile，在<code>QEMUOPTS</code>参数后加<code>-nographic</code></li>
+</ul>
+</li>
+<li>启动qemu：<code>make qemu-gdb</code>
+<ul>
+<li>将监听1234端口以供gdb远程调用</li>
+</ul>
+</li>
+<li>在另一个终端启动gdb调试：<code>make gdb</code>
+<ul>
+<li>这里可能需要安装gdb-multiarch：<code>sudo apt-get install gdb-multiarch</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="内核态输入输出">内核态输入输出</h3>
+<p>进制转换题</p>
+<p>看到大佬写的，不想写了，寄。<br>
+https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[从scapy和wireshark学计算机网络]]></title>
+        <id>http://localhost:4000/post/Computer_Network_Exp/</id>
+        <link href="http://localhost:4000/post/Computer_Network_Exp/">
+        </link>
+        <updated>2021-10-22T15:55:54.000Z</updated>
+        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个几把，建议带🔥去看英文原版。</p>
+<p>于是本文试图通过实验的方式学习计网的主要内容。主要用到以下工具：</p>
+<ul>
+<li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
+</ul>
+<blockquote>
+<p>下载：<a href="https://www.wireshark.org/download.html">https://www.wireshark.org/download.html</a><br>
+教程：<a href="https://www.javatpoint.com/wireshark">https://www.javatpoint.com/wireshark</a></p>
+</blockquote>
+<ul>
+<li>scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。
+<ul>
+<li>//不要和爬虫库scrapy混淆</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>scapy文档：<a href="https://scapy.readthedocs.io/en/latest/">https://scapy.readthedocs.io/en/latest/</a><br>
+中文版：<a href="https://www.osgeo.cn/scapy/introduction.html">https://www.osgeo.cn/scapy/introduction.html</a> //有些翻译错误</p>
+</blockquote>
+<h2 id="包">💣包</h2>
+<p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
+<p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包（package）有多个近义词，包括：报文(Datagram)，分组(Packet)，流量包(Data package)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。</p>
+<p>那么抓包和发包就不难理解了。本文的主要内容，就是用上述两工具把计算机网络从上到下玩个遍。</p>
+<p>不过在开玩之前，还需要理解一件事。</p>
+<h2 id="复杂系统方法分层layering">🍰复杂系统方法——分层(layering)</h2>
+<p>CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：</p>
+<blockquote>
+<ul>
+<li><strong>客户</strong>发货：把<em>货物</em>和<em>地址</em>交给快递点
+<ul>
+<li><strong>快递网点</strong>揽件：<em>包装</em>货物而变成包裹；包裹被送往最近的中转中心
+<ul>
+<li><strong>中转中心</strong>运输：根据包裹目的地不同，<em>分拣</em>并<em>装车</em>运输给不同的中转中心；若收到本片区的包裹，<em>卸车</em>并<em>分拣</em>给不同的网点</li>
+</ul>
+</li>
+<li><strong>快递网点</strong>派送：按包裹的<em>地址</em>，快递员送货上门</li>
+</ul>
+</li>
+<li><strong>客户</strong>取件：<em>拆箱</em>，拿到货物，确认无误签收<br>
+//上述流程不严谨，地址泛指地址电话重量等信息；不考虑菜鸟驿站等自取点情况</li>
+</ul>
+</blockquote>
+<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。</p>
+<p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
+<ul>
+<li>协议(Protocal)：同一层级内的交互规则。//横向</li>
+<li>接口(Interface)：不同层级间的交互规则。//纵向</li>
+<li>服务(Service)：每一层的工作，就是调用下层的接口，并为上层提供服务。</li>
+</ul>
+<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性了？每一层只关注自己的实现，大问题被分解成了小问题。我们并不需要完美的网络，我们只想让它很好用。</p>
+<!-- 
+实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
+
+- 端层/应用层：发出原始报文。
+- 网络层：负责建立网络连接。
+- 通信层：负责物理通信。 -->
+<p>上述类比中我特意标注了一些对应关系：</p>
+<ul>
+<li>载荷(Payload)：要运输的货物。每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。</li>
+<li>封包(Packaging)：信息在层次间传递的过程就是封包/解封的过程。比如对报文拆分成段，每段再加上首部/包头(header)，最终形成分组的过程；恰如对货物的包装并贴上标签，成为包裹的过程。</li>
+<li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
+<li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
+</ul>
+<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
+<h2 id="️开始实验">⌚️开始实验</h2>
+<blockquote>
+<p>实验来源有：</p>
+<ul>
+<li>自己设计</li>
+<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a><br>
+【想看哪个没更新的可以催我】</li>
+</ul>
+</blockquote>
+<h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
+<p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
+<h3 id="路由追踪">路由追踪 | ⭐</h3>
+<p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
+<p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
+<p>其实现大致如下：<br>
+<img src="http://localhost:4000/post-images/1636013930674.png" alt="" loading="lazy"><br>
+下面详细讲解：</p>
+<p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
+<ul>
+<li>sr()：send and receive，返回的两个参数分别是得到应答的数据包列表和未应答的包列表。</li>
+<li>IP()/TCP()：scapy重载了“/”表示协议栈的合成，可以链式的链接不同协议层实例，每层内部都可携带自己的参数</li>
+<li>ttl=(4,30)：ttl参数在IP层表示ICMP包的转发次数（跳数）。此外，传入tuple表示一个范围，sr函数将会为这个范围内的每个值生成一个发包。（如果有多个tuple参数，则会按笛卡尔积规则生成发包列表）</li>
+<li>TCP(flags=0x2)：在TCP头部设定flag字段的值，0x2对应ACK，即确认收到包。</li>
+<li>综合起来，这条代码将发送47个包，其ttl从1到50。并筛选返回ACK的包。</li>
+<li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
+</ul>
+<h3 id="基于icmp重定向的中间人攻击-todo">基于ICMP重定向的中间人攻击 | ⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</p>
+<h3 id="基于arp缓存投毒的中间人攻击-todo">基于ARP缓存投毒的中间人攻击 | ⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</p>
+<h3 id="tcp攻击-todo">TCP攻击 | ⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf</p>
+<p>TCP协议<br>
+SYN泛洪<br>
+TCP reset<br>
+TCP session hijacking反弹shell （重点）</p>
+<h3 id="dns本地攻击-todo">DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
+<p>https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf</p>
+<h3 id="多线程web代理服务器-todo">多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
+<h3 id="vpn-todo">VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
+<p>探究VPN原理</p>
+<h3 id="v2ray协议学习-todo">V2Ray协议学习 | ？？？ | TODO</h3>
+<p>有生之年研究一下Vmess等协议</p>
+<!-- 省略的：
+- 防火墙iptables实验
+- mitnick攻击
+- BGP -->]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[年轻人的第二个网站（二） - flask-supreme-tutorial]]></title>
+        <id>http://localhost:4000/post/flask-supreme-tutorial/</id>
+        <link href="http://localhost:4000/post/flask-supreme-tutorial/">
         </link>
         <updated>2021-09-16T04:43:23.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
-<p><a href="">上回书</a>说到，网站初具雏形，但经高人指点，还是有很多不足。<br>
+<p><a href="https://lonelyuan.github.io/post/flask-mega-tutorial/">上回书</a>说到，网站初具雏形，但经高人指点，还是有很多不足。<br>
 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。<br>
-所以，不要停下来啊！👆</p>
+所以，不要停下来啊！👆（指开发</p>
 </blockquote>
 <hr>
 <h2 id="0x00-蓝图与重构">0x00 蓝图与重构</h2>
@@ -46,7 +216,7 @@
 </ul>
 <h2 id="0x01-文件系统">0x01 文件系统</h2>
 <blockquote>
-<p>本部分参考了<a href="greyli.com">李辉</a>大佬的系列文章，<br>
+<p>本部分参考了<a href="https://greyli.com">李辉</a>大佬的系列文章，<br>
 https://zhuanlan.zhihu.com/p/23731819?refer=flask</p>
 </blockquote>
 <p>头像，照片……文件上传是绕不开的话题。在<a href="#shangyipian">上一篇</a>参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。</p>
@@ -146,8 +316,8 @@ https://zhuanlan.zhihu.com/p/23731819?refer=flask</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[年轻人的第二个网站 - The Flask Mega Tutorial]]></title>
-        <id>https://lonelyuan.github.io/post/flask-mega-tutorial/</id>
-        <link href="https://lonelyuan.github.io/post/flask-mega-tutorial/">
+        <id>http://localhost:4000/post/flask-mega-tutorial/</id>
+        <link href="http://localhost:4000/post/flask-mega-tutorial/">
         </link>
         <updated>2021-09-09T12:18:56.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -238,7 +408,7 @@ migrate = Migrate(app, db)
 <h3 id="sqlalchemymodel层">SQLalchemy：model层</h3>
 <h4 id="模型定义">模型定义</h4>
 <p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：<br>
-<img src="https://lonelyuan.github.io/post-images/1631793936306.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1631793936306.png" alt="" loading="lazy"></p>
 <p>Flask-SQLAlchemy 自动设置类名为小写来作为对应表的名称，也可以用<code>__tablename__</code>类属性来定义。</p>
 <pre><code class="language-python">class Post(db.Model): # 表
     id = db.Column(db.Integer, primary_key=True) # 列
@@ -453,7 +623,7 @@ AS anon_1 ORDER BY anon_1.post_timestamp DESC
 <p>在网上寻找新的UI模板，不要在中文互联网搜索，basically garbage。找到一个 <a href="https://demos.creative-tim.com/material-kit/index.html">Meterial 模板</a> 还算顺眼，遂用之。</p>
 <p>不熟悉 Bootstrap 布局的可以使用可视化工具来设计前端，如：http://www.ibootstrap.cn/</p>
 <p>对照模板，将<code>base.html</code>掏空，效果如下：</p>
-<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1631795716824.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1631795716824.png" alt="" loading="lazy"></figure>
 <p>遇到的bug有：</p>
 <ul>
 <li>下拉菜单失效：查询得知有可能是bootstrap版本冲突
@@ -587,13 +757,13 @@ pip install -r requirements.txt
     </entry>
     <entry>
         <title type="html"><![CDATA[CISCN2021华东百赛区分区选拔赛AWD复盘]]></title>
-        <id>https://lonelyuan.github.io/post/awd-da-pian/</id>
-        <link href="https://lonelyuan.github.io/post/awd-da-pian/">
+        <id>http://localhost:4000/post/awd-da-pian/</id>
+        <link href="http://localhost:4000/post/awd-da-pian/">
         </link>
         <updated>2021-06-16T08:54:30.000Z</updated>
         <content type="html"><![CDATA[<h2 id="">🛁</h2>
 <p>这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。</p>
-<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
 <blockquote>
 <p>“终端越炫，嗨客越带；嗨客越带，帽子越带”</p>
 </blockquote>
@@ -673,7 +843,7 @@ pip install -r requirements.txt
 <li>改数据库密码：<code>mysql&gt;SET PASSWORD FOR ctf@localhost=PASSWORD('newpass');</code>
 <ul>
 <li>结果<code>&gt; Permission Denied</code>，(╯▔皿▔)╯玩nm<br>
-<img src="https://lonelyuan.github.io/post-images/1624253899126.gif" alt="" loading="lazy"></li>
+<img src="http://localhost:4000/post-images/1624253899126.gif" alt="" loading="lazy"></li>
 </ul>
 </li>
 <li>然后开始源码审计(❌)</li>
@@ -818,8 +988,8 @@ pip install -r requirements.txt
     </entry>
     <entry>
         <title type="html"><![CDATA[基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释]]></title>
-        <id>https://lonelyuan.github.io/post/mips_pipeline_cpu/</id>
-        <link href="https://lonelyuan.github.io/post/mips_pipeline_cpu/">
+        <id>http://localhost:4000/post/mips_pipeline_cpu/</id>
+        <link href="http://localhost:4000/post/mips_pipeline_cpu/">
         </link>
         <updated>2021-06-09T09:14:19.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -857,7 +1027,7 @@ PS：标题可简记为《基于基于的一种基于的一种实现》</p>
 </ul>
 </li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1623373911775.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1623373911775.png" alt="" loading="lazy"></figure>
 <blockquote>
 <p>名词解释：<br>
 IC：集成电路<br>
@@ -1018,9 +1188,9 @@ print(tail)
 这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。</p>
 <h3 id="编写代码并仿真">编写代码并仿真</h3>
 <p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，<code>resetn</code>应该为<code>{4{resetn}}</code>，写使能位宽应为为4。<br>
-<img src="https://lonelyuan.github.io/post-images/1623379687932.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1623379687932.png" alt="" loading="lazy"></p>
 <p>下面讲解一下项目结构，所有实验都是类似的：<br>
-<img src="https://lonelyuan.github.io/post-images/1623374928604.png" alt="" loading="lazy"><br>
+<img src="http://localhost:4000/post-images/1623374928604.png" alt="" loading="lazy"><br>
 三个顶层文件夹分别对应Add Source里的三类源文件：添加设计，添加仿真，添加约束。如果不需要上板，只完成仿真，那么只需要添加设计（几个.v），添加仿真（testbench.v/tb.v）就足够了，xxx_display.v也是上板需要的故而可以忽略。（实际上，图中我用箭头标记的都用不到）。</p>
 <p>编写tb，无非是给tb里声明为input的信号赋值，还可以使用<code>#xx</code>，让tb等待一段时间。</p>
 <p>点击Run Simulation，等一会就能看到波形图。波形图有三种颜色：</p>
@@ -1030,7 +1200,7 @@ print(tail)
 <li>蓝色的Z代表信号休眠。</li>
 </ul>
 <p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。</p>
-<figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1623378896380.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1623378896380.png" alt="" loading="lazy"></figure>
 <p>仿真需要注意的问题：</p>
 <ul>
 <li>如果文件没问题，模块调用层次会被自动解析从而呈现成一棵树，而不是好几个顶层文件。</li>
@@ -1053,16 +1223,16 @@ print(tail)
 <li>.xdc 管脚约束文件。在Implementation用到，此处按下不表。</li>
 </ul>
 <p>这几种文件格式都是可以直接Add Source添加进来的。实验老师同时提供dcp和xci文件，添加dcp崩屎了，原因估计如上。添加xci之后，提示我将IP更新为core cointainer的形式</p>
-<figure data-type="image" tabindex="3"><img src="https://lonelyuan.github.io/post-images/1623377228417.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1623377228417.png" alt="" loading="lazy"></figure>
 <p>更新就完了。然后需要等一会，IP还要执行一步synth，这段时间里IP属于锁住的状态，不能修改配置。</p>
-<figure data-type="image" tabindex="4"><img src="https://lonelyuan.github.io/post-images/1623377562565.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1623377562565.png" alt="" loading="lazy"></figure>
 <p>注意更换器件后，IP核都会锁住。这表示IP的配置和当前环境不匹配。对所有IP锁住的问题，只需要点击菜单栏Reports→Reports IP  Status，然后点upgrade即可解除锁定。</p>
 <h3 id="我直接上板">我直接上板</h3>
 <p>直接点生成比特流，会一步步的按工作流向下运行，等待几分钟就能愉快的收获你的报错了！</p>
-<figure data-type="image" tabindex="5"><img src="https://lonelyuan.github.io/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
 <p>在把上文提到的坑都踩过一遍之后，终于没有critical warning，泪目。</p>
 <p>但是此时实验课已经结束了，👴偷溜到没人的实验室，并留下以下珍贵画面</p>
-<figure data-type="image" tabindex="6"><img src="https://lonelyuan.github.io/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
 <p>然后👴发现data_ram写入失败。但是👴没时间搞了，👴还是滚去复习课本吧。</p>
 <h2 id="多周期流水线cpu原理">🗿多周期流水线CPU原理</h2>
 <p>最后，继续复习计组。<br></p>
@@ -1070,8 +1240,8 @@ print(tail)
     </entry>
     <entry>
         <title type="html"><![CDATA[我和拖延症的战争]]></title>
-        <id>https://lonelyuan.github.io/post/ProcrastinationWar/</id>
-        <link href="https://lonelyuan.github.io/post/ProcrastinationWar/">
+        <id>http://localhost:4000/post/ProcrastinationWar/</id>
+        <link href="http://localhost:4000/post/ProcrastinationWar/">
         </link>
         <updated>2021-04-15T15:01:29.000Z</updated>
         <content type="html"><![CDATA[<p>//这是一篇永远不会完结的文章。<br>
@@ -1107,8 +1277,8 @@ print(tail)
     </entry>
     <entry>
         <title type="html"><![CDATA[CSAPP-Bomblab]]></title>
-        <id>https://lonelyuan.github.io/post/CSAPP-Bomblab/</id>
-        <link href="https://lonelyuan.github.io/post/CSAPP-Bomblab/">
+        <id>http://localhost:4000/post/CSAPP-Bomblab/</id>
+        <link href="http://localhost:4000/post/CSAPP-Bomblab/">
         </link>
         <updated>2020-02-20T14:43:31.000Z</updated>
         <content type="html"><![CDATA[<h1 id="csappbomblab">CSAPP：Bomblab</h1>
@@ -1386,8 +1556,8 @@ i : info
     </entry>
     <entry>
         <title type="html"><![CDATA[about_blog]]></title>
-        <id>https://lonelyuan.github.io/post/about-blog/</id>
-        <link href="https://lonelyuan.github.io/post/about-blog/">
+        <id>http://localhost:4000/post/about-blog/</id>
+        <link href="http://localhost:4000/post/about-blog/">
         </link>
         <updated>2020-01-29T16:17:06.000Z</updated>
         <content type="html"><![CDATA[<h1 id="博客技术介绍">博客技术介绍</h1>
@@ -1490,8 +1660,8 @@ i : info
     </entry>
     <entry>
         <title type="html"><![CDATA[CSAPP-datalab]]></title>
-        <id>https://lonelyuan.github.io/post/CSAPP-datalab/</id>
-        <link href="https://lonelyuan.github.io/post/CSAPP-datalab/">
+        <id>http://localhost:4000/post/CSAPP-datalab/</id>
+        <link href="http://localhost:4000/post/CSAPP-datalab/">
         </link>
         <updated>2020-01-20T16:00:03.000Z</updated>
         <content type="html"><![CDATA[<h1 id="csappdatalab">CSAPP：datalab</h1>
@@ -1592,349 +1762,6 @@ c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></spa
 <p>常识？？？反码加1</p>
 <p>大佬题解：https://wdxtub.com/csapp/thick-csapp-lab-1/2016/04/16/</p>
 <p>https://zhuanlan.zhihu.com/p/59534845题不一样？？？</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[深度学习入门——jetbot智能小车尝鲜（二）]]></title>
-        <id>https://lonelyuan.github.io/post/jetbot-2/</id>
-        <link href="https://lonelyuan.github.io/post/jetbot-2/">
-        </link>
-        <updated>2019-09-30T16:26:38.000Z</updated>
-        <content type="html"><![CDATA[<p>那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。</p>
-<p>怎样才能让ai程序发挥好的效果呢？众所周知，所谓人工智能，有多少人工就有多智能。</p>
-<p>AI的发展离不开三个要素：<strong>算力</strong>，<strong>算法</strong>和<strong>算材</strong>。根据摩尔定律，算力的发展是不会停滞的（虽然定律快失效了）；进几年来的AI热正是算法的突破，即深度学习相关算法的突飞猛进；而算材就是用来训练模型的数据，未来几年AI应用的进一步落地离不开算材的进一步开发（中国在AI方面的最大优势正在于此）。数据集的丰富程度和有效程度直接影响了AI应用的效果，我将在下文详细说明。</p>
-<p>在jetbot项目中，我们也能体验到用“人工”换“智能”的快乐。作为视觉识别类的AI应用，我们要在预设环境里创建数据集，并为其标注。有了数据集，jetbot搭载的NVIDIA牌GPU在方寸之间就能完成海量计算，仅用一颗摄像头就能实现自动避障，目标追踪，自动巡线等等炫酷功能！不要1999，也不要999，只要99！99刀NVIDIA计算卡带回家！（妮维雅打钱）</p>
-<blockquote>
-<p>给萌新理清几个概念：</p>
-<p>人工智能，机器学习，深度学习的关系：</p>
-<ul>
-<li>深度学习：一种实现机器学习的技术；机器学习：一种实现人工智能的方法</li>
-<li>【包含关系图】</li>
-</ul>
-<p>AI的发展路径：</p>
-<ul>
-<li>弱AI：单独领域工作效率超过人类→</li>
-<li>通用AI：可以广泛应用于大部分领域→</li>
-<li>强AI：有自主意识，即将灭绝人类（不是）→</li>
-</ul>
-<p>现在AI发展到什么地步了：弱AI，有生之年可能见到通用AI</p>
-</blockquote>
-<p>推荐一波汉化的很好的wiki，也有自己原创的内容：http://www.waveshare.net/wiki/JetBot_AI_Kit</p>
-<p>本篇详细介绍两个demo的代码和可能遇到的问题，最后附上神经网络的入门笔记。同样是初次接触，大佬请绕道。</p>
-<h3 id="demo1自动避障">demo1：自动避障</h3>
-<p>小车如何实现自动避障的呢？用通俗的不能再通俗的说法，AI程序通过学习你给他的数据集，知道了什么样的图像是死路，什么样的图像是通路。得到新图像时就能判断是死路的概率有多少，在程序里可以很简单的看出，当这个概率大于0.5的时候就触发小车转向。</p>
-<p>具体而言，你要在你的环境里拍至少200张照片，100张标记为通路（free），100张标记为死路（blocked）。这便是你的数据集（dataset）。构建数据集的时候尽量分散在环境的各个位置和各个方向，可以沿边界环绕一圈，走一段距离停下，转一圈，收集8-10张图片。反正你的数据越多，标记的越准确，模型效果越好。</p>
-<p>下一步就开始训练模型了，从代码里看出，这个demo使用AlexNet模型，用pytorch实现（废话）。第一次运行你会下载一个244M左右的大文件，在<code>/home/jetbot/.torch/models</code>目录下会看到这个.pth文件。这便是AlexNet了。</p>
-<p>继续运行程序，完整的输出结果有三十行，每行后面的小数代表当前模型的准确度（？），程序最后会从这30个模型中选取准确度最高的作为最终模型，也是一个pth文件：<code>best_model.pth</code></p>
-<p>下载文件和训练模型都需要花挺长时间，看到kernel busy，也就是右上角的大黑点不要轻易打断。</p>
-<p>什么是模型呢？稍微解释一下机器学习的概念。</p>
-<p>模型就是函数，其要素为输入，输出，和变换关系。举例说明：</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>输入</th>
-<th>输出</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>细菌向养分移动</td>
-<td>外界环境的化学信号</td>
-<td>催动鞭毛的电信号</td>
-</tr>
-<tr>
-<td>学生参加高考</td>
-<td>试卷反射的光信号</td>
-<td>试卷上问题的答案</td>
-</tr>
-<tr>
-<td>小车自动避障</td>
-<td>摄像头传输图像信号</td>
-<td>前方被堵塞的概率</td>
-</tr>
-</tbody>
-</table>
-<p>实际上，知识的本质也是函数，生命延续的关键就在于该生命的模型是否适应环境。这里不深入解释了，觉得惊奇请参阅Yjango的频道https://space.bilibili.com/344849038他用机器学习的角度解释生物进化，非常颠覆三观。</p>
-<p>总之训练出来的模型就是这样一个函数。其输入为经过处理的摄像头的图形信号，输出一个0-1的数，越接近1越意味着模型认为小车要撞墙了。但是当他大于0.5的时候就会触发转向，也就实现了自动避障。</p>
-<blockquote>
-<p>AlexNet是2012年提出的一种卷积神经网络（即CNN）算法。首次实现gpu加速。</p>
-<p>主流深度学习框架：TensorFlow；PyTorch；Keras</p>
-</blockquote>
-<p>还挺好玩的😀</p>
-<h3 id="demo2目标追踪">demo2：目标追踪</h3>
-<p>基于上一个demo，我们还要下载一个模型，<a href="http://cocodataset.org/#home">coco数据集</a>神经网络，可以检测90种不同的物体。按教程把.engine文件下载到指定位置，顺着跑就完事了。（引入模型也要花挺长时间）</p>
-<p>如果有数据集里的物品，从输出里能看到蓝框标出，小车会自动转向物体，同时还保留了自动避障的程序。</p>
-<p>遇到bug：程序仅能读取一张图像进行识别，摄像头更新的功能无法执行。</p>
-<h3 id="修bug摄像头问题">修bug：摄像头问题</h3>
-<p>描述：摄像头只要调用了一次，后面就无法在其他地方调用。直接在jupyter上关闭输出并没有作用。而且只要在一个notebook里就能重复调用，换一个就不行。而且并没有报错信息，程序一直处在busy状态。</p>
-<p>找到源码，在jetbot/jetbot/camera.py，但是所有样例里面调用摄像头都是用的Camera.instance()方法，而这个instance是在traitlets库里的，于是找到trailets官方文档</p>
-<blockquote>
-<p>Traitlets是一个纯 python 库，支持：</p>
-<ul>
-<li>对 python 对象属性的强类型实施( 类型属性称为 &quot;特征&quot; ) ；</li>
-<li>动态计算的默认值；</li>
-<li>当尝试改变时，自动验证和强制特征属性；</li>
-<li>当特征值改变时注册接收通知；</li>
-<li>从文件或者 命令行 参数中读取值- 在traitlets上不同层，因这里可以在没有配置机器的情况下使用 traitlets。</li>
-</ul>
-<p>Traitlets支持IPython和Jupyter的配置系统，以及IPython交互小部件的声明性 API。</p>
-<p>ipython是一个 python 的交互式 shell，比默认的python shell 好用得多，支持变量自动补全，自动缩进，支持 bash shell 命令，内置了许多很有用的功能和函数。其中就包括traitlets库。</p>
-</blockquote>
-<p>https://traitlets.readthedocs.io/en/stable/config.html 在这里找到instance的功能：返回现有的类，如果没有就新建一个。</p>
-<p>下面是样例中调用摄像头的代码：</p>
-<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
-from IPython.display import display   #ipy的显示模块
-import traitlets                      
-from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
-camera = Camera.instance(width=500, height=500)#初始化摄像头对象
-image = widgets.Image(format='jpeg', width=400, height=400)#创建图像
-camera_link = traitlets.dlink((camera, 'value'), (image, 'value'), transform=bgr8_to_jpeg)     #连接摄像头到图像
-display(image)  #显示图像
-</code></pre>
-<p>尝试从camera.py里调用原始api。得到报错：<code>Each object must be HasTraits, not &lt;class 'NoneType'&gt;</code>，是说必须为对象指定类型。那么HasTraits这个类型是啥？文档说:任何具有trait属性的类都必须从 <code>HasTraits</code> 继承。</p>
-<p>再次梳理调用摄像头的流程：</p>
-<ul>
-<li>引入模型：<code>model.load_state_dict(torch.load('best_model.pth'))</code></li>
-<li>连接摄像头：见上文</li>
-<li>模型执行：</li>
-</ul>
-<pre><code class="language-python">def update():
-	...#此处为模型执行函数，将输入图像预处理后，执行模型
-update({'new': camera.value})  #初始化该函数
-camera.observe(update, names='value')  #将update函数设为camera.value的observer
-</code></pre>
-<p>研究一下observe用法：当对象发生变化时调用函数。</p>
-<p>https://traitlets.readthedocs.io/en/stable/using_traitlets.html#validation</p>
-<p>执行如下代码：</p>
-<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
-from IPython.display import display   #ipy的显示模块
-import traitlets                      
-from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
-camera = Camera.instance(width=500, height=500)#初始化摄像头对象
-def update(change):
-	x = change['new'] 
-	display(x)  #显示图像
-update({'new': camera.value})  
-camera.observe(update, names='value') 
-</code></pre>
-<p>输出一大堆数组，说明camera.value是这一大堆像素。而且observe正常运行，数据一直冒出。</p>
-<pre><code>array([[[122, 116, 130],
-        [126, 113, 127],
-        [125, 117, 129],
-        ...,
-        [ 84,  96, 107],
-        [ 82,  96, 113],
-        [ 93,  93, 113]],
-
-       [[120, 119, 130],
-        [122, 120, 119],
-        [118, 123, 130],
-        ...,
-</code></pre>
-<p>然而就是不实时更新数据，卒。</p>
-<p>👴佛了。</p>
-<h3 id="神经网络笔记">神经网络笔记</h3>
-<h3 id="alexnetcnn">AlexNet——CNN</h3>
-<p>2012年由Hinton学生Alex提出，是Lenet加宽版。其采用了一系列的新技术：成功的引用了relu、dropout和lrn等trick，首次采用gpu加速。其包含65万神经元，5个卷积层，三个后面带有池化层，最后用了三个全链接。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[单片机入门——jetbot智能小车尝鲜(一)]]></title>
-        <id>https://lonelyuan.github.io/post/jetbot-1/</id>
-        <link href="https://lonelyuan.github.io/post/jetbot-1/">
-        </link>
-        <updated>2019-09-19T16:25:55.000Z</updated>
-        <content type="html"><![CDATA[<p>那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。</p>
-<p>小车的核心是NVIDIA家的jetson-nano开发板，这款19年三月才发布的微型AI计算机可谓是平民级核弹，四核A57的CPU，128核心Maxwell架构的GPU，4g内存，支持4k视频解码，而且这只五脏俱全的麻雀只需要5W的电源支持，任何一支充电宝都可以胜任。而它的定位是用它简单的搭建人工智能应用，非常的amazing。</p>
-<p>本文的目的,不完全是新手教程,还有自己学习过程的记录和分享.初次接触,多有疏漏,欢迎指教.</p>
-<p>【图片：主板证件照】</p>
-<blockquote>
-<p>给萌新理清几个概念：</p>
-<p>单片机：Single-Chip Microcomputer。</p>
-<p>树莓派：一款著名的微型电脑品牌（本文介绍的jetson-nano可以理解为是树莓派的竞品，相比树莓派，这款单片机价格更高，性能更好，主打AI应用）</p>
-<p>jetbot：以jetson-nano为平台搭建的ai机器人应用，也就是所谓智能小车</p>
-</blockquote>
-<h3 id="硬件组装积木和电工">硬件组装:积木和电工</h3>
-<p>本人拿到的是零件状态的小车，所以首先讲一讲组装的问题。有关具体步骤，官网教程十分详细，贴个连接给懒人吧：https://www.ncnynl.com/archives/201904/2927.html</p>
-<p>这里只讲一讲我作为初学者的一些理解。首先，玩单片机和玩积木的区别就在于编程。当然，入门单片机还需要其他技能。比如，电工技能：你需要进行线材的简单加工，引脚的焊接，准备基本的工具就好，毕竟那个男孩没有一根热热的棒子呢（指<strong>电烙铁</strong>）。然后，各个部件的拼接固定需要一些做手工的技巧，这个也不用怕，赫鲁晓夫曾经说过：<strong>热熔胶</strong>可以让我们创造奇迹。</p>
-<p>在这个层面上，初学者会浪费许多耗材，这是必要的练习手段，所以初学者也可以从最简单的芯片入手。同时你还要学习诊断硬件方面的问题，<strong>万用表</strong>会很有帮助。关于更详细的工具和耗材的需要，请自行查阅单片机入门有关资料。</p>
-<p>在本项目中，焊接工作已经完成，剩下的连接都是可插拔式的。我们只需要两把螺丝刀即可完成组装。即便如此，本人还是花了一晚上才把小车点亮，原因是我得到的线材损坏近半，只得自己寻找和修理。</p>
-<p>下面分析一下小车的结构:</p>
-<ul>
-<li>jetson-nano开发板:即本机的主板,可以看到有两层芯片,上层为核心层,包括cpu,gpu和内存可以像笔记本内存条一样拆卸;下层为主板,用于连接各种设备</li>
-<li>intel无线网卡:将上层拆下即可安装.令连出两根天线,缠绕机身即可.</li>
-<li>PiOLED显示器和拓展版:连接在I2C主线上</li>
-<li>相机模块:官方样例展示了只用一个摄像头通过深度学习进行自动避障的demo.</li>
-<li>马达和其驱动板:下文重点讲解</li>
-</ul>
-<p>开发板就可以运行一个完整的Ubuntu系统,其余设备是为其拓展功能的.</p>
-<h3 id="硬件架构驱动芯片和i2c主线">硬件架构：驱动芯片和I2C主线</h3>
-<p>我在玩小车的过程中耽误最长时间的就是电机（即马达）驱动了，借此讲一讲系统架构的事。</p>
-<p>让轮子前进要靠马达，给马达供电不能直接让主板来做，要让主板给另一块小芯片发送指令，这块小芯片连接着独立的电源，收到指令才会给马达通电。这块小芯片即是电机驱动板。</p>
-<p>驱动芯片是从硬件走向软件的第一道桥梁，可以类比PC的IO设备来理解。和物理世界交互的各种功能，都需要有专门的驱动芯片。包括马达，摄像头，扬声器，机械臂等等，只不过有的可以集成在一起，如：小车上的摄像头，PiOLED显示器等；有的出于体积，安全性，模块化的考虑需要分开，如电机和驱动板。</p>
-<h4 id="电机驱动板">电机驱动板</h4>
-<p>官方给出的电机驱动板型号为:DC-Stepper-Motor PCA9685+TB6612.可以驱动两个步进电机或四个直流电机。（四轴飞行器gkd）本项目只用到了两个直流电机。</p>
-<p>各个引脚的讲解：https://learn.adafruit.com/adafruit-stepper-dc-motor-featherwing/pinouts</p>
-<p>电机驱动板上共连接有10根跳线。一对电源输入，两对为马达输出。还需四根母-母杜邦线来连接至主板的<strong>I2C总线</strong>,具体来说,是在LED屏旁边的拓展板。分别是：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">驱动板引脚</th>
-<th style="text-align:center">主板I2C引脚</th>
-<th style="text-align:center">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">3V3</td>
-<td style="text-align:center">3V3</td>
-<td style="text-align:center">为驱动板供电,即电源正极</td>
-</tr>
-<tr>
-<td style="text-align:center">GND</td>
-<td style="text-align:center">GND</td>
-<td style="text-align:center">接地,即电源负极</td>
-</tr>
-<tr>
-<td style="text-align:center">SDA</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">串行数据线，传输数据</td>
-</tr>
-<tr>
-<td style="text-align:center">SCL</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">串行时钟线，传输控制信号</td>
-</tr>
-</tbody>
-</table>
-<p>【图片：驱动板引脚】</p>
-<p>接错了有可能烧坏板子哦</p>
-<h4 id="i2c总线">I2C总线</h4>
-<p>所谓总线,可以理解为一条街道,每个设备就是街道两旁的房子,房内的住户出门走亲访友就是数据在不同设备间的传输。</p>
-<p>I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的双线结构(SCL+SDA),每个设备都有一个地址码,以此实现多个设备相互通讯。设备有主从之分，主设备/主端必须是带有CPU的逻辑模块，在同一总线上同一时刻使能有一个主端，可以有多个从端，从端的数量受地址空间和总线的最大电容 400pF的限制。</p>
-<p>可以使用i2c-tools调试i2c总线:</p>
-<ul>
-<li>检测有几组i2c总线在系统上<code>i2cdetect -l</code></li>
-<li>检测挂载在i2c-1上的设备<code>i2cdetect -r -y 1</code></li>
-</ul>
-<pre><code>  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
-  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
-  70: 70 -- -- -- -- -- -- --
-</code></pre>
-<ul>
-<li>
-<p>查看设备(地址为0x20)上所有寄存器的值i2cdump -f -y 1 0x20</p>
-</li>
-<li>
-<p>对单个寄存器进行读写:</p>
-<p><code>i2cset -f -y 1 0x20 0x77 0x3f</code>（设置i2c-1上0x20器件的0x77寄存器值为0x3f）</p>
-<p><code>i2cget -f -y 1 0x20 0x77</code>    （读取i2c-1上0x20器件的0x77寄存器值）</p>
-</li>
-</ul>
-<p>jetson-nano开发板提供了6条I2C主线,以及其他丰富的接口。理解这些接口是拓展各种设备的前提。</p>
-<h3 id="软件连接ssh远程桌面">软件连接:ssh远程桌面</h3>
-<p>从头开始的话，我们还需要往sd卡里烧写系统镜像，不过我拿到的已经完成了这一步骤，故不再赘述。</p>
-<p>在官方教程中,需要hdmi线连接显示屏,usb连接鼠标键盘,来进入jetson-nano的Ubuntu系统.其目的在于首次连接一个无线网络(手机热点),之后只要电脑和nano在同一网络,即可用电脑访问nano的IP(8888端口),直接操纵jetbot.</p>
-<p>由于我并没有hdmi线,只有一根网线,反正都能插,插谁不一样?所以用网线把小车和笔记本连接起来组成局域网.用ssh的方式进入nano的系统.具体步骤如下:</p>
-<ul>
-<li>
-<p>ip发现:在插入网线前后执行两次:<code>arp -a</code>,比较不同,会发现多出一个地址,类型为动态,此即为小车的内网IP.小车的led屏也会自动显示其ip.如<code>eth0:192.168.x.x</code></p>
-</li>
-<li>
-<p>(如此,我们可以直接从浏览器访问这个ip的8888端口,并能运行jupyter notebook了.但我们不能让小车拖着网线跑啊,所以还是要配置无线网络.)</p>
-</li>
-<li>
-<p>将笔记本的wifi连接设为对以太网可共享,这一步是为了让小车能通过笔记本联网</p>
-</li>
-<li>
-<p>端口扫描:<code>nmap -sT 192.168.x.x</code>发现22端口开放,故连接之:<code>ssh jetbot@192.168.x.x</code>,就用官方教程给的账户密码.</p>
-</li>
-<li>
-<p>连接成功后,就可以用命令行工具连接WiFi了,但还是安装一下远程桌面吧.</p>
-</li>
-<li>
-<p>配置远程桌面:执行以下命令:</p>
-<pre><code>sudo apt-get install tightvncserver
-sudo apt-get install xrdp
-sudo apt-get install vnc4server tightvncserver
-</code></pre>
-</li>
-<li>
-<p>之后在你的主机win+R，输入mstsc,进入远程登录桌面，输入小车的ip地址，点击连接</p>
-</li>
-<li>
-<p>在xrdp的登陆界面输入用户名密码即可打开远程桌面</p>
-<p>(这里我用jetbot用户登陆遭遇闪退,用root就可以,不清楚原因)(另外开了远程桌面内存疯涨,就很离谱)</p>
-</li>
-<li>
-<p>连接上wifi后,你能在小车的led板上看到另一个ip:<code>wlan0:192.168.x.x</code></p>
-</li>
-</ul>
-<p>不管怎样,连接上wifi之后的操作就很简单了.跟着教程,跑一跑demo,还是很有成就感的.</p>
-<h3 id="排查bug">排查bug</h3>
-<p>然而demo并没有让我跑出来,且指向同一个错误:</p>
-<pre><code>OSError: [Errno 121] Remote I/O error
-</code></pre>
-<p>沿着jupyter notebook的报错一直走,一直到了最底层,向设备写入数据报错,<code>remote IO error</code>.</p>
-<p>看起来像是硬件的问题。一步一步排查呗</p>
-<ul>
-<li>
-<p>怀疑跳线错误</p>
-<ul>
-<li>更换跳线——无果</li>
-<li>用万用表测量线两端的信号——正常，排除连接问题
-<ul>
-<li>时钟线保持3.3v每隔几秒跳到2.2v又回来，结合i2c的原理应该是正常现象？</li>
-<li>数据线同样保持3.3v，间断跳至2.3，2.0</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>软件方法检验设备连接性</p>
-<ul>
-<li>用i2ctools可以检测到设备，拔下4根接线，在0x60,0x70处的设备消失（一个是i2c线，一个是逻辑供电？）</li>
-</ul>
-<pre><code> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
-</code></pre>
-</li>
-</ul>
-<p>然而，在通电状态下，把连线拔下又插上之后，i2c又能检测到设备，然后示例代码就能运行了？？？</p>
-<p>迷惑。所以开机时机器并没能正确载入设备，反倒是重新连接后能识别了？？？本来我都要换驱动板了，orz。</p>
-<p>又或者是和驱动板上的reset按钮有关？等下次遇到问题再说吧。</p>
-<h3 id="拾遗">拾遗</h3>
-<h4 id="linux内存占用">linux内存占用</h4>
-<p>led屏会显示内存占用，然鹅时间长了总会到90%以上，可我并没有运行什么程序。</p>
-<p>经查阅此处显示的是实际占有的加上buffer和cached mem部分，可以理解为缓存的，随时清理，并不占用实际内存。</p>
-<p>可用top命令查看内存详情。</p>
-<h4 id="供电问题">供电问题</h4>
-<p>用充电宝供电方便，但是只要一断电系统就会重启，这对linux系统而言伤害很大。</p>
-<p>而在充电宝电量不满时，经常发生开不了机的问题，大概是因为电量不足导致电压不稳。</p>
-<h5 id="关机命令">关机命令：</h5>
-<p><code>sudo shutdown -h now</code></p>
-<h5 id="重启">重启：</h5>
-<p><code>shutdown -h now -r</code></p>
-<p><em>下一篇：操纵小车和AI初探</em></p>
-<h3 id="参考链接">参考链接</h3>
-<p>https://github.com/NVIDIA-AI-IOT/jetbot/wiki/Hardware-Setup</p>
-<p>https://robocarstore.cn/</p>
-<p>http://www.gpus.cn/gpus_list_page_techno_support_content?id=50</p>
-<p>https://www.jianshu.com/p/789944463fd7</p>
 ]]></content>
     </entry>
 </feed>

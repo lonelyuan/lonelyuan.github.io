@@ -6,10 +6,10 @@
 
 <title>年轻人的第二个网站 - The Flask Mega Tutorial | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1631944167167">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1636017476404">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
 
 <style>
@@ -171,7 +171,7 @@
             
             <div class="nav-item">
                 
-                <a href="https://lonelyuan.github.io/post/about" class="menu gt-a-link">
+                <a href="http://localhost:4000/post/about" class="menu gt-a-link">
                     关于
                 </a>
                 
@@ -179,7 +179,7 @@
             
             <div class="nav-item">
                 
-                <a href="https://lonelyuan.github.io/friends" class="menu gt-a-link">
+                <a href="http://localhost:4000/friends" class="menu gt-a-link">
                     友链
                 </a>
                 
@@ -187,7 +187,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1631944167167"
+            <form id="gridea-search-form" style="position: relative" data-update="1636017476404"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -307,7 +307,7 @@ migrate = Migrate(app, db)
 <h3 id="sqlalchemymodel层">SQLalchemy：model层</h3>
 <h4 id="模型定义">模型定义</h4>
 <p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：<br>
-<img src="https://lonelyuan.github.io/post-images/1631793936306.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1631793936306.png" alt="" loading="lazy"></p>
 <p>Flask-SQLAlchemy 自动设置类名为小写来作为对应表的名称，也可以用<code>__tablename__</code>类属性来定义。</p>
 <pre><code class="language-python">class Post(db.Model): # 表
     id = db.Column(db.Integer, primary_key=True) # 列
@@ -522,7 +522,7 @@ AS anon_1 ORDER BY anon_1.post_timestamp DESC
 <p>在网上寻找新的UI模板，不要在中文互联网搜索，basically garbage。找到一个 <a href="https://demos.creative-tim.com/material-kit/index.html">Meterial 模板</a> 还算顺眼，遂用之。</p>
 <p>不熟悉 Bootstrap 布局的可以使用可视化工具来设计前端，如：http://www.ibootstrap.cn/</p>
 <p>对照模板，将<code>base.html</code>掏空，效果如下：</p>
-<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1631795716824.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1631795716824.png" alt="" loading="lazy"></figure>
 <p>遇到的bug有：</p>
 <ul>
 <li>下拉菜单失效：查询得知有可能是bootstrap版本冲突
@@ -660,7 +660,7 @@ pip install -r requirements.txt
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://lonelyuan.github.io/post/awd-da-pian/" class="post-title gt-a-link">
+                <a href="http://localhost:4000/post/awd-da-pian/" class="post-title gt-a-link">
                     CISCN2021华东百赛区分区选拔赛AWD复盘
                 </a>
             </div>
@@ -750,7 +750,7 @@ pip install -r requirements.txt
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://lonelyuan.github.io/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
