@@ -6,10 +6,10 @@
 
 <title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1636017476404">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636210325650">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
 
 <style>
@@ -171,7 +171,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/post/about" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/post/about" class="menu gt-a-link">
                     关于
                 </a>
                 
@@ -179,7 +179,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/friends" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/friends" class="menu gt-a-link">
                     友链
                 </a>
                 
@@ -187,7 +187,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636017476404"
+            <form id="gridea-search-form" style="position: relative" data-update="1636210325650"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -217,7 +217,7 @@
                         · 2021-06-09 ·
                     </time>
                     
-                        <a href="http://localhost:4000/tag/Lz-SvRH-s/" class="post-tags">
+                        <a href="https://lonelyuan.github.io/tag/Lz-SvRH-s/" class="post-tags">
                             # CS
                         </a>
                     
@@ -258,7 +258,7 @@ PS：标题可简记为《基于基于的一种基于的一种实现》</p>
 </ul>
 </li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1623373911775.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1623373911775.png" alt="" loading="lazy"></figure>
 <blockquote>
 <p>名词解释：<br>
 IC：集成电路<br>
@@ -419,9 +419,9 @@ print(tail)
 这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。</p>
 <h3 id="编写代码并仿真">编写代码并仿真</h3>
 <p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，<code>resetn</code>应该为<code>{4{resetn}}</code>，写使能位宽应为为4。<br>
-<img src="http://localhost:4000/post-images/1623379687932.png" alt="" loading="lazy"></p>
+<img src="https://lonelyuan.github.io/post-images/1623379687932.png" alt="" loading="lazy"></p>
 <p>下面讲解一下项目结构，所有实验都是类似的：<br>
-<img src="http://localhost:4000/post-images/1623374928604.png" alt="" loading="lazy"><br>
+<img src="https://lonelyuan.github.io/post-images/1623374928604.png" alt="" loading="lazy"><br>
 三个顶层文件夹分别对应Add Source里的三类源文件：添加设计，添加仿真，添加约束。如果不需要上板，只完成仿真，那么只需要添加设计（几个.v），添加仿真（testbench.v/tb.v）就足够了，xxx_display.v也是上板需要的故而可以忽略。（实际上，图中我用箭头标记的都用不到）。</p>
 <p>编写tb，无非是给tb里声明为input的信号赋值，还可以使用<code>#xx</code>，让tb等待一段时间。</p>
 <p>点击Run Simulation，等一会就能看到波形图。波形图有三种颜色：</p>
@@ -431,7 +431,7 @@ print(tail)
 <li>蓝色的Z代表信号休眠。</li>
 </ul>
 <p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1623378896380.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1623378896380.png" alt="" loading="lazy"></figure>
 <p>仿真需要注意的问题：</p>
 <ul>
 <li>如果文件没问题，模块调用层次会被自动解析从而呈现成一棵树，而不是好几个顶层文件。</li>
@@ -454,16 +454,16 @@ print(tail)
 <li>.xdc 管脚约束文件。在Implementation用到，此处按下不表。</li>
 </ul>
 <p>这几种文件格式都是可以直接Add Source添加进来的。实验老师同时提供dcp和xci文件，添加dcp崩屎了，原因估计如上。添加xci之后，提示我将IP更新为core cointainer的形式</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1623377228417.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://lonelyuan.github.io/post-images/1623377228417.png" alt="" loading="lazy"></figure>
 <p>更新就完了。然后需要等一会，IP还要执行一步synth，这段时间里IP属于锁住的状态，不能修改配置。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1623377562565.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://lonelyuan.github.io/post-images/1623377562565.png" alt="" loading="lazy"></figure>
 <p>注意更换器件后，IP核都会锁住。这表示IP的配置和当前环境不匹配。对所有IP锁住的问题，只需要点击菜单栏Reports→Reports IP  Status，然后点upgrade即可解除锁定。</p>
 <h3 id="我直接上板">我直接上板</h3>
 <p>直接点生成比特流，会一步步的按工作流向下运行，等待几分钟就能愉快的收获你的报错了！</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://lonelyuan.github.io/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
 <p>在把上文提到的坑都踩过一遍之后，终于没有critical warning，泪目。</p>
 <p>但是此时实验课已经结束了，👴偷溜到没人的实验室，并留下以下珍贵画面</p>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://lonelyuan.github.io/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
 <p>然后👴发现data_ram写入失败。但是👴没时间搞了，👴还是滚去复习课本吧。</p>
 <h2 id="多周期流水线cpu原理">🗿多周期流水线CPU原理</h2>
 <p>最后，继续复习计组。<br></p>
@@ -475,7 +475,7 @@ print(tail)
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://localhost:4000/post/ProcrastinationWar/" class="post-title gt-a-link">
+                <a href="https://lonelyuan.github.io/post/ProcrastinationWar/" class="post-title gt-a-link">
                     我和拖延症的战争
                 </a>
             </div>
@@ -565,7 +565,7 @@ print(tail)
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://lonelyuan.github.io/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 

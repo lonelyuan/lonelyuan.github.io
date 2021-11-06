@@ -6,10 +6,10 @@
 
 <title>从scapy和wireshark学计算机网络 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1636017476404">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636210325650">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
 
 <style>
@@ -171,7 +171,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/post/about" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/post/about" class="menu gt-a-link">
                     关于
                 </a>
                 
@@ -179,7 +179,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/friends" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/friends" class="menu gt-a-link">
                     友链
                 </a>
                 
@@ -187,7 +187,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636017476404"
+            <form id="gridea-search-form" style="position: relative" data-update="1636210325650"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -219,8 +219,17 @@
                     
                 </div>
                 <div class="post-content">
-                    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个几把，建议带🔥去看英文原版。</p>
-<p>于是本文试图通过实验的方式学习计网的主要内容。主要用到以下工具：</p>
+                    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个√8，建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
+<hr>
+<blockquote>
+<p>实验来源有：</p>
+<ul>
+<li>自己设计</li>
+<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a></li>
+</ul>
+</blockquote>
+<p>本系列实验主要用到俩工具：</p>
 <ul>
 <li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
 </ul>
@@ -241,7 +250,7 @@
 </blockquote>
 <h2 id="包">💣包</h2>
 <p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
 <p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包（package）有多个近义词，包括：报文(Datagram)，分组(Packet)，流量包(Data package)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。</p>
 <p>那么抓包和发包就不难理解了。本文的主要内容，就是用上述两工具把计算机网络从上到下玩个遍。</p>
 <p>不过在开玩之前，还需要理解一件事。</p>
@@ -270,38 +279,30 @@
 <li>接口(Interface)：不同层级间的交互规则。//纵向</li>
 <li>服务(Service)：每一层的工作，就是调用下层的接口，并为上层提供服务。</li>
 </ul>
-<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性了？每一层只关注自己的实现，大问题被分解成了小问题。我们并不需要完美的网络，我们只想让它很好用。</p>
-<!-- 
-实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
-
-- 端层/应用层：发出原始报文。
-- 网络层：负责建立网络连接。
-- 通信层：负责物理通信。 -->
-<p>上述类比中我特意标注了一些对应关系：</p>
+<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10+10+10+……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。</p>
+<p>上述类比中特意标注了一些对应关系：</p>
 <ul>
 <li>载荷(Payload)：要运输的货物。每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。</li>
 <li>封包(Packaging)：信息在层次间传递的过程就是封包/解封的过程。比如对报文拆分成段，每段再加上首部/包头(header)，最终形成分组的过程；恰如对货物的包装并贴上标签，成为包裹的过程。</li>
 <li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
 <li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
 </ul>
+<!-- 
+实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
+
+- 端层/应用层：发出原始报文。
+- 网络层：负责建立网络连接。
+- 通信层：负责物理通信。 -->
 <p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
-<blockquote>
-<p>实验来源有：</p>
-<ul>
-<li>自己设计</li>
-<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
-<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a><br>
-【想看哪个没更新的可以催我】</li>
-</ul>
-</blockquote>
+<p>//【想看哪个没更新的可以催我】</p>
 <h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
 <p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
 <h3 id="路由追踪">路由追踪 | ⭐</h3>
 <p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
 <p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
 <p>其实现大致如下：<br>
-<img src="http://localhost:4000/post-images/1636013930674.png" alt="" loading="lazy"><br>
+<img src="https://lonelyuan.github.io/post-images/1636013930674.png" alt="" loading="lazy"><br>
 下面详细讲解：</p>
 <p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
 <ul>
@@ -340,7 +341,7 @@ TCP session hijacking反弹shell （重点）</p>
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://localhost:4000/post/flask-supreme-tutorial/" class="post-title gt-a-link">
+                <a href="https://lonelyuan.github.io/post/flask-supreme-tutorial/" class="post-title gt-a-link">
                     年轻人的第二个网站（二） - flask-supreme-tutorial
                 </a>
             </div>
@@ -430,7 +431,7 @@ TCP session hijacking反弹shell （重点）</p>
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://lonelyuan.github.io/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 

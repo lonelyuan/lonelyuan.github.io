@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-04T09:21:40.173Z</updated>
+    <updated>2021-11-06T14:52:10.871Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://lonelyuan.github.io"/>
+    <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
     <subtitle> &gt;&gt; 不要恐慌 | Don&apos;t Panic </subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://lonelyuan.github.io/images/avatar.png</logo>
+    <icon>https://lonelyuan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, lonelyuan&apos;s Blog</rights>
     <entry>
         <title type="html"><![CDATA[MOSPI-ChCore lab]]></title>
-        <id>http://localhost:4000/post/mospi-lab-1/</id>
-        <link href="http://localhost:4000/post/mospi-lab-1/">
+        <id>https://lonelyuan.github.io/post/mospi-lab-1/</id>
+        <link href="https://lonelyuan.github.io/post/mospi-lab-1/">
         </link>
         <updated>2021-10-29T09:03:14.000Z</updated>
         <content type="html"><![CDATA[<p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：</p>
@@ -55,18 +55,27 @@ Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
 </ul>
 <h3 id="内核态输入输出">内核态输入输出</h3>
 <p>进制转换题</p>
-<p>看到大佬写的，不想写了，寄。<br>
+<p>看到大佬写的，瞬间不想写了，寄。<br>
 https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[从scapy和wireshark学计算机网络]]></title>
-        <id>http://localhost:4000/post/Computer_Network_Exp/</id>
-        <link href="http://localhost:4000/post/Computer_Network_Exp/">
+        <id>https://lonelyuan.github.io/post/Computer_Network_Exp/</id>
+        <link href="https://lonelyuan.github.io/post/Computer_Network_Exp/">
         </link>
         <updated>2021-10-22T15:55:54.000Z</updated>
-        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个几把，建议带🔥去看英文原版。</p>
-<p>于是本文试图通过实验的方式学习计网的主要内容。主要用到以下工具：</p>
+        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个√8，建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
+<hr>
+<blockquote>
+<p>实验来源有：</p>
+<ul>
+<li>自己设计</li>
+<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a></li>
+</ul>
+</blockquote>
+<p>本系列实验主要用到俩工具：</p>
 <ul>
 <li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
 </ul>
@@ -87,7 +96,7 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 </blockquote>
 <h2 id="包">💣包</h2>
 <p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
 <p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包（package）有多个近义词，包括：报文(Datagram)，分组(Packet)，流量包(Data package)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。</p>
 <p>那么抓包和发包就不难理解了。本文的主要内容，就是用上述两工具把计算机网络从上到下玩个遍。</p>
 <p>不过在开玩之前，还需要理解一件事。</p>
@@ -116,38 +125,30 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <li>接口(Interface)：不同层级间的交互规则。//纵向</li>
 <li>服务(Service)：每一层的工作，就是调用下层的接口，并为上层提供服务。</li>
 </ul>
-<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性了？每一层只关注自己的实现，大问题被分解成了小问题。我们并不需要完美的网络，我们只想让它很好用。</p>
-<!-- 
-实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
-
-- 端层/应用层：发出原始报文。
-- 网络层：负责建立网络连接。
-- 通信层：负责物理通信。 -->
-<p>上述类比中我特意标注了一些对应关系：</p>
+<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10+10+10+……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。</p>
+<p>上述类比中特意标注了一些对应关系：</p>
 <ul>
 <li>载荷(Payload)：要运输的货物。每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。</li>
 <li>封包(Packaging)：信息在层次间传递的过程就是封包/解封的过程。比如对报文拆分成段，每段再加上首部/包头(header)，最终形成分组的过程；恰如对货物的包装并贴上标签，成为包裹的过程。</li>
 <li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
 <li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
 </ul>
+<!-- 
+实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
+
+- 端层/应用层：发出原始报文。
+- 网络层：负责建立网络连接。
+- 通信层：负责物理通信。 -->
 <p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
-<blockquote>
-<p>实验来源有：</p>
-<ul>
-<li>自己设计</li>
-<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
-<li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a><br>
-【想看哪个没更新的可以催我】</li>
-</ul>
-</blockquote>
+<p>//【想看哪个没更新的可以催我】</p>
 <h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
 <p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
 <h3 id="路由追踪">路由追踪 | ⭐</h3>
 <p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
 <p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
 <p>其实现大致如下：<br>
-<img src="http://localhost:4000/post-images/1636013930674.png" alt="" loading="lazy"><br>
+<img src="https://lonelyuan.github.io/post-images/1636013930674.png" alt="" loading="lazy"><br>
 下面详细讲解：</p>
 <p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
 <ul>
@@ -182,8 +183,8 @@ TCP session hijacking反弹shell （重点）</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[年轻人的第二个网站（二） - flask-supreme-tutorial]]></title>
-        <id>http://localhost:4000/post/flask-supreme-tutorial/</id>
-        <link href="http://localhost:4000/post/flask-supreme-tutorial/">
+        <id>https://lonelyuan.github.io/post/flask-supreme-tutorial/</id>
+        <link href="https://lonelyuan.github.io/post/flask-supreme-tutorial/">
         </link>
         <updated>2021-09-16T04:43:23.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -316,8 +317,8 @@ https://zhuanlan.zhihu.com/p/23731819?refer=flask</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[年轻人的第二个网站 - The Flask Mega Tutorial]]></title>
-        <id>http://localhost:4000/post/flask-mega-tutorial/</id>
-        <link href="http://localhost:4000/post/flask-mega-tutorial/">
+        <id>https://lonelyuan.github.io/post/flask-mega-tutorial/</id>
+        <link href="https://lonelyuan.github.io/post/flask-mega-tutorial/">
         </link>
         <updated>2021-09-09T12:18:56.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -408,7 +409,7 @@ migrate = Migrate(app, db)
 <h3 id="sqlalchemymodel层">SQLalchemy：model层</h3>
 <h4 id="模型定义">模型定义</h4>
 <p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：<br>
-<img src="http://localhost:4000/post-images/1631793936306.png" alt="" loading="lazy"></p>
+<img src="https://lonelyuan.github.io/post-images/1631793936306.png" alt="" loading="lazy"></p>
 <p>Flask-SQLAlchemy 自动设置类名为小写来作为对应表的名称，也可以用<code>__tablename__</code>类属性来定义。</p>
 <pre><code class="language-python">class Post(db.Model): # 表
     id = db.Column(db.Integer, primary_key=True) # 列
@@ -623,7 +624,7 @@ AS anon_1 ORDER BY anon_1.post_timestamp DESC
 <p>在网上寻找新的UI模板，不要在中文互联网搜索，basically garbage。找到一个 <a href="https://demos.creative-tim.com/material-kit/index.html">Meterial 模板</a> 还算顺眼，遂用之。</p>
 <p>不熟悉 Bootstrap 布局的可以使用可视化工具来设计前端，如：http://www.ibootstrap.cn/</p>
 <p>对照模板，将<code>base.html</code>掏空，效果如下：</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1631795716824.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1631795716824.png" alt="" loading="lazy"></figure>
 <p>遇到的bug有：</p>
 <ul>
 <li>下拉菜单失效：查询得知有可能是bootstrap版本冲突
@@ -757,13 +758,13 @@ pip install -r requirements.txt
     </entry>
     <entry>
         <title type="html"><![CDATA[CISCN2021华东百赛区分区选拔赛AWD复盘]]></title>
-        <id>http://localhost:4000/post/awd-da-pian/</id>
-        <link href="http://localhost:4000/post/awd-da-pian/">
+        <id>https://lonelyuan.github.io/post/awd-da-pian/</id>
+        <link href="https://lonelyuan.github.io/post/awd-da-pian/">
         </link>
         <updated>2021-06-16T08:54:30.000Z</updated>
         <content type="html"><![CDATA[<h2 id="">🛁</h2>
 <p>这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1624254620015.gif" alt="" loading="lazy"></figure>
 <blockquote>
 <p>“终端越炫，嗨客越带；嗨客越带，帽子越带”</p>
 </blockquote>
@@ -843,7 +844,7 @@ pip install -r requirements.txt
 <li>改数据库密码：<code>mysql&gt;SET PASSWORD FOR ctf@localhost=PASSWORD('newpass');</code>
 <ul>
 <li>结果<code>&gt; Permission Denied</code>，(╯▔皿▔)╯玩nm<br>
-<img src="http://localhost:4000/post-images/1624253899126.gif" alt="" loading="lazy"></li>
+<img src="https://lonelyuan.github.io/post-images/1624253899126.gif" alt="" loading="lazy"></li>
 </ul>
 </li>
 <li>然后开始源码审计(❌)</li>
@@ -988,8 +989,8 @@ pip install -r requirements.txt
     </entry>
     <entry>
         <title type="html"><![CDATA[基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释]]></title>
-        <id>http://localhost:4000/post/mips_pipeline_cpu/</id>
-        <link href="http://localhost:4000/post/mips_pipeline_cpu/">
+        <id>https://lonelyuan.github.io/post/mips_pipeline_cpu/</id>
+        <link href="https://lonelyuan.github.io/post/mips_pipeline_cpu/">
         </link>
         <updated>2021-06-09T09:14:19.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -1027,7 +1028,7 @@ PS：标题可简记为《基于基于的一种基于的一种实现》</p>
 </ul>
 </li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1623373911775.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1623373911775.png" alt="" loading="lazy"></figure>
 <blockquote>
 <p>名词解释：<br>
 IC：集成电路<br>
@@ -1188,9 +1189,9 @@ print(tail)
 这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。</p>
 <h3 id="编写代码并仿真">编写代码并仿真</h3>
 <p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，<code>resetn</code>应该为<code>{4{resetn}}</code>，写使能位宽应为为4。<br>
-<img src="http://localhost:4000/post-images/1623379687932.png" alt="" loading="lazy"></p>
+<img src="https://lonelyuan.github.io/post-images/1623379687932.png" alt="" loading="lazy"></p>
 <p>下面讲解一下项目结构，所有实验都是类似的：<br>
-<img src="http://localhost:4000/post-images/1623374928604.png" alt="" loading="lazy"><br>
+<img src="https://lonelyuan.github.io/post-images/1623374928604.png" alt="" loading="lazy"><br>
 三个顶层文件夹分别对应Add Source里的三类源文件：添加设计，添加仿真，添加约束。如果不需要上板，只完成仿真，那么只需要添加设计（几个.v），添加仿真（testbench.v/tb.v）就足够了，xxx_display.v也是上板需要的故而可以忽略。（实际上，图中我用箭头标记的都用不到）。</p>
 <p>编写tb，无非是给tb里声明为input的信号赋值，还可以使用<code>#xx</code>，让tb等待一段时间。</p>
 <p>点击Run Simulation，等一会就能看到波形图。波形图有三种颜色：</p>
@@ -1200,7 +1201,7 @@ print(tail)
 <li>蓝色的Z代表信号休眠。</li>
 </ul>
 <p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1623378896380.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://lonelyuan.github.io/post-images/1623378896380.png" alt="" loading="lazy"></figure>
 <p>仿真需要注意的问题：</p>
 <ul>
 <li>如果文件没问题，模块调用层次会被自动解析从而呈现成一棵树，而不是好几个顶层文件。</li>
@@ -1223,16 +1224,16 @@ print(tail)
 <li>.xdc 管脚约束文件。在Implementation用到，此处按下不表。</li>
 </ul>
 <p>这几种文件格式都是可以直接Add Source添加进来的。实验老师同时提供dcp和xci文件，添加dcp崩屎了，原因估计如上。添加xci之后，提示我将IP更新为core cointainer的形式</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1623377228417.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://lonelyuan.github.io/post-images/1623377228417.png" alt="" loading="lazy"></figure>
 <p>更新就完了。然后需要等一会，IP还要执行一步synth，这段时间里IP属于锁住的状态，不能修改配置。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1623377562565.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://lonelyuan.github.io/post-images/1623377562565.png" alt="" loading="lazy"></figure>
 <p>注意更换器件后，IP核都会锁住。这表示IP的配置和当前环境不匹配。对所有IP锁住的问题，只需要点击菜单栏Reports→Reports IP  Status，然后点upgrade即可解除锁定。</p>
 <h3 id="我直接上板">我直接上板</h3>
 <p>直接点生成比特流，会一步步的按工作流向下运行，等待几分钟就能愉快的收获你的报错了！</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://lonelyuan.github.io/post-images/1623379096063.jpg" alt="" loading="lazy"></figure>
 <p>在把上文提到的坑都踩过一遍之后，终于没有critical warning，泪目。</p>
 <p>但是此时实验课已经结束了，👴偷溜到没人的实验室，并留下以下珍贵画面</p>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://lonelyuan.github.io/post-images/1623379266894.jpg" alt="" loading="lazy"></figure>
 <p>然后👴发现data_ram写入失败。但是👴没时间搞了，👴还是滚去复习课本吧。</p>
 <h2 id="多周期流水线cpu原理">🗿多周期流水线CPU原理</h2>
 <p>最后，继续复习计组。<br></p>
@@ -1240,8 +1241,8 @@ print(tail)
     </entry>
     <entry>
         <title type="html"><![CDATA[我和拖延症的战争]]></title>
-        <id>http://localhost:4000/post/ProcrastinationWar/</id>
-        <link href="http://localhost:4000/post/ProcrastinationWar/">
+        <id>https://lonelyuan.github.io/post/ProcrastinationWar/</id>
+        <link href="https://lonelyuan.github.io/post/ProcrastinationWar/">
         </link>
         <updated>2021-04-15T15:01:29.000Z</updated>
         <content type="html"><![CDATA[<p>//这是一篇永远不会完结的文章。<br>
@@ -1277,8 +1278,8 @@ print(tail)
     </entry>
     <entry>
         <title type="html"><![CDATA[CSAPP-Bomblab]]></title>
-        <id>http://localhost:4000/post/CSAPP-Bomblab/</id>
-        <link href="http://localhost:4000/post/CSAPP-Bomblab/">
+        <id>https://lonelyuan.github.io/post/CSAPP-Bomblab/</id>
+        <link href="https://lonelyuan.github.io/post/CSAPP-Bomblab/">
         </link>
         <updated>2020-02-20T14:43:31.000Z</updated>
         <content type="html"><![CDATA[<h1 id="csappbomblab">CSAPP：Bomblab</h1>
@@ -1555,113 +1556,9 @@ i : info
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[about_blog]]></title>
-        <id>http://localhost:4000/post/about-blog/</id>
-        <link href="http://localhost:4000/post/about-blog/">
-        </link>
-        <updated>2020-01-29T16:17:06.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="博客技术介绍">博客技术介绍</h1>
-<blockquote>
-<ul>
-<li>不要：不写博客，使用 CSDN 等国内垃圾博客平台</li>
-<li>推荐：利用 <a href="https://pages.github.com/">GitHub Pages</a> 搭建静态博客。注意，你的 git     仓库地址不是你的博客地址，假设仓库URL是 <a href="https://github.com/example/example.github.io/%EF%BC%8C%E5%8D%9A%E5%AE%A2URL%E4%B8%80%E8%88%AC%E6%98%AFhttps:/example.github.io/">https://github.com/example/example.github.io/，博客URL一般是https://example.github.io/</a></li>
-<li>推荐：在 VPS 上用 Wordpress 搭建博客，或者在     VPS 上搭建静态博客（都需要持续的维护成本）</li>
-<li>推荐：使用<a href="https://www.blogger.com/about/">Blogger</a>等国外平台</li>
-</ul>
-<p>来自 <a href="https://course.blue-whale.me/">https://course.blue-whale.me/</a></p>
-</blockquote>
-<h2 id="为什么要搞博客">为什么要搞博客？</h2>
-<p>必要性：没有。有时候维护博客比写博客更花时间。</p>
-<p>重要性：很大。学计算机的，没有技术博客说明你：</p>
-<ul>
-<li>不会搭，说明笨，建议马上转行。</li>
-<li>不想搭，说明懒，建议退学啃老。</li>
-</ul>
-<p>总之只是搭好还是很简单的，不过要打磨的赏心悦目还是要费一番功夫。本文仅介绍主流框架，不讲具体操作。</p>
-<h2 id="自建站点">自建站点</h2>
-<p>要买服务器，之后可以自由搭建静态/动态博客。大牛都有自己的站点</p>
-<p>步骤：</p>
-<ul>
-<li>买服务器，即vps：国内三大云（阿里，腾讯）都有10块一月的学生机，入门可用</li>
-</ul>
-<p><a href="https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/">https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/</a></p>
-<ul>
-<li>
-<p>购买域名：专用域名商或服务器商提供</p>
-</li>
-<li>
-<p>配置服务器：需要懂服务器运维的入门知识，</p>
-</li>
-<li>
-<p>部署博客：动态静态都可以（不知道区别的建议自尽）</p>
-</li>
-<li>
-<ul>
-<li>动态框架：即博客类的CMS。</li>
-</ul>
-</li>
-</ul>
-<p>如：wordpress，使用php。操作简单易上手。</p>
-<ul>
-<li>静态：后文提到的都可以。</li>
-</ul>
-<p>优势：功能强，部署自由</p>
-<p>劣势：需要持续运营成本（包括金钱和时间）</p>
-<h2 id="发表到博客平台">发表到博客平台</h2>
-<p>依托平台，具体操作依据平台而定</p>
-<p>优点：操作较自建站点简单（其实也不一定）</p>
-<p>缺点：功能较为受限。</p>
-<ul>
-<li>简书：</li>
-</ul>
-<p>和知乎等平台的区别在于注重文章和内容</p>
-<p>ui清爽，不过不可定制。</p>
-<p>另外这样的平台总有审查机制，这 不 自 由。</p>
-<ul>
-<li>博客园：</li>
-</ul>
-<p>老牌国内博客网站了，用的是.net框架。</p>
-<p>前端可高度定制，懒得搞后端可以试。</p>
-<p>随便一个例子：https://www.cnblogs.com/php09/</p>
-<ul>
-<li>CSDN：垃圾。</li>
-</ul>
-<p>说垃圾的原因是：抄袭严重，内容陈旧，吃相难看。</p>
-<ul>
-<li>Github pages：</li>
-</ul>
-<p>全球最大同性交友社区gayhub提供的静态网页托管服务，就是搭建静态博客用的。</p>
-<p>下面介绍几种静态博客：</p>
-<ul>
-<li><strong>typeecho</strong>：轻量级php框架</li>
-</ul>
-<p>https://www.jianshu.com/p/ed2e655c3741</p>
-<p>功能精简，是好也是坏</p>
-<ul>
-<li>**Hugo：**基于go</li>
-<li><strong>Jekyll</strong>：基于ruby</li>
-<li>**Hexo：**基于node.js的静态博客框架，目前使用规模最广的之一</li>
-</ul>
-<p>https://hexo.io/zh-cn/docs/</p>
-<p>https://easyhexo.com/</p>
-<p>步骤：使用githubpages的框架都大同小异</p>
-<ul>
-<li>
-<ul>
-<li>安装环境：git，node.js，npm，hexo</li>
-<li>配置SSH密钥对</li>
-<li>文章写作，上传，发布</li>
-<li>网站配置：主题，拓展</li>
-</ul>
-</li>
-</ul>
-<p>基于不同的语言，要配的环境也不同。光是配环境就难倒不少萌新。而且，想精心打磨自己的站点也是一路险坑。不过，做起来吧。谁让我们是学计算机的呢。</p>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[CSAPP-datalab]]></title>
-        <id>http://localhost:4000/post/CSAPP-datalab/</id>
-        <link href="http://localhost:4000/post/CSAPP-datalab/">
+        <id>https://lonelyuan.github.io/post/CSAPP-datalab/</id>
+        <link href="https://lonelyuan.github.io/post/CSAPP-datalab/">
         </link>
         <updated>2020-01-20T16:00:03.000Z</updated>
         <content type="html"><![CDATA[<h1 id="csappdatalab">CSAPP：datalab</h1>
@@ -1762,6 +1659,151 @@ c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></spa
 <p>常识？？？反码加1</p>
 <p>大佬题解：https://wdxtub.com/csapp/thick-csapp-lab-1/2016/04/16/</p>
 <p>https://zhuanlan.zhihu.com/p/59534845题不一样？？？</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[深度学习入门——jetbot智能小车尝鲜（二）]]></title>
+        <id>https://lonelyuan.github.io/post/jetbot-2/</id>
+        <link href="https://lonelyuan.github.io/post/jetbot-2/">
+        </link>
+        <updated>2019-09-30T16:26:38.000Z</updated>
+        <content type="html"><![CDATA[<p>那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。</p>
+<p>怎样才能让ai程序发挥好的效果呢？众所周知，所谓人工智能，有多少人工就有多智能。</p>
+<p>AI的发展离不开三个要素：<strong>算力</strong>，<strong>算法</strong>和<strong>算材</strong>。根据摩尔定律，算力的发展是不会停滞的（虽然定律快失效了）；进几年来的AI热正是算法的突破，即深度学习相关算法的突飞猛进；而算材就是用来训练模型的数据，未来几年AI应用的进一步落地离不开算材的进一步开发（中国在AI方面的最大优势正在于此）。数据集的丰富程度和有效程度直接影响了AI应用的效果，我将在下文详细说明。</p>
+<p>在jetbot项目中，我们也能体验到用“人工”换“智能”的快乐。作为视觉识别类的AI应用，我们要在预设环境里创建数据集，并为其标注。有了数据集，jetbot搭载的NVIDIA牌GPU在方寸之间就能完成海量计算，仅用一颗摄像头就能实现自动避障，目标追踪，自动巡线等等炫酷功能！不要1999，也不要999，只要99！99刀NVIDIA计算卡带回家！（妮维雅打钱）</p>
+<blockquote>
+<p>给萌新理清几个概念：</p>
+<p>人工智能，机器学习，深度学习的关系：</p>
+<ul>
+<li>深度学习：一种实现机器学习的技术；机器学习：一种实现人工智能的方法</li>
+<li>【包含关系图】</li>
+</ul>
+<p>AI的发展路径：</p>
+<ul>
+<li>弱AI：单独领域工作效率超过人类→</li>
+<li>通用AI：可以广泛应用于大部分领域→</li>
+<li>强AI：有自主意识，即将灭绝人类（不是）→</li>
+</ul>
+<p>现在AI发展到什么地步了：弱AI，有生之年可能见到通用AI</p>
+</blockquote>
+<p>推荐一波汉化的很好的wiki，也有自己原创的内容：http://www.waveshare.net/wiki/JetBot_AI_Kit</p>
+<p>本篇详细介绍两个demo的代码和可能遇到的问题，最后附上神经网络的入门笔记。同样是初次接触，大佬请绕道。</p>
+<h3 id="demo1自动避障">demo1：自动避障</h3>
+<p>小车如何实现自动避障的呢？用通俗的不能再通俗的说法，AI程序通过学习你给他的数据集，知道了什么样的图像是死路，什么样的图像是通路。得到新图像时就能判断是死路的概率有多少，在程序里可以很简单的看出，当这个概率大于0.5的时候就触发小车转向。</p>
+<p>具体而言，你要在你的环境里拍至少200张照片，100张标记为通路（free），100张标记为死路（blocked）。这便是你的数据集（dataset）。构建数据集的时候尽量分散在环境的各个位置和各个方向，可以沿边界环绕一圈，走一段距离停下，转一圈，收集8-10张图片。反正你的数据越多，标记的越准确，模型效果越好。</p>
+<p>下一步就开始训练模型了，从代码里看出，这个demo使用AlexNet模型，用pytorch实现（废话）。第一次运行你会下载一个244M左右的大文件，在<code>/home/jetbot/.torch/models</code>目录下会看到这个.pth文件。这便是AlexNet了。</p>
+<p>继续运行程序，完整的输出结果有三十行，每行后面的小数代表当前模型的准确度（？），程序最后会从这30个模型中选取准确度最高的作为最终模型，也是一个pth文件：<code>best_model.pth</code></p>
+<p>下载文件和训练模型都需要花挺长时间，看到kernel busy，也就是右上角的大黑点不要轻易打断。</p>
+<p>什么是模型呢？稍微解释一下机器学习的概念。</p>
+<p>模型就是函数，其要素为输入，输出，和变换关系。举例说明：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>细菌向养分移动</td>
+<td>外界环境的化学信号</td>
+<td>催动鞭毛的电信号</td>
+</tr>
+<tr>
+<td>学生参加高考</td>
+<td>试卷反射的光信号</td>
+<td>试卷上问题的答案</td>
+</tr>
+<tr>
+<td>小车自动避障</td>
+<td>摄像头传输图像信号</td>
+<td>前方被堵塞的概率</td>
+</tr>
+</tbody>
+</table>
+<p>实际上，知识的本质也是函数，生命延续的关键就在于该生命的模型是否适应环境。这里不深入解释了，觉得惊奇请参阅Yjango的频道https://space.bilibili.com/344849038他用机器学习的角度解释生物进化，非常颠覆三观。</p>
+<p>总之训练出来的模型就是这样一个函数。其输入为经过处理的摄像头的图形信号，输出一个0-1的数，越接近1越意味着模型认为小车要撞墙了。但是当他大于0.5的时候就会触发转向，也就实现了自动避障。</p>
+<blockquote>
+<p>AlexNet是2012年提出的一种卷积神经网络（即CNN）算法。首次实现gpu加速。</p>
+<p>主流深度学习框架：TensorFlow；PyTorch；Keras</p>
+</blockquote>
+<p>还挺好玩的😀</p>
+<h3 id="demo2目标追踪">demo2：目标追踪</h3>
+<p>基于上一个demo，我们还要下载一个模型，<a href="http://cocodataset.org/#home">coco数据集</a>神经网络，可以检测90种不同的物体。按教程把.engine文件下载到指定位置，顺着跑就完事了。（引入模型也要花挺长时间）</p>
+<p>如果有数据集里的物品，从输出里能看到蓝框标出，小车会自动转向物体，同时还保留了自动避障的程序。</p>
+<p>遇到bug：程序仅能读取一张图像进行识别，摄像头更新的功能无法执行。</p>
+<h3 id="修bug摄像头问题">修bug：摄像头问题</h3>
+<p>描述：摄像头只要调用了一次，后面就无法在其他地方调用。直接在jupyter上关闭输出并没有作用。而且只要在一个notebook里就能重复调用，换一个就不行。而且并没有报错信息，程序一直处在busy状态。</p>
+<p>找到源码，在jetbot/jetbot/camera.py，但是所有样例里面调用摄像头都是用的Camera.instance()方法，而这个instance是在traitlets库里的，于是找到trailets官方文档</p>
+<blockquote>
+<p>Traitlets是一个纯 python 库，支持：</p>
+<ul>
+<li>对 python 对象属性的强类型实施( 类型属性称为 &quot;特征&quot; ) ；</li>
+<li>动态计算的默认值；</li>
+<li>当尝试改变时，自动验证和强制特征属性；</li>
+<li>当特征值改变时注册接收通知；</li>
+<li>从文件或者 命令行 参数中读取值- 在traitlets上不同层，因这里可以在没有配置机器的情况下使用 traitlets。</li>
+</ul>
+<p>Traitlets支持IPython和Jupyter的配置系统，以及IPython交互小部件的声明性 API。</p>
+<p>ipython是一个 python 的交互式 shell，比默认的python shell 好用得多，支持变量自动补全，自动缩进，支持 bash shell 命令，内置了许多很有用的功能和函数。其中就包括traitlets库。</p>
+</blockquote>
+<p>https://traitlets.readthedocs.io/en/stable/config.html 在这里找到instance的功能：返回现有的类，如果没有就新建一个。</p>
+<p>下面是样例中调用摄像头的代码：</p>
+<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
+from IPython.display import display   #ipy的显示模块
+import traitlets                      
+from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
+camera = Camera.instance(width=500, height=500)#初始化摄像头对象
+image = widgets.Image(format='jpeg', width=400, height=400)#创建图像
+camera_link = traitlets.dlink((camera, 'value'), (image, 'value'), transform=bgr8_to_jpeg)     #连接摄像头到图像
+display(image)  #显示图像
+</code></pre>
+<p>尝试从camera.py里调用原始api。得到报错：<code>Each object must be HasTraits, not &lt;class 'NoneType'&gt;</code>，是说必须为对象指定类型。那么HasTraits这个类型是啥？文档说:任何具有trait属性的类都必须从 <code>HasTraits</code> 继承。</p>
+<p>再次梳理调用摄像头的流程：</p>
+<ul>
+<li>引入模型：<code>model.load_state_dict(torch.load('best_model.pth'))</code></li>
+<li>连接摄像头：见上文</li>
+<li>模型执行：</li>
+</ul>
+<pre><code class="language-python">def update():
+	...#此处为模型执行函数，将输入图像预处理后，执行模型
+update({'new': camera.value})  #初始化该函数
+camera.observe(update, names='value')  #将update函数设为camera.value的observer
+</code></pre>
+<p>研究一下observe用法：当对象发生变化时调用函数。</p>
+<p>https://traitlets.readthedocs.io/en/stable/using_traitlets.html#validation</p>
+<p>执行如下代码：</p>
+<pre><code class="language-python">import ipywidgets.widgets as widgets  #图像模块
+from IPython.display import display   #ipy的显示模块
+import traitlets                      
+from jetbot import Camera, bgr8_to_jpeg #摄像头驱动，图像格式转换
+camera = Camera.instance(width=500, height=500)#初始化摄像头对象
+def update(change):
+	x = change['new'] 
+	display(x)  #显示图像
+update({'new': camera.value})  
+camera.observe(update, names='value') 
+</code></pre>
+<p>输出一大堆数组，说明camera.value是这一大堆像素。而且observe正常运行，数据一直冒出。</p>
+<pre><code>array([[[122, 116, 130],
+        [126, 113, 127],
+        [125, 117, 129],
+        ...,
+        [ 84,  96, 107],
+        [ 82,  96, 113],
+        [ 93,  93, 113]],
+
+       [[120, 119, 130],
+        [122, 120, 119],
+        [118, 123, 130],
+        ...,
+</code></pre>
+<p>然而就是不实时更新数据，卒。</p>
+<p>👴佛了。</p>
+<h3 id="神经网络笔记">神经网络笔记</h3>
+<h3 id="alexnetcnn">AlexNet——CNN</h3>
+<p>2012年由Hinton学生Alex提出，是Lenet加宽版。其采用了一系列的新技术：成功的引用了relu、dropout和lrn等trick，首次采用gpu加速。其包含65万神经元，5个卷积层，三个后面带有池化层，最后用了三个全链接。</p>
 ]]></content>
     </entry>
 </feed>
