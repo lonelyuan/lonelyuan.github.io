@@ -6,7 +6,7 @@
 
 <title>从scapy和wireshark学计算机网络 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636339010700">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636390804287">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -203,7 +203,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636339010700"
+            <form id="gridea-search-form" style="position: relative" data-update="1636390804287"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -243,13 +243,13 @@
                     
                 </div>
                 <div class="post-content">
-                    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个√8，建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
+                    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我真的想狠狠踢他的屁股。建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
 <hr>
 <blockquote>
 <p>实验来源有：</p>
 <ul>
-<li>自己设计</li>
-<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>👴自己</li>
+<li>SEEDLab，雪城大学的信息安全课配套实验，网络安全部分。国内知名度不高所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
 <li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a></li>
 </ul>
 </blockquote>
@@ -296,7 +296,7 @@
 //上述流程不严谨，地址泛指地址电话重量等信息；不考虑菜鸟驿站等自取点情况</li>
 </ul>
 </blockquote>
-<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。</p>
+<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，<strong>每一层之间只需要关心自己的工作，并和相邻的层交互</strong>。这就是应对复杂系统的组织方法——分层。</p>
 <p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
 <ul>
 <li>协议(Protocal)：同一层级内的交互规则。//横向</li>
@@ -327,18 +327,56 @@
 </li>
 <li>端层：发出原始报文。
 <ul>
-<li>本层负责实现用户需求，向用户提供透明且可靠的网络通信</li>
+<li>本层负责实现用户需求，向用户提供透明可靠的网络服务</li>
 <li>对应五层模型的应用层</li>
 </ul>
 </li>
 </ul>
-<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
+<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（迫真）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
-<p>//【想看哪个没更新的可以催我】</p>
-<h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
-<p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
-<h3 id="路由追踪">路由追踪 | ⭐</h3>
-<p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
+<p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。可以看到，本系列实验从应用层出发，逐步深入到链路层，再逐步返回应用层，同时难度不断加大。</p>
+<p>//【想看哪个没更新的可以催👴】</p>
+<h4 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h4>
+<p>术语：</p>
+<ul>
+<li>Server：一般语境下的服务器(Server)，指的是为用户提供服务的机器。</li>
+<li>CS结构</li>
+<li>HTTP协议</li>
+</ul>
+<p>实验：</p>
+<ul>
+<li>用scapy/socket做一个静态服务器。</li>
+<li>效果是浏览器能访问。wireshark抓http包</li>
+</ul>
+<p>拓展：</p>
+<ul>
+<li>常用服务器：apache/nginx</li>
+<li>计网并不关心应用层以上的东西</li>
+</ul>
+<p>那么，网络如何保证网页被完整的交到你手里？</p>
+<h4 id="传输层-tcp观察-todo">传输层: TCP观察 | ⭐ | TODO</h4>
+<p>术语：</p>
+<ul>
+<li>传输层：负责可靠运输</li>
+<li>帧，报文</li>
+<li>TCP/UDP</li>
+</ul>
+<p>实验：</p>
+<ul>
+<li>用wireshark观察TCP连接的建立和结束。</li>
+<li>尝试用scapy建立TCP连接 https://www.cnblogs.com/darkpig/p/7629854.html</li>
+</ul>
+<p>拓展：</p>
+<ul>
+<li>TCP核心：滑动窗口，重传策略，阻塞控制</li>
+</ul>
+<p>那么，网络如何寻找一个人/机器？</p>
+<h4 id="网络层-路由追踪">网络层: 路由追踪 | ⭐</h4>
+<p>术语：</p>
+<ul>
+<li>IP层：IP协议，ICMP协议，路由协议</li>
+<li>路由追踪：请求某地址经过了那些路由器？</li>
+</ul>
 <p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
 <p>其实现大致如下：<br>
 <img src="https://lonelyuan.github.io/post-images/1636013930674.png" alt="" loading="lazy"><br>
@@ -352,27 +390,32 @@
 <li>综合起来，这条代码将发送47个包，其ttl从1到50。并筛选返回ACK的包。</li>
 <li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
 </ul>
-<h3 id="基于icmp重定向的中间人攻击-todo">基于ICMP重定向的中间人攻击 | ⭐ | TODO</h3>
+<h3 id="网络层-欺骗ping-todo">网络层: 欺骗ping | ⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</p>
-<h3 id="基于arp缓存投毒的中间人攻击-todo">基于ARP缓存投毒的中间人攻击 | ⭐⭐ | TODO</h3>
+<h3 id="链路层-arp缓存投毒-todo">链路层: ARP缓存投毒 | ⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</p>
-<h3 id="tcp攻击-todo">TCP攻击 | ⭐⭐ | TODO</h3>
+<h3 id="传输层-tcp攻击-todo">传输层: TCP攻击 | ⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf</p>
 <p>TCP协议<br>
 SYN泛洪<br>
 TCP reset<br>
 TCP session hijacking反弹shell （重点）</p>
-<h3 id="dns本地攻击-todo">DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
+<h3 id="网络层-natdhcp和虚拟机-todo">网络层: NAT，DHCP和虚拟机 |  ⭐⭐ | TODO</h3>
+<p>相信折腾过虚拟机的同学都绕不过这个问题：我的虚拟机怎么连不上网？本实验基于wmware虚拟机平台，讲解几种虚拟机网络模式及其原理。</p>
+<h3 id="应用层-dns本地攻击-todo">应用层: DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf</p>
-<h3 id="多线程web代理服务器-todo">多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
-<h3 id="vpn-todo">VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
+<h3 id="应用层-ssl协议和https-todo">应用层: SSL协议和HTTPS | ⭐⭐⭐⭐ | TODO</h3>
+<h3 id="应用层-多线程web代理服务器-todo">应用层: 多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
+<h3 id="应用层-vpn-todo">应用层: VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
 <p>探究VPN原理</p>
-<h3 id="v2ray协议学习-todo">V2Ray协议学习 | ？？？ | TODO</h3>
+<h3 id="应用层-v2ray协议学习-todo">应用层: V2Ray协议学习 | ？？？ | TODO</h3>
 <p>有生之年研究一下Vmess等协议</p>
 <!-- 省略的：
 - 防火墙iptables实验
 - mitnick攻击
-- BGP -->
+- BGP 
+- 802.11
+- -->
                 </div>
             </article>
         </div>

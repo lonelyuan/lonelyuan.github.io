@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-08T02:40:10.137Z</updated>
+    <updated>2021-11-08T17:00:27.049Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -39,6 +39,7 @@ https://gridea.dev/theme/</p>
         <content type="html"><![CDATA[<p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：</p>
 <p>那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲<strong>虚拟内存</strong>，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个<strong>多线程</strong>，看到没，线程上下文切换了。我特么直接三段<strong>系统调度</strong>（短期，中期，长期），然后我直接~就一个多核调度，我就调度到<strong>IPC</strong>，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出<strong>信号量</strong>直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，<strong>文件系统</strong>！加三段系统<strong>虚拟化</strong>（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。</p>
 <p><em>圣经原文：</em><a href="https://www.bilibili.com/video/BV1Jf4y1L7EZ">拖更云的鹰佐教学</a></p>
+<hr>
 <blockquote>
 <p>本系列为 ChCore lab 实验报告。<br>
 Lab源码：https://gitee.com/ipads-lab/chcore-lab<br>
@@ -53,18 +54,20 @@ QEMU emulator version 4.2.0
 Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
 </code></pre>
 <p>5个实验在源码仓库分别以5个分支存在。 git clone  -b即可。</p>
-<h3 id="build-kernel">build kernel</h3>
+<p>内核构建和调试：</p>
 <ul>
 <li>用docker交叉编译内核：<code>make build</code></li>
 <li>启动qemu：<code>make qemu</code>
 <ul>
 <li>这里遇到报错：<code>Unable to init server: Could not connect: Connection refused gtk initialization failed</code></li>
-<li>解决方法：修改Makefile，在<code>QEMUOPTS</code>参数后加<code>-nographic</code></li>
+<li>解决方法：修改 Makefile ，在<code>QEMUOPTS</code>参数后加<code>-nographic</code></li>
 </ul>
 </li>
 <li>启动qemu：<code>make qemu-gdb</code>
 <ul>
 <li>将监听1234端口以供gdb远程调用</li>
+<li>退出：<code>ctrl+a</code>，然后按x。</li>
+<li>如果意外退出，要杀死进程：<code>kill $(ps -ef | grep qemu | grep 1234 | awk '{print $2}')</code></li>
 </ul>
 </li>
 <li>在另一个终端启动gdb调试：<code>make gdb</code>
@@ -73,8 +76,322 @@ Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
 </ul>
 </li>
 </ul>
-<h3 id="内核态输入输出">内核态输入输出</h3>
-<p>进制转换题</p>
+<p>可以看到，本项目中 Makefile 主要是封装了一些命令。</p>
+<hr>
+<h2 id="lab1">Lab1</h2>
+<h3 id="练习3-加载入口定义">练习3-加载入口定义</h3>
+<pre><code class="language-shell">root@lastyear:~/chcore-lab# readelf -S build/kernel.img
+There are 9 section headers, starting at offset 0x20cd8:
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] init              PROGBITS         0000000000080000  00010000
+       000000000000b5b0  0000000000000008 WAX       0     0     4096
+  [ 2] .text             PROGBITS         ffffff000008c000  0001c000
+       00000000000011dc  0000000000000000  AX       0     0     8
+  [ 3] .rodata           PROGBITS         ffffff0000090000  00020000
+       00000000000000f8  0000000000000001 AMS       0     0     8
+  [ 4] .bss              NOBITS           ffffff0000090100  000200f8
+       0000000000008000  0000000000000000  WA       0     0     16
+  [ 5] .comment          PROGBITS         0000000000000000  000200f8
+       0000000000000032  0000000000000001  MS       0     0     1
+  [ 6] .symtab           SYMTAB           0000000000000000  00020130
+       0000000000000858  0000000000000018           7    46     8
+  [ 7] .strtab           STRTAB           0000000000000000  00020988
+       000000000000030f  0000000000000000           0     0     1
+  [ 8] .shstrtab         STRTAB           0000000000000000  00020c97
+       000000000000003c  0000000000000000           0     0     1
+</code></pre>
+<p>看到init段的起始地址是<code>0x80000</code>，和<code>readelf -h</code>中的 Entry point address 一致，也和 GDB 刚进入时<code>where</code>的输出一致。</p>
+<pre><code class="language-shell">0x0000000000080000 in ?? ()
+(gdb) where
+#0  0x0000000000080000 in _start ()
+</code></pre>
+<p>下面寻找<code>_start</code>的定义，在<code>CMakeLists.txt</code>中找到<code>_start</code>，</p>
+<pre><code class="language-shell">set_property(
+    TARGET kernel.img
+    APPEND_STRING
+    PROPERTY
+        LINK_FLAGS
+        &quot;-T ${CMAKE_CURRENT_BINARY_DIR}/${link_script} -e _start&quot;
+)
+</code></pre>
+<p>这里为<code>kernel.img</code>指定了链接器脚本(-T)和入口函数(-e)。</p>
+<p>于是跟随link_script：</p>
+<pre><code class="language-shell">set(link_script &quot;linker.lds&quot;)
+configure_file(&quot;./scripts/linker-aarch64.lds.in&quot; &quot;linker.lds.S&quot;)
+</code></pre>
+<p>进入脚本linker-aarch64.lds.in：</p>
+<pre><code class="language-c">#include &quot;../boot/image.h&quot;
+
+SECTIONS
+{
+    . = TEXT_OFFSET;
+    img_start = .;
+    init : {
+        ${init_object}
+    }
+// ...
+</code></pre>
+<p>其中<code>init</code>段指定了加载<code>init_object</code>，它表示bootloader的所有目标文件集合。其定义回到<code>CmakeLists.txt</code>：</p>
+<pre><code class="language-shell">set(init_object
+        &quot;${BINARY_KERNEL_IMG_PATH}/${BOOTLOADER_PATH}/start.S.o
+        ${BINARY_KERNEL_IMG_PATH}/${BOOTLOADER_PATH}/mmu.c.o
+        ${BINARY_KERNEL_IMG_PATH}/${BOOTLOADER_PATH}/tools.S.o
+        ${BINARY_KERNEL_IMG_PATH}/${BOOTLOADER_PATH}/init_c.c.o
+        ${BINARY_KERNEL_IMG_PATH}/${BOOTLOADER_PATH}/uart.c.o&quot;
+    )
+</code></pre>
+<p>可发现<code>/boot/start.S</code>定义了<code>_start</code>。</p>
+<p>下面继续寻找地址，在链接器脚本引用了<code>image.h</code>，其中有<code>TEXT_OFFSET</code>的定义：</p>
+<pre><code class="language-c">#pragma once
+
+#define SZ_16K                  0x4000
+#define SZ_64K                  0x10000
+
+#define KERNEL_VADDR            0xffffff0000000000
+#define TEXT_OFFSET             0x80000
+</code></pre>
+<p>一切终于串起来了：</p>
+<ul>
+<li><code>CMakeLists.txt</code>：学名：组态档。 CMake 是 make 工具的升级版，<code>CMakeLists.txt</code>就是 CMake 的 Makefile 。
+<ul>
+<li>为编译器指定脚本；为ids定义变量；指定了入口函数<code>_start</code></li>
+</ul>
+</li>
+<li><code>linker-aarch64.lds.in</code>：lds是链接器脚本文件，负责控制输出的ELF文件的细节。
+<ul>
+<li>指定了起始地址<code>0x80000</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="练习3-多处理器挂起">练习3-多处理器挂起</h3>
+<p><code>start.S</code>中注释的很明白了，通过检查<code>mpidr_el1</code>寄存器来判断 cpuid ，如果不是0则进入死循环。</p>
+<pre><code class="language-c">BEGIN_FUNC(_start)
+        mrs     x8, mpidr_el1
+        and     x8, x8, #0xFF
+        cbz     x8, primary
+  /* hang all secondary processors before we intorduce multi-processors */
+secondary_hang:
+        bl secondary_hang
+primary:
+        /* Turn to el1 from other exception levels. */
+        bl      arm64_elX_to_el1
+        /* Prepare stack pointer and jump to C. */
+        adr     x0, boot_cpu_stack
+        add     x0, x0, #0x1000
+        mov     sp, x0
+        bl      init_c
+        /* Should never be here */
+        b       .
+END_FUNC(_start)
+</code></pre>
+<h3 id="练习4-lma和vma">练习4-LMA和VMA</h3>
+<pre><code class="language-shell">root@lastyear:~/chcore-lab# objdump -h build/kernel.img
+
+build/kernel.img:     file format elf64-little
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 init          0000b5b0  0000000000080000  0000000000080000  00010000  2**12
+                  CONTENTS, ALLOC, LOAD, CODE
+  1 .text         000011dc  ffffff000008c000  000000000008c000  0001c000  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       000000f8  ffffff0000090000  0000000000090000  00020000  2**3
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .bss          00008000  ffffff0000090100  0000000000090100  000200f8  2**4
+                  ALLOC
+  4 .comment      00000032  0000000000000000  0000000000000000  000200f8  2**0
+                  CONTENTS, READONLY
+</code></pre>
+<p>可以发现只有init段的VMA和LMA相同。其赋值还是回到lds脚本：</p>
+<pre><code class="language-c">SECTIONS
+{
+    . = TEXT_OFFSET;
+    img_start = .;
+    init : { //init段VMA==VMA
+        ${init_object}
+    }
+    . = ALIGN(SZ_16K); // 对齐16k
+    init_end = ABSOLUTE(.); // init段结束
+    // KERNEL_VADDR在image.h定义为0xffffff0000000000
+    .text KERNEL_VADDR + init_end : AT(init_end) { // AT指定LMA
+        *(.text*)
+    } // .text段：VMA = KERNEL_VADDR + init_end; LMA = init_end
+    // 后面的段，全部按顺序对齐并递增，此时VMA和LMA已经不同，故后面的段也全都不同
+    . = ALIGN(SZ_64K);
+    .data : {
+        *(.data*)
+    }
+    . = ALIGN(SZ_64K);
+    .rodata : {
+        *(.rodata*)
+    }
+    _edata = . - KERNEL_VADDR; // 这些外部变量指的是LMA，则减去虚拟地址头
+    _bss_start = . - KERNEL_VADDR;
+    .bss : {
+        *(.bss*)
+    }
+    _bss_end = . - KERNEL_VADDR;
+    . = ALIGN(SZ_64K);
+    img_end = . - KERNEL_VADDR;
+}
+</code></pre>
+<p>回答问题：</p>
+<ul>
+<li>
+<p>为什么LMA和VMA不同</p>
+<ul>
+<li>VMA是对应虚拟内存的地址，但在内核启动时还处于物理地址模式，VMA可能超出物理内存范围。所以只能先加载，再映射到虚拟地址。</li>
+<li>为什么内核段的VMA要映射到高位，应该是一种惯例。</li>
+<li>为什么bootloader不用VMA，因为他负责初始化页表，他不能用，也没有必要。</li>
+</ul>
+</li>
+<li>
+<p>LMA到VMA在何时转换</p>
+<ul>
+<li>由上一问可知，页表初始化之后便可转换为VMA。</li>
+</ul>
+</li>
+</ul>
+<h3 id="练习5-c语言进制转换">练习5-c语言进制转换</h3>
+<p>从后往前取余即可。</p>
+<h3 id="练习6-函数栈">练习6-函数栈</h3>
+<p><code>start.S</code>中赋值了sp：</p>
+<pre><code class="language-assembly">        /* Prepare stack pointer and jump to C. */
+        adr     x0, boot_cpu_stack
+        add     x0, x0, #0x1000
+        mov     sp, x0 /* sp = boot_cpu_stack + 0x1000 */
+</code></pre>
+<p><code>boot_cpu_stack</code>在<code>init.c</code></p>
+<pre><code class="language-c">#define INIT_STACK_SIZE 0x1000
+char boot_cpu_stack[PLAT_CPU_NUMBER][INIT_STACK_SIZE] ALIGN(16);
+</code></pre>
+<p>由于<code>PLAT_CPU_NUMBER</code>被定义为4，故<code>boot_cpu_stack</code>大小为4*4096，可供四个CPU使用。sp初始化后指向第一个4069，也就是第一个cpu内核栈的最高位。初始化时，fp=sp。</p>
+<p>但这是bootloader的栈。后续进入内核后，会重新分配内核栈，参见<code>head.S</code>：</p>
+<pre><code class="language-assembly">BEGIN_FUNC(start_kernel)
+    mov     x3, #0
+    msr     TPIDR_EL1, x3
+    ldr     x2, =kernel_stack
+    add     x2, x2, KERNEL_STACK_SIZE
+    mov     sp, x2 
+    bl      main
+END_FUNC(start_kernel)
+</code></pre>
+<p>于是内核栈的定义在start_kernel函数。</p>
+<p>有关内核栈的位置，因为kernel_stack是全局数组，且未初始化，因而位于.bss。同时没有其他未初始化变量，因此首地址在<code>.bss + KERNEL_STACK_SIZE</code>。</p>
+<p>通过readelf得到.bss的VMA为0xffffff0000090100，KERNEL_STACK_SIZE为0x2000，进入gdb调试可以验证</p>
+<pre><code>gef➤  x/g $sp
+0xffffff0000092100 &lt;kernel_stack+8192&gt;: 0x0
+</code></pre>
+<h3 id="练习7-调用惯例">练习7-调用惯例</h3>
+<p>先看stack_test函数。这里gdb安装了gef插件：</p>
+<pre><code class="language-assembly">gef➤ b stack_test
+Breakpoint 1 at 0xffffff000008c020
+gef➤ disas
+Dump of assembler code for function stack_test:
+=&gt; 0xffffff000008c020 &lt;+0&gt;:     stp     x29, x30, [sp, #-32]! /* FP、LR 入栈 */
+   0xffffff000008c024 &lt;+4&gt;:     mov     x29, sp
+   0xffffff000008c028 &lt;+8&gt;:     str     x19, [sp, #16] /* x 入栈 */
+   0xffffff000008c02c &lt;+12&gt;:    mov     x19, x0
+   0xffffff000008c030 &lt;+16&gt;:    mov     x1, x0
+   0xffffff000008c034 &lt;+20&gt;:    adrp    x0, 0xffffff0000090000 # 计算偏移
+   0xffffff000008c038 &lt;+24&gt;:    add     x0, x0, #0x0
+   0xffffff000008c03c &lt;+28&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
+   0xffffff000008c040 &lt;+32&gt;:    cmp     x19, #0x0
+   0xffffff000008c044 &lt;+36&gt;:    b.gt    0xffffff000008c068 &lt;stack_test+72&gt; # greater than /* 递归 */
+   0xffffff000008c048 &lt;+40&gt;:    bl      0xffffff000008c0dc &lt;stack_backtrace&gt; 
+   0xffffff000008c04c &lt;+44&gt;:    mov     x1, x19
+   0xffffff000008c050 &lt;+48&gt;:    adrp    x0, 0xffffff0000090000
+   0xffffff000008c054 &lt;+52&gt;:    add     x0, x0, #0x20
+   0xffffff000008c058 &lt;+56&gt;:    bl      0xffffff000008c620 &lt;printk&gt; 
+   0xffffff000008c05c &lt;+60&gt;:    ldr     x19, [sp, #16] # x19 = sp + 16 /* x 出栈 */
+   0xffffff000008c060 &lt;+64&gt;:    ldp     x29, x30, [sp], #32 # load pair  /* FP、LR 出栈 */
+   0xffffff000008c064 &lt;+68&gt;:    ret
+   0xffffff000008c068 &lt;+72&gt;:    sub     x0, x19, #0x1
+   0xffffff000008c06c &lt;+76&gt;:    bl      0xffffff000008c020 &lt;stack_test&gt;
+   0xffffff000008c070 &lt;+80&gt;:    mov     x1, x19
+   0xffffff000008c074 &lt;+84&gt;:    adrp    x0, 0xffffff0000090000
+   0xffffff000008c078 &lt;+88&gt;:    add     x0, x0, #0x20
+   0xffffff000008c07c &lt;+92&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
+   0xffffff000008c080 &lt;+96&gt;:    ldr     x19, [sp, #16]
+   0xffffff000008c084 &lt;+100&gt;:   ldp     x29, x30, [sp], #32
+   0xffffff000008c088 &lt;+104&gt;:   ret
+End of assembler dump.
+</code></pre>
+<p>运行，观察栈的变化，这里省略部分输出：</p>
+<pre><code class="language-assembly">gef➤  c
+───────────────────────────────────────── registers ────
+$x0  : 0x0000000000000005  # 这一层函数的输入值
+$x19 : 0x0000000000000000  # 上一层函数的返回值
+$x29 : 0xffffff00000920f0                # FP
+$x30 : 0xffffff000008c0d4  → &lt;main+72&gt;   # LR
+$sp  : 0xffffff00000920f0 
+───────────────────────────────────────────── stack ────
+0xffffff00000920f0│+0x0000: 0x0000000000000000
+0xffffff00000920f8│+0x0008: 0xffffff000008c018 # 栈头，可能是栈初始化的数据结构
+──────────────────────────────────────────── trace ────
+[#0] 0xffffff000008c020 → stack_test()
+[#1] 0xffffff000008c0d4 → main()
+───────────────────────────────────────────────────────
+gef➤  c
+───────────────────────────────────────── registers ────
+$x0  : 0x0000000000000004 
+$x19 : 0x0000000000000005 
+$x29 : 0xffffff00000920d0  
+$x30 : 0xffffff000008c070  #→  &lt;stack_test+80&gt;
+$sp  : 0xffffff00000920d0  →  0xffffff00000920f0  
+───────────────────────────────────────────── stack ────
+0xffffff00000920d0│+0x0000: 0xffffff00000920f0 ─┐  # FP
+0xffffff00000920d8│+0x0008: 0xffffff000008c0d4  │  # LR
+0xffffff00000920e0│+0x0010: 0x0000000000000000  │
+0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
+0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ 
+0xffffff00000920f8│+0x0028: 0xffffff000008c018  
+───────────────────────────────────────────── trace ────
+[#0] 0xffffff000008c020 → stack_test()
+[#1] 0xffffff000008c070 → stack_test()
+[#2] 0xffffff000008c0d4 → main()
+────────────────────────────────────────────────────────
+gef➤  c
+───────────────────────────────────────── registers ────
+$x0  : 0x0000000000000003  
+$x19 : 0x0000000000000004  
+$x29 : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
+$x30 : 0xffffff000008c070  
+$sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
+──────────────────────────────────────────── stack ────
+0xffffff00000920b0│+0x0000: 0xffffff00000920d0 ─┐ # [#1] 
+0xffffff00000920b8│+0x0008: 0xffffff000008c070  │
+0xffffff00000920c0│+0x0010: 0x0000000000000005  │  
+0xffffff00000920c8│+0x0018: 0x00000000ffffffc0  │  
+0xffffff00000920d0│+0x0020: 0xffffff00000920f0 ◄┘ # [#2]
+0xffffff00000920d8│+0x0028: 0xffffff000008c0d4  │
+0xffffff00000920e0│+0x0010: 0x0000000000000000  │
+0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
+0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ # [#3]
+0xffffff00000920f8│+0x0028: 0xffffff000008c018  
+─────────────────────────────────────────── trace ────
+[#0] 0xffffff000008c020 → stack_test()
+[#1] 0xffffff000008c070 → stack_test()
+[#2] 0xffffff000008c070 → stack_test()
+[#3] 0xffffff000008c0d4 → main()
+──────────────────────────────────────────────────────
+</code></pre>
+<p>可以看到每次递归调用压栈4个64位字，分别是：上一层FP，LR，参数x和0x00000000ffffffc0。最后一个64位字用途未知。</p>
+<h3 id="练习9-backtrace">练习9-backtrace</h3>
+<p>提供<code>read_fp()</code>接口，我们知道fp永远指向父函数的fp，故递归调用即可。</p>
+<pre><code class="language-c">	u64* fp = (u64*) *((u64*)read_fp()); // 双层指针，因为第一层是本函数
+	while(fp != 0) { 
+        printk(&quot;LR %lx FP %lx Args %d %d %d %d %d\n&quot;, *(fp + 1), fp, *(fp - 2), *(fp - 1), *(fp), *(fp + 1), *(fp + 2)); //为什么5个参数是fp-2到fp+2？样例只包括一个参数，只要出现fp+2就能测试通过
+        fp = (u64*) *fp; //下一层
+	}
+</code></pre>
+<p>满分通过，懒得贴图了。</p>
+<hr>
 <p>看到大佬写的，瞬间不想写了，寄。<br>
 https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 ]]></content>
@@ -85,13 +402,13 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
         <link href="https://lonelyuan.github.io/post/Computer_Network_Exp/">
         </link>
         <updated>2021-10-22T15:55:54.000Z</updated>
-        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译的是个√8，建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
+        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我真的想狠狠踢他的屁股。建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
 <hr>
 <blockquote>
 <p>实验来源有：</p>
 <ul>
-<li>自己设计</li>
-<li>SEEDLab，雪城大学的网络安全课配套实验。国内资料较少所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
+<li>👴自己</li>
+<li>SEEDLab，雪城大学的信息安全课配套实验，网络安全部分。国内知名度不高所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
 <li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a></li>
 </ul>
 </blockquote>
@@ -138,7 +455,7 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 //上述流程不严谨，地址泛指地址电话重量等信息；不考虑菜鸟驿站等自取点情况</li>
 </ul>
 </blockquote>
-<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。</p>
+<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，<strong>每一层之间只需要关心自己的工作，并和相邻的层交互</strong>。这就是应对复杂系统的组织方法——分层。</p>
 <p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
 <ul>
 <li>协议(Protocal)：同一层级内的交互规则。//横向</li>
@@ -169,18 +486,56 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 </li>
 <li>端层：发出原始报文。
 <ul>
-<li>本层负责实现用户需求，向用户提供透明且可靠的网络通信</li>
+<li>本层负责实现用户需求，向用户提供透明可靠的网络服务</li>
 <li>对应五层模型的应用层</li>
 </ul>
 </li>
 </ul>
-<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
+<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（迫真）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
-<p>//【想看哪个没更新的可以催我】</p>
-<h3 id="web服务器-todo">Web服务器 | ⭐ | TODO</h3>
-<p>简单了解一下HTTP协议，然后做一个静态服务器。效果是浏览器能访问。</p>
-<h3 id="路由追踪">路由追踪 | ⭐</h3>
-<p>这个实验有助于理解IP层，包括ICMP协议的细节。</p>
+<p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。可以看到，本系列实验从应用层出发，逐步深入到链路层，再逐步返回应用层，同时难度不断加大。</p>
+<p>//【想看哪个没更新的可以催👴】</p>
+<h4 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h4>
+<p>术语：</p>
+<ul>
+<li>Server：一般语境下的服务器(Server)，指的是为用户提供服务的机器。</li>
+<li>CS结构</li>
+<li>HTTP协议</li>
+</ul>
+<p>实验：</p>
+<ul>
+<li>用scapy/socket做一个静态服务器。</li>
+<li>效果是浏览器能访问。wireshark抓http包</li>
+</ul>
+<p>拓展：</p>
+<ul>
+<li>常用服务器：apache/nginx</li>
+<li>计网并不关心应用层以上的东西</li>
+</ul>
+<p>那么，网络如何保证网页被完整的交到你手里？</p>
+<h4 id="传输层-tcp观察-todo">传输层: TCP观察 | ⭐ | TODO</h4>
+<p>术语：</p>
+<ul>
+<li>传输层：负责可靠运输</li>
+<li>帧，报文</li>
+<li>TCP/UDP</li>
+</ul>
+<p>实验：</p>
+<ul>
+<li>用wireshark观察TCP连接的建立和结束。</li>
+<li>尝试用scapy建立TCP连接 https://www.cnblogs.com/darkpig/p/7629854.html</li>
+</ul>
+<p>拓展：</p>
+<ul>
+<li>TCP核心：滑动窗口，重传策略，阻塞控制</li>
+</ul>
+<p>那么，网络如何寻找一个人/机器？</p>
+<h4 id="网络层-路由追踪">网络层: 路由追踪 | ⭐</h4>
+<p>术语：</p>
+<ul>
+<li>IP层：IP协议，ICMP协议，路由协议</li>
+<li>路由追踪：请求某地址经过了那些路由器？</li>
+</ul>
 <p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
 <p>其实现大致如下：<br>
 <img src="https://lonelyuan.github.io/post-images/1636013930674.png" alt="" loading="lazy"><br>
@@ -194,27 +549,32 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <li>综合起来，这条代码将发送47个包，其ttl从1到50。并筛选返回ACK的包。</li>
 <li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
 </ul>
-<h3 id="基于icmp重定向的中间人攻击-todo">基于ICMP重定向的中间人攻击 | ⭐ | TODO</h3>
+<h3 id="网络层-欺骗ping-todo">网络层: 欺骗ping | ⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</p>
-<h3 id="基于arp缓存投毒的中间人攻击-todo">基于ARP缓存投毒的中间人攻击 | ⭐⭐ | TODO</h3>
+<h3 id="链路层-arp缓存投毒-todo">链路层: ARP缓存投毒 | ⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</p>
-<h3 id="tcp攻击-todo">TCP攻击 | ⭐⭐ | TODO</h3>
+<h3 id="传输层-tcp攻击-todo">传输层: TCP攻击 | ⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf</p>
 <p>TCP协议<br>
 SYN泛洪<br>
 TCP reset<br>
 TCP session hijacking反弹shell （重点）</p>
-<h3 id="dns本地攻击-todo">DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
+<h3 id="网络层-natdhcp和虚拟机-todo">网络层: NAT，DHCP和虚拟机 |  ⭐⭐ | TODO</h3>
+<p>相信折腾过虚拟机的同学都绕不过这个问题：我的虚拟机怎么连不上网？本实验基于wmware虚拟机平台，讲解几种虚拟机网络模式及其原理。</p>
+<h3 id="应用层-dns本地攻击-todo">应用层: DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf</p>
-<h3 id="多线程web代理服务器-todo">多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
-<h3 id="vpn-todo">VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
+<h3 id="应用层-ssl协议和https-todo">应用层: SSL协议和HTTPS | ⭐⭐⭐⭐ | TODO</h3>
+<h3 id="应用层-多线程web代理服务器-todo">应用层: 多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
+<h3 id="应用层-vpn-todo">应用层: VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
 <p>探究VPN原理</p>
-<h3 id="v2ray协议学习-todo">V2Ray协议学习 | ？？？ | TODO</h3>
+<h3 id="应用层-v2ray协议学习-todo">应用层: V2Ray协议学习 | ？？？ | TODO</h3>
 <p>有生之年研究一下Vmess等协议</p>
 <!-- 省略的：
 - 防火墙iptables实验
 - mitnick攻击
-- BGP -->]]></content>
+- BGP 
+- 802.11
+- -->]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[年轻人的第二个网站（二） - flask-supreme-tutorial]]></title>
