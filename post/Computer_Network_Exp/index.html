@@ -6,7 +6,7 @@
 
 <title>从scapy和wireshark学计算机网络 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636210325650">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636339010700">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -155,6 +155,22 @@
             
             <div class="nav-item">
                 
+                <a href="/tag/Oi-EjtG-8Z/" class="menu gt-a-link">
+                    CTF
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tag/Lz-SvRH-s/" class="menu gt-a-link">
+                    CS
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
                 <a href="/archives" class="menu gt-a-link">
                     归档
                 </a>
@@ -187,7 +203,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636210325650"
+            <form id="gridea-search-form" style="position: relative" data-update="1636339010700"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -216,6 +232,14 @@
                     <time class="post-time gt-c-content-color-first">
                         · 2021-10-22 ·
                     </time>
+                    
+                        <a href="https://lonelyuan.github.io/tag/cn/" class="post-tags">
+                            # CN
+                        </a>
+                    
+                        <a href="https://lonelyuan.github.io/tag/Lz-SvRH-s/" class="post-tags">
+                            # CS
+                        </a>
                     
                 </div>
                 <div class="post-content">
@@ -287,12 +311,27 @@
 <li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
 <li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
 </ul>
-<!-- 
-实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样：
-
-- 端层/应用层：发出原始报文。
-- 网络层：负责建立网络连接。
-- 通信层：负责物理通信。 -->
+<p>实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样（自底向上顺序）：</p>
+<ul>
+<li>通信层：负责物理通信。
+<ul>
+<li>本层负责对接各种物理介质，向上提供点对点的通信服务</li>
+<li>对应五层模型的物理层、链路层</li>
+</ul>
+</li>
+<li>网络层：建立网络连接。
+<ul>
+<li>本层负责将点对点的通信组织成网状结构，将物理的通信转化为逻辑的通信服务</li>
+<li>对应五层模型的网络层、运输层</li>
+</ul>
+</li>
+<li>端层：发出原始报文。
+<ul>
+<li>本层负责实现用户需求，向用户提供透明且可靠的网络通信</li>
+<li>对应五层模型的应用层</li>
+</ul>
+</li>
+</ul>
 <p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（误）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
 <p>//【想看哪个没更新的可以催我】</p>

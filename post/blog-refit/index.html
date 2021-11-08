@@ -4,12 +4,12 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>about_blog | lonelyuan&#39;s Blog</title>
+<title>闲来无事，倒腾博客——记博客主题的二次开发 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1636017476404">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636339010700">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
 
 <style>
@@ -155,6 +155,22 @@
             
             <div class="nav-item">
                 
+                <a href="/tag/Oi-EjtG-8Z/" class="menu gt-a-link">
+                    CTF
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tag/Lz-SvRH-s/" class="menu gt-a-link">
+                    CS
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
                 <a href="/archives" class="menu gt-a-link">
                     归档
                 </a>
@@ -171,7 +187,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/post/about" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/post/about" class="menu gt-a-link">
                     关于
                 </a>
                 
@@ -179,7 +195,7 @@
             
             <div class="nav-item">
                 
-                <a href="http://localhost:4000/friends" class="menu gt-a-link">
+                <a href="https://lonelyuan.github.io/friends" class="menu gt-a-link">
                     友链
                 </a>
                 
@@ -187,7 +203,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636017476404"
+            <form id="gridea-search-form" style="position: relative" data-update="1636339010700"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -210,115 +226,35 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    about_blog
+                    闲来无事，倒腾博客——记博客主题的二次开发
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-01-30 ·
+                        · 2021-11-07 ·
                     </time>
                     
-                        <a href="http://localhost:4000/tag/jfW5oU-O9S/" class="post-tags">
-                            # 博客
+                        <a href="https://lonelyuan.github.io/tag/t1NEIiGto/" class="post-tags">
+                            # Web
+                        </a>
+                    
+                        <a href="https://lonelyuan.github.io/tag/blog/" class="post-tags">
+                            # Blog
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <h1 id="博客技术介绍">博客技术介绍</h1>
-<blockquote>
+                    <p>倒腾过 Hexo, Wordpress 等，👴最终选用Gridea做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。一个还算说得过去的GUI，还是比发一篇博客敲好几条命令要来的舒服。</p>
+<p>当然，舒服的代价就是定制化程度低，总有许多不称心如意的地方。👴目前看中的 <a href="https://github.com/imhanjie/gridea-theme-pure">Pure</a> 主题，功能较简单，但还是有些不足之处。于是本文记录一下博客主题的二次开发，学习一点前端的东西。以下是需求：</p>
 <ul>
-<li>不要：不写博客，使用 CSDN 等国内垃圾博客平台</li>
-<li>推荐：利用 <a href="https://pages.github.com/">GitHub Pages</a> 搭建静态博客。注意，你的 git     仓库地址不是你的博客地址，假设仓库URL是 <a href="https://github.com/example/example.github.io/%EF%BC%8C%E5%8D%9A%E5%AE%A2URL%E4%B8%80%E8%88%AC%E6%98%AFhttps:/example.github.io/">https://github.com/example/example.github.io/，博客URL一般是https://example.github.io/</a></li>
-<li>推荐：在 VPS 上用 Wordpress 搭建博客，或者在     VPS 上搭建静态博客（都需要持续的维护成本）</li>
-<li>推荐：使用<a href="https://www.blogger.com/about/">Blogger</a>等国外平台</li>
+<li>文章详情页的目录，位于侧边</li>
+<li>移动端菜单按钮失灵 | BUG</li>
+<li></li>
 </ul>
-<p>来自 <a href="https://course.blue-whale.me/">https://course.blue-whale.me/</a></p>
-</blockquote>
-<h2 id="为什么要搞博客">为什么要搞博客？</h2>
-<p>必要性：没有。有时候维护博客比写博客更花时间。</p>
-<p>重要性：很大。学计算机的，没有技术博客说明你：</p>
-<ul>
-<li>不会搭，说明笨，建议马上转行。</li>
-<li>不想搭，说明懒，建议退学啃老。</li>
-</ul>
-<p>总之只是搭好还是很简单的，不过要打磨的赏心悦目还是要费一番功夫。本文仅介绍主流框架，不讲具体操作。</p>
-<h2 id="自建站点">自建站点</h2>
-<p>要买服务器，之后可以自由搭建静态/动态博客。大牛都有自己的站点</p>
-<p>步骤：</p>
-<ul>
-<li>买服务器，即vps：国内三大云（阿里，腾讯）都有10块一月的学生机，入门可用</li>
-</ul>
-<p><a href="https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/">https://www.54wzj.com/vps/%E5%BB%BA%E7%AB%99vps%E6%8E%A8%E8%8D%90/</a></p>
-<ul>
-<li>
-<p>购买域名：专用域名商或服务器商提供</p>
-</li>
-<li>
-<p>配置服务器：需要懂服务器运维的入门知识，</p>
-</li>
-<li>
-<p>部署博客：动态静态都可以（不知道区别的建议自尽）</p>
-</li>
-<li>
-<ul>
-<li>动态框架：即博客类的CMS。</li>
-</ul>
-</li>
-</ul>
-<p>如：wordpress，使用php。操作简单易上手。</p>
-<ul>
-<li>静态：后文提到的都可以。</li>
-</ul>
-<p>优势：功能强，部署自由</p>
-<p>劣势：需要持续运营成本（包括金钱和时间）</p>
-<h2 id="发表到博客平台">发表到博客平台</h2>
-<p>依托平台，具体操作依据平台而定</p>
-<p>优点：操作较自建站点简单（其实也不一定）</p>
-<p>缺点：功能较为受限。</p>
-<ul>
-<li>简书：</li>
-</ul>
-<p>和知乎等平台的区别在于注重文章和内容</p>
-<p>ui清爽，不过不可定制。</p>
-<p>另外这样的平台总有审查机制，这 不 自 由。</p>
-<ul>
-<li>博客园：</li>
-</ul>
-<p>老牌国内博客网站了，用的是.net框架。</p>
-<p>前端可高度定制，懒得搞后端可以试。</p>
-<p>随便一个例子：https://www.cnblogs.com/php09/</p>
-<ul>
-<li>CSDN：垃圾。</li>
-</ul>
-<p>说垃圾的原因是：抄袭严重，内容陈旧，吃相难看。</p>
-<ul>
-<li>Github pages：</li>
-</ul>
-<p>全球最大同性交友社区gayhub提供的静态网页托管服务，就是搭建静态博客用的。</p>
-<p>下面介绍几种静态博客：</p>
-<ul>
-<li><strong>typeecho</strong>：轻量级php框架</li>
-</ul>
-<p>https://www.jianshu.com/p/ed2e655c3741</p>
-<p>功能精简，是好也是坏</p>
-<ul>
-<li>**Hugo：**基于go</li>
-<li><strong>Jekyll</strong>：基于ruby</li>
-<li>**Hexo：**基于node.js的静态博客框架，目前使用规模最广的之一</li>
-</ul>
-<p>https://hexo.io/zh-cn/docs/</p>
-<p>https://easyhexo.com/</p>
-<p>步骤：使用githubpages的框架都大同小异</p>
-<ul>
-<li>
-<ul>
-<li>安装环境：git，node.js，npm，hexo</li>
-<li>配置SSH密钥对</li>
-<li>文章写作，上传，发布</li>
-<li>网站配置：主题，拓展</li>
-</ul>
-</li>
-</ul>
-<p>基于不同的语言，要配的环境也不同。光是配环境就难倒不少萌新。而且，想精心打磨自己的站点也是一路险坑。不过，做起来吧。谁让我们是学计算机的呢。</p>
+<h3 id="开发文档">开发文档</h3>
+<p>Gridea的作者还给出了开发文档，还是蛮贴心的<br>
+https://github.com/getgridea/gridea-theme-starter<br>
+https://gridea.dev/theme/</p>
+<p>【如标题所示，如果这里还空着，就说明最近并不是闲来无事，这很合理】</p>
 
                 </div>
             </article>
@@ -327,8 +263,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://localhost:4000/post/CSAPP-datalab/" class="post-title gt-a-link">
-                    CSAPP-datalab
+                <a href="https://lonelyuan.github.io/post/mospi-lab-1/" class="post-title gt-a-link">
+                    MOSPI-ChCore lab
                 </a>
             </div>
         
@@ -417,7 +353,7 @@
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://lonelyuan.github.io/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
