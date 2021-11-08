@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-08T17:00:27.049Z</updated>
+    <updated>2021-11-08T17:01:37.943Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -31,7 +31,7 @@ https://gridea.dev/theme/</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[MOSPI-ChCore lab]]></title>
+        <title type="html"><![CDATA[MOSPI-ChCore lab (1)]]></title>
         <id>https://lonelyuan.github.io/post/mospi-lab-1/</id>
         <link href="https://lonelyuan.github.io/post/mospi-lab-1/">
         </link>
