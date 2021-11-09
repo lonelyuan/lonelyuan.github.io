@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-09T04:31:49.067Z</updated>
+    <updated>2021-11-09T07:40:57.291Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -410,7 +410,8 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
         <link href="https://lonelyuan.github.io/post/Computer_Network_Exp/">
         </link>
         <updated>2021-10-22T15:55:54.000Z</updated>
-        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我真的想狠狠踢他的屁股。建议带🔥去看英文原版。但是👴最近接触的许多实验还是很好玩的，于是本文试图完全通过动手实操学习计网。</p>
+        <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。</p>
+<p>但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。</p>
 <hr>
 <blockquote>
 <p>实验来源有：</p>
@@ -501,7 +502,7 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 </ul>
 <p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（迫真）</p>
 <h2 id="️开始实验">⌚️开始实验</h2>
-<p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。可以看到，本系列实验从应用层出发，逐步深入到链路层，再逐步返回应用层，同时难度不断加大。</p>
+<p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。而本系列实验将遵从浅入深出的原则，从应用层逐步深入到链路层再返回应用层，同时难度不断加大。</p>
 <p>//【想看哪个没更新的可以催👴】</p>
 <h4 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h4>
 <p>术语：</p>
