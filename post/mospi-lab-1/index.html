@@ -6,7 +6,7 @@
 
 <title>MOSPI-ChCore lab (1) | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636424866175">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636432306776">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -203,7 +203,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636424866175"
+            <form id="gridea-search-form" style="position: relative" data-update="1636432306776"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -364,14 +364,22 @@ SECTIONS
 </code></pre>
 <p>一切终于串起来了：</p>
 <ul>
-<li><code>CMakeLists.txt</code>：学名：组态档。 CMake 是 make 工具的升级版，<code>CMakeLists.txt</code>就是 CMake 的 Makefile 。
+<li><code>CMakeLists.txt</code>：是CMake的脚本文件。 CMake 是跨平台的C/C++建构工具。
 <ul>
-<li>为编译器指定脚本；为ids定义变量；指定了入口函数<code>_start</code></li>
+<li>作用：
+<ul>
+<li>指定源文件集合<code>init_object</code></li>
+<li>定义链接器脚本<code>link_script</code></li>
+<li>指定入口函数<code>_start</code>并指定链接器脚本</li>
+<li>最终生成<code>kernel.img</code></li>
+</ul>
+</li>
+<li>//最近看到的挺好的CMake教程：https://www.bilibili.com/video/BV1rR4y1E7n9</li>
 </ul>
 </li>
 <li><code>linker-aarch64.lds.in</code>：lds是链接器脚本文件，负责控制输出的ELF文件的细节。
 <ul>
-<li>指定了起始地址<code>0x80000</code></li>
+<li>作用：指定了起始地址<code>0x80000</code></li>
 </ul>
 </li>
 </ul>

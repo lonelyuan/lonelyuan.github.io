@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-09T02:27:48.333Z</updated>
+    <updated>2021-11-09T04:31:49.067Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -157,14 +157,22 @@ SECTIONS
 </code></pre>
 <p>一切终于串起来了：</p>
 <ul>
-<li><code>CMakeLists.txt</code>：学名：组态档。 CMake 是 make 工具的升级版，<code>CMakeLists.txt</code>就是 CMake 的 Makefile 。
+<li><code>CMakeLists.txt</code>：是CMake的脚本文件。 CMake 是跨平台的C/C++建构工具。
 <ul>
-<li>为编译器指定脚本；为ids定义变量；指定了入口函数<code>_start</code></li>
+<li>作用：
+<ul>
+<li>指定源文件集合<code>init_object</code></li>
+<li>定义链接器脚本<code>link_script</code></li>
+<li>指定入口函数<code>_start</code>并指定链接器脚本</li>
+<li>最终生成<code>kernel.img</code></li>
+</ul>
+</li>
+<li>//最近看到的挺好的CMake教程：https://www.bilibili.com/video/BV1rR4y1E7n9</li>
 </ul>
 </li>
 <li><code>linker-aarch64.lds.in</code>：lds是链接器脚本文件，负责控制输出的ELF文件的细节。
 <ul>
-<li>指定了起始地址<code>0x80000</code></li>
+<li>作用：指定了起始地址<code>0x80000</code></li>
 </ul>
 </li>
 </ul>
