@@ -6,7 +6,7 @@
 
 <title>从scapy和wireshark学计算机网络 | lonelyuan&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636443030513">
+<link rel="shortcut icon" href="https://lonelyuan.github.io/favicon.ico?v=1636471395522">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lonelyuan.github.io/styles/main.css">
@@ -203,7 +203,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636443030513"
+            <form id="gridea-search-form" style="position: relative" data-update="1636471395522"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -337,25 +337,51 @@
 <h2 id="️开始实验">⌚️开始实验</h2>
 <p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。而本系列实验将遵从浅入深出的原则，从应用层逐步深入到链路层再返回应用层，同时难度不断加大。</p>
 <p>//【想看哪个没更新的可以催👴】</p>
-<h4 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h4>
-<p>术语：</p>
+<h3 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h3>
+<h5 id="intro">Intro</h5>
 <ul>
-<li>Server：一般语境下的服务器(Server)，指的是为用户提供服务的机器。</li>
-<li>CS结构</li>
-<li>HTTP协议</li>
+<li>目标：用scapy/socket做一个静态服务器。效果是，用浏览器访问：<code>http://localhost:8080/x.html</code>，浏览器正常显示x.html。</li>
+<li>术语：
+<ul>
+<li>服务器(Server)：指的是为用户提供服务的机器。根据语境不同，既可以指服务器软件，也可以指运行着服务器软件的计算机硬件。</li>
+<li>C/S架构(client-server)：互联网的基本模型。通信的双方通常分成两个角色：
+<ul>
+<li>发起的一方称为客户端(C)，即前端。</li>
+<li>接收的一方称为服务端(C)，即后端。为了保证随时接受，服务端需要持久监听某通信端口</li>
 </ul>
-<p>实验：</p>
+</li>
+<li>URL：统一资源标识符。也就是互联网上的地址，网址。
 <ul>
-<li>用scapy/socket做一个静态服务器。</li>
-<li>效果是浏览器能访问。wireshark抓http包</li>
+<li>语法是：<code>[协议名]://[用户名]:[密码]@[服务器地址]:[服务器端口号]/[路径]?[查询字符串]#[片段]</code>
+<ul>
+<li>许多部分可以省略，其中协议名和服务器地址是不可省略的，即<code>://</code>也是不可省略的</li>
+<li>用户名和密码之间的<code>@</code>可在电子邮件中看到</li>
+<li>*Q：*对照本实验目标，你能明白我们的服务器要做什么工作吗？</li>
 </ul>
-<p>拓展：</p>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="http协议应用层最普遍的协议之一">HTTP协议：应用层最普遍的协议之一</h2>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="guidelines">Guidelines</h5>
 <ul>
+<li>监听端口</li>
+<li>添加路由</li>
+<li>wireshark抓http包</li>
+</ul>
+<h5 id="expand">Expand</h5>
+<ul>
+<li>该服务器的安全问题</li>
 <li>常用服务器：apache/nginx</li>
+<li>动态/静态网站</li>
 <li>计网并不关心应用层以上的东西</li>
 </ul>
 <p>那么，网络如何保证网页被完整的交到你手里？</p>
-<h4 id="传输层-tcp观察-todo">传输层: TCP观察 | ⭐ | TODO</h4>
+<h3 id="传输层-tcp观察-todo">传输层: TCP观察 | ⭐ | TODO</h3>
 <p>术语：</p>
 <ul>
 <li>传输层：负责可靠运输</li>
@@ -372,7 +398,7 @@
 <li>TCP核心：滑动窗口，重传策略，阻塞控制</li>
 </ul>
 <p>那么，网络如何寻找一个人/机器？</p>
-<h4 id="网络层-路由追踪">网络层: 路由追踪 | ⭐</h4>
+<h3 id="网络层-路由追踪">网络层: 路由追踪 | ⭐</h3>
 <p>术语：</p>
 <ul>
 <li>IP层：IP协议，ICMP协议，路由协议</li>
