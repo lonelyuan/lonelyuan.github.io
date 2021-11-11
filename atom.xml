@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lonelyuan.github.io</id>
     <title>lonelyuan&apos;s Blog</title>
-    <updated>2021-11-09T15:23:20.022Z</updated>
+    <updated>2021-11-11T08:24:30.264Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lonelyuan.github.io"/>
     <link rel="self" href="https://lonelyuan.github.io/atom.xml"/>
@@ -393,15 +393,13 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
         <content type="html"><![CDATA[<p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。</p>
 <p>但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。</p>
 <hr>
-<blockquote>
-<p>实验来源有：</p>
+<p>实验来源：</p>
 <ul>
 <li>👴自己</li>
 <li>SEEDLab，雪城大学的信息安全课配套实验，网络安全部分。国内知名度不高所以值得一做。<a href="https://seedsecuritylabs.org/Labs_20.04">官方网站</a></li>
 <li>CNTDA 实验：<a href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES">GIthub上抄的作业</a></li>
 </ul>
-</blockquote>
-<p>本系列实验主要用到俩工具：</p>
+<p>主要工具：</p>
 <ul>
 <li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
 </ul>
@@ -420,13 +418,20 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <p>scapy文档：<a href="https://scapy.readthedocs.io/en/latest/">https://scapy.readthedocs.io/en/latest/</a><br>
 中文版：<a href="https://www.osgeo.cn/scapy/introduction.html">https://www.osgeo.cn/scapy/introduction.html</a> //有些翻译错误</p>
 </blockquote>
-<h2 id="包">💣包</h2>
+<hr>
+<h2 id="计网基本概念">计网基本概念</h2>
+<h3 id="包package">💣包(package)</h3>
 <p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
 <figure data-type="image" tabindex="1"><img src="https://lonelyuan.github.io/post-images/1635925682452.png" alt="原来这就是“包”" loading="lazy"></figure>
-<p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包（package）有多个近义词，包括：报文(Datagram)，分组(Packet)，流量包(Data package)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。</p>
-<p>那么抓包和发包就不难理解了。本文的主要内容，就是用上述两工具把计算机网络从上到下玩个遍。</p>
-<p>不过在开玩之前，还需要理解一件事。</p>
-<h2 id="复杂系统方法分层layering">🍰复杂系统方法——分层(layering)</h2>
+<p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。</p>
+<p>你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：</p>
+<ul>
+<li>包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息</li>
+<li>包体，学名载荷(Payload)——快递要运输的货物本身。某些语境下也喜欢称为报文。</li>
+</ul>
+<p>当然，网络封包归根结底还是线性的比特序列，于是我们需要包头来识别这个封包的相关信息，就像看快递先看标签一样。</p>
+<p>另外，一个协议的封包也可以成为另一个协议的载荷，后面你会看到诸如<code>pkt.payload.payload.payload.payload</code>的套娃用法，要理解这种套娃，还需要知道分层思想。</p>
+<h3 id="分层layering">🍰分层(layering)</h3>
 <p>CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：</p>
 <blockquote>
 <ul>
@@ -440,25 +445,23 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <li><strong>快递网点</strong>派送：按包裹的<em>地址</em>，快递员送货上门</li>
 </ul>
 </li>
-<li><strong>客户</strong>取件：<em>拆箱</em>，拿到货物，确认无误签收<br>
-//上述流程不严谨，地址泛指地址电话重量等信息；不考虑菜鸟驿站等自取点情况</li>
+<li><strong>客户</strong>取件：<em>拆箱</em>，拿到货物，确认无误签收</li>
 </ul>
 </blockquote>
 <p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，<strong>每一层之间只需要关心自己的工作，并和相邻的层交互</strong>。这就是应对复杂系统的组织方法——分层。</p>
 <p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
 <ul>
-<li>协议(Protocal)：同一层级内的交互规则。//横向</li>
-<li>接口(Interface)：不同层级间的交互规则。//纵向</li>
-<li>服务(Service)：每一层的工作，就是调用下层的接口，并为上层提供服务。</li>
+<li>协议(Protocol)：同一层级内的交互规则。//横向</li>
+<li>服务(Service)：不同层级间的交互规则。//纵向</li>
 </ul>
-<p>接口和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10+10+10+……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。</p>
-<p>上述类比中特意标注了一些对应关系：</p>
+<p>每一层的工作，就是调用下层的接口，并为上层提供服务。接口(Interface)和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。</p>
+<p>由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10+10+10+……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。个中思想也类似于OOP中的解耦思想。</p>
+<p>上述类比中标注了一些对应关系：</p>
 <ul>
-<li>载荷(Payload)：要运输的货物。每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。</li>
-<li>封包(Packaging)：信息在层次间传递的过程就是封包/解封的过程。比如对报文拆分成段，每段再加上首部/包头(header)，最终形成分组的过程；恰如对货物的包装并贴上标签，成为包裹的过程。</li>
-<li>路由(Routing)：对应快递的分拣过程。根据包裹上的标签，决定包装的去向。尤其是网络层，需要大量复杂的路由操作。</li>
-<li>协议栈(Protocol stack)：报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型被简称为协议栈。</li>
+<li>封包(Packaging)：包装，货物→包裹。信息在层次间传递的过程就是封包/解封的过程。</li>
+<li>路由(Routing)：分拣。根据包裹上的标签，决定包装的去向。</li>
 </ul>
+<p>可以看到，每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型也被简称为<strong>协议栈</strong>(Protocol stack)。</p>
 <p>实际上不管5层还是7层，他们都可以简化成三层，正如上述快递网络体现的那样（自底向上顺序）：</p>
 <ul>
 <li>通信层：负责物理通信。
@@ -485,49 +488,182 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，自底向上就像搭积木，学的明白但较枯燥；自顶向下则有趣但总像雾里看花。而本系列实验将遵从浅入深出的原则，从应用层逐步深入到链路层再返回应用层，同时难度不断加大。</p>
 <p>//【想看哪个没更新的可以催👴】</p>
 <h3 id="应用层-web服务器-todo">应用层: Web服务器 | ⭐ | TODO</h3>
-<h5 id="intro">Intro</h5>
+<h4 id="intro">Intro</h4>
 <ul>
-<li>目标：用scapy/socket做一个静态服务器。效果是，用浏览器访问：<code>http://localhost:8080/x.html</code>，浏览器正常显示x.html。</li>
-<li>术语：
+<li>
+<p>目标：用scapy/socket做一个静态服务器。</p>
 <ul>
-<li>服务器(Server)：指的是为用户提供服务的机器。根据语境不同，既可以指服务器软件，也可以指运行着服务器软件的计算机硬件。</li>
-<li>C/S架构(client-server)：互联网的基本模型。通信的双方通常分成两个角色：
-<ul>
-<li>发起的一方称为客户端(C)，即前端。</li>
-<li>接收的一方称为服务端(C)，即后端。为了保证随时接受，服务端需要持久监听某通信端口</li>
+<li>
+<p>实际上，python3已经自带了一个简易http服务器：</p>
+<pre><code class="language-shell">$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+127.0.0.1 - - [10/Nov/2021 14:51:57] &quot;GET / HTTP/1.1&quot; 200 -
+</code></pre>
+<p>浏览器访问：<code>localhost:8000</code>，如果当前目录下有<code>index.html</code>文件，浏览器即可显示该html文档。</p>
+</li>
+<li>
+<p>该http服务器也是基于另一个python标准库socket编写的，本实验我们直接用socket实现一个更简单的http服务器。</p>
+</li>
 </ul>
 </li>
-<li>URL：统一资源标识符。也就是互联网上的地址，网址。
+<li>
+<p>前置：</p>
 <ul>
-<li>语法是：<code>[协议名]://[用户名]:[密码]@[服务器地址]:[服务器端口号]/[路径]?[查询字符串]#[片段]</code>
+<li>
+<p>术语：</p>
 <ul>
-<li>许多部分可以省略，其中协议名和服务器地址是不可省略的，即<code>://</code>也是不可省略的</li>
-<li>用户名和密码之间的<code>@</code>可在电子邮件中看到</li>
-<li>*Q：*对照本实验目标，你能明白我们的服务器要做什么工作吗？</li>
+<li>
+<p>C/S架构(client-server)：互联网的基本模型。通信的双方通常分成两个角色：</p>
+<ul>
+<li>发起的一方称为客户端(C)，即前端。</li>
+<li>接收的一方称为服务端(C)，即后端。为了保证随时接收请求，服务端需要持久监听某通信端口</li>
+</ul>
+</li>
+<li>
+<p>URL：统一资源标识符。也就是互联网上的地址，网址。</p>
+<ul>
+<li>完整语法：<code>[协议名]://[用户名]:[密码]@[服务器地址]:[服务器端口号]/[路径]?[查询字符串]#[片段]</code></li>
+</ul>
+</li>
+<li>
+<p>HTTP协议：应用层最普遍的文本协议之一。文本协议表示其所有内容都是可读的，其主要格式如下：</p>
+<ul>
+<li>
+<pre><code>GET / HTTP/1.1\r\n                                           /* 一个状态行 */
+Host: localhost\r\n                                          /* 多个首部行 */
+...
+Connection: close\r\n\r\n       /* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */
+&lt;html&gt;... &lt;/html&gt;                                              /* payload */
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>HTML：标记语言，用&lt;&gt;组织起网页的骨架。浏览器会把HTML源码渲染成好看的网页。</p>
+</li>
+<li>
+<p>socket：应用层网络接口。</p>
+<ul>
+<li>上文提到网络层为应用层提供了逻辑通信的服务，socket就是该服务的基本接口。</li>
+<li>socket将进程/应用和 (地址host,端口port) 二元组绑定，于是通过该二元组即可和网络上的进程通信。</li>
+<li>一个主机有一个地址和多个端口。地址和端口的关系，就像房子和窗户的关系。</li>
+<li>socket不仅由操作系统提供，如linux中进程得到socket之后便可像文件一样读写；各编程语言也都提供socket接口，本实验用到的就是python对socket的封装。</li>
+<li>//其翻译“套接字”非常具有误导性，建议直接用英文单词。</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<h2 id="http协议应用层最普遍的协议之一">HTTP协议：应用层最普遍的协议之一</h2>
+<p>建议花5分钟通读《图解HTTP》前6章（或者《CNTDA》2.1-2.2节），以理解上述术语</p>
 </li>
 </ul>
 </li>
 </ul>
-<h5 id="guidelines">Guidelines</h5>
+<h4 id="guidelines">Guidelines</h4>
+<ol>
+<li>
+<h5 id="socket通信">Socket通信</h5>
+</li>
+</ol>
+<p>要使用socket通信，通信双方都需要持有一个socket对象，其主要方法和生命周期如下：</p>
+<pre><code>  SERVER                CLIENT
+
+ socket()              socket()
+    │                     │
+    ▼                     │
+  bind((host,port))       │
+    │                     │
+    ▼                     │
+ listen(num)              │
+    │                     │
+    ▼                     ▼
+ accept()             connect((host,port))
+    │                     │
+    ├──►send()──►recv()◄──┤
+    │                     │
+    ├──►recv()◄──send()◄──┤
+    │                     │
+    ▼                     ▼
+ close()               close()
+</code></pre>
+<p>SERVER：</p>
 <ul>
-<li>监听端口</li>
-<li>添加路由</li>
-<li>wireshark抓http包</li>
+<li><code>bind()</code> 绑定地址和端口，绑定后该端口即不可被其他进程占用</li>
+<li><code>listen(num)</code> 开始监听，num表示最大连接数量</li>
 </ul>
-<h5 id="expand">Expand</h5>
+<p>CLIENT：</p>
 <ul>
-<li>该服务器的安全问题</li>
-<li>常用服务器：apache/nginx</li>
-<li>动态/静态网站</li>
-<li>计网并不关心应用层以上的东西</li>
+<li><code>connect()</code>建立连接，默认是TCP连接</li>
 </ul>
-<p>那么，网络如何保证网页被完整的交到你手里？</p>
+<p>于是我们可以建立起服务器代码的框架：</p>
+<pre><code class="language-python">import socket
+
+s = socket.socket() 
+s.bind(('0.0.0.0', 8000))
+s.listen(5)
+
+while True:
+    c, addr = s.accept()
+    print('[+] accepted:', addr)
+    req = c.recv(1024) 
+    print('[+] recieved:', req.decode('utf-8')) # 接收类型为字节数组bytes，要打印则应当编码为字符串
+    res = http_handler(req) # 解析请求，返回响应
+    c.send(res)
+    c.close()
+</code></pre>
+<p>你可以自己尝试编写socket客户端跟该服务器进行明文的通信。不过我们的目标是HTTP服务器，先复习一下HTTP协议格式，状态码，首部等知识吧。</p>
+<ol start="2">
+<li>
+<h5 id="http解析">HTTP解析</h5>
+</li>
+</ol>
+<p>如果编程能力尚可，你可以自己写HTTP类来把报文解析成对象。这里还是用现成的，scapy库提供的<code>HTTPRequest</code>和<code>HTTPResponse</code>类。</p>
+<pre><code class="language-python">def http_handler(req_str):
+    req = HTTPRequest()
+    req.do_dissect(req_str) # 解析请求
+    print('[+] req: ', req.summary())
+    # body = route(req.Path.decode()) # 路由函数
+    body = &quot;&lt;h1&gt;Hello~~~&lt;/h1&gt;&quot;
+    res = HTTPResponse()
+    res = HTTP() / res / body
+    print('[+] res: ', res.summary())
+    return raw(res)
+</code></pre>
+<ul>
+<li>
+<p><code>do_dissect()</code>方法将字符串解析为对象</p>
+</li>
+<li>
+<p><code>HTTP()/res/body</code>：scapy核心语法<code>/</code>，表示协议栈的堆叠，可以链式调用。</p>
+</li>
+<li>
+<p>这里的类型为：<code>HTTP / HTTPResponse / Raw</code>，之所以要这样三层表示，是因为HTTPResponse/HTTPRequest类仅仅是一个中间层，如果没有HTTP层，scapy会报warning。</p>
+</li>
+<li>
+<p><code>raw()</code>方法返回封包的字节数组，可以看到在socket之上，我们先把报文转化为对象，解析之后再返回报文。</p>
+</li>
+<li>
+<p>建议经常用这个方法观察封包的堆叠，有助于加深理解</p>
+</li>
+</ul>
+<p>现在运行服务器，用浏览器访问<code>localhost:8000</code>，你可以看到大大的“Hello”了！</p>
+<h4 id="task">Task</h4>
+<p>下面的任务交给你，目标是尽量接近python自带http服务器的表现。</p>
+<p>为了实现静态服务器，你需要根据访问的路径返回对应的内容。为此，请完善<code>route()</code>函数：</p>
+<ul>
+<li>访问根路径<code>/</code>将返回<code>index.html</code></li>
+<li>使用os模块读取文件，注意文本文件和二进制文件（如图片）的处理</li>
+<li>用HTTP响应码进行错误处理，比如<code>404 NOT FOUND</code>，<code>302 REDIRECT</code></li>
+</ul>
+<p>最后，在根目录(你在哪里运行你的服务器脚本，那里就是你的根目录)下放入任意文件，浏览器都可以访问其内容，如果不存在则会返回404。</p>
+<h4 id="expand">Expand</h4>
+<ul>
+<li>本实验几乎没有讲解HTTP首部的细节，请自行了解诸如<code>Content-Type:</code>，<code>Content-Length:</code>，<code>Transfer-Encoding:</code>等首部，看看传输图片/压缩文件时的标准做法，以及在遇到大文件时如何实现分段运输。（尽管我们的实现很简陋，浏览器还是能正常工作，说明HTTP和HTML是相当健壮的协议）</li>
+<li>你的服务器是否有安全问题？访问<code>/../../../../etc/passwd</code>（linux下），是否暴露了某些秘密？</li>
+<li>服务器概念辨析：Web初学者容易对服务器概念感到迷惑。软件语境下，服务器指对外提供服务的程序，常用服务器如apache、nginx，tomcat等；硬件语境下则指运行着服务器软件的机器。</li>
+<li>我们实现的是静态网站，你可能疑惑是不是还有动态网站。当然有，区分动态和静态并不是网页会不会自己动，而是服务器上的数据是否可以动态的改变，而我们的服务器只能被动的显示文件，客户端无法做出任何更改。现代web框架诸如Springboot，Flask之类当然是动态网站框架。</li>
+</ul>
+<p>实际上，计网并不关心应用层以上的东西，让我们向下看，探究socket背后的原理吧。</p>
 <h3 id="传输层-tcp观察-todo">传输层: TCP观察 | ⭐ | TODO</h3>
 <p>术语：</p>
 <ul>
@@ -544,28 +680,65 @@ https://www.cnblogs.com/kangyupl/p/chcore_lab1.html</p>
 <ul>
 <li>TCP核心：滑动窗口，重传策略，阻塞控制</li>
 </ul>
-<p>那么，网络如何寻找一个人/机器？</p>
+<p>那么，网络如何寻找一个地址？</p>
 <h3 id="网络层-路由追踪">网络层: 路由追踪 | ⭐</h3>
+<h4 id="intro-2">Intro</h4>
 <p>术语：</p>
 <ul>
 <li>IP层：IP协议，ICMP协议，路由协议</li>
 <li>路由追踪：请求某地址经过了那些路由器？</li>
 </ul>
-<p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），写一个自己的traceroute。</p>
-<p>其实现大致如下：<br>
-<img src="https://lonelyuan.github.io/post-images/1636013930674.png" alt="" loading="lazy"><br>
-下面详细讲解：</p>
+<h4 id="guidelines-2">Guidelines</h4>
+<p>scapy实现了路由追踪函数，你可以钻研一下<a href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773">源码</a>（很短），下面写一个自己的traceroute。</p>
+<h4 id="task-2">Task</h4>
+<p>下面用Ipython演示：</p>
+<pre><code class="language-python">In [1]: from scapy.all import *
+
+In [2]: target=&quot;www.amazon.com&quot;
+
+In [3]: ans, unans = sr(IP(dst=target,ttl=(1,30))/TCP(flags=0x2))
+Begin emission:
+Finished sending 30 packets.
+.*****..**********..........................................................................^C
+Received 92 packets, got 15 answers, remaining 15 packets
+
+In [4]: for snd, rcv in ans:
+   ...:     print(snd.ttl, rcv.src, isinstance(rcv.payload, TCP))
+   ...:
+1 11.206.119.46 False
+2 11.110.80.173 False
+3 10.102.15.74 False
+4 11.73.2.241 False
+5 124.160.189.101 False
+6 219.158.97.2 False
+7 219.158.34.190 False
+8 69.192.14.38 True
+9 219.158.24.134 False
+10 219.158.10.30 False
+11 69.192.14.38 True
+12 69.192.14.38 True
+13 69.192.14.38 True
+14 69.192.14.38 True
+</code></pre>
+<p>下面讲解核心代码：</p>
 <p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
 <ul>
 <li>sr()：send and receive，返回的两个参数分别是得到应答的数据包列表和未应答的包列表。</li>
-<li>IP()/TCP()：scapy重载了“/”表示协议栈的合成，可以链式的链接不同协议层实例，每层内部都可携带自己的参数</li>
 <li>ttl=(4,30)：ttl参数在IP层表示ICMP包的转发次数（跳数）。此外，传入tuple表示一个范围，sr函数将会为这个范围内的每个值生成一个发包。（如果有多个tuple参数，则会按笛卡尔积规则生成发包列表）</li>
 <li>TCP(flags=0x2)：在TCP头部设定flag字段的值，0x2对应ACK，即确认收到包。</li>
-<li>综合起来，这条代码将发送47个包，其ttl从1到50。并筛选返回ACK的包。</li>
+<li>综合起来，这条代码将发送30个包，其ttl从1到30。并筛选返回ACK的包。</li>
 <li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
 </ul>
+<h4 id="expand-2">Expand</h4>
 <h3 id="网络层-欺骗ping-todo">网络层: 欺骗ping | ⭐ | TODO</h3>
-<p>https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</p>
+<h4 id="intro-3">Intro</h4>
+<ul>
+<li>来源：https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</li>
+<li>术语：</li>
+</ul>
+<h4 id="guidelines-3">Guidelines</h4>
+<h4 id="task-3">Task</h4>
+<h4 id="expand-3">Expand</h4>
 <h3 id="链路层-arp缓存投毒-todo">链路层: ARP缓存投毒 | ⭐⭐ | TODO</h3>
 <p>https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</p>
 <h3 id="传输层-tcp攻击-todo">传输层: TCP攻击 | ⭐⭐ | TODO</h3>
