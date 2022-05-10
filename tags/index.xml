@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on lonelyuan&#39;s Blog</title>
+        <link>https://lonelyuan.github.io/tags/</link>
+        <description>Recent content in Tags on lonelyuan&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Blog</title>
+        <link>https://lonelyuan.github.io/tags/blog/</link>
+        <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/blog/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Web</title>
+        <link>https://lonelyuan.github.io/tags/web/</link>
+        <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/web/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CS</title>
+        <link>https://lonelyuan.github.io/tags/cs/</link>
+        <pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/cs/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>OS</title>
+        <link>https://lonelyuan.github.io/tags/os/</link>
+        <pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/os/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CN</title>
+        <link>https://lonelyuan.github.io/tags/cn/</link>
+        <pubDate>Fri, 22 Oct 2021 23:55:54 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/cn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Life</title>
+        <link>https://lonelyuan.github.io/tags/life/</link>
+        <pubDate>Sat, 03 Jul 2021 19:51:14 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/life/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>AWD</title>
+        <link>https://lonelyuan.github.io/tags/awd/</link>
+        <pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/awd/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CTF</title>
+        <link>https://lonelyuan.github.io/tags/ctf/</link>
+        <pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/ctf/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CSAPP</title>
+        <link>https://lonelyuan.github.io/tags/csapp/</link>
+        <pubDate>Thu, 27 Feb 2020 22:43:31 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/csapp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>jetbot</title>
+        <link>https://lonelyuan.github.io/tags/jetbot/</link>
+        <pubDate>Tue, 01 Oct 2019 00:26:38 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/jetbot/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

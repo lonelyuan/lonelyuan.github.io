@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CTF on lonelyuan&#39;s Blog</title>
+        <link>https://lonelyuan.github.io/tags/ctf/</link>
+        <description>Recent content in CTF on lonelyuan&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 16 Jun 2021 16:54:30 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/ctf/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CISCN2021华东百赛区分区选拔赛AWD复盘</title>
+        <link>https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</link>
+        <pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</guid>
+        <description>&lt;img src="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif" alt="Featured image of post CISCN2021华东百赛区分区选拔赛AWD复盘" /&gt;&lt;h2 id=&#34;heading&#34;&gt;🛁&lt;/h2&gt;
+&lt;p&gt;这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015.gif&#34;
+	width=&#34;553&#34;
+	height=&#34;398&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_480x0_resize_box.gif 480w, https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_1024x0_resize_box.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“终端越炫，嗨客越带；嗨客越带，帽子越带”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;awd复盘&#34;&gt;🐐AWD复盘&lt;/h2&gt;
+&lt;p&gt;首先根据参赛手册，进行一个规则的复制：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2、 攻防赛部署若干道赛题，初始分值为10500分。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;。。。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然后按照AWD开局的任务清单，进行一个盘的复：&lt;/p&gt;
+&lt;h3 id=&#34;准备阶段&#34;&gt;准备阶段&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ssh连接：
+&lt;ul&gt;
+&lt;li&gt;主办方提供了ssh密钥，和靶机ip
+&lt;ul&gt;
+&lt;li&gt;于是省略&lt;code&gt; ssh-copy-id -i ~/.ssh/id_rsa.pub root@xx.xx.xx.xx&lt;/code&gt;环节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;但是万能的Windows Terminal连不上去（依然不知道为啥），👴只能用图形化ssh客户端添加私钥连接。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IP扫描：
+&lt;ul&gt;
+&lt;li&gt;共有7道题，3道web，4道pwn，每道题目一个独立靶机，有独立的ip地址。不同靶机d段不同，不同队伍c段不同，按初赛排名分配。平台上告知了全部的ip列表。
+&lt;ul&gt;
+&lt;li&gt;于是省略&lt;code&gt;nmap -sn xx.xx.xx.0/24&lt;/code&gt;环节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;选手机和靶机池在一个局域网内。不同队伍c段不同，一个队伍内的不同电脑d段不同。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;流量监控：
+&lt;ul&gt;
+&lt;li&gt;主办方贴心的提供了被打流量(但是只有下行流量)，直接在~/package目录下给出.pcap文件。
+&lt;ul&gt;
+&lt;li&gt;于是省略&lt;code&gt;tcpdump tcp -i eth0 -t -s 0 and dst port ! 22 and src net 192.168.1.0/24 -w ./target.cap&lt;/code&gt;环节。&lt;/li&gt;
+&lt;li&gt;(不过用户名叫xctf，权限卡的很死。不给流量的话估计也只能在站里上流量监控脚本)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;更新速度很快，被打之后几乎可以立刻找到流量。于是手速很重要。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;开局阶段&#34;&gt;开局阶段&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;备份源码：&lt;code&gt;tar -zcvf w.tar.gz /var/www/html&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;结果&lt;code&gt;&amp;gt; Permission Denied&lt;/code&gt;，遂跳过&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;扫马删马：D盾
+&lt;ul&gt;
+&lt;li&gt;👴直接在图形化shell里下载代码，然后崩屎了几次，手速慢了。&lt;/li&gt;
+&lt;li&gt;每个web题都有一个不明小文件，显然是小马，删除之。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;备份数据库：&lt;code&gt;mysqldump -uctf -p --databases [dbname] &amp;gt; /tmp/db.sql&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;结果&lt;code&gt;&amp;gt; Permission Denied&lt;/code&gt;，遂跳过&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;改数据库密码：&lt;code&gt;mysql&amp;gt;SET PASSWORD FOR ctf@localhost=PASSWORD(&#39;newpass&#39;);&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;结果&lt;code&gt;&amp;gt; Permission Denied&lt;/code&gt;，(╯▔皿▔)╯玩nm
+&lt;img src=&#34;https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126.gif&#34;
+	width=&#34;226&#34;
+	height=&#34;171&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_480x0_resize_box.gif 480w, https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_1024x0_resize_box.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;然后开始源码审计(❌)&lt;/li&gt;
+&lt;li&gt;然后等待被打之后翻流量(✔️)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;攻防阶段&#34;&gt;攻防阶段&lt;/h3&gt;
+&lt;p&gt;👴只看得懂web题目。三道web题全是cms，是经典lamp环境。可是👴看不懂cms，👴是five。&lt;/p&gt;
+&lt;h4 id=&#34;web1safecms&#34;&gt;web1：safecms&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;比赛一开始，啪的一下很快啊，全场被打，翻流量抓到payload，是一个模板文件的任意读漏洞。直接批量拿flag。&lt;/li&gt;
+&lt;li&gt;定位到路由，注释之，不好使，还是被打；删除这个.class.php，不好使；👴怀疑是运行时缓存不更新，直接&lt;code&gt;service restart apache2&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;结果&lt;code&gt;&amp;gt;Permission Denied&lt;/code&gt;，👴佛了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;就这样被打了好一会，才发现直接修改index.php，能直接生效，血亏。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;web2eyou&#34;&gt;web2：eyou&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;这道题被打的很少，被宕机的很多。抓流量，发现很多混淆流量。（日志写shell？）&lt;/li&gt;
+&lt;li&gt;👴跟着流量尝试用过滤的方法修复，但是还是被宕。&lt;/li&gt;
+&lt;li&gt;若干轮后，👴没办法，只好申请重置，并在下一轮被宕。&lt;/li&gt;
+&lt;li&gt;若干轮后，👴没办法，只好申请重置，并在这一轮被宕。&lt;/li&gt;
+&lt;li&gt;若干轮后，👴没办法，只好白给，并在某一轮恢复正常并坚持到最后。我？？？
+&lt;ul&gt;
+&lt;li&gt;该不会是某队或者裁判看我们太可怜帮我们重置了吧，世界上还有这么温柔的人，我真的哭死&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;这道题无了。（赛后才知道，有队伍找到sqli并登录后台，在后台关闭了站点并羊了管理员账号。修nm。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;web3lol&#34;&gt;web3：lol&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;这道题是最后三小时放的，👴这时候已经自闭了几个小时。于是👴痛定思痛，开局直接把admin.php羊了，然后奇迹般的守到了最后。坏了，好起来了。&lt;/li&gt;
+&lt;li&gt;全场被打，翻流量找到payload，某路径下有白给shell，直接删马并反打。&lt;/li&gt;
+&lt;li&gt;某队使用了在网页输出中塞随机字符串的防御方法，但是没破坏flag，且填充的字符是固定的，被我肉眼识破，我直接进行一个&lt;code&gt;if ip == xx: flag = flag[12:]&lt;/code&gt;。虽然没什么卵用，但是很快乐。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;pwn&#34;&gt;pwn：&lt;/h4&gt;
+&lt;p&gt;一看到4个pwn👴直接傻掉。👴觉得👴不会做，因此也没去看，但听大佬说，直接抓流量进行一个转发就能拿分，👴下次一定准备好pwntools。&lt;/p&gt;
+&lt;h2 id=&#34;自动化攻防框架&#34;&gt;🔒自动化攻防框架&lt;/h2&gt;
+&lt;p&gt;AWD中，手交flag实在是很浪费时间的行为。虽然有时候自动化不太好写只能手交，像这次十分钟一轮，有72支队伍，就算你手速惊奇，也没有时间审计源码了。因此打AWD重点就在一个自动化。网上能找到各种框架，但是用的时候总是不顺手，遇到bug也不会修。只有自己写的才最好用。&lt;/p&gt;
+&lt;p&gt;先说说用处最大的工具，就是批量攻击框架/自动化攻击脚本。这个框架主要有以下要素：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入：
+&lt;ul&gt;
+&lt;li&gt;待攻击ip列表：通常写在ip.txt里&lt;/li&gt;
+&lt;li&gt;攻击函数：即封装好的payload请求&lt;/li&gt;
+&lt;li&gt;交flag函数：根据平台接口封装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输出：
+&lt;ul&gt;
+&lt;li&gt;批量攻击，输出攻击结果&lt;/li&gt;
+&lt;li&gt;攻击成功则提交&lt;/li&gt;
+&lt;li&gt;反馈得分结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;框架的核心无非以下逻辑：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;challenge_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 攻击函数索引&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ip_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 首先生成ip列表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;get_flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 根据j找到相应攻击函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Attacked failed&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;submit_flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;print_result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sleep&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;比赛时，找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。&lt;/p&gt;
+&lt;p&gt;为了提高稳定性和易用性，这套框架可以写的很复杂。比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;加入多线程，让框架非阻塞的持续运行&lt;/li&gt;
+&lt;li&gt;加入面向对象，写成类库&lt;/li&gt;
+&lt;li&gt;自带一些trick，比如流量混淆器等。&lt;/li&gt;
+&lt;li&gt;当然，还可以写一个网站来可视化管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里就涉及框架编程了，能深挖的地方还有很多。&lt;/p&gt;
+&lt;p&gt;除了批量攻击脚本，用到的脚本还有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;权限维持/批量shell脚本：用于管理多个shell
+&lt;ul&gt;
+&lt;li&gt;但是不死马被禁用，因此本次比赛中shell出现的不是很多。&lt;/li&gt;
+&lt;li&gt;（👴还准备了拿到白给shell之后持久化的脚本，结果一个shell都没拿到，准备个🔨。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;文件监控脚本：用于监控flag等重要文件被读取和修改的准确时间，可以帮助确定payload
+&lt;ul&gt;
+&lt;li&gt;再牛逼一点还可以提供系统备份和回复功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上述都是系统脚本，大多在本机用python写的。下面说几种网页脚本，即直接用require/include包含的php脚本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流量监控脚本：区别于系统级流量监控，用于监控敏感流量以抓取payload&lt;/li&gt;
+&lt;li&gt;通防脚本：也就是waf，可以进行很充分的过滤
+&lt;ul&gt;
+&lt;li&gt;本次比赛中被禁用，因为确实破坏游戏体验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些脚本，用好了才是趁手的兵器。这次比赛中👴的手速远不够快，延误了很多战机。&lt;/p&gt;
+&lt;h2 id=&#34;快进到考试周破防&#34;&gt;🌊快进到《考试周破防》&lt;/h2&gt;
+&lt;p&gt;回顾整场比赛，相比正经的漏洞挖掘，随机应变的能力对分数也有很大影响。总结几个因素：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;awd的得分是随时间积累的，因此要掌控全局，时刻盯紧每道题有无薄弱环节和突破口。本次比赛题目数量多达7道，👴队有大佬没来，还带了一个萌新，约等于二打四，出现了看不过来题的情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;还有就是手速，由于流量很及时，payload一被抓到，甚至可以在一轮check之内丢进批量攻击脚本，直接和首先挖掘到漏洞的队伍平分分数。这要求自动化脚本的熟练运用，尽量避免手交flag。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后还有一点策略问题。分析三种题目状态，列个表定性分析一波最优解：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;能反打&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;不能反打&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;场上大多数Attacked&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;先反打再修洞&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;不能修洞则down自己&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;场上大多数CheckDown&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;打他喵的&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;尽量别down&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;出现漏洞大部分人会被打，这时如果你不能立刻修补而能立刻反打，相当程度上是不亏的。如果你修不好也可以选择宕机，因为这样分摊了丢掉的分数。&lt;/li&gt;
+&lt;li&gt;尽量避免被打+被宕，扣双倍分数属实是血亏。如果决定宕机，先摸清check的时间和结算的时间，最好在新一轮结算后立即删站down自己。&lt;/li&gt;
+&lt;li&gt;当然，如果您能挖到洞，宁就是垂直上分的👴。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从8点半到6点半，打10个小时的AWD，要全程保持敏感和机智，确实对身体素质有些要求。👴坐高铁到合肥坐了6小时，打比赛坐了10小时，好悬没给我痔疮坐出来。晚上回到青岛并进行最后一次夜店，快进到《考试周破防》。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。
+但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。
+ 主要工具：
+ wireshark是坠nb的网络封包分析软件。就是用来抓包的。   下载：https://www.wireshark.org/download.html 教程：https://www.javatpoint.com/wireshark
+  scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。  //不要和爬虫库scrapy混淆     scapy文档：https://scapy.readthedocs.io/en/latest/ 中文版：https://www.osgeo.cn/scapy/introduction.html //有些翻译错误
+  计网基本概念 💣包(package) 等等，啥是“抓包”？啥是“发包”？啥是“包”？
+当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。
+你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：
+ 包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息 包体，学名载荷(Payload)——快递要运输的货物本身。某些语境下也喜欢称为报文。  当然，网络封包归根结底还是线性的比特序列，于是我们需要包头来识别这个封包的相关信息，就像看快递先看标签一样。
+另外，一个协议的封包也可以成为另一个协议的载荷，后面你会看到诸如pkt.payload.payload.payload.payload的套娃用法，要理解这种套娃，还需要知道分层思想。
+🍰分层(layering) CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：
+  客户发货：把货物和地址交给快递点  快递网点揽件：包装货物而变成包裹；包裹被送往最近的中转中心  中转中心运输：根据包裹目的地不同，分拣并装车运输给不同的中转中心；若收到本片区的包裹，卸车并分拣给不同的网点   快递网点派送：按包裹的地址，快递员送货上门   客户取件：拆箱，拿到货物，确认无误签收   你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。
+课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是协议分层模型，又来新词了，别急，后面还有：
+ 协议(Protocol)：同一层级内的交互规则。//横向 服务(Service)：不同层级间的交互规则。//纵向  每一层的工作，就是调用下层的接口，并为上层提供服务。接口(Interface)和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。
+由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10&#43;10&#43;10&#43;……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。//个中思想也体现了OOP中的解耦。
+上述类比中标注了一些对应关系：
+ 封包(Packaging)：包装，货物→包裹。信息在层次间传递的过程就是封包/解封的过程。 路由(Routing)：分拣。根据包裹上的标签，决定包装的去向。  可以看到，每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型也被简称为协议栈(Protocol stack)。'><title>从scapy和wireshark学计算机网络</title>
+
+<link rel='canonical' href='https://lonelyuan.github.io/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='从scapy和wireshark学计算机网络'>
+<meta property='og:description' content='众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。
+但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。
+ 主要工具：
+ wireshark是坠nb的网络封包分析软件。就是用来抓包的。   下载：https://www.wireshark.org/download.html 教程：https://www.javatpoint.com/wireshark
+  scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。  //不要和爬虫库scrapy混淆     scapy文档：https://scapy.readthedocs.io/en/latest/ 中文版：https://www.osgeo.cn/scapy/introduction.html //有些翻译错误
+  计网基本概念 💣包(package) 等等，啥是“抓包”？啥是“发包”？啥是“包”？
+当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。
+你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：
+ 包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息 包体，学名载荷(Payload)——快递要运输的货物本身。某些语境下也喜欢称为报文。  当然，网络封包归根结底还是线性的比特序列，于是我们需要包头来识别这个封包的相关信息，就像看快递先看标签一样。
+另外，一个协议的封包也可以成为另一个协议的载荷，后面你会看到诸如pkt.payload.payload.payload.payload的套娃用法，要理解这种套娃，还需要知道分层思想。
+🍰分层(layering) CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：
+  客户发货：把货物和地址交给快递点  快递网点揽件：包装货物而变成包裹；包裹被送往最近的中转中心  中转中心运输：根据包裹目的地不同，分拣并装车运输给不同的中转中心；若收到本片区的包裹，卸车并分拣给不同的网点   快递网点派送：按包裹的地址，快递员送货上门   客户取件：拆箱，拿到货物，确认无误签收   你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。
+课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是协议分层模型，又来新词了，别急，后面还有：
+ 协议(Protocol)：同一层级内的交互规则。//横向 服务(Service)：不同层级间的交互规则。//纵向  每一层的工作，就是调用下层的接口，并为上层提供服务。接口(Interface)和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。
+由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10&#43;10&#43;10&#43;……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。//个中思想也体现了OOP中的解耦。
+上述类比中标注了一些对应关系：
+ 封包(Packaging)：包装，货物→包裹。信息在层次间传递的过程就是封包/解封的过程。 路由(Routing)：分拣。根据包裹上的标签，决定包装的去向。  可以看到，每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型也被简称为协议栈(Protocol stack)。'>
+<meta property='og:url' content='https://lonelyuan.github.io/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/'>
+<meta property='og:site_name' content='lonelyuan&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CN' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2021-10-22T23:55:54&#43;00:00'/><meta property='article:modified_time' content='2021-10-22T23:55:54&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta name="twitter:title" content="从scapy和wireshark学计算机网络">
+<meta name="twitter:description" content="众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。
+但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。
+ 主要工具：
+ wireshark是坠nb的网络封包分析软件。就是用来抓包的。   下载：https://www.wireshark.org/download.html 教程：https://www.javatpoint.com/wireshark
+  scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。  //不要和爬虫库scrapy混淆     scapy文档：https://scapy.readthedocs.io/en/latest/ 中文版：https://www.osgeo.cn/scapy/introduction.html //有些翻译错误
+  计网基本概念 💣包(package) 等等，啥是“抓包”？啥是“发包”？啥是“包”？
+当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。
+你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：
+ 包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息 包体，学名载荷(Payload)——快递要运输的货物本身。某些语境下也喜欢称为报文。  当然，网络封包归根结底还是线性的比特序列，于是我们需要包头来识别这个封包的相关信息，就像看快递先看标签一样。
+另外，一个协议的封包也可以成为另一个协议的载荷，后面你会看到诸如pkt.payload.payload.payload.payload的套娃用法，要理解这种套娃，还需要知道分层思想。
+🍰分层(layering) CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：
+  客户发货：把货物和地址交给快递点  快递网点揽件：包装货物而变成包裹；包裹被送往最近的中转中心  中转中心运输：根据包裹目的地不同，分拣并装车运输给不同的中转中心；若收到本片区的包裹，卸车并分拣给不同的网点   快递网点派送：按包裹的地址，快递员送货上门   客户取件：拆箱，拿到货物，确认无误签收   你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，每一层之间只需要关心自己的工作，并和相邻的层交互。这就是应对复杂系统的组织方法——分层。
+课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是协议分层模型，又来新词了，别急，后面还有：
+ 协议(Protocol)：同一层级内的交互规则。//横向 服务(Service)：不同层级间的交互规则。//纵向  每一层的工作，就是调用下层的接口，并为上层提供服务。接口(Interface)和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。
+由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10&#43;10&#43;10&#43;……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。//个中思想也体现了OOP中的解耦。
+上述类比中标注了一些对应关系：
+ 封包(Packaging)：包装，货物→包裹。信息在层次间传递的过程就是封包/解封的过程。 路由(Routing)：分拣。根据包裹上的标签，决定包装的去向。  可以看到，每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型也被简称为协议栈(Protocol stack)。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/rick_hubede16acaa63e012983e5eadbe210d5c_33168_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">lonelyuan&#39;s Blog</a></h1>
+            <h2 class="site-description"> &gt;&gt; 不要恐慌 | Don&#39;t Panic </h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/lonelyuan'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/FTrumpyeah'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/cs/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>CS</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/ctf/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+                
+                <span>CTF</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/todo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                
+                <span>TODO</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">从scapy和wireshark学计算机网络</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 22, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。</p>
+<p>但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。</p>
+<hr>
+<p>主要工具：</p>
+<ul>
+<li>wireshark是坠nb的网络封包分析软件。就是用来抓包的。</li>
+</ul>
+<blockquote>
+<p>下载：<a class="link" href="https://www.wireshark.org/download.html"  target="_blank" rel="noopener"
+    >https://www.wireshark.org/download.html</a>
+教程：<a class="link" href="https://www.javatpoint.com/wireshark"  target="_blank" rel="noopener"
+    >https://www.javatpoint.com/wireshark</a></p>
+</blockquote>
+<ul>
+<li>scapy库是python的网络编程库，可以让你细致入微的操纵网络流量。就是用来发包的。
+<ul>
+<li>//不要和爬虫库scrapy混淆</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>scapy文档：<a class="link" href="https://scapy.readthedocs.io/en/latest/"  target="_blank" rel="noopener"
+    >https://scapy.readthedocs.io/en/latest/</a>
+中文版：<a class="link" href="https://www.osgeo.cn/scapy/introduction.html"  target="_blank" rel="noopener"
+    >https://www.osgeo.cn/scapy/introduction.html</a> //有些翻译错误</p>
+</blockquote>
+<hr>
+<h2 id="计网基本概念">计网基本概念</h2>
+<h3 id="包package">💣包(package)</h3>
+<p>等等，啥是“抓包”？啥是“发包”？啥是“包”？</p>
+<p><img src="/post-images/1635925682452.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="原来这就是“包”"
+	
+	
+></p>
+<p>当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。</p>
+<p>你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：</p>
+<ul>
+<li>包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息</li>
+<li>包体，学名载荷(Payload)——快递要运输的货物本身。某些语境下也喜欢称为报文。</li>
+</ul>
+<p>当然，网络封包归根结底还是线性的比特序列，于是我们需要包头来识别这个封包的相关信息，就像看快递先看标签一样。</p>
+<p>另外，一个协议的封包也可以成为另一个协议的载荷，后面你会看到诸如<code>pkt.payload.payload.payload.payload</code>的套娃用法，要理解这种套娃，还需要知道分层思想。</p>
+<h3 id="分层layering">🍰分层(layering)</h3>
+<p>CNTDA 中用邮政系统类比计算机网络，这是最常用的例子，这里我们用快递物流网来举例。随便打开你的网购记录，你会发现快递物流大概经过以下过程：</p>
+<blockquote>
+<ul>
+<li><strong>客户</strong>发货：把<em>货物</em>和<em>地址</em>交给快递点
+<ul>
+<li><strong>快递网点</strong>揽件：<em>包装</em>货物而变成包裹；包裹被送往最近的中转中心
+<ul>
+<li><strong>中转中心</strong>运输：根据包裹目的地不同，<em>分拣</em>并<em>装车</em>运输给不同的中转中心；若收到本片区的包裹，<em>卸车</em>并<em>分拣</em>给不同的网点</li>
+</ul>
+</li>
+<li><strong>快递网点</strong>派送：按包裹的<em>地址</em>，快递员送货上门</li>
+</ul>
+</li>
+<li><strong>客户</strong>取件：<em>拆箱</em>，拿到货物，确认无误签收</li>
+</ul>
+</blockquote>
+<p>你知道发一个快递要经历怎样的困难吗？你不知道，你只关心你自己。这里的重点是，客户不需要关心中转中心如何指挥重型货车或飞机，网点也只需要关心如何包装好客户的货物。快递网络明显的呈现出三层的分层架构，<strong>每一层之间只需要关心自己的工作，并和相邻的层交互</strong>。这就是应对复杂系统的组织方法——分层。</p>
+<p>课本上会提到OSI七层模型或者TCP/IP五层模型，这里的模型全称是<strong>协议分层模型</strong>，又来新词了，别急，后面还有：</p>
+<ul>
+<li>协议(Protocol)：同一层级内的交互规则。//横向</li>
+<li>服务(Service)：不同层级间的交互规则。//纵向</li>
+</ul>
+<p>每一层的工作，就是调用下层的接口，并为上层提供服务。接口(Interface)和服务的区别是，服务作为实体，由本层负责实现，暴露出接口供上层调用；而接口则是抽象的，本层并不知道下一层的可靠性。</p>
+<p>由此你能否看出分层思想的优越性？每一层只关注自己的实现，于是大问题被分解成了小问题。好比一个总工作量100的问题，不了解分层思想的你只能10+10+10+……=100；而分层思想提供了乘法法则，于是你可以通过10*10=100，只需要完成20工作量。//个中思想也体现了OOP中的解耦。</p>
+<p>上述类比中标注了一些对应关系：</p>
+<ul>
+<li>封包(Packaging)：包装，货物→包裹。信息在层次间传递的过程就是封包/解封的过程。</li>
+<li>路由(Routing)：分拣。根据包裹上的标签，决定包装的去向。</li>
+</ul>
+<p>可以看到，每一层都有自己的“货物”，比如中转中心的载荷是满载包裹的长途货车而不是单个包裹。报文在每一层都被封装并交给下一层，要想得到原始报文只能一层一层解开，操作模式类似栈。由此协议分层模型也被简称为<strong>协议栈</strong>(Protocol stack)。</p>
+<p>最后简单解释五层模型每一层的分工，自底向上顺序：</p>
+<ul>
+<li>物理层：对接物理介质，运输比特
+<ul>
+<li>提供基于比特的通信路径</li>
+</ul>
+</li>
+<li>链路层：将路径串联成链
+<ul>
+<li>提供基于链路的接入、交付、和传输服务</li>
+</ul>
+</li>
+<li>网络层：将链路编织成网
+<ul>
+<li>提供任意两主机之间的通信</li>
+</ul>
+</li>
+<li>运输层：将主机的通信分解为进程的通信
+<ul>
+<li>提供进程间的逻辑通信</li>
+</ul>
+</li>
+<li>应用层：实现用户需求
+<ul>
+<li>向用户提供透明可靠的网络服务</li>
+</ul>
+</li>
+</ul>
+<p>偶剋！你已经了解了分层思想，下面来设计互联网吧！（迫真）</p>
+<h2 id="开始实验">⌚️开始实验</h2>
+<p>有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，余以为只要理解了分层思想，顺序便不算很重要。本系列实验将遵从浅入深出的原则，从应用层逐步深入到链路层再返回应用层，同时难度不断加大。</p>
+<p>实验来源：</p>
+<ul>
+<li>👴自己：0x10, 0x20</li>
+<li>SEEDLab，雪城大学的信息安全课配套实验，网络安全部分。国内知名度不高所以值得一做。<a class="link" href="https://seedsecuritylabs.org/Labs_20.04"  target="_blank" rel="noopener"
+    >官方网站</a></li>
+<li>CNTDA 实验：<a class="link" href="https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES"  target="_blank" rel="noopener"
+    >GIthub上抄的作业</a></li>
+</ul>
+<blockquote>
+<p>实验代码仓库：<a class="link" href="https://github.com/lonelyuan/ComputerNetwork-exp"  target="_blank" rel="noopener"
+    >lonelyuan/ComputerNetwork-exp (github.com)</a></p>
+<p>实验编号规则：0xabn</p>
+<ul>
+<li>a：层级：1 - 应用层；2 - 传输层；3 - 网络层；4 - 链路层；5 - 物理层</li>
+<li>b：难度：0 - ⭐；1 - ⭐⭐；2 - ⭐⭐⭐；3 - ⭐⭐⭐⭐；4 - ⭐⭐⭐⭐⭐；</li>
+<li>n：重复难度则再加一位编号</li>
+</ul>
+<p>//【想看哪个没更新的可以催👴】</p>
+</blockquote>
+<h3 id="0x10-应用层-server--">0x10 应用层: Server | ⭐</h3>
+<h4 id="intro">Intro</h4>
+<ul>
+<li>
+<p>目标：用scapy/socket做一个静态服务器。</p>
+<ul>
+<li>
+<p>实际上，python3已经自带了一个简易http服务器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ python3 -m http.server
+</span></span><span class="line"><span class="cl">Serving HTTP on 0.0.0.0 port <span class="m">8000</span> <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
+</span></span><span class="line"><span class="cl">127.0.0.1 - - <span class="o">[</span>10/Nov/2021 14:51:57<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浏览器访问：<code>localhost:8000</code>，如果当前目录下有<code>index.html</code>文件，浏览器即可显示该html文档。</p>
+</li>
+<li>
+<p>该http服务器也是基于另一个python标准库socket编写的，本实验我们直接用socket实现一个更简单的http服务器。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>前置：</p>
+<ul>
+<li>
+<p>术语：</p>
+<ul>
+<li>
+<p>C/S架构(client-server)：互联网的基本模型。通信的双方通常分成两个角色：</p>
+<ul>
+<li>发起的一方称为客户端(C)，即前端。</li>
+<li>接收的一方称为服务端(C)，即后端。为了保证随时接收请求，服务端需要持久监听某通信端口</li>
+</ul>
+</li>
+<li>
+<p>URL：统一资源标识符。也就是互联网上的地址，网址。</p>
+<ul>
+<li>完整语法：<code>[协议名]://[用户名]:[密码]@[服务器地址]:[服务器端口号]/[路径]?[查询字符串]#[片段]</code></li>
+</ul>
+</li>
+<li>
+<p>HTTP协议：应用层最普遍的文本协议之一。文本协议表示其所有内容都是可读的，其主要格式如下：</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET / HTTP/1.1\r\n                                           /* 一个状态行 */
+</span></span><span class="line"><span class="cl">Host: localhost\r\n                                          /* 多个首部行 */
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Connection: close\r\n\r\n       /* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */
+</span></span><span class="line"><span class="cl">&lt;html&gt;... &lt;/html&gt;                                              /* payload */
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>HTML：标记语言，用&lt;&gt;组织起网页的骨架。浏览器会把HTML源码渲染成好看的网页。</p>
+</li>
+<li>
+<p>socket：逻辑通信的端点。</p>
+<ul>
+<li>socket是逻辑通信的接口。上文提到网络层为运输层和应用层提供了点到点的逻辑通信服务，该服务的基本接口就是socket。</li>
+<li>socket是通信端点的抽象。它将进程/应用和<code>(主机host,端口port)</code> 二元组绑定，于是通过 <code>(host,port)</code> 即可标记网络上的进程。
+<ul>
+<li>一个主机有一个地址和多个端口。地址和端口的关系，就像房子和窗户的关系。</li>
+</ul>
+</li>
+<li>socket由操作系统提供。本实验用到的是python对socket的封装，但不管换什么语言本质上都是系统调用。</li>
+<li>//其翻译“套接字”非常具有误导性，建议直接用英文单词。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>建议花5分钟通读《图解HTTP》前6章（或者《CNTDA》2.1-2.2节），以理解上述术语</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="guidelines">Guidelines</h4>
+<ol>
+<li>
+<h5 id="socket通信">Socket通信</h5>
+</li>
+</ol>
+<p>要使用socket通信，通信双方都需要持有一个socket对象，其主要方法和生命周期如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  SERVER                CLIENT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> socket()              socket()
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ▼                     │
+</span></span><span class="line"><span class="cl">  bind((host,port))       │
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ▼                     │
+</span></span><span class="line"><span class="cl"> listen(num)              │
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ▼                     ▼
+</span></span><span class="line"><span class="cl"> accept()             connect((host,port))
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ├──►send()──►recv()◄──┤
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ├──►recv()◄──send()◄──┤
+</span></span><span class="line"><span class="cl">    │                     │
+</span></span><span class="line"><span class="cl">    ▼                     ▼
+</span></span><span class="line"><span class="cl"> close()               close()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>于是我们可以建立起服务器代码的框架：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">socket</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">))</span> <span class="c1">#  绑定地址和端口</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 开始监听，num表示最大连接数量</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c1"># c是客户端socket</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] accepted:&#39;</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">req</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] recieved:&#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span> <span class="c1"># 接收类型为字节对象bytes，要打印则应当编码为字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">http_handler</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="c1"># 解析请求，返回响应</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>It&rsquo;s worth noting that，服务端socket并没有发送任何数据！<code>accept()</code>方法将返回一个客户端socket对象，由这个socket执行数据的收发。这样做的原因是为了实现多路复用，即让服务器支持多个连接同时通信。</li>
+<li>于是我们可以看到，对每个TCP连接，都有一对socket存在于通信的两端。而服务端socket仅仅做了管理连接的工作，他们放在一个类里，是出于简化代码的考虑。（当然实现多路复用的方式不只有一种。</li>
+</ul>
+<p>现在，你可以自己尝试编写socket客户端跟该服务器进行明文的通信。不过我们的目标是HTTP服务器，先复习一下HTTP协议格式，状态码，首部等知识吧。</p>
+<ol start="2">
+<li>
+<h5 id="http解析">HTTP解析</h5>
+</li>
+</ol>
+<p>如果编程能力尚可，你可以自己写HTTP类来把报文解析成对象。这里还是用现成的，scapy库提供的<code>HTTPRequest</code>和<code>HTTPResponse</code>类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.layers.http</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">http_handler</span><span class="p">(</span><span class="n">req_str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">req</span> <span class="o">=</span> <span class="n">HTTPRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">req</span><span class="o">.</span><span class="n">do_dissect</span><span class="p">(</span><span class="n">req_str</span><span class="p">)</span> <span class="c1"># 解析请求</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] req: &#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># body = route(req.Path.decode()) # 路由函数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;&lt;h1&gt;Hello~~~&lt;/h1&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTPResponse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTP</span><span class="p">()</span> <span class="o">/</span> <span class="n">res</span> <span class="o">/</span> <span class="n">body</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] res: &#39;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">raw</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>do_dissect()</code>方法将字符串解析为对象</p>
+</li>
+<li>
+<p><code>HTTP()/res/body</code>：scapy核心语法<code>/</code>，表示协议栈的堆叠，可以链式调用。</p>
+</li>
+<li>
+<p>这里的类型为：<code>HTTP / HTTPResponse / Raw</code>，之所以要这样三层表示，是因为HTTPResponse/HTTPRequest类仅仅是一个中间层，如果没有HTTP层，scapy会报warning。</p>
+</li>
+<li>
+<p><code>raw()</code>方法返回封包的字节数组，可以看到在socket之上，我们先把报文转化为对象，解析之后再返回报文。</p>
+</li>
+<li>
+<p>观察封包的常用方法还有：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">In [2]: a = Ether()/IP(dst=&#34;www.wsnd.com&#34;)/TCP()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [3]: a
+</span></span><span class="line"><span class="cl">Out[3]: &lt;Ether  type=IPv4 |&lt;IP  frag=0 proto=tcp dst=Net(&#34;www.wsnd.com/32&#34;) |&lt;TCP  |&gt;&gt;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [4]: a.summary()
+</span></span><span class="line"><span class="cl">Out[4]: &#39;Ether / IP / TCP 0.0.0.0:ftp_data &gt; Net(&#34;www.wsnd.com/32&#34;):http S&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [5]: a.show()
+</span></span><span class="line"><span class="cl">###[ Ethernet ]###
+</span></span><span class="line"><span class="cl">  dst       = ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">  src       = 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">  type      = IPv4
+</span></span><span class="line"><span class="cl">###[ IP ]###
+</span></span><span class="line"><span class="cl">     version   = 4
+</span></span><span class="line"><span class="cl">	...
+</span></span><span class="line"><span class="cl">     proto     = tcp
+</span></span><span class="line"><span class="cl">     chksum    = None
+</span></span><span class="line"><span class="cl">     src       = 0.0.0.0
+</span></span><span class="line"><span class="cl">     dst       = Net(&#34;www.wsnd.com/32&#34;)
+</span></span><span class="line"><span class="cl">     \options   \
+</span></span><span class="line"><span class="cl">###[ TCP ]###
+</span></span><span class="line"><span class="cl">        sport     = ftp_data
+</span></span><span class="line"><span class="cl">        dport     = http
+</span></span><span class="line"><span class="cl">		...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [6]: ls(a)
+</span></span><span class="line"><span class="cl">dst        : DestMACField                        = &#39;ff:ff:ff:ff:ff:ff&#39; (&#39;None&#39;)
+</span></span><span class="line"><span class="cl">src        : SourceMACField                      = &#39;00:00:00:00:00:00&#39; (&#39;None&#39;)
+</span></span><span class="line"><span class="cl">type       : XShortEnumField                     = 2048            (&#39;36864&#39;)
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [7]: raw(a)
+</span></span><span class="line"><span class="cl">Out[7]: b&#39;\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x08\x00E\x00\x00(\x00\x01\x00\x00@\x06\xc9\xa8\x00\x00\x00\x00H\ti\x1e\x00\x14\x00P\x00\x00\x00\x00\x00\x00\x00\x00P\x02 \x00\xdeW\x00\x00&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In [8]: hexdump(a)
+</span></span><span class="line"><span class="cl">0000  FF FF FF FF FF FF 00 00 00 00 00 00 08 00 45 00  ..............E.
+</span></span><span class="line"><span class="cl">0010  00 28 00 01 00 00 40 06 C9 A8 00 00 00 00 48 09  .(....@.......H.
+</span></span><span class="line"><span class="cl">0020  69 1E 00 14 00 50 00 00 00 00 00 00 00 00 50 02  i....P........P.
+</span></span><span class="line"><span class="cl">0030  20 00 DE 57 00 00                                 ..W..
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在运行服务器，用浏览器访问<code>localhost:8000</code>，你可以看到大大的“Hello”了！</p>
+<h4 id="task">Task</h4>
+<p>下面的任务交给你，目标是尽量接近python自带http服务器的表现。</p>
+<p>为了实现静态服务器，你需要根据访问的路径返回对应的内容。为此，请完善<code>route()</code>函数：</p>
+<ul>
+<li>访问根路径<code>/</code>将返回<code>index.html</code></li>
+<li>使用os模块读取文件，注意文本文件和二进制文件（如图片）的处理</li>
+<li>用HTTP响应码进行错误处理，比如<code>404 NOT FOUND</code>，<code>302 REDIRECT</code></li>
+</ul>
+<p>最后，在根目录(你在哪里运行你的服务器脚本，那里就是你的根目录)下放入任意文件，浏览器都可以访问其内容，如果不存在则会返回404。</p>
+<h4 id="expand">Expand</h4>
+<ul>
+<li>抓包观察访问你的网站和访问正常网站有什么区别。你会发现，本实验几乎没有讲解HTTP首部的细节，请自行了解诸如<code>Content-Type:</code>，<code>Content-Length:</code>，<code>Transfer-Encoding:</code>等首部，看看传输图片/压缩文件时的标准做法，以及在遇到大文件时如何实现分段运输。（尽管我们的实现很简陋，浏览器还是能正常工作，说明HTTP是相当健壮的协议）</li>
+<li>你的服务器是否有安全问题？你可以访问根目录之外的文件吗？如： <code>/../../../../etc/passwd</code>（linux下）</li>
+<li>服务器概念辨析：Web初学者容易对服务器概念感到迷惑。软件语境下，服务器指对外提供服务的程序，常用服务器如apache、nginx，tomcat等；硬件语境下则指运行着服务器软件的机器。</li>
+<li>我们实现的是静态网站，你可能疑惑是不是还有动态网站。当然有，区分动态和静态并不是网页会不会自己动，而是服务器上的数据是否可以动态的改变，而我们的服务器只能被动的显示文件，客户端无法做出任何更改。现代web框架诸如Springboot，Django之类当然是动态网站框架。</li>
+</ul>
+<p>实际上，计网并不关心应用层以上的东西，让我们向下看，探究socket背后的原理吧。</p>
+<h3 id="0x20-传输层socket--">0x20 传输层：Socket | ⭐</h3>
+<h4 id="intro-1">Intro</h4>
+<ul>
+<li>目标：用 scapy 实现TCP协议，以尽可能替换上一个实验使用的socket模块
+<ul>
+<li>// 你可能猜到了，下一个实验是不是要自己实现IP协议呀？恭喜你猜错了。</li>
+</ul>
+</li>
+<li>前置：
+<ul>
+<li>术语
+<ul>
+<li>TCP/UDP</li>
+<li>TCP报文格式</li>
+<li>有限状态机</li>
+</ul>
+</li>
+<li>完成本实验仅涉及《CNTDA》3.4-3.5节，如果理解有困难，建议先完成<em>Wireshark 实验：TCP观察</em></li>
+</ul>
+</li>
+<li>在上一个实验中，我们了解到socket是操作系统提供的系统调用，例如 Linux 中，创建socket对象返回的<code>sock_fd</code>本质上就是一个文件描述符，即建立连接后可以直接像文件一样读写，绑定端口后操作系统会保护该端口不被其他进程占用。而本实验关注运输层原理，所以绕过了操作系统，使用更底层的接口实现TCP。当然，是最简陋的一种实现。</li>
+</ul>
+<h4 id="guidelines-1">Guidelines</h4>
+<ol>
+<li>Socket实现原理</li>
+</ol>
+<p>那么，socket里面到底有什么？首先，要保存地址端口等信息；其次，要有收发的两个缓冲区，这里可以用队列；然后，为了实现可靠运输，需要用到计时器来触发重传，需要变量标记滑动窗口；我们还用自动机思想来管理连接状态。Socket底层模型如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">         ┌─────Socket──────┐
+</span></span><span class="line"><span class="cl">┌─────┐  │  ────────────┐  │  ┌────┐
+</span></span><span class="line"><span class="cl">│     ├──┼─►    SendQ   ├──┼─►│    │
+</span></span><span class="line"><span class="cl">│     │  │  ────────────┘  │  │    │
+</span></span><span class="line"><span class="cl">│ App │  │     Buffers     │  │ IP │
+</span></span><span class="line"><span class="cl">│     │  │  ┌────────────  │  │    │
+</span></span><span class="line"><span class="cl">│     │◄─┼──┤   RecvQ    ◄─┼──┤    │
+</span></span><span class="line"><span class="cl">└─────┘  │  └────────────  │  └────┘
+</span></span><span class="line"><span class="cl">         ├────Variables────┤
+</span></span><span class="line"><span class="cl">         │    Status       │
+</span></span><span class="line"><span class="cl">         │    Timer        │
+</span></span><span class="line"><span class="cl">         │    SendBase     │
+</span></span><span class="line"><span class="cl">         │    NextSeq      │
+</span></span><span class="line"><span class="cl">         └─────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里就需要面向对象上场了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Socket</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">SendQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">RecvQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">Status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">CLOSED</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">Timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">SendBase</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">NextSeq</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># SERVER</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">addr</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="n">num</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#return c, addr </span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># CLIENT</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># BOTH</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#return data</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面逐个实现socket接口。</p>
+<ol start="2">
+<li>
+<p>定制TCP报文</p>
+</li>
+<li>
+<p>连接管理</p>
+</li>
+</ol>
+<p>了解了三次握手，就可以实现connect函数了</p>
+<h4 id="task-1">Task</h4>
+<ol>
+<li>多路复用</li>
+</ol>
+<p>目前的实现只能支持一个TCP连接，请实现<code>listen(num)</code>函数，调用时创建 num 对读写缓冲区，响应的为</p>
+<ol>
+<li>完善TCP功能：</li>
+</ol>
+<ul>
+<li>RTT</li>
+<li>可靠运输</li>
+<li>流量控制</li>
+<li>阻塞控制</li>
+</ul>
+<ol start="2">
+<li>拓展UDP到你的socket</li>
+</ol>
+<h4 id="expand-1">Expand</h4>
+<h3 id="0x30-网络层-路由追踪--">0x30 网络层: 路由追踪 | ⭐</h3>
+<h4 id="intro-2">Intro</h4>
+<p>术语：</p>
+<ul>
+<li>IP层：IP协议，ICMP协议，路由协议</li>
+<li>路由追踪：请求某地址经过了那些路由器？</li>
+</ul>
+<h4 id="guidelines-2">Guidelines</h4>
+<p>scapy实现了路由追踪函数，你可以钻研一下<a class="link" href="https://github.com/secdev/scapy/blob/master/scapy/layers/inet.py#L1740-L1773"  target="_blank" rel="noopener"
+    >源码</a>（很短），下面写一个自己的traceroute。</p>
+<h4 id="task-2">Task</h4>
+<p>下面用Ipython演示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">target</span><span class="o">=</span><span class="s2">&#34;www.amazon.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ans</span><span class="p">,</span> <span class="n">unans</span> <span class="o">=</span> <span class="n">sr</span><span class="p">(</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="n">target</span><span class="p">,</span><span class="n">ttl</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="mh">0x2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Begin</span> <span class="n">emission</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">Finished</span> <span class="n">sending</span> <span class="mi">30</span> <span class="n">packets</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">.*****..**********..........................................................................^</span><span class="n">C</span>
+</span></span><span class="line"><span class="cl"><span class="n">Received</span> <span class="mi">92</span> <span class="n">packets</span><span class="p">,</span> <span class="n">got</span> <span class="mi">15</span> <span class="n">answers</span><span class="p">,</span> <span class="n">remaining</span> <span class="mi">15</span> <span class="n">packets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="k">for</span> <span class="n">snd</span><span class="p">,</span> <span class="n">rcv</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">snd</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="n">rcv</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rcv</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">TCP</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mf">11.206.119.46</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span> <span class="mf">11.110.80.173</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span> <span class="mf">10.102.15.74</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">4</span> <span class="mf">11.73.2.241</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span> <span class="mf">124.160.189.101</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">6</span> <span class="mf">219.158.97.2</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">7</span> <span class="mf">219.158.34.190</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">8</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">9</span> <span class="mf">219.158.24.134</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">10</span> <span class="mf">219.158.10.30</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">11</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">12</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">13</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">14</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面讲解核心代码：</p>
+<p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
+<ul>
+<li>sr()：send and receive，返回的两个参数分别是得到应答的数据包列表和未应答的包列表。</li>
+<li>ttl=(4,30)：ttl参数在IP层表示ICMP包的转发次数（跳数）。此外，传入tuple表示一个范围，sr函数将会为这个范围内的每个值生成一个发包。（如果有多个tuple参数，则会按笛卡尔积规则生成发包列表）</li>
+<li>TCP(flags=0x2)：在TCP头部设定flag字段的值，0x2对应ACK，即确认收到包。</li>
+<li>综合起来，这条代码将发送30个包，其ttl从1到30。并筛选返回ACK的包。</li>
+<li>这样根据IP层路由算法，到达ttl的包无论是否找到目标都会返回，直到找到目标，TCP层返回ACK。遍历ttl形成的列表即是经过的所有路由。</li>
+</ul>
+<h4 id="expand-2">Expand</h4>
+<h3 id="0x301-网络层-欺骗ping----todo">0x301 网络层: 欺骗ping | ⭐ | TODO</h3>
+<h4 id="intro-3">Intro</h4>
+<ul>
+<li>来源：https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf</li>
+<li>术语：</li>
+</ul>
+<h4 id="guidelines-3">Guidelines</h4>
+<h4 id="task-3">Task</h4>
+<h4 id="expand-3">Expand</h4>
+<h3 id="0x41-链路层-arp缓存投毒----todo">0x41 链路层: ARP缓存投毒 | ⭐⭐ | TODO</h3>
+<p><a class="link" href="https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf"  target="_blank" rel="noopener"
+    >https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf</a></p>
+<h3 id="0x21-传输层-tcp攻击----todo">0x21 传输层: TCP攻击 | ⭐⭐ | TODO</h3>
+<p><a class="link" href="https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf"  target="_blank" rel="noopener"
+    >https://seedsecuritylabs.org/Labs_20.04/Files/TCP_Attacks/TCP_Attacks.pdf</a></p>
+<p>TCP协议
+SYN泛洪
+TCP reset
+TCP session hijacking反弹shell （重点）</p>
+<h3 id="0x31-网络层-natdhcp和虚拟机-----todo">0x31 网络层: NAT，DHCP和虚拟机 |  ⭐⭐ | TODO</h3>
+<p>相信折腾过虚拟机的同学都绕不过这个问题：我的虚拟机怎么连不上网？本实验基于wmware虚拟机平台，讲解几种虚拟机网络模式及其原理。</p>
+<h3 id="0x13-应用层-dns本地攻击----todo">0x13 应用层: DNS本地攻击 | ⭐⭐⭐ | TODO</h3>
+<p><a class="link" href="https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf"  target="_blank" rel="noopener"
+    >https://seedsecuritylabs.org/Labs_20.04/Files/DNS_Local/DNS_Local.pdf</a></p>
+<h3 id="0x14-应用层-ssl协议和https----todo">0x14 应用层: SSL协议和HTTPS | ⭐⭐⭐⭐ | TODO</h3>
+<h3 id="0x15-应用层-多线程web代理服务器-----todo">0x15 应用层: 多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</h3>
+<h3 id="0x151-应用层-vpn----todo">0x151 应用层: VPN | ⭐⭐⭐⭐⭐ | TODO</h3>
+<p>探究VPN原理</p>
+<h3 id="0x152-应用层-v2ray协议学习----todo">0x152 应用层: V2Ray协议学习 | ？？？ | TODO</h3>
+<p>有生之年研究一下Vmess等协议</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/cn/">CN</a>
+        
+            <a href="/tags/cs/">CS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "51da5c60f4f56c7257ec",
+        clientSecret: "c6208164907a36b5b54077802ac3319a9dc833f9",
+        repo: "gitalk_comments",
+        owner: "lonelyuan",
+        admin: ["lonelyuan"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 lonelyuan&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#计网基本概念">计网基本概念</a>
+      <ol>
+        <li><a href="#包package">💣包(package)</a></li>
+        <li><a href="#分层layering">🍰分层(layering)</a></li>
+      </ol>
+    </li>
+    <li><a href="#开始实验">⌚️开始实验</a>
+      <ol>
+        <li><a href="#0x10-应用层-server--">0x10 应用层: Server | ⭐</a>
+          <ol>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#guidelines">Guidelines</a></li>
+            <li><a href="#task">Task</a></li>
+            <li><a href="#expand">Expand</a></li>
+          </ol>
+        </li>
+        <li><a href="#0x20-传输层socket--">0x20 传输层：Socket | ⭐</a>
+          <ol>
+            <li><a href="#intro-1">Intro</a></li>
+            <li><a href="#guidelines-1">Guidelines</a></li>
+            <li><a href="#task-1">Task</a></li>
+            <li><a href="#expand-1">Expand</a></li>
+          </ol>
+        </li>
+        <li><a href="#0x30-网络层-路由追踪--">0x30 网络层: 路由追踪 | ⭐</a>
+          <ol>
+            <li><a href="#intro-2">Intro</a></li>
+            <li><a href="#guidelines-2">Guidelines</a></li>
+            <li><a href="#task-2">Task</a></li>
+            <li><a href="#expand-2">Expand</a></li>
+          </ol>
+        </li>
+        <li><a href="#0x301-网络层-欺骗ping----todo">0x301 网络层: 欺骗ping | ⭐ | TODO</a>
+          <ol>
+            <li><a href="#intro-3">Intro</a></li>
+            <li><a href="#guidelines-3">Guidelines</a></li>
+            <li><a href="#task-3">Task</a></li>
+            <li><a href="#expand-3">Expand</a></li>
+          </ol>
+        </li>
+        <li><a href="#0x41-链路层-arp缓存投毒----todo">0x41 链路层: ARP缓存投毒 | ⭐⭐ | TODO</a></li>
+        <li><a href="#0x21-传输层-tcp攻击----todo">0x21 传输层: TCP攻击 | ⭐⭐ | TODO</a></li>
+        <li><a href="#0x31-网络层-natdhcp和虚拟机-----todo">0x31 网络层: NAT，DHCP和虚拟机 |  ⭐⭐ | TODO</a></li>
+        <li><a href="#0x13-应用层-dns本地攻击----todo">0x13 应用层: DNS本地攻击 | ⭐⭐⭐ | TODO</a></li>
+        <li><a href="#0x14-应用层-ssl协议和https----todo">0x14 应用层: SSL协议和HTTPS | ⭐⭐⭐⭐ | TODO</a></li>
+        <li><a href="#0x15-应用层-多线程web代理服务器-----todo">0x15 应用层: 多线程Web代理服务器 | ⭐⭐⭐⭐⭐  | TODO</a></li>
+        <li><a href="#0x151-应用层-vpn----todo">0x151 应用层: VPN | ⭐⭐⭐⭐⭐ | TODO</a></li>
+        <li><a href="#0x152-应用层-v2ray协议学习----todo">0x152 应用层: V2Ray协议学习 | ？？？ | TODO</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
