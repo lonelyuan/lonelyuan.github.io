@@ -431,8 +431,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ImportError: cannot import name &#39;secure_filename&#39; from &#39;werkzeug&#39; 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ImportError: cannot import name &#39;secure_filename&#39; from &#39;werkzeug&#39; 
+</code></pre></td></tr></table>
 </div>
 </div><p>查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：</p>
 <ul>
@@ -446,8 +446,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">werkzeug.routing.BuildError: Could not build url for endpoint &#39;_uploads.uploaded_file&#39; with values [&#39;filename&#39;, &#39;setname&#39;]. 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">werkzeug.routing.BuildError: Could not build url for endpoint &#39;_uploads.uploaded_file&#39; with values [&#39;filename&#39;, &#39;setname&#39;]. 
+</code></pre></td></tr></table>
 </div>
 </div><p><code>UploadSet.url()</code>方法返回对应文件的可访问url，返回的url默认带有<code>_upload/</code>前缀，这是 Flask-Uploads 自带的路由，也被称为 autoserve 。
 然而官方文档里有这样一句话</p>
@@ -519,16 +519,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="nd">@staticmethod</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">view_dialogue</span><span class="p">(</span><span class="n">c_id</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dialogue</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_id</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;comment&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">c_id</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">reply_id</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                <span class="k">break</span>
-</span></span><span class="line"><span class="cl">            <span class="n">dialogue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dialogue</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">view_dialogue</span><span class="p">(</span><span class="n">c_id</span><span class="p">):</span>
+        <span class="n">dialogue</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_id</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;comment&#39;</span><span class="p">:</span>
+            <span class="n">c_id</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">reply_id</span>
+            <span class="k">if</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">dialogue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dialogue</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="0x03-网站后台">0x03 网站后台</h2>
 <p>网站的后台通常给管理员提供统一监管数据库的界面。有以下插件帮助实现：</p>
@@ -621,7 +621,7 @@
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

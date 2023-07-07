@@ -395,11 +395,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bomb
-</span></span><span class="line"><span class="cl">   ├── README
-</span></span><span class="line"><span class="cl">   ├── bomb
-</span></span><span class="line"><span class="cl">   └── bomb.c
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bomb
+   ├── README
+   ├── bomb
+   └── bomb.c
+</code></pre></td></tr></table>
 </div>
 </div><p>只有一个程序，给的源码基本没用，我们要用逆向工程的方法理解程序，找到正确的字符串。</p>
 <p>讲反汇编器的结果导出：<code>objdump -d bomb &gt; bomb.txt</code></p>
@@ -413,11 +413,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000400ee0 &lt;phase_1&gt;:
-</span></span><span class="line"><span class="cl">  400ee0:	48 83 ec 08          	sub    $0x8,%rsp
-</span></span><span class="line"><span class="cl">  400ee4:	be 00 24 40 00       	mov    $0x402400,%esi
-</span></span><span class="line"><span class="cl">  400ee9:	e8 4a 04 00 00       	callq  401338 &lt;strings_not_equal&gt;
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000000400ee0 &lt;phase_1&gt;:
+  400ee0:	48 83 ec 08          	sub    $0x8,%rsp
+  400ee4:	be 00 24 40 00       	mov    $0x402400,%esi
+  400ee9:	e8 4a 04 00 00       	callq  401338 &lt;strings_not_equal&gt;
+</code></pre></td></tr></table>
 </div>
 </div><p>逻辑是直接比较字符串是否相等，不过<code>$0x402400</code>不是程序内地址，说明答案被藏在了我们看不到的内存位置。</p>
 <p>于是上GDB，在&lt;phase_1&gt;下断点，<code>stepi</code>单步执行到callq之前，查看寄存器:<code>x\s $esi</code>，得到答案。（每台电脑的答案都不一样）</p>
@@ -432,13 +432,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000400efc &lt;phase_2&gt;:
-</span></span><span class="line"><span class="cl">  400efc:	55                   	push   %rbp //压栈
-</span></span><span class="line"><span class="cl">  400efd:	53                   	push   %rbx
-</span></span><span class="line"><span class="cl">  400efe:	48 83 ec 28          	sub    $0x28,%rsp //开辟栈帧
-</span></span><span class="line"><span class="cl">  400f02:	48 89 e6             	mov    %rsp,%rsi//栈顶地址→rsi参数二
-</span></span><span class="line"><span class="cl">  400f05:	e8 52 05 00 00       	callq  40145c &lt;read_six_numbers&gt;
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000000400efc &lt;phase_2&gt;:
+  400efc:	55                   	push   %rbp //压栈
+  400efd:	53                   	push   %rbx
+  400efe:	48 83 ec 28          	sub    $0x28,%rsp //开辟栈帧
+  400f02:	48 89 e6             	mov    %rsp,%rsi//栈顶地址→rsi参数二
+  400f05:	e8 52 05 00 00       	callq  40145c &lt;read_six_numbers&gt;
+</code></pre></td></tr></table>
 </div>
 </div><p>如函数名所示，读6个数字，为什么是6呢，大概是因为存放参数的寄存器总共有6个吧。（然而并不）</p>
 <p>可以看到调用前开辟了0x28的栈上空间，足够存放6个整数。栈顶地址被存入%rsi，以此传递该地址。</p>
@@ -465,26 +465,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">000000000040145c &lt;read_six_numbers&gt;:
-</span></span><span class="line"><span class="cl">//%rsi:父进程&lt;phase_2&gt;的栈顶地址
-</span></span><span class="line"><span class="cl">  40145c:	48 83 ec 18          	sub    $0x18,%rsp //栈帧长24
-</span></span><span class="line"><span class="cl">  401460:	48 89 f2             	mov    %rsi,%rdx  //rsi→参数三：num1
-</span></span><span class="line"><span class="cl">  401463:	48 8d 4e 04          	lea    0x4(%rsi),%rcx //rsi+4→参数四：num2
-</span></span><span class="line"><span class="cl">  401467:	48 8d 46 14          	lea    0x14(%rsi),%rax  //rsi+20→rax
-</span></span><span class="line"><span class="cl">  40146b:	48 89 44 24 08       	mov    %rax,0x8(%rsp) //rax→栈顶+8：num6
-</span></span><span class="line"><span class="cl">  401470:	48 8d 46 10          	lea    0x10(%rsi),%rax //rsi+16→rax
-</span></span><span class="line"><span class="cl">  401474:	48 89 04 24          	mov    %rax,(%rsp) //rax→栈顶：num5
-</span></span><span class="line"><span class="cl">  401478:	4c 8d 4e 0c          	lea    0xc(%rsi),%r9 //rsi+12→参数六：num4
-</span></span><span class="line"><span class="cl">  40147c:	4c 8d 46 08          	lea    0x8(%rsi),%r8 //rsi+8→参数五：num3
-</span></span><span class="line"><span class="cl">  401480:	be c3 25 40 00       	mov  $0x4025c3,%esi//0x4025c3:&#34;%d %d %d %d %d %d&#34;
-</span></span><span class="line"><span class="cl">  401485:	b8 00 00 00 00       	mov    $0x0,%eax //返回值赋0
-</span></span><span class="line"><span class="cl">  40148a:	e8 61 f7 ff ff       	callq  400bf0 &lt;__isoc99_sscanf@plt&gt; //sscanf()
-</span></span><span class="line"><span class="cl">  40148f:	83 f8 05             	cmp    $0x5,%eax //返回值和5比较，即输入6个值才能通过
-</span></span><span class="line"><span class="cl">  401492:	7f 05                	jg     401499 &lt;read_six_numbers+0x3d&gt;
-</span></span><span class="line"><span class="cl">  401494:	e8 a1 ff ff ff       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  401499:	48 83 c4 18          	add    $0x18,%rsp //出栈
-</span></span><span class="line"><span class="cl">  40149d:	c3                   	retq   
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">000000000040145c &lt;read_six_numbers&gt;:
+//%rsi:父进程&lt;phase_2&gt;的栈顶地址
+  40145c:	48 83 ec 18          	sub    $0x18,%rsp //栈帧长24
+  401460:	48 89 f2             	mov    %rsi,%rdx  //rsi→参数三：num1
+  401463:	48 8d 4e 04          	lea    0x4(%rsi),%rcx //rsi+4→参数四：num2
+  401467:	48 8d 46 14          	lea    0x14(%rsi),%rax  //rsi+20→rax
+  40146b:	48 89 44 24 08       	mov    %rax,0x8(%rsp) //rax→栈顶+8：num6
+  401470:	48 8d 46 10          	lea    0x10(%rsi),%rax //rsi+16→rax
+  401474:	48 89 04 24          	mov    %rax,(%rsp) //rax→栈顶：num5
+  401478:	4c 8d 4e 0c          	lea    0xc(%rsi),%r9 //rsi+12→参数六：num4
+  40147c:	4c 8d 46 08          	lea    0x8(%rsi),%r8 //rsi+8→参数五：num3
+  401480:	be c3 25 40 00       	mov  $0x4025c3,%esi//0x4025c3:&#34;%d %d %d %d %d %d&#34;
+  401485:	b8 00 00 00 00       	mov    $0x0,%eax //返回值赋0
+  40148a:	e8 61 f7 ff ff       	callq  400bf0 &lt;__isoc99_sscanf@plt&gt; //sscanf()
+  40148f:	83 f8 05             	cmp    $0x5,%eax //返回值和5比较，即输入6个值才能通过
+  401492:	7f 05                	jg     401499 &lt;read_six_numbers+0x3d&gt;
+  401494:	e8 a1 ff ff ff       	callq  40143a &lt;explode_bomb&gt;
+  401499:	48 83 c4 18          	add    $0x18,%rsp //出栈
+  40149d:	c3                   	retq   
+</code></pre></td></tr></table>
 </div>
 </div><p>看&lt;read_six_numbers&gt;，%rsi中的地址以4为步长被分别储存。猜测sscanf函数的返回值中，第一个表示输入参数的个数；程序要求6个输入，加上rsi被占用，于是多的两个存入栈中。且sscanf函数的返回值按参数寄存器（多的地址在栈上）存放的地址传输，即输入值被按顺序存入phase_2的栈帧中。</p>
 <div class="highlight"><div class="chroma">
@@ -506,22 +506,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)  //栈顶位置取双字和1比较
-</span></span><span class="line"><span class="cl">  400f0e:	74 20                	je     400f30 &lt;phase_2+0x34&gt;
-</span></span><span class="line"><span class="cl">  400f10:	e8 25 05 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax //循环头：num1→eax
-</span></span><span class="line"><span class="cl">  400f1a:	01 c0                	add    %eax,%eax   // eax*2
-</span></span><span class="line"><span class="cl">  400f1c:	39 03                	cmp    %eax,(%rbx) //和num2比较
-</span></span><span class="line"><span class="cl">  400f1e:	74 05                	je     400f25 &lt;phase_2+0x29&gt; //相等才通过
-</span></span><span class="line"><span class="cl">  400f20:	e8 15 05 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  400f25:	48 83 c3 04          	add    $0x4,%rbx //rbx增4
-</span></span><span class="line"><span class="cl">  400f29:	48 39 eb             	cmp    %rbp,%rbx //rbx和rsp+24比较，相等则跳出
-</span></span><span class="line"><span class="cl">  400f2c:	75 e9                	jne    400f17 &lt;phase_2+0x1b&gt; //循环尾，循环共6轮
-</span></span><span class="line"><span class="cl">  400f2e:	eb 0c                	jmp    400f3c &lt;phase_2+0x40&gt; 
-</span></span><span class="line"><span class="cl">  400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx //num2地址→rbx
-</span></span><span class="line"><span class="cl">  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp//rbx地址→rbp
-</span></span><span class="line"><span class="cl">  400f3a:	eb db                	jmp    400f17 &lt;phase_2+0x1b&gt; //开始循环
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)  //栈顶位置取双字和1比较
+  400f0e:	74 20                	je     400f30 &lt;phase_2+0x34&gt;
+  400f10:	e8 25 05 00 00       	callq  40143a &lt;explode_bomb&gt;
+  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax //循环头：num1→eax
+  400f1a:	01 c0                	add    %eax,%eax   // eax*2
+  400f1c:	39 03                	cmp    %eax,(%rbx) //和num2比较
+  400f1e:	74 05                	je     400f25 &lt;phase_2+0x29&gt; //相等才通过
+  400f20:	e8 15 05 00 00       	callq  40143a &lt;explode_bomb&gt;
+  400f25:	48 83 c3 04          	add    $0x4,%rbx //rbx增4
+  400f29:	48 39 eb             	cmp    %rbp,%rbx //rbx和rsp+24比较，相等则跳出
+  400f2c:	75 e9                	jne    400f17 &lt;phase_2+0x1b&gt; //循环尾，循环共6轮
+  400f2e:	eb 0c                	jmp    400f3c &lt;phase_2+0x40&gt; 
+  400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx //num2地址→rbx
+  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp//rbx地址→rbp
+  400f3a:	eb db                	jmp    400f17 &lt;phase_2+0x1b&gt; //开始循环
+</code></pre></td></tr></table>
 </div>
 </div><p>跳出&lt;read_six_numbers&gt;后，首先检查栈顶地址指向的值是否为1，即第一个数字是1。</p>
 <p>之后进入循环，循环体每次都会把当前数字*2和下一个数字比较，即每个数字都是前一个的二倍；%rbx作计数变量，共循环6次。答案呼之欲出。</p>
@@ -544,21 +544,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000400f43 &lt;phase_3&gt;:
-</span></span><span class="line"><span class="cl">  400f43:	48 83 ec 18          	sub    $0x18,%rsp 
-</span></span><span class="line"><span class="cl">  400f47:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx //rsp+12→rcx: mun2
-</span></span><span class="line"><span class="cl">  400f4c:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx //rsp+8→rdx: mun1
-</span></span><span class="line"><span class="cl">  400f51:	be cf 25 40 00       	mov    $0x4025cf,%esi //0x4025cf:  &#34;%d %d&#34;
-</span></span><span class="line"><span class="cl">  400f56:	b8 00 00 00 00       	mov    $0x0,%eax
-</span></span><span class="line"><span class="cl">  400f5b:	e8 90 fc ff ff       	callq  400bf0 &lt;__isoc99_sscanf@plt&gt;
-</span></span><span class="line"><span class="cl">  400f60:	83 f8 01             	cmp    $0x1,%eax  //不少于一个输入
-</span></span><span class="line"><span class="cl">  400f63:	7f 05                	jg     400f6a &lt;phase_3+0x27&gt;
-</span></span><span class="line"><span class="cl">  400f65:	e8 d0 04 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  400f6a:	83 7c 24 08 07       	cmpl   $0x7,0x8(%rsp) //
-</span></span><span class="line"><span class="cl">  400f6f:	77 3c                	ja     400fad &lt;phase_3+0x6a&gt; //超过7则爆炸
-</span></span><span class="line"><span class="cl">  400f71:	8b 44 24 08          	mov    0x8(%rsp),%eax //取num1
-</span></span><span class="line"><span class="cl">  400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8) 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000000400f43 &lt;phase_3&gt;:
+  400f43:	48 83 ec 18          	sub    $0x18,%rsp 
+  400f47:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx //rsp+12→rcx: mun2
+  400f4c:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx //rsp+8→rdx: mun1
+  400f51:	be cf 25 40 00       	mov    $0x4025cf,%esi //0x4025cf:  &#34;%d %d&#34;
+  400f56:	b8 00 00 00 00       	mov    $0x0,%eax
+  400f5b:	e8 90 fc ff ff       	callq  400bf0 &lt;__isoc99_sscanf@plt&gt;
+  400f60:	83 f8 01             	cmp    $0x1,%eax  //不少于一个输入
+  400f63:	7f 05                	jg     400f6a &lt;phase_3+0x27&gt;
+  400f65:	e8 d0 04 00 00       	callq  40143a &lt;explode_bomb&gt;
+  400f6a:	83 7c 24 08 07       	cmpl   $0x7,0x8(%rsp) //
+  400f6f:	77 3c                	ja     400fad &lt;phase_3+0x6a&gt; //超过7则爆炸
+  400f71:	8b 44 24 08          	mov    0x8(%rsp),%eax //取num1
+  400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8) 
+</code></pre></td></tr></table>
 </div>
 </div><p>此处<code>*</code>相当于c中的取地址符<code>&amp;</code>，</p>
 <div class="highlight"><div class="chroma">
@@ -568,10 +568,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">400f7c:	b8 cf 00 00 00       	mov    $0xcf,%eax
-</span></span><span class="line"><span class="cl">400f81:	eb 3b                	jmp    400fbe &lt;phase_3+0x7b&gt;
-</span></span><span class="line"><span class="cl">······
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">400f7c:	b8 cf 00 00 00       	mov    $0xcf,%eax
+400f81:	eb 3b                	jmp    400fbe &lt;phase_3+0x7b&gt;
+······
+</code></pre></td></tr></table>
 </div>
 </div><p>这里有7段形式重复的代码，结合第一个数字不能大于7，猜测这里是switch型结构。</p>
 <div class="highlight"><div class="chroma">
@@ -587,16 +587,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">400fad:	e8 88 04 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">400fb2:	b8 00 00 00 00       	mov    $0x0,%eax
-</span></span><span class="line"><span class="cl">400fb7:	eb 05                	jmp    400fbe &lt;phase_3+0x7b&gt;
-</span></span><span class="line"><span class="cl">400fb9:	b8 37 01 00 00       	mov    $0x137,%eax 
-</span></span><span class="line"><span class="cl">400fbe:	3b 44 24 0c          	cmp    0xc(%rsp),%eax //比较num2和eax
-</span></span><span class="line"><span class="cl">400fc2:	74 05                	je     400fc9 &lt;phase_3+0x86&gt;
-</span></span><span class="line"><span class="cl">400fc4:	e8 71 04 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">400fc9:	48 83 c4 18          	add    $0x18,%rsp
-</span></span><span class="line"><span class="cl">400fcd:	c3                   	retq   
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">400fad:	e8 88 04 00 00       	callq  40143a &lt;explode_bomb&gt;
+400fb2:	b8 00 00 00 00       	mov    $0x0,%eax
+400fb7:	eb 05                	jmp    400fbe &lt;phase_3+0x7b&gt;
+400fb9:	b8 37 01 00 00       	mov    $0x137,%eax 
+400fbe:	3b 44 24 0c          	cmp    0xc(%rsp),%eax //比较num2和eax
+400fc2:	74 05                	je     400fc9 &lt;phase_3+0x86&gt;
+400fc4:	e8 71 04 00 00       	callq  40143a &lt;explode_bomb&gt;
+400fc9:	48 83 c4 18          	add    $0x18,%rsp
+400fcd:	c3                   	retq   
+</code></pre></td></tr></table>
 </div>
 </div><p>第二个数字是%eax的值，由第一个数决定。故答案有7个。</p>
 <h3 id="第四关递归">第四关：递归</h3>
@@ -615,18 +615,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">000000000040100c &lt;phase_4&gt;:
-</span></span><span class="line"><span class="cl">......
-</span></span><span class="line"><span class="cl">  401029:	83 f8 02             	cmp    $0x2,%eax //只能有2参数
-</span></span><span class="line"><span class="cl">  40102c:	75 07                	jne    401035 &lt;phase_4+0x29&gt;
-</span></span><span class="line"><span class="cl">  40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp) //0 &lt;= num1 &lt;= 14
-</span></span><span class="line"><span class="cl">  401033:	76 05                	jbe    40103a &lt;phase_4+0x2e&gt;
-</span></span><span class="line"><span class="cl">  401035:	e8 00 04 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  40103a:	ba 0e 00 00 00       	mov    $0xe,%edx
-</span></span><span class="line"><span class="cl">  40103f:	be 00 00 00 00       	mov    $0x0,%esi
-</span></span><span class="line"><span class="cl">  401044:	8b 7c 24 08          	mov    0x8(%rsp),%edi //num1→edi
-</span></span><span class="line"><span class="cl">  401048:	e8 81 ff ff ff       	callq  400fce &lt;func4&gt; //
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">000000000040100c &lt;phase_4&gt;:
+......
+  401029:	83 f8 02             	cmp    $0x2,%eax //只能有2参数
+  40102c:	75 07                	jne    401035 &lt;phase_4+0x29&gt;
+  40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp) //0 &lt;= num1 &lt;= 14
+  401033:	76 05                	jbe    40103a &lt;phase_4+0x2e&gt;
+  401035:	e8 00 04 00 00       	callq  40143a &lt;explode_bomb&gt;
+  40103a:	ba 0e 00 00 00       	mov    $0xe,%edx
+  40103f:	be 00 00 00 00       	mov    $0x0,%esi
+  401044:	8b 7c 24 08          	mov    0x8(%rsp),%edi //num1→edi
+  401048:	e8 81 ff ff ff       	callq  400fce &lt;func4&gt; //
+</code></pre></td></tr></table>
 </div>
 </div><p>输入规则和上一关一样，第一个数需在0到14之间（cmpl只能用于无符号数？）</p>
 <div class="highlight"><div class="chroma">
@@ -657,31 +657,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000400fce &lt;func4&gt;:
-</span></span><span class="line"><span class="cl">//首次调用时：%eax:0x2 %ebx:0 %ecx:0 %edx:0xe %esi:0x0 %edi:num1
-</span></span><span class="line"><span class="cl">  400fce:	48 83 ec 08          	sub    $0x8,%rsp
-</span></span><span class="line"><span class="cl">  400fd2:	89 d0                	mov    %edx,%eax //eax:14
-</span></span><span class="line"><span class="cl">  400fd4:	29 f0                	sub    %esi,%eax //eax:14-0
-</span></span><span class="line"><span class="cl">  400fd6:	89 c1                	mov    %eax,%ecx //ecx:14
-</span></span><span class="line"><span class="cl">  400fd8:	c1 e9 1f             	shr    $0x1f,%ecx //ecx:0 //逻辑右移31，即取符号位。
-</span></span><span class="line"><span class="cl">  400fdb:	01 c8                	add    %ecx,%eax //eax:14+0
-</span></span><span class="line"><span class="cl">  400fdd:	d1 f8                	sar    %eax //算术右移1位？eax:14/2=7
-</span></span><span class="line"><span class="cl">  400fdf:	8d 0c 30             	lea    (%rax,%rsi,1),%ecx //ecx:7+0
-</span></span><span class="line"><span class="cl">  400fe2:	39 f9                	cmp    %edi,%ecx //比较num1和7
-</span></span><span class="line"><span class="cl">  400fe4:	7e 0c                	jle    400ff2 &lt;func4+0x24&gt; //不大于→r17
-</span></span><span class="line"><span class="cl">  400fe6:	8d 51 ff             	lea    -0x1(%rcx),%edx //edx:ecx-1=6
-</span></span><span class="line"><span class="cl">  400fe9:	e8 e0 ff ff ff       	callq  400fce &lt;func4&gt; //递归→r3
-</span></span><span class="line"><span class="cl">  400fee:	01 c0                	add    %eax,%eax 
-</span></span><span class="line"><span class="cl">  400ff0:	eb 15                	jmp    401007 &lt;func4+0x39&gt; //跳出
-</span></span><span class="line"><span class="cl">  400ff2:	b8 00 00 00 00       	mov    $0x0,%eax 
-</span></span><span class="line"><span class="cl">  400ff7:	39 f9                	cmp    %edi,%ecx //比较num1和7
-</span></span><span class="line"><span class="cl">  400ff9:	7d 0c                	jge    401007 &lt;func4+0x39&gt; //不小于
-</span></span><span class="line"><span class="cl">  400ffb:	8d 71 01             	lea    0x1(%rcx),%esi //esi:ecx+1=8
-</span></span><span class="line"><span class="cl">  400ffe:	e8 cb ff ff ff       	callq  400fce &lt;func4&gt; //递归→r3
-</span></span><span class="line"><span class="cl">  401003:	8d 44 00 01          	lea    0x1(%rax,%rax,1),%eax //eax=2*eax+1
-</span></span><span class="line"><span class="cl">  401007:	48 83 c4 08          	add    $0x8,%rsp
-</span></span><span class="line"><span class="cl">  40100b:	c3                   	retq   
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000000400fce &lt;func4&gt;:
+//首次调用时：%eax:0x2 %ebx:0 %ecx:0 %edx:0xe %esi:0x0 %edi:num1
+  400fce:	48 83 ec 08          	sub    $0x8,%rsp
+  400fd2:	89 d0                	mov    %edx,%eax //eax:14
+  400fd4:	29 f0                	sub    %esi,%eax //eax:14-0
+  400fd6:	89 c1                	mov    %eax,%ecx //ecx:14
+  400fd8:	c1 e9 1f             	shr    $0x1f,%ecx //ecx:0 //逻辑右移31，即取符号位。
+  400fdb:	01 c8                	add    %ecx,%eax //eax:14+0
+  400fdd:	d1 f8                	sar    %eax //算术右移1位？eax:14/2=7
+  400fdf:	8d 0c 30             	lea    (%rax,%rsi,1),%ecx //ecx:7+0
+  400fe2:	39 f9                	cmp    %edi,%ecx //比较num1和7
+  400fe4:	7e 0c                	jle    400ff2 &lt;func4+0x24&gt; //不大于→r17
+  400fe6:	8d 51 ff             	lea    -0x1(%rcx),%edx //edx:ecx-1=6
+  400fe9:	e8 e0 ff ff ff       	callq  400fce &lt;func4&gt; //递归→r3
+  400fee:	01 c0                	add    %eax,%eax 
+  400ff0:	eb 15                	jmp    401007 &lt;func4+0x39&gt; //跳出
+  400ff2:	b8 00 00 00 00       	mov    $0x0,%eax 
+  400ff7:	39 f9                	cmp    %edi,%ecx //比较num1和7
+  400ff9:	7d 0c                	jge    401007 &lt;func4+0x39&gt; //不小于
+  400ffb:	8d 71 01             	lea    0x1(%rcx),%esi //esi:ecx+1=8
+  400ffe:	e8 cb ff ff ff       	callq  400fce &lt;func4&gt; //递归→r3
+  401003:	8d 44 00 01          	lea    0x1(%rax,%rax,1),%eax //eax=2*eax+1
+  401007:	48 83 c4 08          	add    $0x8,%rsp
+  40100b:	c3                   	retq   
+</code></pre></td></tr></table>
 </div>
 </div><p>前面一通算术操作，后面设计了递归。</p>
 <p>这里一步移位操作看起来像是取符号位，但是输入一定大于0，符号位是0，所以这个操作意义何在？</p>
@@ -699,16 +699,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fun4</span><span class="p">(</span><span class="kt">int</span> <span class="n">num1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">num1</span><span class="o">&gt;</span><span class="n">s</span><span class="p">)</span>	<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">num1</span><span class="o">&lt;</span><span class="n">s</span><span class="p">)</span>	<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   	<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">fun4</span><span class="p">(</span><span class="kt">int</span> <span class="n">num1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">;</span>
+    <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">num1</span><span class="o">&gt;</span><span class="n">s</span><span class="p">)</span>	<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">num1</span><span class="o">&lt;</span><span class="n">s</span><span class="p">)</span>	<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+   	<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">fun4</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>第一个数设为7可避免递归调用，但返回值不是0，不符合。</p>
 <div class="highlight"><div class="chroma">
@@ -722,14 +722,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">40104d:	85 c0                	test   %eax,%eax //eax=0
-</span></span><span class="line"><span class="cl">40104f:	75 07                	jne    401058 &lt;phase_4+0x4c&gt;//不等于0爆炸
-</span></span><span class="line"><span class="cl">401051:	83 7c 24 0c 00       	cmpl   $0x0,0xc(%rsp) //mun2和0比较？
-</span></span><span class="line"><span class="cl">401056:	74 05                	je     40105d &lt;phase_4+0x51&gt;//不等于0爆炸
-</span></span><span class="line"><span class="cl">401058:	e8 dd 03 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">40105d:	48 83 c4 18          	add    $0x18,%rsp
-</span></span><span class="line"><span class="cl">401061:	c3                   	retq   
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">40104d:	85 c0                	test   %eax,%eax //eax=0
+40104f:	75 07                	jne    401058 &lt;phase_4+0x4c&gt;//不等于0爆炸
+401051:	83 7c 24 0c 00       	cmpl   $0x0,0xc(%rsp) //mun2和0比较？
+401056:	74 05                	je     40105d &lt;phase_4+0x51&gt;//不等于0爆炸
+401058:	e8 dd 03 00 00       	callq  40143a &lt;explode_bomb&gt;
+40105d:	48 83 c4 18          	add    $0x18,%rsp
+401061:	c3                   	retq   
+</code></pre></td></tr></table>
 </div>
 </div><p>看到<!-- raw HTML omitted -->的返回值和num2皆需为0，则num2确定。</p>
 <p>大不了爆破呗，索性试了1次就成了。emm</p>
@@ -777,46 +777,46 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000401062 &lt;phase_5&gt;:
-</span></span><span class="line"><span class="cl">  401062:	53                   	push   %rbx
-</span></span><span class="line"><span class="cl">  401063:	48 83 ec 20          	sub    $0x20,%rsp
-</span></span><span class="line"><span class="cl">  401067:	48 89 fb             	mov    %rdi,%rbx
-</span></span><span class="line"><span class="cl">  40106a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax //???
-</span></span><span class="line"><span class="cl">  401073:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
-</span></span><span class="line"><span class="cl">  401078:	31 c0                	xor    %eax,%eax //eax:0
-</span></span><span class="line"><span class="cl">  40107a:	e8 9c 02 00 00       	callq  40131b &lt;string_length&gt;
-</span></span><span class="line"><span class="cl">  40107f:	83 f8 06             	cmp    $0x6,%eax //输入长度为6
-</span></span><span class="line"><span class="cl">  401082:	74 4e                	je     4010d2 &lt;phase_5+0x70&gt;
-</span></span><span class="line"><span class="cl">  401084:	e8 b1 03 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  401089:	eb 47                	jmp    4010d2 &lt;phase_5+0x70&gt;
-</span></span><span class="line"><span class="cl">  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx //循环头。新指令
-</span></span><span class="line"><span class="cl">  40108f:	88 0c 24             	mov    %cl,(%rsp)
-</span></span><span class="line"><span class="cl">  401092:	48 8b 14 24          	mov    (%rsp),%rdx
-</span></span><span class="line"><span class="cl">  401096:	83 e2 0f             	and    $0xf,%edx
-</span></span><span class="line"><span class="cl">  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx //？？？
-</span></span><span class="line"><span class="cl">  4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1) 
-</span></span><span class="line"><span class="cl">  4010a4:	48 83 c0 01          	add    $0x1,%rax //计数变量rax
-</span></span><span class="line"><span class="cl">  4010a8:	48 83 f8 06          	cmp    $0x6,%rax //循环6轮
-</span></span><span class="line"><span class="cl">  4010ac:	75 dd                	jne    40108b &lt;phase_5+0x29&gt; //循环尾
-</span></span><span class="line"><span class="cl">  4010ae:	c6 44 24 16 00       	movb   $0x0,0x16(%rsp)
-</span></span><span class="line"><span class="cl">  4010b3:	be 5e 24 40 00       	mov    $0x40245e,%esi //？？
-</span></span><span class="line"><span class="cl">  4010b8:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
-</span></span><span class="line"><span class="cl">  4010bd:	e8 76 02 00 00       	callq  401338 &lt;strings_not_equal&gt;
-</span></span><span class="line"><span class="cl">  4010c2:	85 c0                	test   %eax,%eax
-</span></span><span class="line"><span class="cl">  4010c4:	74 13                	je     4010d9 &lt;phase_5+0x77&gt;
-</span></span><span class="line"><span class="cl">  4010c6:	e8 6f 03 00 00       	callq  40143a &lt;explode_bomb&gt;
-</span></span><span class="line"><span class="cl">  4010cb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1) //？？？
-</span></span><span class="line"><span class="cl">  4010d0:	eb 07                	jmp    4010d9 &lt;phase_5+0x77&gt;//跳出
-</span></span><span class="line"><span class="cl">  4010d2:	b8 00 00 00 00       	mov    $0x0,%eax
-</span></span><span class="line"><span class="cl">  4010d7:	eb b2                	jmp    40108b &lt;phase_5+0x29&gt;
-</span></span><span class="line"><span class="cl">  4010d9:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
-</span></span><span class="line"><span class="cl">  4010de:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax //？？？
-</span></span><span class="line"><span class="cl">  4010e7:	74 05                	je     4010ee &lt;phase_5+0x8c&gt;
-</span></span><span class="line"><span class="cl">  4010e9:	e8 42 fa ff ff       	callq  400b30 &lt;__stack_chk_fail@plt&gt;
-</span></span><span class="line"><span class="cl">  4010ee:	48 83 c4 20          	add    $0x20,%rsp
-</span></span><span class="line"><span class="cl">  4010f2:	5b                   	pop    %rbx
-</span></span><span class="line"><span class="cl">  4010f3:	c3                   	retq   
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0000000000401062 &lt;phase_5&gt;:
+  401062:	53                   	push   %rbx
+  401063:	48 83 ec 20          	sub    $0x20,%rsp
+  401067:	48 89 fb             	mov    %rdi,%rbx
+  40106a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax //???
+  401073:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  401078:	31 c0                	xor    %eax,%eax //eax:0
+  40107a:	e8 9c 02 00 00       	callq  40131b &lt;string_length&gt;
+  40107f:	83 f8 06             	cmp    $0x6,%eax //输入长度为6
+  401082:	74 4e                	je     4010d2 &lt;phase_5+0x70&gt;
+  401084:	e8 b1 03 00 00       	callq  40143a &lt;explode_bomb&gt;
+  401089:	eb 47                	jmp    4010d2 &lt;phase_5+0x70&gt;
+  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx //循环头。新指令
+  40108f:	88 0c 24             	mov    %cl,(%rsp)
+  401092:	48 8b 14 24          	mov    (%rsp),%rdx
+  401096:	83 e2 0f             	and    $0xf,%edx
+  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx //？？？
+  4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1) 
+  4010a4:	48 83 c0 01          	add    $0x1,%rax //计数变量rax
+  4010a8:	48 83 f8 06          	cmp    $0x6,%rax //循环6轮
+  4010ac:	75 dd                	jne    40108b &lt;phase_5+0x29&gt; //循环尾
+  4010ae:	c6 44 24 16 00       	movb   $0x0,0x16(%rsp)
+  4010b3:	be 5e 24 40 00       	mov    $0x40245e,%esi //？？
+  4010b8:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  4010bd:	e8 76 02 00 00       	callq  401338 &lt;strings_not_equal&gt;
+  4010c2:	85 c0                	test   %eax,%eax
+  4010c4:	74 13                	je     4010d9 &lt;phase_5+0x77&gt;
+  4010c6:	e8 6f 03 00 00       	callq  40143a &lt;explode_bomb&gt;
+  4010cb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1) //？？？
+  4010d0:	eb 07                	jmp    4010d9 &lt;phase_5+0x77&gt;//跳出
+  4010d2:	b8 00 00 00 00       	mov    $0x0,%eax
+  4010d7:	eb b2                	jmp    40108b &lt;phase_5+0x29&gt;
+  4010d9:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  4010de:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax //？？？
+  4010e7:	74 05                	je     4010ee &lt;phase_5+0x8c&gt;
+  4010e9:	e8 42 fa ff ff       	callq  400b30 &lt;__stack_chk_fail@plt&gt;
+  4010ee:	48 83 c4 20          	add    $0x20,%rsp
+  4010f2:	5b                   	pop    %rbx
+  4010f3:	c3                   	retq   
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="第六关">第六关</h3>
 <h3 id="隐藏关">隐藏关</h3>
@@ -832,12 +832,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">q : quit
-</span></span><span class="line"><span class="cl">h : help
-</span></span><span class="line"><span class="cl">file prog//加载程序，也可作为gdb命令的参数
-</span></span><span class="line"><span class="cl">r : run
-</span></span><span class="line"><span class="cl">k : kill
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">q : quit
+h : help
+file prog//加载程序，也可作为gdb命令的参数
+r : run
+k : kill
+</code></pre></td></tr></table>
 </div>
 </div><p>断点：</p>
 <div class="highlight"><div class="chroma">
@@ -854,17 +854,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">b : breakpoints break
-</span></span><span class="line"><span class="cl">	- func_name
-</span></span><span class="line"><span class="cl">	- *0x400522
-</span></span><span class="line"><span class="cl">    - &amp;var
-</span></span><span class="line"><span class="cl">   	- main.c:100//源代码断点，运行前即可
-</span></span><span class="line"><span class="cl">		- if con//条件断点
-</span></span><span class="line"><span class="cl">w : watch //观察对象变化时断点
-</span></span><span class="line"><span class="cl">d : delete 
-</span></span><span class="line"><span class="cl">	- b n
-</span></span><span class="line"><span class="cl">disable b n
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">b : breakpoints break
+	- func_name
+	- *0x400522
+    - &amp;var
+   	- main.c:100//源代码断点，运行前即可
+		- if con//条件断点
+w : watch //观察对象变化时断点
+d : delete 
+	- b n
+disable b n
+</code></pre></td></tr></table>
 </div>
 </div><p>执行：</p>
 <div class="highlight"><div class="chroma">
@@ -877,13 +877,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">c : continue
-</span></span><span class="line"><span class="cl">f : finish
-</span></span><span class="line"><span class="cl">stepi n
-</span></span><span class="line"><span class="cl">nexti
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">set args ./a.txt //从文件读取输入
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">c : continue
+f : finish
+stepi n
+nexti
+
+set args ./a.txt //从文件读取输入
+</code></pre></td></tr></table>
 </div>
 </div><p>检查代码：</p>
 <div class="highlight"><div class="chroma">
@@ -896,13 +896,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">disas //展示汇编
-</span></span><span class="line"><span class="cl">	- funcname
-</span></span><span class="line"><span class="cl">    - 0x400000
-</span></span><span class="line"><span class="cl">    - 
-</span></span><span class="line"><span class="cl">list
-</span></span><span class="line"><span class="cl">edit
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">disas //展示汇编
+	- funcname
+    - 0x400000
+    - 
+list
+edit
+</code></pre></td></tr></table>
 </div>
 </div><p>检查数据：</p>
 <div class="highlight"><div class="chroma">
@@ -928,33 +928,35 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x : examine
-</span></span><span class="line"><span class="cl">p : print 
-</span></span><span class="line"><span class="cl">格式控制：/[n][f][u]
-</span></span><span class="line"><span class="cl">	- n:内存单元个数
-</span></span><span class="line"><span class="cl">	- f:显示格式：
-</span></span><span class="line"><span class="cl">		-  x(hex) 按十六进制格式显示变量。
-</span></span><span class="line"><span class="cl">		-  d(decimal) 按十进制格式显示变量。
-</span></span><span class="line"><span class="cl">        -  u(unsigned decimal) 按十进制格式显示无符号整型。
-</span></span><span class="line"><span class="cl">        -  o(octal) 按八进制格式显示变量。
-</span></span><span class="line"><span class="cl">        -  t(binary) 按二进制格式显示变量。
-</span></span><span class="line"><span class="cl">        -  a(address) 按十六进制格式显示变量。
-</span></span><span class="line"><span class="cl">        -  c(char) 按字符格式显示变量。
-</span></span><span class="line"><span class="cl">        -  f(float) 按浮点数格式显示变量
-</span></span><span class="line"><span class="cl">    - u:单元长度（按字节） 
-</span></span><span class="line"><span class="cl">i : info 
-</span></span><span class="line"><span class="cl">	- r : registers 
-</span></span><span class="line"><span class="cl">	- b [n]
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	- $rsp
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">x : examine
+p : print 
+格式控制：/[n][f][u]
+	- n:内存单元个数
+	- f:显示格式：
+		-  x(hex) 按十六进制格式显示变量。
+		-  d(decimal) 按十进制格式显示变量。
+        -  u(unsigned decimal) 按十进制格式显示无符号整型。
+        -  o(octal) 按八进制格式显示变量。
+        -  t(binary) 按二进制格式显示变量。
+        -  a(address) 按十六进制格式显示变量。
+        -  c(char) 按字符格式显示变量。
+        -  f(float) 按浮点数格式显示变量
+    - u:单元长度（按字节） 
+i : info 
+	- r : registers 
+	- b [n]
+	
+	- $rsp
+</code></pre></td></tr></table>
 </div>
 </div><p>表达式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
+</code></pre></td></tr></table>
 </div>
 </div><p>堆栈：</p>
 <div class="highlight"><div class="chroma">
@@ -962,8 +964,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bt : backtrace//显示堆栈
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bt : backtrace//显示堆栈
+</code></pre></td></tr></table>
 </div>
 </div>
 </section>
@@ -1065,7 +1067,7 @@
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

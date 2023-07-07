@@ -414,14 +414,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* 
-</span></span><span class="line"><span class="cl"> * bitXor - x^y using only ~ and &amp; 
-</span></span><span class="line"><span class="cl"> *   Example: bitXor(4, 5) = 1
-</span></span><span class="line"><span class="cl"> *   Legal ops: ~ &amp;
-</span></span><span class="line"><span class="cl"> *   Max ops: 14
-</span></span><span class="line"><span class="cl"> *   Rating: 1
-</span></span><span class="line"><span class="cl"> */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * bitXor - x^y using only ~ and &amp; 
+ *   Example: bitXor(4, 5) = 1
+ *   Legal ops: ~ &amp;
+ *   Max ops: 14
+ *   Rating: 1
+ */
+</code></pre></td></tr></table>
 </div>
 </div><p><code>&amp;</code>=全为1</p>
 <p><code>~&amp;</code>=不全为1</p>
@@ -444,13 +444,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* 
-</span></span><span class="line"><span class="cl"> * tmin - return minimum two&#39;s complement integer 
-</span></span><span class="line"><span class="cl"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
-</span></span><span class="line"><span class="cl"> *   Max ops: 4
-</span></span><span class="line"><span class="cl"> *   Rating: 1
-</span></span><span class="line"><span class="cl"> */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * tmin - return minimum two&#39;s complement integer 
+ *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
+ *   Max ops: 4
+ *   Rating: 1
+ */
+</code></pre></td></tr></table>
 </div>
 </div><p>补码公式：
 $$
@@ -474,14 +474,14 @@ $$
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/*
-</span></span><span class="line"><span class="cl"> * isTmax - returns 1 if x is the maximum, two&#39;s complement number,
-</span></span><span class="line"><span class="cl"> *     and 0 otherwise //0=1111 1111=0000 0000
-</span></span><span class="line"><span class="cl"> *   Legal ops: ! ~ &amp; ^ | +
-</span></span><span class="line"><span class="cl"> *   Max ops: 10
-</span></span><span class="line"><span class="cl"> *   Rating: 1
-</span></span><span class="line"><span class="cl"> */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/*
+ * isTmax - returns 1 if x is the maximum, two&#39;s complement number,
+ *     and 0 otherwise //0=1111 1111=0000 0000
+ *   Legal ops: ! ~ &amp; ^ | +
+ *   Max ops: 10
+ *   Rating: 1
+ */
+</code></pre></td></tr></table>
 </div>
 </div><p>最大值：符号位0，其他位1，即max=011111&hellip;=0x7fffffff。</p>
 <p><code>!0=1</code>，故应使每一位化为0，再取非即为1；其他任何数取非都为0。</p>
@@ -506,15 +506,15 @@ $$
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* 
-</span></span><span class="line"><span class="cl"> * allOddBits - return 1 if all odd-numbered bits in word set to 1
-</span></span><span class="line"><span class="cl"> *   where bits are numbered from 0 (least significant) to 31 (most significant)
-</span></span><span class="line"><span class="cl"> *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
-</span></span><span class="line"><span class="cl"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
-</span></span><span class="line"><span class="cl"> *   Max ops: 12
-</span></span><span class="line"><span class="cl"> *   Rating: 2
-</span></span><span class="line"><span class="cl"> */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * allOddBits - return 1 if all odd-numbered bits in word set to 1
+ *   where bits are numbered from 0 (least significant) to 31 (most significant)
+ *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
+ *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
+ *   Max ops: 12
+ *   Rating: 2
+ */
+</code></pre></td></tr></table>
 </div>
 </div><p>要取奇数位，首先构造掩码：<code>0xaaaaaaaa</code>，用&amp;取出奇数位，再异或，取反即得。</p>
 <p>错误示范：<code> m=0xaa;m+=m&lt;&lt;8;m+=m&lt;&lt;8;m+=m&lt;&lt;8;</code>算出来个啥？</p>
@@ -534,14 +534,14 @@ $$
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/* 
-</span></span><span class="line"><span class="cl"> * negate - return -x 
-</span></span><span class="line"><span class="cl"> *   Example: negate(1) = -1.
-</span></span><span class="line"><span class="cl"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
-</span></span><span class="line"><span class="cl"> *   Max ops: 5
-</span></span><span class="line"><span class="cl"> *   Rating: 2
-</span></span><span class="line"><span class="cl"> */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/* 
+ * negate - return -x 
+ *   Example: negate(1) = -1.
+ *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;
+ *   Max ops: 5
+ *   Rating: 2
+ */
+</code></pre></td></tr></table>
 </div>
 </div><p>常识？？？反码加1</p>
 <p>大佬题解：https://wdxtub.com/csapp/thick-csapp-lab-1/2016/04/16/</p>
@@ -647,7 +647,7 @@ $$
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

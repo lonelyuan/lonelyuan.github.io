@@ -423,18 +423,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。
-</span></span><span class="line"><span class="cl">2、 攻防赛部署若干道赛题，初始分值为10500分。
-</span></span><span class="line"><span class="cl">3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。
-</span></span><span class="line"><span class="cl">4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。
-</span></span><span class="line"><span class="cl">5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。
-</span></span><span class="line"><span class="cl">6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。
-</span></span><span class="line"><span class="cl">7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。
-</span></span><span class="line"><span class="cl">8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。
-</span></span><span class="line"><span class="cl">。。。
-</span></span><span class="line"><span class="cl">7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。
-</span></span><span class="line"><span class="cl">8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。
+2、 攻防赛部署若干道赛题，初始分值为10500分。
+3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。
+4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。
+5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。
+6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。
+7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。
+8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。
+。。。
+7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。
+8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。</li>
@@ -577,15 +577,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">challenge_list</span><span class="p">:</span> <span class="c1"># 攻击函数索引</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ip_list</span><span class="p">:</span> <span class="c1"># 首先生成ip列表</span>
-</span></span><span class="line"><span class="cl">            <span class="n">flag</span> <span class="o">=</span> <span class="n">get_flag</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="c1"># 根据j找到相应攻击函数</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">flag</span><span class="o">!=</span><span class="s1">&#39;Attacked failed&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                <span class="n">submit_flag</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">print_result</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">challenge_list</span><span class="p">:</span> <span class="c1"># 攻击函数索引</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ip_list</span><span class="p">:</span> <span class="c1"># 首先生成ip列表</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">get_flag</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="c1"># 根据j找到相应攻击函数</span>
+            <span class="k">if</span> <span class="n">flag</span><span class="o">!=</span><span class="s1">&#39;Attacked failed&#39;</span><span class="p">:</span>
+                <span class="n">submit_flag</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+    <span class="n">print_result</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>比赛时，找到漏洞或者抓到流量，立刻写好相应的攻击函数，重启脚本即可。</p>
 <p>为了提高稳定性和易用性，这套框架可以写的很复杂。比如：</p>
@@ -739,7 +739,7 @@
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

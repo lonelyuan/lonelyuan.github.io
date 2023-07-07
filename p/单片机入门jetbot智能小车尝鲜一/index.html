@@ -518,16 +518,16 @@ I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-</span></span><span class="line"><span class="cl">  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
-</span></span><span class="line"><span class="cl">  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
-</span></span><span class="line"><span class="cl">  70: 70 -- -- -- -- -- -- --
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
+  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
+  70: 70 -- -- -- -- -- -- --
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -569,10 +569,10 @@ I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt-get install tightvncserver
-</span></span><span class="line"><span class="cl">sudo apt-get install xrdp
-</span></span><span class="line"><span class="cl">sudo apt-get install vnc4server tightvncserver
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt-get install tightvncserver
+sudo apt-get install xrdp
+sudo apt-get install vnc4server tightvncserver
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -594,8 +594,8 @@ I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">OSError: [Errno 121] Remote I/O error
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OSError: [Errno 121] Remote I/O error
+</code></pre></td></tr></table>
 </div>
 </div><p>沿着jupyter notebook的报错一直走,一直到了最底层,向设备写入数据报错,<code>remote IO error</code>.</p>
 <p>看起来像是硬件的问题。一步一步排查呗</p>
@@ -630,16 +630,16 @@ I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-</span></span><span class="line"><span class="cl">00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
-</span></span><span class="line"><span class="cl">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-</span></span><span class="line"><span class="cl">70: -- -- -- -- -- -- -- --
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -768,7 +768,7 @@ I2C总线是常用于嵌入式系统的一种简易串行总线.他有简洁的�
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

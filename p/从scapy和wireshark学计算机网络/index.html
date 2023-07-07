@@ -555,10 +555,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ python3 -m http.server
-</span></span><span class="line"><span class="cl">Serving HTTP on 0.0.0.0 port <span class="m">8000</span> <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
-</span></span><span class="line"><span class="cl">127.0.0.1 - - <span class="o">[</span>10/Nov/2021 14:51:57<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> -
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port <span class="m">8000</span> <span class="o">(</span>http://0.0.0.0:8000/<span class="o">)</span> ...
+127.0.0.1 - - <span class="o">[</span>10/Nov/2021 14:51:57<span class="o">]</span> <span class="s2">&#34;GET / HTTP/1.1&#34;</span> <span class="m">200</span> -
+</code></pre></td></tr></table>
 </div>
 </div><p>浏览器访问：<code>localhost:8000</code>，如果当前目录下有<code>index.html</code>文件，浏览器即可显示该html文档。</p>
 </li>
@@ -599,12 +599,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET / HTTP/1.1\r\n                                           /* 一个状态行 */
-</span></span><span class="line"><span class="cl">Host: localhost\r\n                                          /* 多个首部行 */
-</span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">Connection: close\r\n\r\n       /* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */
-</span></span><span class="line"><span class="cl">&lt;html&gt;... &lt;/html&gt;                                              /* payload */
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET / HTTP/1.1\r\n                                           /* 一个状态行 */
+Host: localhost\r\n                                          /* 多个首部行 */
+...
+Connection: close\r\n\r\n       /* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */
+&lt;html&gt;... &lt;/html&gt;                                              /* payload */
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -663,26 +663,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  SERVER                CLIENT
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> socket()              socket()
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ▼                     │
-</span></span><span class="line"><span class="cl">  bind((host,port))       │
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ▼                     │
-</span></span><span class="line"><span class="cl"> listen(num)              │
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ▼                     ▼
-</span></span><span class="line"><span class="cl"> accept()             connect((host,port))
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ├──►send()──►recv()◄──┤
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ├──►recv()◄──send()◄──┤
-</span></span><span class="line"><span class="cl">    │                     │
-</span></span><span class="line"><span class="cl">    ▼                     ▼
-</span></span><span class="line"><span class="cl"> close()               close()
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  SERVER                CLIENT
+
+ socket()              socket()
+    │                     │
+    ▼                     │
+  bind((host,port))       │
+    │                     │
+    ▼                     │
+ listen(num)              │
+    │                     │
+    ▼                     ▼
+ accept()             connect((host,port))
+    │                     │
+    ├──►send()──►recv()◄──┤
+    │                     │
+    ├──►recv()◄──send()◄──┤
+    │                     │
+    ▼                     ▼
+ close()               close()
+</code></pre></td></tr></table>
 </div>
 </div><p>于是我们可以建立起服务器代码的框架：</p>
 <div class="highlight"><div class="chroma">
@@ -703,21 +703,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">socket</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span> 
-</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">))</span> <span class="c1">#  绑定地址和端口</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 开始监听，num表示最大连接数量</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c1"># c是客户端socket</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] accepted:&#39;</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">req</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] recieved:&#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span> <span class="c1"># 接收类型为字节对象bytes，要打印则应当编码为字符串</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">http_handler</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="c1"># 解析请求，返回响应</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span> 
+<span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">))</span> <span class="c1">#  绑定地址和端口</span>
+<span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 开始监听，num表示最大连接数量</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> <span class="c1"># c是客户端socket</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] accepted:&#39;</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] recieved:&#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span> <span class="c1"># 接收类型为字节对象bytes，要打印则应当编码为字符串</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">http_handler</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="c1"># 解析请求，返回响应</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>It&rsquo;s worth noting that，服务端socket并没有发送任何数据！<code>accept()</code>方法将返回一个客户端socket对象，由这个socket执行数据的收发。这样做的原因是为了实现多路复用，即让服务器支持多个连接同时通信。</li>
@@ -747,20 +747,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.layers.http</span> <span class="kn">import</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">http_handler</span><span class="p">(</span><span class="n">req_str</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">req</span> <span class="o">=</span> <span class="n">HTTPRequest</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">req</span><span class="o">.</span><span class="n">do_dissect</span><span class="p">(</span><span class="n">req_str</span><span class="p">)</span> <span class="c1"># 解析请求</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] req: &#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># body = route(req.Path.decode()) # 路由函数</span>
-</span></span><span class="line"><span class="cl">    <span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;&lt;h1&gt;Hello~~~&lt;/h1&gt;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTPResponse</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTP</span><span class="p">()</span> <span class="o">/</span> <span class="n">res</span> <span class="o">/</span> <span class="n">body</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] res: &#39;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">raw</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">scapy.layers.http</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">http_handler</span><span class="p">(</span><span class="n">req_str</span><span class="p">):</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">HTTPRequest</span><span class="p">()</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">do_dissect</span><span class="p">(</span><span class="n">req_str</span><span class="p">)</span> <span class="c1"># 解析请求</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] req: &#39;</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+    <span class="c1"># body = route(req.Path.decode()) # 路由函数</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;&lt;h1&gt;Hello~~~&lt;/h1&gt;&#34;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTPResponse</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">HTTP</span><span class="p">()</span> <span class="o">/</span> <span class="n">res</span> <span class="o">/</span> <span class="n">body</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[+] res: &#39;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">raw</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -823,47 +823,47 @@
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">In [2]: a = Ether()/IP(dst=&#34;www.wsnd.com&#34;)/TCP()
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [3]: a
-</span></span><span class="line"><span class="cl">Out[3]: &lt;Ether  type=IPv4 |&lt;IP  frag=0 proto=tcp dst=Net(&#34;www.wsnd.com/32&#34;) |&lt;TCP  |&gt;&gt;&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [4]: a.summary()
-</span></span><span class="line"><span class="cl">Out[4]: &#39;Ether / IP / TCP 0.0.0.0:ftp_data &gt; Net(&#34;www.wsnd.com/32&#34;):http S&#39;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [5]: a.show()
-</span></span><span class="line"><span class="cl">###[ Ethernet ]###
-</span></span><span class="line"><span class="cl">  dst       = ff:ff:ff:ff:ff:ff
-</span></span><span class="line"><span class="cl">  src       = 00:00:00:00:00:00
-</span></span><span class="line"><span class="cl">  type      = IPv4
-</span></span><span class="line"><span class="cl">###[ IP ]###
-</span></span><span class="line"><span class="cl">     version   = 4
-</span></span><span class="line"><span class="cl">	...
-</span></span><span class="line"><span class="cl">     proto     = tcp
-</span></span><span class="line"><span class="cl">     chksum    = None
-</span></span><span class="line"><span class="cl">     src       = 0.0.0.0
-</span></span><span class="line"><span class="cl">     dst       = Net(&#34;www.wsnd.com/32&#34;)
-</span></span><span class="line"><span class="cl">     \options   \
-</span></span><span class="line"><span class="cl">###[ TCP ]###
-</span></span><span class="line"><span class="cl">        sport     = ftp_data
-</span></span><span class="line"><span class="cl">        dport     = http
-</span></span><span class="line"><span class="cl">		...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [6]: ls(a)
-</span></span><span class="line"><span class="cl">dst        : DestMACField                        = &#39;ff:ff:ff:ff:ff:ff&#39; (&#39;None&#39;)
-</span></span><span class="line"><span class="cl">src        : SourceMACField                      = &#39;00:00:00:00:00:00&#39; (&#39;None&#39;)
-</span></span><span class="line"><span class="cl">type       : XShortEnumField                     = 2048            (&#39;36864&#39;)
-</span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [7]: raw(a)
-</span></span><span class="line"><span class="cl">Out[7]: b&#39;\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x08\x00E\x00\x00(\x00\x01\x00\x00@\x06\xc9\xa8\x00\x00\x00\x00H\ti\x1e\x00\x14\x00P\x00\x00\x00\x00\x00\x00\x00\x00P\x02 \x00\xdeW\x00\x00&#39;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">In [8]: hexdump(a)
-</span></span><span class="line"><span class="cl">0000  FF FF FF FF FF FF 00 00 00 00 00 00 08 00 45 00  ..............E.
-</span></span><span class="line"><span class="cl">0010  00 28 00 01 00 00 40 06 C9 A8 00 00 00 00 48 09  .(....@.......H.
-</span></span><span class="line"><span class="cl">0020  69 1E 00 14 00 50 00 00 00 00 00 00 00 00 50 02  i....P........P.
-</span></span><span class="line"><span class="cl">0030  20 00 DE 57 00 00                                 ..W..
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">In [2]: a = Ether()/IP(dst=&#34;www.wsnd.com&#34;)/TCP()
+
+In [3]: a
+Out[3]: &lt;Ether  type=IPv4 |&lt;IP  frag=0 proto=tcp dst=Net(&#34;www.wsnd.com/32&#34;) |&lt;TCP  |&gt;&gt;&gt;
+
+In [4]: a.summary()
+Out[4]: &#39;Ether / IP / TCP 0.0.0.0:ftp_data &gt; Net(&#34;www.wsnd.com/32&#34;):http S&#39;
+
+In [5]: a.show()
+###[ Ethernet ]###
+  dst       = ff:ff:ff:ff:ff:ff
+  src       = 00:00:00:00:00:00
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+	...
+     proto     = tcp
+     chksum    = None
+     src       = 0.0.0.0
+     dst       = Net(&#34;www.wsnd.com/32&#34;)
+     \options   \
+###[ TCP ]###
+        sport     = ftp_data
+        dport     = http
+		...
+
+In [6]: ls(a)
+dst        : DestMACField                        = &#39;ff:ff:ff:ff:ff:ff&#39; (&#39;None&#39;)
+src        : SourceMACField                      = &#39;00:00:00:00:00:00&#39; (&#39;None&#39;)
+type       : XShortEnumField                     = 2048            (&#39;36864&#39;)
+...
+
+In [7]: raw(a)
+Out[7]: b&#39;\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x08\x00E\x00\x00(\x00\x01\x00\x00@\x06\xc9\xa8\x00\x00\x00\x00H\ti\x1e\x00\x14\x00P\x00\x00\x00\x00\x00\x00\x00\x00P\x02 \x00\xdeW\x00\x00&#39;
+
+In [8]: hexdump(a)
+0000  FF FF FF FF FF FF 00 00 00 00 00 00 08 00 45 00  ..............E.
+0010  00 28 00 01 00 00 40 06 C9 A8 00 00 00 00 48 09  .(....@.......H.
+0020  69 1E 00 14 00 50 00 00 00 00 00 00 00 00 50 02  i....P........P.
+0030  20 00 DE 57 00 00                                 ..W..
+</code></pre></td></tr></table>
 </div>
 </div><p>现在运行服务器，用浏览器访问<code>localhost:8000</code>，你可以看到大大的“Hello”了！</p>
 <h4 id="task">Task</h4>
@@ -928,21 +928,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">         ┌─────Socket──────┐
-</span></span><span class="line"><span class="cl">┌─────┐  │  ────────────┐  │  ┌────┐
-</span></span><span class="line"><span class="cl">│     ├──┼─►    SendQ   ├──┼─►│    │
-</span></span><span class="line"><span class="cl">│     │  │  ────────────┘  │  │    │
-</span></span><span class="line"><span class="cl">│ App │  │     Buffers     │  │ IP │
-</span></span><span class="line"><span class="cl">│     │  │  ┌────────────  │  │    │
-</span></span><span class="line"><span class="cl">│     │◄─┼──┤   RecvQ    ◄─┼──┤    │
-</span></span><span class="line"><span class="cl">└─────┘  │  └────────────  │  └────┘
-</span></span><span class="line"><span class="cl">         ├────Variables────┤
-</span></span><span class="line"><span class="cl">         │    Status       │
-</span></span><span class="line"><span class="cl">         │    Timer        │
-</span></span><span class="line"><span class="cl">         │    SendBase     │
-</span></span><span class="line"><span class="cl">         │    NextSeq      │
-</span></span><span class="line"><span class="cl">         └─────────────────┘
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">         ┌─────Socket──────┐
+┌─────┐  │  ────────────┐  │  ┌────┐
+│     ├──┼─►    SendQ   ├──┼─►│    │
+│     │  │  ────────────┘  │  │    │
+│ App │  │     Buffers     │  │ IP │
+│     │  │  ┌────────────  │  │    │
+│     │◄─┼──┤   RecvQ    ◄─┼──┤    │
+└─────┘  │  └────────────  │  └────┘
+         ├────Variables────┤
+         │    Status       │
+         │    Timer        │
+         │    SendBase     │
+         │    NextSeq      │
+         └─────────────────┘
+</code></pre></td></tr></table>
 </div>
 </div><p>这里就需要面向对象上场了</p>
 <div class="highlight"><div class="chroma">
@@ -977,35 +977,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Socket</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">SendQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">RecvQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">Status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">CLOSED</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">Timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">SendBase</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">NextSeq</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># SERVER</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">addr</span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="n">num</span><span class="p">):</span> 
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#return c, addr </span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># CLIENT</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># BOTH</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#return data</span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Socket</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SendQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RecvQ</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">CLOSED</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SendBase</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NextSeq</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># SERVER</span>
+    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">addr</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="n">num</span><span class="p">):</span> 
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">accept</span><span class="p">():</span>
+        <span class="c1">#return c, addr </span>
+        <span class="k">pass</span>
+    <span class="c1"># CLIENT</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c1"># BOTH</span>
+    <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+        <span class="c1">#return data</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
+        <span class="k">pass</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>下面逐个实现socket接口。</p>
 <ol start="2">
@@ -1078,34 +1078,34 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">target</span><span class="o">=</span><span class="s2">&#34;www.amazon.com&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ans</span><span class="p">,</span> <span class="n">unans</span> <span class="o">=</span> <span class="n">sr</span><span class="p">(</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="n">target</span><span class="p">,</span><span class="n">ttl</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="mh">0x2</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">Begin</span> <span class="n">emission</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl"><span class="n">Finished</span> <span class="n">sending</span> <span class="mi">30</span> <span class="n">packets</span><span class="o">.</span>
-</span></span><span class="line"><span class="cl"><span class="o">.*****..**********..........................................................................^</span><span class="n">C</span>
-</span></span><span class="line"><span class="cl"><span class="n">Received</span> <span class="mi">92</span> <span class="n">packets</span><span class="p">,</span> <span class="n">got</span> <span class="mi">15</span> <span class="n">answers</span><span class="p">,</span> <span class="n">remaining</span> <span class="mi">15</span> <span class="n">packets</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="k">for</span> <span class="n">snd</span><span class="p">,</span> <span class="n">rcv</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">snd</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="n">rcv</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rcv</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">TCP</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mf">11.206.119.46</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">2</span> <span class="mf">11.110.80.173</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">3</span> <span class="mf">10.102.15.74</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">4</span> <span class="mf">11.73.2.241</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">5</span> <span class="mf">124.160.189.101</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">6</span> <span class="mf">219.158.97.2</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">7</span> <span class="mf">219.158.34.190</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">8</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl"><span class="mi">9</span> <span class="mf">219.158.24.134</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">10</span> <span class="mf">219.158.10.30</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl"><span class="mi">11</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl"><span class="mi">12</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl"><span class="mi">13</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl"><span class="mi">14</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">target</span><span class="o">=</span><span class="s2">&#34;www.amazon.com&#34;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ans</span><span class="p">,</span> <span class="n">unans</span> <span class="o">=</span> <span class="n">sr</span><span class="p">(</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="n">target</span><span class="p">,</span><span class="n">ttl</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="mh">0x2</span><span class="p">))</span>
+<span class="n">Begin</span> <span class="n">emission</span><span class="p">:</span>
+<span class="n">Finished</span> <span class="n">sending</span> <span class="mi">30</span> <span class="n">packets</span><span class="o">.</span>
+<span class="o">.*****..**********..........................................................................^</span><span class="n">C</span>
+<span class="n">Received</span> <span class="mi">92</span> <span class="n">packets</span><span class="p">,</span> <span class="n">got</span> <span class="mi">15</span> <span class="n">answers</span><span class="p">,</span> <span class="n">remaining</span> <span class="mi">15</span> <span class="n">packets</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="k">for</span> <span class="n">snd</span><span class="p">,</span> <span class="n">rcv</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">snd</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="n">rcv</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rcv</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">TCP</span><span class="p">))</span>
+   <span class="o">...</span><span class="p">:</span>
+<span class="mi">1</span> <span class="mf">11.206.119.46</span> <span class="kc">False</span>
+<span class="mi">2</span> <span class="mf">11.110.80.173</span> <span class="kc">False</span>
+<span class="mi">3</span> <span class="mf">10.102.15.74</span> <span class="kc">False</span>
+<span class="mi">4</span> <span class="mf">11.73.2.241</span> <span class="kc">False</span>
+<span class="mi">5</span> <span class="mf">124.160.189.101</span> <span class="kc">False</span>
+<span class="mi">6</span> <span class="mf">219.158.97.2</span> <span class="kc">False</span>
+<span class="mi">7</span> <span class="mf">219.158.34.190</span> <span class="kc">False</span>
+<span class="mi">8</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+<span class="mi">9</span> <span class="mf">219.158.24.134</span> <span class="kc">False</span>
+<span class="mi">10</span> <span class="mf">219.158.10.30</span> <span class="kc">False</span>
+<span class="mi">11</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+<span class="mi">12</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+<span class="mi">13</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+<span class="mi">14</span> <span class="mf">69.192.14.38</span> <span class="kc">True</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>下面讲解核心代码：</p>
 <p><code>ans,unans=sr(IP(dst=target,ttl=(1,30),id=RandShort())/TCP(flags=0x2))</code></p>
@@ -1149,6 +1149,8 @@ TCP session hijacking反弹shell （重点）</p>
 <p>有生之年研究一下Vmess等协议</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
 
 </section>
 
@@ -1228,7 +1230,7 @@ TCP session hijacking反弹shell （重点）</p>
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">

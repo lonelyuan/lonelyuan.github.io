@@ -400,17 +400,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">microblog/ # 根目录
-</span></span><span class="line"><span class="cl">  app/ # 项目源码
-</span></span><span class="line"><span class="cl">    __init__.py # 项目初始化，当该包被import，首先执行__init__.py
-</span></span><span class="line"><span class="cl">    routes.py
-</span></span><span class="line"><span class="cl">    forms.py
-</span></span><span class="line"><span class="cl">    ...
-</span></span><span class="line"><span class="cl">  main.py # 框架入口
-</span></span><span class="line"><span class="cl">  config.py # Config配置类
-</span></span><span class="line"><span class="cl">  .flaskenv
-</span></span><span class="line"><span class="cl">  ...
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">microblog/ # 根目录
+  app/ # 项目源码
+    __init__.py # 项目初始化，当该包被import，首先执行__init__.py
+    routes.py
+    forms.py
+    ...
+  main.py # 框架入口
+  config.py # Config配置类
+  .flaskenv
+  ...
+</code></pre></td></tr></table>
 </div>
 </div><p>根目录下的文件有：</p>
 <ul>
@@ -458,9 +458,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span> <span class="c1"># 生成了一个实例传入模板</span>
-</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;login.html&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sign In&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span> <span class="c1"># 生成了一个实例传入模板</span>
+<span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;login.html&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sign In&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="flash-闪现消息">flash 闪现消息</h4>
 <p>flash 通过 session 储存，用于显示只出现一次的提示消息。用法：</p>
@@ -486,12 +486,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># app/__init__.py</span>
-</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span> <span class="c1"># flask基类</span>
-</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">Config</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># app/__init__.py</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span> <span class="c1"># flask基类</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">Config</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <h3 id="sqlalchemymodel层">SQLalchemy：model层</h3>
@@ -517,10 +517,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c1"># 表</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 列</span>
-</span></span><span class="line"><span class="cl">    <span class="o">....</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c1"># 表</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 列</span>
+    <span class="o">....</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="curd基本操作">CURD基本操作</h4>
 <p>ORM 框架通常集成了常用操作，但也支持更底层的数据库接口。</p>
@@ -536,8 +536,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>query方法只有构造一个查询，只有在<code>Query.get()</code>、<code>Query.all()</code>、<code>Query.one()</code>等结束符之后才会执行查询</p>
 </li>
@@ -549,9 +549,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -564,11 +564,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
-</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="c1"># or</span>
+<span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -586,16 +586,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">query</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span>
-</span></span><span class="line"><span class="cl">	<span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="n">User</span><span class="o">.</span><span class="n">username</span> <span class="o">+</span> <span class="s2">&#34;a&#34;</span><span class="p">},</span> <span class="n">synchronize_session</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
-</span></span><span class="line"><span class="cl"><span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s2">&#34;zxcv&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">query</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span>
+	<span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+	<span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+	<span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="n">User</span><span class="o">.</span><span class="n">username</span> <span class="o">+</span> <span class="s2">&#34;a&#34;</span><span class="p">},</span> <span class="n">synchronize_session</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s2">&#34;zxcv&#34;</span>
+<span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -627,9 +627,9 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@app.route(&#39;/result/&#39;, methods=[&#39;POST&#39;]) # NOTE：有顺序关系，反之则不生效
-</span></span><span class="line"><span class="cl">@login_required 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">@app.route(&#39;/result/&#39;, methods=[&#39;POST&#39;]) # NOTE：有顺序关系，反之则不生效
+@login_required 
+</code></pre></td></tr></table>
 </div>
 </div><p>用户系统，包括登录、登出、注册几个功能。编写这些功能的步骤其实很类似：</p>
 <ul>
@@ -654,16 +654,16 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/some_form&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">some_form</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># prepare forms </span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># submit modification</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;main.some_form&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    	<span class="c1"># GET data</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;some_form.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/some_form&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">some_form</span><span class="p">():</span>
+    <span class="c1"># prepare forms </span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="c1"># submit modification</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;main.some_form&#39;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+    	<span class="c1"># GET data</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;some_form.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>默认情况，提交 POST 请求后，如果直接刷新浏览器，会重新在 POST 一次。使用PRG模式即可解决重复提交表单的问题。</p>
 <h2 id="0x04-深入数据库粉丝机制">0x04 深入数据库：粉丝机制</h2>
@@ -694,12 +694,12 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">followers</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;followers&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;follower_id&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;followed_id&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">followers</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+    <span class="s1">&#39;followers&#39;</span><span class="p">,</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;follower_id&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">)),</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;followed_id&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -713,12 +713,12 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">followed</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="c1"># 右侧实体</span>
-</span></span><span class="line"><span class="cl">    <span class="n">secondary</span><span class="o">=</span><span class="n">followers</span><span class="p">,</span> <span class="c1"># 指定关联表</span>
-</span></span><span class="line"><span class="cl">    <span class="n">primaryjoin</span><span class="o">=</span><span class="p">(</span><span class="n">followers</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">follower_id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">),</span> <span class="c1"># 指定左关系</span>
-</span></span><span class="line"><span class="cl">    <span class="n">secondaryjoin</span><span class="o">=</span><span class="p">(</span><span class="n">followers</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">followed_id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">),</span> <span class="c1"># 指定右关系</span>
-</span></span><span class="line"><span class="cl">    <span class="n">backref</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">backref</span><span class="p">(</span><span class="s1">&#39;followers&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">),</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span> <span class="c1"># 指定回调</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">followed</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="c1"># 右侧实体</span>
+    <span class="n">secondary</span><span class="o">=</span><span class="n">followers</span><span class="p">,</span> <span class="c1"># 指定关联表</span>
+    <span class="n">primaryjoin</span><span class="o">=</span><span class="p">(</span><span class="n">followers</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">follower_id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">),</span> <span class="c1"># 指定左关系</span>
+    <span class="n">secondaryjoin</span><span class="o">=</span><span class="p">(</span><span class="n">followers</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">followed_id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">),</span> <span class="c1"># 指定右关系</span>
+    <span class="n">backref</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">backref</span><span class="p">(</span><span class="s1">&#39;followers&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">),</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span> <span class="c1"># 指定回调</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -741,9 +741,9 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT ,,,  FROM user, followers 
-</span></span><span class="line"><span class="cl">WHERE followers.followed_id = ? AND followers.follower_id = user.id
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SELECT ,,,  FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -769,11 +769,11 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">Post</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">followers</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">followers</span><span class="p">.</span><span class="k">c</span><span class="p">.</span><span class="n">followed_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Post</span><span class="p">.</span><span class="n">user_id</span><span class="p">)).</span><span class="n">filter</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">followers</span><span class="p">.</span><span class="k">c</span><span class="p">.</span><span class="n">follower_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">self</span><span class="p">.</span><span class="n">id</span><span class="p">).</span><span class="n">order_by</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">Post</span><span class="p">.</span><span class="k">timestamp</span><span class="p">.</span><span class="k">desc</span><span class="p">())</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">Post</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="w">
+</span><span class="w">  </span><span class="n">followers</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">followers</span><span class="p">.</span><span class="k">c</span><span class="p">.</span><span class="n">followed_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Post</span><span class="p">.</span><span class="n">user_id</span><span class="p">)).</span><span class="n">filter</span><span class="p">(</span><span class="w">
+</span><span class="w">    </span><span class="n">followers</span><span class="p">.</span><span class="k">c</span><span class="p">.</span><span class="n">follower_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">self</span><span class="p">.</span><span class="n">id</span><span class="p">).</span><span class="n">order_by</span><span class="p">(</span><span class="w">
+</span><span class="w">       </span><span class="n">Post</span><span class="p">.</span><span class="k">timestamp</span><span class="p">.</span><span class="k">desc</span><span class="p">())</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -791,16 +791,16 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="p">,,,</span><span class="w"> </span><span class="k">FROM</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="p">,,,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">followers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">followers</span><span class="p">.</span><span class="n">followed_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="p">.</span><span class="n">user_id</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">followers</span><span class="p">.</span><span class="n">follower_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">UNION</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">post</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">post</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="n">anon_1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">anon_1</span><span class="p">.</span><span class="n">post_timestamp</span><span class="w"> </span><span class="k">DESC</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="p">,,,</span><span class="w"> </span><span class="k">FROM</span><span class="w"> 
+</span><span class="w"></span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="p">,,,</span><span class="w">
+</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">followers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">followers</span><span class="p">.</span><span class="n">followed_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">post</span><span class="p">.</span><span class="n">user_id</span><span class="w"> 
+</span><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">followers</span><span class="p">.</span><span class="n">follower_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w"> 
+</span><span class="w">   </span><span class="k">UNION</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
+</span><span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="n">post</span><span class="w"> 
+</span><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">post</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w">
+</span><span class="w"></span><span class="p">)</span><span class="w"> 
+</span><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="n">anon_1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">anon_1</span><span class="p">.</span><span class="n">post_timestamp</span><span class="w"> </span><span class="k">DESC</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -825,14 +825,14 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/templates
-</span></span><span class="line"><span class="cl">   auth/
-</span></span><span class="line"><span class="cl">   errors/
-</span></span><span class="line"><span class="cl">   base.html
-</span></span><span class="line"><span class="cl">   _posts.html
-</span></span><span class="line"><span class="cl">   index.html
-</span></span><span class="line"><span class="cl">   ... 
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/templates
+   auth/
+   errors/
+   base.html
+   _posts.html
+   index.html
+   ... 
+</code></pre></td></tr></table>
 </div>
 </div><p>所有模板都有一个父模版：<code>base.html</code>，其结构如下：</p>
 <div class="highlight"><div class="chroma">
@@ -848,16 +848,16 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{% extends &#39;bootstrap/base.html&#39; %}
-</span></span><span class="line"><span class="cl">{% block title %}Hallo Wolrd{% endblock %}
-</span></span><span class="line"><span class="cl">{% block head %} ... {% endblock %}
-</span></span><span class="line"><span class="cl">{% block scripts %} ... {% endblock %}
-</span></span><span class="line"><span class="cl">{% block navbar %} ... {% endblock %}
-</span></span><span class="line"><span class="cl">{% block content %}
-</span></span><span class="line"><span class="cl">    ...
-</span></span><span class="line"><span class="cl">    {% block app_content %}{% endblock %}
-</span></span><span class="line"><span class="cl">{% endblock %}
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">{% extends &#39;bootstrap/base.html&#39; %}
+{% block title %}Hallo Wolrd{% endblock %}
+{% block head %} ... {% endblock %}
+{% block scripts %} ... {% endblock %}
+{% block navbar %} ... {% endblock %}
+{% block content %}
+    ...
+    {% block app_content %}{% endblock %}
+{% endblock %}
+</code></pre></td></tr></table>
 </div>
 </div><p><code>app_content</code>留空，即其余模板均在<code>app_content</code>内填充。</p>
 <p>进一步追溯<code>bootstrap/base.html</code>的源码，发现其它 block 诸如<code>navbar</code>也都留空或仅仅配置了 Bootstrap 的 cdn。 由此，只需将<code>base.html</code>迁移即可。</p>
@@ -917,14 +917,14 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">app/ 
-</span></span><span class="line"><span class="cl">    some_fuction/                       &lt;-- blueprint package
-</span></span><span class="line"><span class="cl">        __init__.py                     &lt;-- blueprint creation
-</span></span><span class="line"><span class="cl">        ... other code ...
-</span></span><span class="line"><span class="cl">    templates/
-</span></span><span class="line"><span class="cl">        some_fuction/                   &lt;--  templates
-</span></span><span class="line"><span class="cl">    __init__.py                         &lt;-- blueprint registration
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">app/ 
+    some_fuction/                       &lt;-- blueprint package
+        __init__.py                     &lt;-- blueprint creation
+        ... other code ...
+    templates/
+        some_fuction/                   &lt;--  templates
+    __init__.py                         &lt;-- blueprint registration
+</code></pre></td></tr></table>
 </div>
 </div><p>创建blueprint与创建应用非常相似。</p>
 <div class="highlight"><div class="chroma">
@@ -934,10 +934,10 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span>
-</span></span><span class="line"><span class="cl"><span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;func&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">app.func</span> <span class="kn">import</span> <span class="n">Func</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span>
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;func&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">app.func</span> <span class="kn">import</span> <span class="n">Func</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>而消灭了<code>app</code>，蓝图内部的引用统一变成了蓝图名。而外部诸如<code>url_for</code>的参数则需要加上<code>包名.</code>做前缀。</p>
 <h3 id="应用工厂模式">应用工厂模式</h3>
@@ -954,15 +954,15 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># app/__init__.py</span>
-</span></span><span class="line"><span class="cl"><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="n">config_class</span><span class="o">=</span><span class="n">Config</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">config_class</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># app/__init__.py</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+<span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="n">config_class</span><span class="o">=</span><span class="n">Config</span><span class="p">):</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">config_class</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>返回后，flask提供的上下文对象<code>current_app</code>将指向应用实例。详见官方文档：<a class="link" href="http://docs.jinkan.org/docs/flask/appcontext.html"  target="_blank" rel="noopener"
     >应用上下文</a></p>
@@ -1000,19 +1000,19 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">file_handler</span> <span class="o">=</span> <span class="n">RotatingFileHandler</span><span class="p">(</span><span class="s1">&#39;logs/microblog.log&#39;</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">10240</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                           <span class="n">backupCount</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">            <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1"> [in </span><span class="si">%(pathname)s</span><span class="s1">:</span><span class="si">%(lineno)d</span><span class="s1">]&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Microblog startup&#39;</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">)</span>
+        <span class="n">file_handler</span> <span class="o">=</span> <span class="n">RotatingFileHandler</span><span class="p">(</span><span class="s1">&#39;logs/microblog.log&#39;</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">10240</span><span class="p">,</span>
+                                           <span class="n">backupCount</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1"> [in </span><span class="si">%(pathname)s</span><span class="s1">:</span><span class="si">%(lineno)d</span><span class="s1">]&#39;</span><span class="p">))</span>
+        <span class="n">file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+
+        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Microblog startup&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="requirementtxt">requirement.txt</h4>
 <p>装的库太多怎么办？只需要两条命令：</p>
@@ -1022,9 +1022,9 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pip freeze &gt; requirements.txt
-</span></span><span class="line"><span class="cl">pip install -r requirements.txt
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pip freeze &gt; requirements.txt
+pip install -r requirements.txt
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="0x08-网站上线">0x08 网站上线</h2>
 <p>最后简单列出几种网站部署的方法，详情参考本教程或自行搜索。</p>
@@ -1137,7 +1137,7 @@ migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪�
         
             2020 - 
         
-        2022 lonelyuan&#39;s Blog
+        2023 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">
