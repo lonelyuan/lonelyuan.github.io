@@ -7,17 +7,26 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>闲来无事，倒腾博客——记博客主题的二次开发</title>
-        <link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/</link>
+        <title>闲来无事，倒腾博客</title>
+        <link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link>
         <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/</guid>
-        <description>&lt;p&gt;倒腾过 Hexo, Wordpress 等，👴最终选用Gridea做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。一个还算说得过去的GUI，还是比发一篇博客敲好几条命令要来的舒服。&lt;/p&gt;
-&lt;p&gt;……&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/R-C.jpg&#34;
+        <guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid>
+        <description>&lt;h1 id=&#34;你们-cli-确实比-gui-有点素质&#34;&gt;你们 CLI 确实比 GUI 有点素质&lt;/h1&gt;
+&lt;p&gt;要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这点屁事我为什么不发秋秋空间/微博？&lt;/li&gt;
+&lt;li&gt;只有我看我为什么不记 Onenote/Notion ？&lt;/li&gt;
+&lt;li&gt;想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 &lt;a class=&#34;link&#34; href=&#34;https://phuker.github.io/posts/web-feed.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RSS&lt;/a&gt; ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p&gt;
+&lt;p&gt;但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class=&#34;link&#34; href=&#34;https://gridea.dev/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gridea&lt;/a&gt; ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C.jpg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
-	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -26,16 +35,42 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;然而👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron）编辑体验差，git更新老出毛病，👴还是赶紧跑路吧。于是：&lt;/p&gt;
-&lt;p&gt;倒腾过 Hexo, Wordpress, Gridea 等，👴最终选用做Hugo博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是， 不 需 要 配 环 境。&lt;/p&gt;
-&lt;p&gt;下面是需求：&lt;/p&gt;
+&lt;p&gt;然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;你们-js-确实比-go-有点素质&#34;&gt;你们 Js 确实比 Go 有点素质&lt;/h1&gt;
+&lt;p&gt;于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
+&lt;p&gt;一些需求：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;定制颜色&lt;/li&gt;
-&lt;li&gt;图片：assets不好使&lt;/li&gt;
-&lt;li&gt;分类&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;评论系统&lt;/li&gt;
+&lt;li&gt;访问量统计&lt;/li&gt;
+&lt;li&gt;上一次更新时间&lt;/li&gt;
+&lt;li&gt;词云——引入js&lt;/li&gt;
+&lt;li&gt;代码高亮——一键复制&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;【如标题所示，如果这里还空着，就说明最近并不是闲来无事，这很合理】&lt;/p&gt;
+&lt;p&gt;首先以 Hugo 为例了解一下静态站生成器的基本框架吧。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;├── archetypes
+│   └── default.md
+├── config.toml         # 配置文件
+├── content             # 在这写东西
+├── data                # 
+├── layouts             # 布局文件
+├── static              # 
+└── themes              # 主题
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】&lt;/p&gt;
 </description>
         </item>
         <item>

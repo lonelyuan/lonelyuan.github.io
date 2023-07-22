@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' Do not go gentle into that good night,
-Old age should burn and rave at close of day;
-Rage, rage against the dying of the light.
- 🐭我是谁  CS研究生，Blue-Whale 成员  想理解计算机的一切。   MBTI：什么赛博星座。  （不信这玩意的属于什么类型   拖延症晚期。  yysy，不拖延你也不会变成xx。   存在主义者。  感知即存在，存在先于意义。     🍌本博客宗旨  尽量不制造垃圾。  什么是垃圾：过时的，无趣的，信息密度低的   争取周更。  草稿也算周更！程序员的事，能叫拖更吗？    🤺同好检测器  文：大刘、王小波、…… 剧：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人…… 游：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……  '><title>About Me</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='你们 CLI 确实比 GUI 有点素质 要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：
+ 这点屁事我为什么不发秋秋空间/微博？ 只有我看我为什么不记 Onenote/Notion ？ 想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？  尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 RSS ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。
+但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 Gridea ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……
+然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：
+ 你们 Js 确实比 Go 有点素质 于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……
+一些需求：
+ 评论系统 访问量统计 上一次更新时间 词云——引入js 代码高亮——一键复制  首先以 Hugo 为例了解一下静态站生成器的基本框架吧。
+1 2 3 4 5 6 7 8  ├── archetypes │ └── default.md ├── config.toml # 配置文件 ├── content # 在这写东西 ├── data # ├── layouts # 布局文件 ├── static # └── themes # 主题   【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】'><title>闲来无事，倒腾博客</title>
 
-<link rel='canonical' href='https://lonelyuan.github.io/about-me/'>
+<link rel='canonical' href='https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='About Me'>
-<meta property='og:description' content=' Do not go gentle into that good night,
-Old age should burn and rave at close of day;
-Rage, rage against the dying of the light.
- 🐭我是谁  CS研究生，Blue-Whale 成员  想理解计算机的一切。   MBTI：什么赛博星座。  （不信这玩意的属于什么类型   拖延症晚期。  yysy，不拖延你也不会变成xx。   存在主义者。  感知即存在，存在先于意义。     🍌本博客宗旨  尽量不制造垃圾。  什么是垃圾：过时的，无趣的，信息密度低的   争取周更。  草稿也算周更！程序员的事，能叫拖更吗？    🤺同好检测器  文：大刘、王小波、…… 剧：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人…… 游：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……  '>
-<meta property='og:url' content='https://lonelyuan.github.io/about-me/'>
+<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='闲来无事，倒腾博客'>
+<meta property='og:description' content='你们 CLI 确实比 GUI 有点素质 要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：
+ 这点屁事我为什么不发秋秋空间/微博？ 只有我看我为什么不记 Onenote/Notion ？ 想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？  尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 RSS ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。
+但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 Gridea ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……
+然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：
+ 你们 Js 确实比 Go 有点素质 于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……
+一些需求：
+ 评论系统 访问量统计 上一次更新时间 词云——引入js 代码高亮——一键复制  首先以 Hugo 为例了解一下静态站生成器的基本框架吧。
+1 2 3 4 5 6 7 8  ├── archetypes │ └── default.md ├── config.toml # 配置文件 ├── content # 在这写东西 ├── data # ├── layouts # 布局文件 ├── static # └── themes # 主题   【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】'>
+<meta property='og:url' content='https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:published_time' content='2019-02-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-02-28T00:00:00&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
-<meta name="twitter:title" content="About Me">
-<meta name="twitter:description" content=" Do not go gentle into that good night,
-Old age should burn and rave at close of day;
-Rage, rage against the dying of the light.
- 🐭我是谁  CS研究生，Blue-Whale 成员  想理解计算机的一切。   MBTI：什么赛博星座。  （不信这玩意的属于什么类型   拖延症晚期。  yysy，不拖延你也不会变成xx。   存在主义者。  感知即存在，存在先于意义。     🍌本博客宗旨  尽量不制造垃圾。  什么是垃圾：过时的，无趣的，信息密度低的   争取周更。  草稿也算周更！程序员的事，能叫拖更吗？    🤺同好检测器  文：大刘、王小波、…… 剧：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人…… 游：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……  "><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Web' /><meta property='article:tag' content='Blog' /><meta property='article:published_time' content='2021-11-07T14:19:11&#43;00:00'/><meta property='article:modified_time' content='2021-11-07T14:19:11&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta name="twitter:title" content="闲来无事，倒腾博客">
+<meta name="twitter:description" content="你们 CLI 确实比 GUI 有点素质 要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：
+ 这点屁事我为什么不发秋秋空间/微博？ 只有我看我为什么不记 Onenote/Notion ？ 想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？  尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 RSS ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。
+但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 Gridea ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……
+然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：
+ 你们 Js 确实比 Go 有点素质 于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……
+一些需求：
+ 评论系统 访问量统计 上一次更新时间 词云——引入js 代码高亮——一键复制  首先以 Hugo 为例了解一下静态站生成器的基本框架吧。
+1 2 3 4 5 6 7 8  ├── archetypes │ └── default.md ├── config.toml # 配置文件 ├── content # 在这写东西 ├── data # ├── layouts # 布局文件 ├── static # └── themes # 主题   【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
     </head>
     <body class="
@@ -147,7 +159,7 @@ Rage, rage against the dying of the light.
         
         
 
-        <li  class='current' >
+        <li >
             <a href='/about-me/' >
                 
                 
@@ -324,7 +336,7 @@ Rage, rage against the dying of the light.
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/about-me/">About Me</a>
+            <a href="/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/">闲来无事，倒腾博客</a>
         </h2>
     
         
@@ -343,7 +355,7 @@ Rage, rage against the dying of the light.
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Feb 28, 2019</time>
+                <time class="article-time--published">Nov 07, 2021</time>
             </div>
         
 
@@ -372,74 +384,79 @@ Rage, rage against the dying of the light.
     <section class="article-content">
     
     
-    <blockquote>
-<p>Do not go gentle into that good night,</p>
-<p>Old age should burn and rave at close of day;</p>
-<p>Rage, rage against the dying of the light.</p>
-</blockquote>
-<h1 id="我是谁">🐭我是谁</h1>
+    <h1 id="你们-cli-确实比-gui-有点素质">你们 CLI 确实比 GUI 有点素质</h1>
+<p>要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：</p>
 <ul>
-<li>CS研究生，<a class="link" href="https://blue-whale.me/"  target="_blank" rel="noopener"
-    >Blue-Whale</a> 成员
-<ul>
-<li>想理解计算机的一切。</li>
+<li>这点屁事我为什么不发秋秋空间/微博？</li>
+<li>只有我看我为什么不记 Onenote/Notion ？</li>
+<li>想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？</li>
 </ul>
-</li>
-<li>MBTI：什么赛博星座。
-<ul>
-<li>（不信这玩意的属于什么类型</li>
-</ul>
-</li>
-<li>拖延症晚期。
-<ul>
-<li>yysy，不拖延你也不会变成xx。</li>
-</ul>
-</li>
-<li>存在主义者。
-<ul>
-<li>感知即存在，存在先于意义。</li>
-</ul>
-</li>
-<li><img src="/about-me/1623380216575.png"
-	width="300"
-	height="92"
-	srcset="/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, /about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
+<p>尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 <a class="link" href="https://phuker.github.io/posts/web-feed.html"  target="_blank" rel="noopener"
+    >RSS</a> ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。</p>
+<p>但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 <a class="link" href="https://gridea.dev/"  target="_blank" rel="noopener"
+    >Gridea</a> ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……</p>
+<p><img src="/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C.jpg"
+	width="1920"
+	height="1080"
+	srcset="/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, /p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
 	loading="lazy"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="326"
-		data-flex-basis="782px"
+		data-flex-grow="177"
+		data-flex-basis="426px"
 	
-></li>
-</ul>
-<h1 id="本博客宗旨">🍌本博客宗旨</h1>
+></p>
+<p>然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：</p>
+<hr>
+<h1 id="你们-js-确实比-go-有点素质">你们 Js 确实比 Go 有点素质</h1>
+<p>于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……</p>
+<p>一些需求：</p>
 <ul>
-<li>尽量不制造垃圾。
-<ul>
-<li>什么是垃圾：过时的，无趣的，信息密度低的</li>
+<li>评论系统</li>
+<li>访问量统计</li>
+<li>上一次更新时间</li>
+<li>词云——引入js</li>
+<li>代码高亮——一键复制</li>
 </ul>
-</li>
-<li>争取周更。
-<ul>
-<li>草稿也算周更！程序员的事，能叫拖更吗？</li>
-</ul>
-</li>
-</ul>
-<h1 id="同好检测器">🤺同好检测器</h1>
-<ul>
-<li><strong>文</strong>：大刘、王小波、……</li>
-<li><strong>剧</strong>：Re:0、爱死机、R&amp;M、无职转生、灵能百分百、進撃の巨人……</li>
-<li><strong>游</strong>：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……</li>
-</ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p>首先以 Hugo 为例了解一下静态站生成器的基本框架吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">├── archetypes
+│   └── default.md
+├── config.toml         # 配置文件
+├── content             # 在这写东西
+├── data                # 
+├── layouts             # 布局文件
+├── static              # 
+└── themes              # 主题
+</code></pre></td></tr></table>
+</div>
+</div><p>【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】</p>
 
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/web/">Web</a>
+        
+            <a href="/tags/blog/">Blog</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -451,7 +468,7 @@ Rage, rage against the dying of the light.
 
 
 
-        <span>CC BY-NC-ND</span>
+        <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
     </footer>
 
