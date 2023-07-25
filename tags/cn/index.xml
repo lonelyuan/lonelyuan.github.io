@@ -748,9 +748,12 @@ TCP session hijacking反弹shell （重点）&lt;/p&gt;
 &lt;p&gt;探究VPN原理&lt;/p&gt;
 &lt;h3 id=&#34;0x152-应用层-v2ray协议学习----todo&#34;&gt;0x152 应用层: V2Ray协议学习 | ？？？ | TODO&lt;/h3&gt;
 &lt;p&gt;有生之年研究一下Vmess等协议&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;blockquote&gt;
+&lt;!-- 省略的：
+- 防火墙iptables实验
+- mitnick攻击
+- BGP 
+- 802.11
+- --&gt;&lt;blockquote&gt;
 &lt;/blockquote&gt;
 </description>
         </item>

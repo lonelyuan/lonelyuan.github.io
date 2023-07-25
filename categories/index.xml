@@ -7,12 +7,21 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Web</title>
+        <link>https://lonelyuan.github.io/categories/web/</link>
+        <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/categories/web/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>CS</title>
         <link>https://lonelyuan.github.io/categories/cs/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/categories/cs/</guid>
-        <description>&lt;img src="https://lonelyuan.github.io/categories/cs/power.png" alt="Featured image of post CS" /&gt;</description>
+        <description>&lt;img src="https://lonelyuan.github.io/categories/cs/power.png" alt="Featured image of post CS" /&gt;&lt;p&gt;太美丽了CS&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>CTF</title>
@@ -20,8 +29,7 @@
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/categories/ctf/</guid>
-        <description>&lt;p&gt;我侧你妈妈&lt;/p&gt;
-</description>
+        <description></description>
         </item>
         
     </channel>

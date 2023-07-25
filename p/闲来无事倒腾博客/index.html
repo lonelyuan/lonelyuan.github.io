@@ -201,6 +201,45 @@ if (!doNotTrack) {
         
         
         <li >
+            <a href='/categories/cs/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>CS</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/ctf/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+                
+                <span>CTF</span>
+            </a>
+        </li>
+        
+        
+        <li >
             <a href='/todo/' >
                 
                 
@@ -288,6 +327,26 @@ if (!doNotTrack) {
     <aside class="sidebar right-sidebar sticky">
         
             
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>Search</label>
+            <input name="keyword" required placeholder="Type something..." />
+        
+            <button title="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
                 
     <section class="widget archives">
         <div class="widget-icon">
@@ -307,8 +366,14 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#hugo-框架结构">Hugo 框架结构</a>
+    <li>
       <ol>
+        <li><a href="#hugo-框架结构">Hugo 框架结构</a>
+          <ol>
+            <li><a href="#content">content</a></li>
+            <li><a href="#public">public</a></li>
+          </ol>
+        </li>
         <li><a href="#主题调教">主题调教</a></li>
         <li><a href="#front-matter-方法论">front matter 方法论</a></li>
         <li><a href="#你这静态网站不是很静态啊">你这静态网站不是很静态啊</a></li>
@@ -457,7 +522,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -514,7 +579,7 @@ if (!doNotTrack) {
 <blockquote>
 <p>以下内容适合已了解 Hugo 基本使用之后的进一步学习。</p>
 </blockquote>
-<h2 id="hugo-框架结构">Hugo 框架结构</h2>
+<h3 id="hugo-框架结构">Hugo 框架结构</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -525,20 +590,33 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">├── archetypes          # .md 模板
 │   └── default.md      
 ├── config.toml         # 配置文件
-├── content             # 在这写东西，子文件夹即 sections 
-├── data                # 配置文件
+├── content             # 在这写东西
+├── data                # 更多配置文件
 ├── layouts             # .html 模板
+├── public              # 渲染好的网站
 ├── static              # 静态文件，hugo会全部复制
 └── themes              # 博客主题
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="主题调教">主题调教</h3>
+</div><h4 id="content">content</h4>
+<p>这里是 Hugo 的输入，存放<code>.md</code> 格式的文章。使用<code>hugo new</code>时，会尝试从<code>archetypes</code>目录寻找对应的模板，语法如下</p>
+<p><code>hugo new &lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;</code></p>
+<p><code>content</code>中的子文件夹称为 sections ，它们是网站内容的基本分块。分块的目的是分配不同的处理方式，如post需要展示文章列表，page仅展示单独页面等。配置中的<code>permalinks</code>项就是以分块为单位分配URL。</p>
+<h4 id="public">public</h4>
+<p>这里是 Hugo 的输出，存放完整的 HTML 静态网页。使用<code>hugo</code>时，会尝试从<code>layouts</code>目录寻找对应的模板， HTML 模板均以 GO 模板格式编写。</p>
+<p>以 Github Page 为例，部署时仅需将这个文件夹同步至 github.io 仓库即可，</p>
+<h3 id="主题调教">主题调教</h3>
 <p>👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道。</p>
+<p>如何优雅的二次开发？观察<code>theme</code>的内容，会发现除了没有<code>content</code>目录之外和网站根目录完全一致。可知所谓使用主题就是用那个网站覆盖我们的网站。那么直接修改<code>theme</code>目录里的内容自然可行。但如果需要升级主题，则会产生许多讨厌的merge问题。</p>
+<p>因此数据和配置当然要解耦。以 Stack 主题为例，在</p>
+<p>关于模板查找顺序还有诸多细节，请参阅官方文档：<a class="link" href="https://gohugo.io/templates/lookup-order/"  target="_blank" rel="noopener"
+    >Template lookup order</a>。</p>
 <p>【To be continued】</p>
 <ul>
 <li><input disabled="" type="checkbox"> 主题配色，字体</li>

@@ -359,7 +359,7 @@
 401061:	c3                   	retq   
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;看到&lt;!-- raw HTML omitted --&gt;的返回值和num2皆需为0，则num2确定。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;看到&lt;func4&gt;的返回值和num2皆需为0，则num2确定。&lt;/p&gt;
 &lt;p&gt;大不了爆破呗，索性试了1次就成了。emm&lt;/p&gt;
 &lt;h3 id=&#34;第五关&#34;&gt;第五关&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
