@@ -1,42 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发
-  0x00 蓝图与重构 与之前相比，网站将增加以下功能：
- 图库：文件上传模块 评论：楼中楼功能 后台：权限模块，后台模块 优化：更健壮的数据库接口，更细致的权限控制 plus功能：用 redis 实现热搜  在开发这些功能之前，首先重整项目结构。如：
- 完全蓝图化。参考  模板也放入独立子目录里，蓝图注册时使用template_folder参数，不过这样容易产生bug，flask 官方推荐使用硬编码，汗。   清理依赖，不使用维护状态差的库。  开发新功能的时候，去哪里找最佳实践，找好用的库呢？有一个 Github 搜索小技巧，名为 &amp;ldquo;awesome-xxx&amp;rdquo; 的仓库通常是某技术的优质资源列表。如：https://github.com/humiaozuzu/awesome-flask    0x01 文件系统  本部分参考了李辉大佬的系列文章， https://zhuanlan.zhihu.com/p/23731819?refer=flask
- 头像，照片……文件上传是绕不开的话题。在上一篇参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。
-注意踩坑！大部份资料推荐使用Flask_uploads插件，然而使用该插件时出现如下报错：
-1  ImportError: cannot import name &amp;#39;secure_filename&amp;#39; from &amp;#39;werkzeug&amp;#39;   查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：
- 一是修改库源码 二是换另一个库，维护良好且可无缝迁移，名为Flask-Reuploaded  前者不利于后续部署，本人倾向于后者。然而，使用新库也遇到了诸多麻烦，使用UploadSet.url()方法时，报错如下：
-1  werkzeug.routing.BuildError: Could not build url for endpoint &amp;#39;_uploads.'><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发 0x00 蓝'>
+<title>年轻人的第二个网站（二） - flask-supreme-tutorial</title>
 
 <link rel='canonical' href='https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='年轻人的第二个网站（二） - flask-supreme-tutorial'>
-<meta property='og:description' content='上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发
-  0x00 蓝图与重构 与之前相比，网站将增加以下功能：
- 图库：文件上传模块 评论：楼中楼功能 后台：权限模块，后台模块 优化：更健壮的数据库接口，更细致的权限控制 plus功能：用 redis 实现热搜  在开发这些功能之前，首先重整项目结构。如：
- 完全蓝图化。参考  模板也放入独立子目录里，蓝图注册时使用template_folder参数，不过这样容易产生bug，flask 官方推荐使用硬编码，汗。   清理依赖，不使用维护状态差的库。  开发新功能的时候，去哪里找最佳实践，找好用的库呢？有一个 Github 搜索小技巧，名为 &amp;ldquo;awesome-xxx&amp;rdquo; 的仓库通常是某技术的优质资源列表。如：https://github.com/humiaozuzu/awesome-flask    0x01 文件系统  本部分参考了李辉大佬的系列文章， https://zhuanlan.zhihu.com/p/23731819?refer=flask
- 头像，照片……文件上传是绕不开的话题。在上一篇参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。
-注意踩坑！大部份资料推荐使用Flask_uploads插件，然而使用该插件时出现如下报错：
-1  ImportError: cannot import name &amp;#39;secure_filename&amp;#39; from &amp;#39;werkzeug&amp;#39;   查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：
- 一是修改库源码 二是换另一个库，维护良好且可无缝迁移，名为Flask-Reuploaded  前者不利于后续部署，本人倾向于后者。然而，使用新库也遇到了诸多麻烦，使用UploadSet.url()方法时，报错如下：
-1  werkzeug.routing.BuildError: Could not build url for endpoint &amp;#39;_uploads.'>
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='年轻人的第二个网站（二） - flask-supreme-tutorial'>
+<meta property='og:description' content='上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发 0x00 蓝'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Web' /><meta property='article:published_time' content='2021-09-16T12:43:23&#43;00:00'/><meta property='article:modified_time' content='2021-09-16T12:43:23&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='flask' /><meta property='article:published_time' content='2021-09-16T12:43:23&#43;00:00'/><meta property='article:modified_time' content='2021-09-16T12:43:23&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
 <meta name="twitter:title" content="年轻人的第二个网站（二） - flask-supreme-tutorial">
-<meta name="twitter:description" content="上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发
-  0x00 蓝图与重构 与之前相比，网站将增加以下功能：
- 图库：文件上传模块 评论：楼中楼功能 后台：权限模块，后台模块 优化：更健壮的数据库接口，更细致的权限控制 plus功能：用 redis 实现热搜  在开发这些功能之前，首先重整项目结构。如：
- 完全蓝图化。参考  模板也放入独立子目录里，蓝图注册时使用template_folder参数，不过这样容易产生bug，flask 官方推荐使用硬编码，汗。   清理依赖，不使用维护状态差的库。  开发新功能的时候，去哪里找最佳实践，找好用的库呢？有一个 Github 搜索小技巧，名为 &amp;ldquo;awesome-xxx&amp;rdquo; 的仓库通常是某技术的优质资源列表。如：https://github.com/humiaozuzu/awesome-flask    0x01 文件系统  本部分参考了李辉大佬的系列文章， https://zhuanlan.zhihu.com/p/23731819?refer=flask
- 头像，照片……文件上传是绕不开的话题。在上一篇参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。
-注意踩坑！大部份资料推荐使用Flask_uploads插件，然而使用该插件时出现如下报错：
-1  ImportError: cannot import name &amp;#39;secure_filename&amp;#39; from &amp;#39;werkzeug&amp;#39;   查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：
- 一是修改库源码 二是换另一个库，维护良好且可无缝迁移，名为Flask-Reuploaded  前者不利于后续部署，本人倾向于后者。然而，使用新库也遇到了诸多麻烦，使用UploadSet.url()方法时，报错如下：
-1  werkzeug.routing.BuildError: Could not build url for endpoint &amp;#39;_uploads."><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发 0x00 蓝"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
     </head>
     <body class="
     article-page
@@ -103,6 +91,7 @@
                         href='https://github.com/lonelyuan'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -122,6 +111,7 @@
                         href='https://twitter.com/FTrumpyeah'
                         target="_blank"
                         title="Twitter"
+                        rel="me"
                     >
                         
                         
@@ -140,7 +130,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -161,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/about-me/' >
                 
@@ -181,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -202,9 +189,8 @@
         </li>
         
         
-
         <li >
-            <a href='/cs/' >
+            <a href='/categories/cs/' >
                 
                 
                 
@@ -224,9 +210,8 @@
         </li>
         
         
-
         <li >
-            <a href='/ctf/' >
+            <a href='/categories/ctf/' >
                 
                 
                 
@@ -243,7 +228,6 @@
         </li>
         
         
-
         <li >
             <a href='/todo/' >
                 
@@ -264,7 +248,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -284,7 +267,6 @@
         </li>
         
         
-
         <li >
             <a href='/links/' >
                 
@@ -330,11 +312,68 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#0x00-蓝图与重构">0x00 蓝图与重构</a></li>
+    <li><a href="#0x01-文件系统">0x01 文件系统</a>
+      <ol>
+        <li><a href="#flask-reuploaded-文件上传">Flask-Reuploaded: 文件上传</a></li>
+        <li><a href="#图库模块">图库模块</a></li>
+      </ol>
+    </li>
+    <li><a href="#0x02-评论系统">0x02 评论系统</a>
+      <ol>
+        <li><a href="#数据库设计">数据库设计</a></li>
+        <li><a href="#楼中楼">楼中楼</a></li>
+      </ol>
+    </li>
+    <li><a href="#0x03-网站后台">0x03 网站后台</a></li>
+    <li><a href="#0x04-热搜">0x04 热搜</a></li>
+    <li><a href="#不要让开发停下来">不要让开发停下来</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web/" >
+                Web
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -345,6 +384,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -373,7 +415,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    5 minute read
                 </time>
             </div>
         
@@ -382,6 +424,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -552,7 +595,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/web/">Web</a>
+            <a href="/tags/flask/">flask</a>
         
     </section>
 
@@ -578,6 +621,41 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">年轻人的第二个网站 - The Flask Mega Tutorial</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">闲来无事，倒腾博客</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -626,7 +704,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -703,64 +781,16 @@
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#0x00-蓝图与重构">0x00 蓝图与重构</a></li>
-    <li><a href="#0x01-文件系统">0x01 文件系统</a>
-      <ol>
-        <li><a href="#flask-reuploaded-文件上传">Flask-Reuploaded: 文件上传</a></li>
-        <li><a href="#图库模块">图库模块</a></li>
-      </ol>
-    </li>
-    <li><a href="#0x02-评论系统">0x02 评论系统</a>
-      <ol>
-        <li><a href="#数据库设计">数据库设计</a></li>
-        <li><a href="#楼中楼">楼中楼</a></li>
-      </ol>
-    </li>
-    <li><a href="#0x03-网站后台">0x03 网站后台</a></li>
-    <li><a href="#0x04-热搜">0x04 热搜</a></li>
-    <li><a href="#不要让开发停下来">不要让开发停下来</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>

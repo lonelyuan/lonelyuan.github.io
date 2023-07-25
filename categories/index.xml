@@ -5,6 +5,31 @@
         <link>https://lonelyuan.github.io/categories/</link>
         <description>Recent content in Categories on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+        <language>en-us</language>
+        <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Web</title>
+        <link>https://lonelyuan.github.io/categories/web/</link>
+        <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/categories/web/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CS</title>
+        <link>https://lonelyuan.github.io/categories/cs/</link>
+        <pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/categories/cs/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CTF</title>
+        <link>https://lonelyuan.github.io/categories/ctf/</link>
+        <pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/categories/ctf/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>

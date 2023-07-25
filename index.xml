@@ -15,12 +15,12 @@
         <description>&lt;p&gt;这个&lt;a class=&#34;link&#34; href=&#34;http://ifsec.blogspot.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;《伊万·弗拉特里克的安全博客》&lt;/a&gt;啊，确实是个好博客。这篇&lt;a class=&#34;link&#34; href=&#34;http://ifsec.blogspot.com/2018/02/so-you-want-to-work-in-security-and-for.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;《所以你想做安保工作?》&lt;/a&gt;啊，确实是篇好文章。那么我一个新世纪理工科战士，怎么开始写读后感了呢？老板的任务罢了。&lt;/p&gt;
-&lt;p&gt;伊万老哥是谷歌的安全研究员，代表作有winafl等。能上大厂当研究员，已经是我职业生涯的理想了。文章说，对大部分人来说，安全首先是一个爱好然后才是工作。诚然，没有纯粹的爱好是无法提供长时间坐冷板凳的自驱力的。但或许大部分人并没有对某一件事的狂热爱好，在褪去光鲜外表后，大部分人都是三分钟热度。人们常说“兴趣大于天赋”，或许浓厚的兴趣本身就是一种稀有的天赋。&lt;/p&gt;
+&lt;p&gt;伊万老哥是谷歌的安全研究员，代表作有winafl等。能上大厂当研究员，已经是我对职业生涯的理想了。文章说，对大部分人来说，安全首先是一个爱好然后才是工作。诚然，没有纯粹的爱好是无法提供长时间坐冷板凳的自驱力的。但或许大部分人并没有对某一件事的狂热爱好，在褪去光鲜外表后，大部分人都是三分钟热度。人们常说“兴趣大于天赋”，或许浓厚的兴趣本身就是一种稀有的天赋。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Don’t look now but getting started is more difficult now than it was 10 years ago&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;安全研究的入门难度比十年前更高。而本文发布于2018年，那时我正值高考，国内CTF形势方兴未艾，现在网络上随处可见的入门知识，都是当时的热门考点。文章说CTF是很好的入门方式，可以减缓学习曲线的陡峭程度。而现在，又过去了半个十年，我也紧赶慢赶步入研究生阶段。这个结论能否适用于当下的入门者，恐怕难以下定论。（仅限于中国大陆）（只是因为作者没有去过其他国家，没有说中国大陆不好的意思）。&lt;/p&gt;
-&lt;p&gt;当然我也不是输出负能量，面对越来越卷的市场，面对全球经济发展下行的环境，面对没有资本可以继承的自己，唯一能做的就是尽可能学习免费的知识和技能，静观其变。作者最后说，搞安全需要长时间坐电脑，并且&amp;quot;quite intellectually challenging&amp;quot;，经常&amp;quot;mentally exhausting&amp;quot;。此言诚然，要做好长时间得不到回报的觉悟，为自己寻找和培养正反馈；同时也要加强锻炼，身体健康和精神健康都要抓。&lt;/p&gt;
+&lt;p&gt;当然我也不是输出负能量，面对越来越卷的市场，面对全球经济发展下行的环境，面对没有原始资本的自己，唯一能做的就是尽可能学习免费的知识和技能，静观其变。作者最后说，搞安全需要长时间坐电脑，并且&amp;quot;quite intellectually challenging&amp;quot;，经常&amp;quot;mentally exhausting&amp;quot;。此言诚然，要做好长时间得不到回报的觉悟，寻找和培养正反馈；同时也要加强锻炼，身体健康和精神健康两手抓。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -40,10 +40,10 @@
     &gt;RSS&lt;/a&gt; ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p&gt;
 &lt;p&gt;但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class=&#34;link&#34; href=&#34;https://gridea.dev/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Gridea&lt;/a&gt; ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
-	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/R-C_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -55,16 +55,23 @@
 &lt;p&gt;然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;你们-js-确实比-go-有点素质&#34;&gt;你们 Js 确实比 Go 有点素质&lt;/h1&gt;
-&lt;p&gt;于是👴最终选用 Hugo 做博客。因为👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。最重要的是，作为 golang 开发的项目可以直接下载二进制，不需要配环境。但 Hugo 跟老牌博客 Hexo 比还是有些功能上的不足，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
-&lt;p&gt;一些需求：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;评论系统&lt;/li&gt;
-&lt;li&gt;访问量统计&lt;/li&gt;
-&lt;li&gt;上一次更新时间&lt;/li&gt;
-&lt;li&gt;词云——引入js&lt;/li&gt;
-&lt;li&gt;代码高亮——一键复制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;首先以 Hugo 为例了解一下静态站生成器的基本框架吧。&lt;/p&gt;
+&lt;p&gt;于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。但 Hugo 跟老牌博客 Hexo 比还存在一些功能上的不足，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg&#34;
+	width=&#34;1280&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下内容适合已了解 Hugo 基本使用之后的进一步学习。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;hugo-框架结构&#34;&gt;Hugo 框架结构&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -77,17 +84,42 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;├── archetypes
-│   └── default.md
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;├── archetypes          # .md 模板
+│   └── default.md      
 ├── config.toml         # 配置文件
-├── content             # 在这写东西
-├── data                # 
-├── layouts             # 布局文件
-├── static              # 
-└── themes              # 主题
+├── content             # 在这写东西，子文件夹即 sections 
+├── data                # 配置文件
+├── layouts             # .html 模板
+├── static              # 静态文件，hugo会全部复制
+└── themes              # 博客主题
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;【如标题所示，如果这句话存在，就说明还没等到闲来无事，这很合理】&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;主题调教&#34;&gt;主题调教&lt;/h3&gt;
+&lt;p&gt;👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道。&lt;/p&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 主题配色，字体&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 词云——js引入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;front-matter-方法论&#34;&gt;front matter 方法论&lt;/h3&gt;
+&lt;p&gt;Hugo 中对于文章的分类高度可定制，存在三个概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Taxonomy 分类法，分类的分类，即元分类。如 Tags 、 Category 是 Hugo 默认支持的分类，也可自行修改 Taxonomy 。&lt;/li&gt;
+&lt;li&gt;Term 分类标准&lt;/li&gt;
+&lt;li&gt;Value 分类的具体值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo 会为每种分类法生成列表页，方便检索文章。&lt;/p&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 菜单栏配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;你这静态网站不是很静态啊&#34;&gt;你这静态网站不是很静态啊&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 评论系统&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Google Analysis 收集 访问量&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Github Action 收集 lastmodify&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【To be continued，如果这句话还在说明作者最近不是闲来无事，这很合理】&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -4386,18 +4418,18 @@ sudo apt-get install vnc4server tightvncserver
         </item>
         <item>
         <title>CS</title>
-        <link>https://lonelyuan.github.io/cs/</link>
+        <link>https://lonelyuan.github.io/categories/cs/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/cs/</guid>
+        <guid>https://lonelyuan.github.io/categories/cs/</guid>
         <description></description>
         </item>
         <item>
         <title>CTF</title>
-        <link>https://lonelyuan.github.io/ctf/</link>
+        <link>https://lonelyuan.github.io/categories/ctf/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/ctf/</guid>
+        <guid>https://lonelyuan.github.io/categories/ctf/</guid>
         <description></description>
         </item>
         <item>
@@ -4472,7 +4504,7 @@ sudo apt-get install vnc4server tightvncserver
 &lt;h1 id=&#34;同好检测器&#34;&gt;🤺同好检测器&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;文&lt;/strong&gt;：大刘、王小波、……&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;剧&lt;/strong&gt;：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人……&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;影&lt;/strong&gt;：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人……&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;游&lt;/strong&gt;：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- raw HTML omitted --&gt;

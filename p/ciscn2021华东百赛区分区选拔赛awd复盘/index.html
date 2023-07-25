@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。
- “终端越炫，嗨客越带；嗨客越带，帽子越带”
- 🐐AWD复盘 首先根据参赛手册，进行一个规则的复制：
-1 2 3 4 5 6 7 8 9 10 11  1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。 2、 攻防赛部署若干道赛题，初始分值为10500分。 3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。 4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。 5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。 6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。 7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。 8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。 。。。 7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。 8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。    比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。  然后按照AWD开局的任务清单，进行一个盘的复：
-准备阶段  ssh连接：  主办方提供了ssh密钥，和靶机ip  于是省略 ssh-copy-id -i ~/.ssh/id_rsa.pub root@xx.xx.xx.xx环节。   但是万能的Windows Terminal连不上去（依然不知道为啥），👴只能用图形化ssh客户端添加私钥连接。   IP扫描：  共有7道题，3道web，4道pwn，每道题目一个独立靶机，有独立的ip地址。不同靶机d段不同，不同队伍c段不同，按初赛排名分配。平台上告知了全部的ip列表。  于是省略nmap -sn xx.xx.xx.0/24环节。   选手机和靶机池在一个局域网内。不同队伍c段不同，一个队伍内的不同电脑d段不同。   流量监控：  主办方贴心的提供了被打流量(但是只有下行流量)，直接在~/package目录下给出.'><title>CISCN2021华东百赛区分区选拔赛AWD复盘</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根'>
+<title>CISCN2021华东百赛区分区选拔赛AWD复盘</title>
 
 <link rel='canonical' href='https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='CISCN2021华东百赛区分区选拔赛AWD复盘'>
-<meta property='og:description' content='🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。
- “终端越炫，嗨客越带；嗨客越带，帽子越带”
- 🐐AWD复盘 首先根据参赛手册，进行一个规则的复制：
-1 2 3 4 5 6 7 8 9 10 11  1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。 2、 攻防赛部署若干道赛题，初始分值为10500分。 3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。 4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。 5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。 6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。 7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。 8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。 。。。 7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。 8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。    比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。  然后按照AWD开局的任务清单，进行一个盘的复：
-准备阶段  ssh连接：  主办方提供了ssh密钥，和靶机ip  于是省略 ssh-copy-id -i ~/.ssh/id_rsa.pub root@xx.xx.xx.xx环节。   但是万能的Windows Terminal连不上去（依然不知道为啥），👴只能用图形化ssh客户端添加私钥连接。   IP扫描：  共有7道题，3道web，4道pwn，每道题目一个独立靶机，有独立的ip地址。不同靶机d段不同，不同队伍c段不同，按初赛排名分配。平台上告知了全部的ip列表。  于是省略nmap -sn xx.xx.xx.0/24环节。   选手机和靶机池在一个局域网内。不同队伍c段不同，一个队伍内的不同电脑d段不同。   流量监控：  主办方贴心的提供了被打流量(但是只有下行流量)，直接在~/package目录下给出.'>
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='CISCN2021华东百赛区分区选拔赛AWD复盘'>
+<meta property='og:description' content='🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AWD' /><meta property='article:tag' content='CTF' /><meta property='article:published_time' content='2021-06-16T16:54:30&#43;00:00'/><meta property='article:modified_time' content='2021-06-16T16:54:30&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AWD' /><meta property='article:published_time' content='2021-06-16T16:54:30&#43;00:00'/><meta property='article:modified_time' content='2021-06-16T16:54:30&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif' />
 <meta name="twitter:title" content="CISCN2021华东百赛区分区选拔赛AWD复盘">
-<meta name="twitter:description" content="🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。
- “终端越炫，嗨客越带；嗨客越带，帽子越带”
- 🐐AWD复盘 首先根据参赛手册，进行一个规则的复制：
-1 2 3 4 5 6 7 8 9 10 11  1、 采用线下赛的方式，参赛团队通过有线连接到局域网，并进行网络连通性的测试。请自备连接网络所需要的设备如usb转RJ45转换器等工具。 2、 攻防赛部署若干道赛题，初始分值为10500分。 3、 使用xctf用户通过ssh连接GameBox，GameBox的ip地址和登录密码通过赛事页面下载获取。 4、 比赛10分钟/回合，每个回合会更新GameBox上的flag。 5、 每个回合内，一个战队的一个服务被渗透攻击成功（被获取到flag并提交），则扣除10分，攻击成功的战队平分这些分数。 6、 每个回合内，服务宕机或无法通过check则会被扣除10分，服务正常的战队平分这些分数。 7、 参赛战队在修复漏洞时，请保持服务的正常功能和打印字符、界面样式，否则将无法通过系统check。 8、 每个回合内，服务异常和被拿flag可以同时发生，即战队在一个回合内单个服务可能会被扣除两者叠加的分数，最多扣除20分。 。。。 7、 请参赛战队在比赛开始时对所有服务进行备份，主办方仅提供2次重置机会，2次机会使用后不予重置。申请重置时请提供战队名称。 8、 禁止使用通用防御方法如waf等工具，违规者第一次被发现扣除当前分值的10%，第二次被发现扣除当前分值的50%，第三次被发现取消参赛资格并向其学校发文进行通报批评。    比赛全程收手机，断外网，不能用waf，不准用不死马，大家都很清真，找回了ctf最初的快乐。  然后按照AWD开局的任务清单，进行一个盘的复：
-准备阶段  ssh连接：  主办方提供了ssh密钥，和靶机ip  于是省略 ssh-copy-id -i ~/.ssh/id_rsa.pub root@xx.xx.xx.xx环节。   但是万能的Windows Terminal连不上去（依然不知道为啥），👴只能用图形化ssh客户端添加私钥连接。   IP扫描：  共有7道题，3道web，4道pwn，每道题目一个独立靶机，有独立的ip地址。不同靶机d段不同，不同队伍c段不同，按初赛排名分配。平台上告知了全部的ip列表。  于是省略nmap -sn xx.xx.xx.0/24环节。   选手机和靶机池在一个局域网内。不同队伍c段不同，一个队伍内的不同电脑d段不同。   流量监控：  主办方贴心的提供了被打流量(但是只有下行流量)，直接在~/package目录下给出."><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="🛁 这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
     </head>
     <body class="
     article-page
@@ -91,6 +91,7 @@
                         href='https://github.com/lonelyuan'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -110,6 +111,7 @@
                         href='https://twitter.com/FTrumpyeah'
                         target="_blank"
                         title="Twitter"
+                        rel="me"
                     >
                         
                         
@@ -128,7 +130,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -149,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/about-me/' >
                 
@@ -169,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -190,9 +189,8 @@
         </li>
         
         
-
         <li >
-            <a href='/cs/' >
+            <a href='/categories/cs/' >
                 
                 
                 
@@ -212,9 +210,8 @@
         </li>
         
         
-
         <li >
-            <a href='/ctf/' >
+            <a href='/categories/ctf/' >
                 
                 
                 
@@ -231,7 +228,6 @@
         </li>
         
         
-
         <li >
             <a href='/todo/' >
                 
@@ -252,7 +248,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -272,7 +267,6 @@
         </li>
         
         
-
         <li >
             <a href='/links/' >
                 
@@ -318,7 +312,57 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#heading">🛁</a></li>
+    <li><a href="#awd复盘">🐐AWD复盘</a>
+      <ol>
+        <li><a href="#准备阶段">准备阶段</a></li>
+        <li><a href="#开局阶段">开局阶段</a></li>
+        <li><a href="#攻防阶段">攻防阶段</a>
+          <ol>
+            <li><a href="#web1safecms">web1：safecms</a></li>
+            <li><a href="#web2eyou">web2：eyou</a></li>
+            <li><a href="#web3lol">web3：lol</a></li>
+            <li><a href="#pwn">pwn：</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#自动化攻防框架">🔒自动化攻防框架</a></li>
+    <li><a href="#快进到考试周破防">🌊快进到《考试周破防》</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
@@ -336,6 +380,14 @@
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/ctf/" >
+                CTF
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -345,6 +397,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -373,7 +428,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    8 minute read
                 </time>
             </div>
         
@@ -382,6 +437,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -670,8 +726,6 @@
         
             <a href="/tags/awd/">AWD</a>
         
-            <a href="/tags/ctf/">CTF</a>
-        
     </section>
 
 
@@ -744,7 +798,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -821,65 +875,16 @@
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#heading">🛁</a></li>
-    <li><a href="#awd复盘">🐐AWD复盘</a>
-      <ol>
-        <li><a href="#准备阶段">准备阶段</a></li>
-        <li><a href="#开局阶段">开局阶段</a></li>
-        <li><a href="#攻防阶段">攻防阶段</a>
-          <ol>
-            <li><a href="#web1safecms">web1：safecms</a></li>
-            <li><a href="#web2eyou">web2：eyou</a></li>
-            <li><a href="#web3lol">web3：lol</a></li>
-            <li><a href="#pwn">pwn：</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#自动化攻防框架">🔒自动化攻防框架</a></li>
-    <li><a href="#快进到考试周破防">🌊快进到《考试周破防》</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>

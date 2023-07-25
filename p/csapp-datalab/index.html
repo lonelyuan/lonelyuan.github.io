@@ -1,48 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。
-拿到文件夹先读README。
-第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。
-直接读bits.c，里面有全部信息。每次测试程序都要先make一下。
-  1：只用按位与和非实现异或   1 2 3 4 5 6 7  /* * bitXor - x^y using only ~ and &amp;amp; * Example: bitXor(4, 5) = 1 * Legal ops: ~ &amp;amp; * Max ops: 14 * Rating: 1 */   &amp;amp;=全为1
-~&amp;amp;=不全为1
-异或=不全为0且不全为1，按此逻辑组合即可。
-你让我用括号了？？？
-反思：浪费时间，与和或傻傻分不清楚
-  2：位运算取补码的最小值   英语时间：补码（two&amp;rsquo;s complement）反码：（one&amp;rsquo;s complement）。结合公式很好理解
-1 2 3 4 5 6  /* * tmin - return minimum two&amp;#39;s complement integer * Legal ops: !'><title>CSAPP - datalab</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。 拿到文件夹先读README。 第一个lab，关于位运算。通'>
+<title>CSAPP - datalab</title>
 
 <link rel='canonical' href='https://lonelyuan.github.io/p/csapp-datalab/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='CSAPP - datalab'>
-<meta property='og:description' content='CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。
-拿到文件夹先读README。
-第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。
-直接读bits.c，里面有全部信息。每次测试程序都要先make一下。
-  1：只用按位与和非实现异或   1 2 3 4 5 6 7  /* * bitXor - x^y using only ~ and &amp;amp; * Example: bitXor(4, 5) = 1 * Legal ops: ~ &amp;amp; * Max ops: 14 * Rating: 1 */   &amp;amp;=全为1
-~&amp;amp;=不全为1
-异或=不全为0且不全为1，按此逻辑组合即可。
-你让我用括号了？？？
-反思：浪费时间，与和或傻傻分不清楚
-  2：位运算取补码的最小值   英语时间：补码（two&amp;rsquo;s complement）反码：（one&amp;rsquo;s complement）。结合公式很好理解
-1 2 3 4 5 6  /* * tmin - return minimum two&amp;#39;s complement integer * Legal ops: !'>
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='CSAPP - datalab'>
+<meta property='og:description' content='CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。 拿到文件夹先读README。 第一个lab，关于位运算。通'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/csapp-datalab/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CSAPP' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2020-01-21T00:00:03&#43;00:00'/><meta property='article:modified_time' content='2020-01-21T00:00:03&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CSAPP' /><meta property='article:published_time' content='2020-01-21T00:00:03&#43;00:00'/><meta property='article:modified_time' content='2020-01-21T00:00:03&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
 <meta name="twitter:title" content="CSAPP - datalab">
-<meta name="twitter:description" content="CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。
-拿到文件夹先读README。
-第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。
-直接读bits.c，里面有全部信息。每次测试程序都要先make一下。
-  1：只用按位与和非实现异或   1 2 3 4 5 6 7  /* * bitXor - x^y using only ~ and &amp;amp; * Example: bitXor(4, 5) = 1 * Legal ops: ~ &amp;amp; * Max ops: 14 * Rating: 1 */   &amp;amp;=全为1
-~&amp;amp;=不全为1
-异或=不全为0且不全为1，按此逻辑组合即可。
-你让我用括号了？？？
-反思：浪费时间，与和或傻傻分不清楚
-  2：位运算取补码的最小值   英语时间：补码（two&amp;rsquo;s complement）反码：（one&amp;rsquo;s complement）。结合公式很好理解
-1 2 3 4 5 6  /* * tmin - return minimum two&amp;#39;s complement integer * Legal ops: !"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="CSAPP：datalab 读，就硬读。光读没用，得做练习。这个系列记录思路不写答案。 拿到文件夹先读README。 第一个lab，关于位运算。通"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
     </head>
     <body class="
     article-page
@@ -109,6 +91,7 @@
                         href='https://github.com/lonelyuan'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -128,6 +111,7 @@
                         href='https://twitter.com/FTrumpyeah'
                         target="_blank"
                         title="Twitter"
+                        rel="me"
                     >
                         
                         
@@ -146,7 +130,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -167,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/about-me/' >
                 
@@ -187,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -208,9 +189,8 @@
         </li>
         
         
-
         <li >
-            <a href='/cs/' >
+            <a href='/categories/cs/' >
                 
                 
                 
@@ -230,9 +210,8 @@
         </li>
         
         
-
         <li >
-            <a href='/ctf/' >
+            <a href='/categories/ctf/' >
                 
                 
                 
@@ -249,7 +228,6 @@
         </li>
         
         
-
         <li >
             <a href='/todo/' >
                 
@@ -270,7 +248,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -290,7 +267,6 @@
         </li>
         
         
-
         <li >
             <a href='/links/' >
                 
@@ -336,11 +312,65 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#1只用按位与和非实现异或">1：只用按位与和非实现异或</a></li>
+            <li><a href="#2位运算取补码的最小值">2：位运算取补码的最小值</a></li>
+            <li><a href="#3判断一个数是否为补码的最大值">3：判断一个数是否为补码的最大值</a></li>
+            <li><a href="#4判断所有奇数位为1">4：判断所有奇数位为1</a></li>
+            <li><a href="#5取相反数">5：取相反数</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/cs/" >
+                CS
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -351,6 +381,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -379,7 +412,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -388,6 +421,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -557,8 +591,6 @@ $$
         
             <a href="/tags/csapp/">CSAPP</a>
         
-            <a href="/tags/cs/">CS</a>
-        
     </section>
 
 
@@ -584,9 +616,9 @@ $$
 
     
 
-<aside class="related-contents--wrapper">
-    <h2 class="section-title">Related contents</h2>
-    <div class="related-contents">
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
         <div class="flex article-list--tile">
             
                 
@@ -600,6 +632,70 @@ $$
         </div>
     </a>
 </article>
+
+            
+                
+<article class="">
+    <a href="/p/mospi-chcore-lab-1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MOSPI-ChCore lab (1)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从scapy和wireshark学计算机网络</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.ae9e65f17ef552903af86fc5d22a0b9b_hu41671eab994e10b990ecc8a898c73896_308650_250x150_fill_q75_box_smart1.jfif" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"
+                        
+                        data-hash="md5-rp5l8X71UpA6&#43;G/F0ioLmw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">深度学习入门——jetbot智能小车尝鲜（二）</h2>
+        </div>
+    </a>
+</article>
+
             
         </div>
     </div>
@@ -652,7 +748,7 @@ $$
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -729,61 +825,16 @@ $$
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li>
-          <ol>
-            <li><a href="#1只用按位与和非实现异或">1：只用按位与和非实现异或</a></li>
-            <li><a href="#2位运算取补码的最小值">2：位运算取补码的最小值</a></li>
-            <li><a href="#3判断一个数是否为补码的最大值">3：判断一个数是否为补码的最大值</a></li>
-            <li><a href="#4判断所有奇数位为1">4：判断所有奇数位为1</a></li>
-            <li><a href="#5取相反数">5：取相反数</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>

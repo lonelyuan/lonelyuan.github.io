@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：
-那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲虚拟内存，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个多线程，看到没，线程上下文切换了。我特么直接三段系统调度（短期，中期，长期），然后我直接~就一个多核调度，我就调度到IPC，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出信号量直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，文件系统！加三段系统虚拟化（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。
-圣经原文：拖更云的鹰佐教学
-  本系列为 ChCore lab 实验报告。 Lab源码：https://gitee.com/ipads-lab/chcore-lab MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/
- 实验环境 需要docker和qemu，docker不赘述。linux下安装qemu： sudo apt-get install qemu-system-arm 安装完成之后查看版本号：
-1 2 3  $ qemu-system-aarch64 --version QEMU emulator version 4.2.0 Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers   5个实验在源码仓库分别以5个分支存在。 git clone -b即可。
-内核构建和调试：
- 用docker交叉编译内核：make build 启动qemu：make qemu  这里遇到报错： Unable to init server: Could not connect: Connection refused gtk initialization failed 解决方法：修改 Makefile ，在QEMUOPTS参数后加-nographic   启动qemu：make qemu-gdb  将监听1234端口以供gdb远程调用 退出：ctrl&#43;a，然后按x。 如果意外退出，要杀死进程：kill $(ps -ef | grep qemu | grep 1234 | awk &#39;{print $2}&#39;)   在另一个终端启动gdb调试：make gdb  这里可能需要安装gdb-multiarch：sudo apt-get install gdb-multiarch    可以看到，本项目中 Makefile 主要是封装了一些命令。'><title>MOSPI-ChCore lab (1)</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱： 那个额'>
+<title>MOSPI-ChCore lab (1)</title>
 
 <link rel='canonical' href='https://lonelyuan.github.io/p/mospi-chcore-lab-1/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='MOSPI-ChCore lab (1)'>
-<meta property='og:description' content='由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：
-那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲虚拟内存，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个多线程，看到没，线程上下文切换了。我特么直接三段系统调度（短期，中期，长期），然后我直接~就一个多核调度，我就调度到IPC，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出信号量直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，文件系统！加三段系统虚拟化（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。
-圣经原文：拖更云的鹰佐教学
-  本系列为 ChCore lab 实验报告。 Lab源码：https://gitee.com/ipads-lab/chcore-lab MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/
- 实验环境 需要docker和qemu，docker不赘述。linux下安装qemu： sudo apt-get install qemu-system-arm 安装完成之后查看版本号：
-1 2 3  $ qemu-system-aarch64 --version QEMU emulator version 4.2.0 Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers   5个实验在源码仓库分别以5个分支存在。 git clone -b即可。
-内核构建和调试：
- 用docker交叉编译内核：make build 启动qemu：make qemu  这里遇到报错： Unable to init server: Could not connect: Connection refused gtk initialization failed 解决方法：修改 Makefile ，在QEMUOPTS参数后加-nographic   启动qemu：make qemu-gdb  将监听1234端口以供gdb远程调用 退出：ctrl&#43;a，然后按x。 如果意外退出，要杀死进程：kill $(ps -ef | grep qemu | grep 1234 | awk &#39;{print $2}&#39;)   在另一个终端启动gdb调试：make gdb  这里可能需要安装gdb-multiarch：sudo apt-get install gdb-multiarch    可以看到，本项目中 Makefile 主要是封装了一些命令。'>
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='MOSPI-ChCore lab (1)'>
+<meta property='og:description' content='由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱： 那个额'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/mospi-chcore-lab-1/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='OS' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2021-10-29T17:03:14&#43;00:00'/><meta property='article:modified_time' content='2021-10-29T17:03:14&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='OS' /><meta property='article:published_time' content='2021-10-29T17:03:14&#43;00:00'/><meta property='article:modified_time' content='2021-10-29T17:03:14&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
 <meta name="twitter:title" content="MOSPI-ChCore lab (1)">
-<meta name="twitter:description" content="由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：
-那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲虚拟内存，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个多线程，看到没，线程上下文切换了。我特么直接三段系统调度（短期，中期，长期），然后我直接~就一个多核调度，我就调度到IPC，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出信号量直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，文件系统！加三段系统虚拟化（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。
-圣经原文：拖更云的鹰佐教学
-  本系列为 ChCore lab 实验报告。 Lab源码：https://gitee.com/ipads-lab/chcore-lab MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/
- 实验环境 需要docker和qemu，docker不赘述。linux下安装qemu： sudo apt-get install qemu-system-arm 安装完成之后查看版本号：
-1 2 3  $ qemu-system-aarch64 --version QEMU emulator version 4.2.0 Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers   5个实验在源码仓库分别以5个分支存在。 git clone -b即可。
-内核构建和调试：
- 用docker交叉编译内核：make build 启动qemu：make qemu  这里遇到报错： Unable to init server: Could not connect: Connection refused gtk initialization failed 解决方法：修改 Makefile ，在QEMUOPTS参数后加-nographic   启动qemu：make qemu-gdb  将监听1234端口以供gdb远程调用 退出：ctrl&#43;a，然后按x。 如果意外退出，要杀死进程：kill $(ps -ef | grep qemu | grep 1234 | awk &#39;{print $2}&#39;)   在另一个终端启动gdb调试：make gdb  这里可能需要安装gdb-multiarch：sudo apt-get install gdb-multiarch    可以看到，本项目中 Makefile 主要是封装了一些命令。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱： 那个额"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
     </head>
     <body class="
     article-page
@@ -100,6 +91,7 @@
                         href='https://github.com/lonelyuan'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -119,6 +111,7 @@
                         href='https://twitter.com/FTrumpyeah'
                         target="_blank"
                         title="Twitter"
+                        rel="me"
                     >
                         
                         
@@ -137,7 +130,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -158,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/about-me/' >
                 
@@ -178,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -199,9 +189,8 @@
         </li>
         
         
-
         <li >
-            <a href='/cs/' >
+            <a href='/categories/cs/' >
                 
                 
                 
@@ -221,9 +210,8 @@
         </li>
         
         
-
         <li >
-            <a href='/ctf/' >
+            <a href='/categories/ctf/' >
                 
                 
                 
@@ -240,7 +228,6 @@
         </li>
         
         
-
         <li >
             <a href='/todo/' >
                 
@@ -261,7 +248,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -281,7 +267,6 @@
         </li>
         
         
-
         <li >
             <a href='/links/' >
                 
@@ -327,11 +312,64 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#实验环境">实验环境</a></li>
+    <li><a href="#lab1">Lab1</a>
+      <ol>
+        <li><a href="#练习3-加载入口定义">练习3-加载入口定义</a></li>
+        <li><a href="#练习3-多处理器挂起">练习3-多处理器挂起</a></li>
+        <li><a href="#练习4-lma和vma">练习4-LMA和VMA</a></li>
+        <li><a href="#练习5-c语言进制转换">练习5-c语言进制转换</a></li>
+        <li><a href="#练习6-函数栈">练习6-函数栈</a></li>
+        <li><a href="#练习7-调用惯例">练习7-调用惯例</a></li>
+        <li><a href="#练习9-backtrace">练习9-backtrace</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/cs/" >
+                CS
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -342,6 +380,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -370,7 +411,7 @@
 
 
                 <time class="article-time--reading">
-                    7 minute read
+                    10 minute read
                 </time>
             </div>
         
@@ -379,6 +420,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -1090,8 +1132,6 @@ $sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0
         
             <a href="/tags/os/">OS</a>
         
-            <a href="/tags/cs/">CS</a>
-        
     </section>
 
 
@@ -1116,6 +1156,91 @@ $sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从scapy和wireshark学计算机网络</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.ae9e65f17ef552903af86fc5d22a0b9b_hu41671eab994e10b990ecc8a898c73896_308650_250x150_fill_q75_box_smart1.jfif" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"
+                        
+                        data-hash="md5-rp5l8X71UpA6&#43;G/F0ioLmw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/csapp-bomblab/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CSAPP - Bomblab</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/csapp-datalab/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CSAPP - datalab</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">深度学习入门——jetbot智能小车尝鲜（二）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -1164,7 +1289,7 @@ $sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1241,60 +1366,16 @@ $sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#实验环境">实验环境</a></li>
-    <li><a href="#lab1">Lab1</a>
-      <ol>
-        <li><a href="#练习3-加载入口定义">练习3-加载入口定义</a></li>
-        <li><a href="#练习3-多处理器挂起">练习3-多处理器挂起</a></li>
-        <li><a href="#练习4-lma和vma">练习4-LMA和VMA</a></li>
-        <li><a href="#练习5-c语言进制转换">练习5-c语言进制转换</a></li>
-        <li><a href="#练习6-函数栈">练习6-函数栈</a></li>
-        <li><a href="#练习7-调用惯例">练习7-调用惯例</a></li>
-        <li><a href="#练习9-backtrace">练习9-backtrace</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>

@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Web on lonelyuan&#39;s Blog</title>
+        <link>https://lonelyuan.github.io/categories/web/</link>
+        <description>Recent content in Web on lonelyuan&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/web/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>闲来无事，倒腾博客</title>
+        <link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link>
+        <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid>
+        <description>&lt;h1 id=&#34;你们-cli-确实比-gui-有点素质&#34;&gt;你们 CLI 确实比 GUI 有点素质&lt;/h1&gt;
+&lt;p&gt;要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这点屁事我为什么不发秋秋空间/微博？&lt;/li&gt;
+&lt;li&gt;只有我看我为什么不记 Onenote/Notion ？&lt;/li&gt;
+&lt;li&gt;想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 &lt;a class=&#34;link&#34; href=&#34;https://phuker.github.io/posts/web-feed.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RSS&lt;/a&gt; ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p&gt;
+&lt;p&gt;但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class=&#34;link&#34; href=&#34;https://gridea.dev/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gridea&lt;/a&gt; ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;你们-js-确实比-go-有点素质&#34;&gt;你们 Js 确实比 Go 有点素质&lt;/h1&gt;
+&lt;p&gt;于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。但 Hugo 跟老牌博客 Hexo 比还存在一些功能上的不足，等👴闲来无事的时候搞一搞二次开发……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg&#34;
+	width=&#34;1280&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下内容适合已了解 Hugo 基本使用之后的进一步学习。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;hugo-框架结构&#34;&gt;Hugo 框架结构&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;├── archetypes          # .md 模板
+│   └── default.md      
+├── config.toml         # 配置文件
+├── content             # 在这写东西，子文件夹即 sections 
+├── data                # 配置文件
+├── layouts             # .html 模板
+├── static              # 静态文件，hugo会全部复制
+└── themes              # 博客主题
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;主题调教&#34;&gt;主题调教&lt;/h3&gt;
+&lt;p&gt;👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道。&lt;/p&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 主题配色，字体&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 词云——js引入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;front-matter-方法论&#34;&gt;front matter 方法论&lt;/h3&gt;
+&lt;p&gt;Hugo 中对于文章的分类高度可定制，存在三个概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Taxonomy 分类法，分类的分类，即元分类。如 Tags 、 Category 是 Hugo 默认支持的分类，也可自行修改 Taxonomy 。&lt;/li&gt;
+&lt;li&gt;Term 分类标准&lt;/li&gt;
+&lt;li&gt;Value 分类的具体值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo 会为每种分类法生成列表页，方便检索文章。&lt;/p&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 菜单栏配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;你这静态网站不是很静态啊&#34;&gt;你这静态网站不是很静态啊&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 评论系统&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Google Analysis 收集 访问量&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Github Action 收集 lastmodify&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【To be continued，如果这句话还在说明作者最近不是闲来无事，这很合理】&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>年轻人的第二个网站（二） - flask-supreme-tutorial</title>
+        <link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link>
+        <pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lonelyuan.github.io/post/flask-mega-tutorial/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;上回书&lt;/a&gt;说到，网站初具雏形，但经高人指点，还是有很多不足。
+本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。
+所以，不要停下来啊！👆（指开发&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;0x00-蓝图与重构&#34;&gt;0x00 蓝图与重构&lt;/h2&gt;
+&lt;p&gt;与之前相比，网站将增加以下功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;图库：文件上传模块&lt;/li&gt;
+&lt;li&gt;评论：楼中楼功能&lt;/li&gt;
+&lt;li&gt;后台：权限模块，后台模块&lt;/li&gt;
+&lt;li&gt;优化：更健壮的数据库接口，更细致的权限控制&lt;/li&gt;
+&lt;li&gt;plus功能：用 redis 实现热搜&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在开发这些功能之前，首先重整项目结构。如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完全蓝图化。&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/ldq_sd/article/details/104766636&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;模板也放入独立子目录里，蓝图注册时使用template_folder参数，不过这样容易产生bug，flask 官方推荐使用硬编码，汗。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;清理依赖，不使用维护状态差的库。
+&lt;ul&gt;
+&lt;li&gt;开发新功能的时候，去哪里找最佳实践，找好用的库呢？有一个 Github 搜索小技巧，名为 &amp;ldquo;awesome-xxx&amp;rdquo; 的仓库通常是某技术的优质资源列表。如：https://github.com/humiaozuzu/awesome-flask&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;0x01-文件系统&#34;&gt;0x01 文件系统&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本部分参考了&lt;a class=&#34;link&#34; href=&#34;https://greyli.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;李辉&lt;/a&gt;大佬的系列文章，
+&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/23731819?refer=flask&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/23731819?refer=flask&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;头像，照片……文件上传是绕不开的话题。在&lt;a class=&#34;link&#34; href=&#34;#shangyipian&#34; &gt;上一篇&lt;/a&gt;参考的教程中，头像的实现是由托管网站生成随机的图片。遗憾的是并没有像 ORM 一样方便数据库处理的文件处理框架可供使用，还是自己把他啃下来吧。&lt;/p&gt;
+&lt;p&gt;注意踩坑！大部份资料推荐使用Flask_uploads插件，然而使用该插件时出现如下报错：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;ImportError: cannot import name &amp;#39;secure_filename&amp;#39; from &amp;#39;werkzeug&amp;#39; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一是修改库源码&lt;/li&gt;
+&lt;li&gt;二是换另一个库，维护良好且可无缝迁移，名为&lt;a class=&#34;link&#34; href=&#34;https://pypi.org/project/Flask-Reuploaded/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Flask-Reuploaded&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前者不利于后续部署，本人倾向于后者。然而，使用新库也遇到了诸多麻烦，使用&lt;code&gt;UploadSet.url()&lt;/code&gt;方法时，报错如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;werkzeug.routing.BuildError: Could not build url for endpoint &amp;#39;_uploads.uploaded_file&amp;#39; with values [&amp;#39;filename&amp;#39;, &amp;#39;setname&amp;#39;]. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;UploadSet.url()&lt;/code&gt;方法返回对应文件的可访问url，返回的url默认带有&lt;code&gt;_upload/&lt;/code&gt;前缀，这是 Flask-Uploads 自带的路由，也被称为 autoserve 。
+然而官方文档里有这样一句话&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;autoserve of uploaded images now has been deactivated; this was a poorly documented “feature”, which even could have lead to unwanted data disclosure; if you want to activate the feature again, you need to set UPLOADS_AUTOSERVE=True&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看来 Flask-Reuploaded 的作者似乎认为文件读取功能与我无瓜。好吧，这部分我们自己实现。&lt;/p&gt;
+&lt;p&gt;// 浪费了一晚上debug，结果只是因为文档没看明白，再次证明读文档的重要性。&lt;/p&gt;
+&lt;h3 id=&#34;flask-reuploaded-文件上传&#34;&gt;Flask-Reuploaded: 文件上传&lt;/h3&gt;
+&lt;p&gt;插件将上传的一类文件抽象成集合&lt;code&gt;UploadSet&lt;/code&gt;。对每个 Set 有如下操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置文件类型：&lt;code&gt;photos = UploadSet(&#39;photos&#39;, IMAGES)&lt;/code&gt; //类型包括：IMAGES、TEXT、AUDIO……&lt;/li&gt;
+&lt;li&gt;配置存贮路径：&lt;code&gt;app.config[&#39;UPLOADED_PHOTOS_DEST&#39;]&lt;/code&gt; // Photos 为 Set 的变量名&lt;/li&gt;
+&lt;li&gt;保存文件：&lt;code&gt;filename = photos.save(request.files[&#39;photo&#39;])&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;返回链接：&lt;code&gt;photos.url(filename)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后，注册 Set 和插件注册类似：&lt;code&gt;configure_uploads(app, [avatars, photos])&lt;/code&gt; //可一次性全部注册&lt;/p&gt;
+&lt;p&gt;实现头像上传的步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模型层： User 添加 avatar 字段，储存头像的文件名。原&lt;code&gt;avatar()&lt;/code&gt;方法作为默认头像。&lt;/li&gt;
+&lt;li&gt;表单层： edit_profile 表单增加&lt;code&gt;FileField&lt;/code&gt;字段&lt;/li&gt;
+&lt;li&gt;视图层： 储存文件，向数据库提交文件名。&lt;/li&gt;
+&lt;li&gt;模板层： 改用硬路由获取url。// 最终 .url() 还是有bug，再次说明不要乱用不知名的插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;图库模块&#34;&gt;图库模块&lt;/h3&gt;
+&lt;p&gt;本模块包括如下路由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/index&lt;/code&gt;：主页显示瀑布流&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/upload&lt;/code&gt;：上传接口：参考头像上传&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/detail&lt;/code&gt;：详情，显示评论&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/delete&lt;/code&gt;：删除接口：同时删除文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于本项目前端框架是 Bootstrap ，👴不想写Jquery，所以直接刷新页面，也不弄无限滚动了，按钮了事。另外为了不同列长度尽量均匀，故采用取巧的方法，平均分配。根据大数定理，只要随机图片足够多肯定会差不多均匀。。。。&lt;/p&gt;
+&lt;h2 id=&#34;0x02-评论系统&#34;&gt;0x02 评论系统&lt;/h2&gt;
+&lt;h3 id=&#34;数据库设计&#34;&gt;数据库设计&lt;/h3&gt;
+&lt;p&gt;评论包含了两个一对多关系，既是评论和文章的一对多关系，也是评论和用户的一对多。为此，只需要给User和Post添加关系即可。
+然而，我们希望设计统一的Comment模型，评论的对象既可以是文章，也可以是图片，也可以是其他评论。为此，添加一个枚举类型的字段指示评论类型，从而采用不同的处理逻辑。&lt;/p&gt;
+&lt;h3 id=&#34;楼中楼&#34;&gt;楼中楼&lt;/h3&gt;
+&lt;p&gt;而主流网站不光支持对文章评论，还支持楼中楼。对楼中楼的实现有以下几种方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;按时间平铺：以原百度贴吧为例
+&lt;ul&gt;
+&lt;li&gt;添加 &lt;code&gt;reply_id&lt;/code&gt; 字段，指示要回复的人&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;套娃式缩进：以某些老式bbs为例
+&lt;ul&gt;
+&lt;li&gt;添加 &lt;code&gt;parent_id&lt;/code&gt; 字段，指示父评论（顶层评论则为本身id），在实体类中保存子评论列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;弹窗式查看：以知乎，b站为例
+&lt;ul&gt;
+&lt;li&gt;在按时间平铺的基础上，若 &lt;code&gt;reply_id&lt;/code&gt;存在添加“查看对话”按钮，递归的构建对话并弹窗。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中，第一种实现简单，用户不友好；第二种实现复杂，对多层级对话无法胜任；第三种是最主流的实现方式。&lt;/p&gt;
+&lt;p&gt;通过以&lt;code&gt;reply_id&lt;/code&gt;作为指针，所有评论连接成了一棵树，在任意一个节点进行“查看对话”操作，就是执行树的寻根。“查看对话”函数如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@staticmethod&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;view_dialogue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;dialogue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;comment&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;reply_id&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;dialogue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dialogue&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;0x03-网站后台&#34;&gt;0x03 网站后台&lt;/h2&gt;
+&lt;p&gt;网站的后台通常给管理员提供统一监管数据库的界面。有以下插件帮助实现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flask-admin：一键生成后台页面，并可以自定义视图和模型。&lt;/li&gt;
+&lt;li&gt;Flask-Security： 比admin层次更高，封装了常用视图和模板。但是文档少，且很多功能我们已经实现了，再使用它就要推翻重做。遂弃用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本教程中使用了 RBAC（Role-Based Access Control) 基于角色的访问控制，简单说就是设计一个角色表，用户表和角色表用关联表实现多对多关联。这样做的好处是，针对角色的权限分配，修改权限时无需修改每个用户。&lt;/p&gt;
+&lt;h2 id=&#34;0x04-热搜&#34;&gt;0x04 热搜&lt;/h2&gt;
+&lt;p&gt;本节再加入一个重量级内容，利用 redis 实现浏览量排行榜，也就是热搜。当然，真正的热搜榜单排名规则更加复杂，这里只通过简单的浏览量计数来练习 redis 的使用。&lt;/p&gt;
+&lt;p&gt;【👴有时间再做】&lt;/p&gt;
+&lt;h2 id=&#34;不要让开发停下来&#34;&gt;不要让开发停下来&lt;/h2&gt;
+&lt;p&gt;可以加的功能还有很多：时间线，emoji支持，多媒体，前后端分离(Vue)，，&lt;/p&gt;
+&lt;p&gt;除了功能，当面对更高量级的流量时，网站性能便更加重要，这时候消息队列，PRC，微服务/分布式，，，更让人头秃。&lt;/p&gt;
+&lt;p&gt;Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>年轻人的第二个网站 - The Flask Mega Tutorial</title>
+        <link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link>
+        <pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;本文为 Flask 框架学习笔记，主要参考了 &lt;a class=&#34;link&#34; href=&#34;https://luhuisicnu.gitbook.io/the-flask-mega-tutorial-zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The-Flask-Mega-Tutorial&lt;/a&gt; 和 《Flask Web开发：基于Python的Web应用开发实战》两本书，并在原项目的基础上拓展。（下文统称这两个资源为“本教程”）
+不熟悉 Flask 框架请先阅读&lt;a class=&#34;link&#34; href=&#34;https://dormousehole.readthedocs.io/en/latest/quickstart.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;快速上手 - flask 中文文档&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;这两本书的作者是同一个人，就内容上说后者算是前者的豪华版。本教程的优点是内容全面，从入门到部署一站式服务；缺点是不够深入，且有些过时，书中举例的诸多插件均为作者为了此书而开发的，已经许久不再维护，导致很难在其示例项目上拓展。一看扉页，2015年出版，那没事了。
+至于第一个网站？参见&lt;a class=&#34;link&#34; href=&#34;#%e6%88%91%e8%bf%98%e6%b2%a1%e5%86%99%e5%91%a2&#34; &gt;#TODO:年轻人的第一个网站&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;0x00-大型项目结构&#34;&gt;0x00 大型项目结构&lt;/h2&gt;
+&lt;p&gt;在大部分面向初学者的 demo 中，应用以简单的项目结构甚至单文件表示。在大型项目中，网站的不同功能被拆分成独立的模块，以方便拓展和维护。一个更通用的 Flask 项目代码架构如下：（仅考虑业务代码）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;microblog/ # 根目录
+  app/ # 项目源码
+    __init__.py # 项目初始化，当该包被import，首先执行__init__.py
+    routes.py
+    forms.py
+    ...
+  main.py # 框架入口
+  config.py # Config配置类
+  .flaskenv
+  ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;根目录下的文件有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;app/&lt;/code&gt;所有网站源代码统一归到app目录下。
+&lt;ul&gt;
+&lt;li&gt;在&lt;code&gt;app/&lt;/code&gt;内部，不同的功能可进一步划分成独立模块，详见[模块化应用](#0x05 模块化应用：功能解耦)一章。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main.py&lt;/code&gt;: 入口脚本，通过该文件引入app中的代码并生成应用实例（命名随意）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.flaskenv&lt;/code&gt;: flask环境变量，以配合flask命令。入口脚本被定义为&lt;code&gt;FLASK_APP&lt;/code&gt;，执行&lt;code&gt;flask run&lt;/code&gt;时将启动该脚本。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config.py&lt;/code&gt;: 配置脚本，整个项目的配置信息都写在Config类里。与环境变量的区别在于，因为是python脚本，功能更强大，可被任何地方的代码引用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;0x01-hello-world模板和视图&#34;&gt;0x01 Hello world：模板和视图&lt;/h2&gt;
+&lt;p&gt;最基本的 web 功能，无非接受请求、返回数据。其中，路由 (route) 用来区分不同的请求，模板 (templates) 用来生成不同的数据。&lt;/p&gt;
+&lt;h4 id=&#34;路由视图&#34;&gt;路由/视图&lt;/h4&gt;
+&lt;p&gt;在非前后端分离的项目中，视图函数直接返回渲染好的网页，由&lt;code&gt;@app.route()&lt;/code&gt;修饰后，视图和路由便绑定在一起。
+在mvc模型中更像controller控制器的角色，然而在flask生态中更喜欢称为视图函数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;url_for()&lt;/code&gt; 使用URL到视图函数的内部映射关系来生成URL，用来替换硬链接。在业务功能解耦后必须使用这种方式。
+&lt;ul&gt;
+&lt;li&gt;NOTE：当路由和视图函数名不一致，访问该路由可以正确响应，但是使用&lt;code&gt;url_for()&lt;/code&gt;调用该视图时会报错&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{% extends &amp;quot;base.html&amp;quot; %}&lt;/code&gt; and &lt;code&gt;{% include &amp;quot;_post.html&amp;quot; %}&lt;/code&gt; 使用子模板来实现网页公用的部分。如：页眉，页脚，列表项等。
+&lt;ul&gt;
+&lt;li&gt;模板和 Python 代码的关系有些类似与 JSP 和 Java 代码的关系，但模板语法并不是完整的脚本语言，相较而言限制更多，安全性更好。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;表单&#34;&gt;表单&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;几乎所有成功的框架都有丰富的插件生态。下面引入新功能时，大多借助插件来方便的实现。大多数Flask插件使用&lt;code&gt;flask_&amp;lt;name&amp;gt;&lt;/code&gt; 命名约定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Flask-WTF插件提供了对Web表单的抽象，只需定义表单类以及设置类属性即可。&lt;/p&gt;
+&lt;p&gt;模板语法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{{ form.&amp;lt;name&amp;gt;.label }}&lt;/code&gt;渲染标签&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{{ form.&amp;lt;name&amp;gt;() }}&lt;/code&gt;获取属性值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;form.hidden_tag()&lt;/code&gt;模板参数生成了一个隐藏字段，其中包含一个用于保护表单免受CSRF攻击的token&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将表单引入模板&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LoginForm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 生成了一个实例传入模板&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;login.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Sign In&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;flash-闪现消息&#34;&gt;flash 闪现消息&lt;/h4&gt;
+&lt;p&gt;flash 通过 session 储存，用于显示只出现一次的提示消息。用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在路由中使用&lt;code&gt;flash()&lt;/code&gt;，触发时消息便写入 session 中的 message 列表&lt;/li&gt;
+&lt;li&gt;在模板中使用&lt;code&gt;get_flashed_messages()&lt;/code&gt;，从 session 中读取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;0x02-数据库-orm&#34;&gt;0x02 数据库 ORM&lt;/h2&gt;
+&lt;p&gt;很久很久以前，web网站和数据库交互还需要写很多很硬的 SQL 语句，效率低且容易出现注入漏洞(SQLi)。现代web开发都使用 ORM 框架简化数据库交互，且基本杜绝了 SQLi 漏洞。&lt;/p&gt;
+&lt;p&gt;本项目使用如下插件打通数据库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flask-SQLAlchemy: Python生态最知名的ORM框架&lt;/li&gt;
+&lt;li&gt;Flask-Migrate: 本教程作者编写的数据库迁移框架&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;插件首先要注册。统一流程: 初始化app实例，传入插件类作为插件实例的参数&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# app/__init__.py&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# flask基类&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;from_object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SQLAlchemy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;migrate&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Migrate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;sqlalchemymodel层&#34;&gt;SQLalchemy：model层&lt;/h3&gt;
+&lt;h4 id=&#34;模型定义&#34;&gt;模型定义&lt;/h4&gt;
+&lt;p&gt;使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：
+&lt;img src=&#34;https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png&#34;
+	width=&#34;760&#34;
+	height=&#34;229&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;331&#34;
+		data-flex-basis=&#34;796px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Flask-SQLAlchemy 自动设置类名为小写来作为对应表的名称，也可以用&lt;code&gt;__tablename__&lt;/code&gt;类属性来定义。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Model&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 表&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;primary_key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 列&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;....&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;curd基本操作&#34;&gt;CURD基本操作&lt;/h4&gt;
+&lt;p&gt;ORM 框架通常集成了常用操作，但也支持更底层的数据库接口。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 Springboot Jpa 中，根据方法名的拼写来写自定义查询，而在 SQLalchemy 中，提供的接口通过链式调用拼接。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在 SQLalchemy 中，基本操作大都有基于事务 (session) 的和基于查询 (query) 的两种方式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;query方法只有构造一个查询，只有在&lt;code&gt;Query.get()&lt;/code&gt;、&lt;code&gt;Query.all()&lt;/code&gt;、&lt;code&gt;Query.one()&lt;/code&gt;等结束符之后才会执行查询&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;commit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# or&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;commit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;
+	&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filter_by&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;username&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;synchronize_session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# or&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;password&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;zxcv&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;commit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;flask-migrate-数据库迁移&#34;&gt;Flask-Migrate: 数据库迁移&lt;/h3&gt;
+&lt;p&gt;配置数据库的初始数据框架，一般写成SQL脚本形式。
+migrate 框架直接根据 model 层生成迁移脚本，可以方便的跟踪数据模型的修改和数据库的切换。（这个框架还是本教程作者自己开发的，强）&lt;/p&gt;
+&lt;p&gt;flask db子命令&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;flask db init&lt;/code&gt;：初始化，生成migrations目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flask db migrate&lt;/code&gt;：生成迁移脚本，修改model后使其生效
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;flask db migrate -m &amp;quot;posts table&amp;quot; &lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flask db upgrade&lt;/code&gt;：应用数据库修改（开发阶段默认使用sqlite数据库&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flask db downgrade&lt;/code&gt;：回滚上次的迁移&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;0x03-开发范式用户系统&#34;&gt;0x03 开发范式：用户系统&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mixin：混入，多重继承的一种形式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;表单和数据库支持分别解决了前端和后端的基本需求，下面可以上线一个基本功能了，用户登录。
+所需插件：Flask-Login。&lt;/p&gt;
+&lt;h4 id=&#34;usermixin类&#34;&gt;UserMixin类&lt;/h4&gt;
+&lt;p&gt;UserMixin类集成了login插件要求的用户模型属性，将其混入到 User 模型中，即可用&lt;code&gt;@login_required &lt;/code&gt;实现权限控制。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;@app.route(&amp;#39;/result/&amp;#39;, methods=[&amp;#39;POST&amp;#39;]) # NOTE：有顺序关系，反之则不生效
+@login_required 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;用户系统，包括登录、登出、注册几个功能。编写这些功能的步骤其实很类似：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设计数据库，在model.py中&lt;/li&gt;
+&lt;li&gt;设计表单对象，在form.py中&lt;/li&gt;
+&lt;li&gt;设计页面，在模板.html中&lt;/li&gt;
+&lt;li&gt;设计视图函数，在routes.py中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也对应了mvc框架的设计理念，比如设计表单就有些像 javaweb 中的 DAO 层。但也有区别， Flask 框架更希望业务逻辑写在数据库模型中，而视图函数尽量保持简洁，以方便单元测试。&lt;/p&gt;
+&lt;h4 id=&#34;prg-模式&#34;&gt;PRG 模式&lt;/h4&gt;
+&lt;p&gt;即为 &lt;code&gt;Post/Redirect/Get&lt;/code&gt;，其格式大概如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@bp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/some_form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;methods&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;some_form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;# prepare forms &lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;validate_on_submit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;# submit modification&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;redirect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;main.some_form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;elif&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+    	&lt;span class=&#34;c1&#34;&gt;# GET data&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;some_form.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;默认情况，提交 POST 请求后，如果直接刷新浏览器，会重新在 POST 一次。使用PRG模式即可解决重复提交表单的问题。&lt;/p&gt;
+&lt;h2 id=&#34;0x04-深入数据库粉丝机制&#34;&gt;0x04 深入数据库：粉丝机制&lt;/h2&gt;
+&lt;h3 id=&#34;数据库关系&#34;&gt;数据库关系&lt;/h3&gt;
+&lt;p&gt;要关注别人，就要让数据库记住我关注的人的名字，当然，只记住名字肯定不够，万一改名了呢。因此每个用户都需要有唯一有效的标识（其实更重要的是性能因素）。正因如此，数据库中每个表都要有一个唯一的列，称为&lt;strong&gt;主键&lt;/strong&gt;(primary key)。当不同表之间存在关系，一个表要通过主键寻找其他表项，其他表的主键储存在本表中，称为&lt;strong&gt;外键&lt;/strong&gt;(foreign key)。外键关联既可以表示一对一的关系，也可以一对多(1-&amp;gt;n)。&lt;/p&gt;
+&lt;p&gt;SQLalchemy 对关系的定义如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;外键：&lt;code&gt;db.ForeignKey(&#39;user.id&#39;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;关系：&lt;code&gt;db.relationship(&#39;Post&#39;, backref=&#39;author&#39;, lazy=&#39;dynamic&#39;)&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;参数1：所关联的表(n in 1-&amp;gt;n)，这里是模型的变量名&lt;/li&gt;
+&lt;li&gt;参数2：由 &amp;ldquo;n&amp;rdquo; 回调 &amp;ldquo;1&amp;rdquo; 的虚拟字段，用法：&lt;code&gt;post.author&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;粉丝机制&#34;&gt;粉丝机制&lt;/h3&gt;
+&lt;p&gt;然而，粉丝机制包括关注和被关注。这是一种多对多的关系，于是需要用含有两个外键的&lt;strong&gt;关联表&lt;/strong&gt;表示。又因为关注者和被关注者在一个表里（User），这种关系又称为&lt;strong&gt;自引用&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;模型&#34;&gt;模型&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;关联表只有引用类型，故不需要派生模型类&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;s1&#34;&gt;&amp;#39;followers&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;follower_id&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ForeignKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;user.id&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)),&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;followed_id&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ForeignKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;user.id&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;为User添加关系&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;followed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;relationship&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;User&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 右侧实体&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;secondary&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 指定关联表&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;primaryjoin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;follower_id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 指定左关系&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;secondaryjoin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followed_id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 指定右关系&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;backref&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;backref&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;followers&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lazy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;dynamic&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lazy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;dynamic&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 指定回调&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;复杂查询&#34;&gt;复杂查询&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查询粉丝列表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SQL 语句：&lt;code&gt;SELECT * FROM  user, followers  WHERE followers.follower_id = 3 AND followers.followed_id = user.id&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SQLalchemy 接口：&lt;code&gt;user.followers.all()&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实际执行的 SQL 语句：（打印 query 对象得到）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;SELECT ,,,  FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;NOTE：如果方法集成在model里，方法名不要和字段名相同，自己定义的方法会覆盖该字段。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看已关注用户的动态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SQL 语句：&lt;code&gt;SELECT * FROM post JOIN followers on followers.followed_id = post.user_id where followers.follower_id = 2&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SQLalchemy 接口：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;n&#34;&gt;Post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followed_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;follower_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;order_by&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;desc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;实际执行的SQL语句：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,,,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,,,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followed_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;followers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;follower_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;UNION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;user_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anon_1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anon_1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post_timestamp&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于python的弱类型特征，有时候很难明白函数之间传递的是什么对象。我们从上往下梳理一遍：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;请求到达路由函数，开始执行查询&lt;code&gt;Post.query.....&lt;/code&gt;，此时只是在构造查询，并未取得数据，此时的对象类型：&lt;code&gt;&amp;lt;class &#39;sqlalchemy.orm.query.Query&#39;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;直到&lt;code&gt;get()&lt;/code&gt;,&lt;code&gt;all()&lt;/code&gt;,&lt;code&gt;paginate().items&lt;/code&gt;结束符等出现，查询才被执行，返回数据类型实例，如User。&lt;/li&gt;
+&lt;li&gt;数据类实例传入模板，并由&lt;code&gt;__str__&lt;/code&gt;等方法参与渲染。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;0x05-网站美化&#34;&gt;0x05 网站美化&lt;/h2&gt;
+&lt;p&gt;本教程提供的flask-bootstrap插件，较为简陋，且该插件年久失修，遂替换之。在此之前，先搞明白目前项目前端的架构&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;/templates
+   auth/
+   errors/
+   base.html
+   _posts.html
+   index.html
+   ... 
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;所有模板都有一个父模版：&lt;code&gt;base.html&lt;/code&gt;，其结构如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;{% extends &amp;#39;bootstrap/base.html&amp;#39; %}
+{% block title %}Hallo Wolrd{% endblock %}
+{% block head %} ... {% endblock %}
+{% block scripts %} ... {% endblock %}
+{% block navbar %} ... {% endblock %}
+{% block content %}
+    ...
+    {% block app_content %}{% endblock %}
+{% endblock %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;app_content&lt;/code&gt;留空，即其余模板均在&lt;code&gt;app_content&lt;/code&gt;内填充。&lt;/p&gt;
+&lt;p&gt;进一步追溯&lt;code&gt;bootstrap/base.html&lt;/code&gt;的源码，发现其它 block 诸如&lt;code&gt;navbar&lt;/code&gt;也都留空或仅仅配置了 Bootstrap 的 cdn。 由此，只需将&lt;code&gt;base.html&lt;/code&gt;迁移即可。&lt;/p&gt;
+&lt;p&gt;在网上寻找新的UI模板，不要在中文互联网搜索，basically garbage。找到一个 &lt;a class=&#34;link&#34; href=&#34;https://demos.creative-tim.com/material-kit/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Meterial 模板&lt;/a&gt; 还算顺眼，遂用之。&lt;/p&gt;
+&lt;p&gt;不熟悉 Bootstrap 布局的可以使用可视化工具来设计前端，如：http://www.ibootstrap.cn/&lt;/p&gt;
+&lt;p&gt;对照模板，将&lt;code&gt;base.html&lt;/code&gt;掏空，效果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/post-images/1631795716824.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;遇到的bug有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下拉菜单失效：查询得知有可能是bootstrap版本冲突
+&lt;ul&gt;
+&lt;li&gt;//结果并不是，只是忘记引入js文件而已，我是傻逼。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;文件上传按钮消失：本教程中，表单渲染采用&lt;code&gt;wtf.quick_form()&lt;/code&gt;，这玩意还是来自&lt;code&gt;bootstrap/wtf.html&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后决定整个🐏了 Flask-Bootstrap 插件。&lt;/p&gt;
+&lt;h4 id=&#34;富文本编辑器&#34;&gt;富文本编辑器&lt;/h4&gt;
+&lt;p&gt;在《Flask Web开发：基于Python的Web应用开发实战》中提到了markdown编辑器的实现。&lt;/p&gt;
+&lt;p&gt;需要的包：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PageDown: JS 版 Markdown 渲染器，用于客户端预览。&lt;/li&gt;
+&lt;li&gt;Flask-PageDown: flask 集成插件。该插件需要注册&lt;/li&gt;
+&lt;li&gt;Markdown: Python 版 Markdown 渲染器，用于服务端渲染。&lt;/li&gt;
+&lt;li&gt;Bleach: HTML 清理器，保证安全性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了兼顾安全和效率，做法是同时保存 markdown 源文本和 HTML 文件。步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;表单改为 &lt;code&gt;PageDownField&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;模板引入 PageDown 宏，以实现即时预览&lt;/li&gt;
+&lt;li&gt;为 Post 模型增加字段，并添加 markdown 渲染方法，该方法为类方法，需要&lt;code&gt;@staticmethod&lt;/code&gt;修饰&lt;/li&gt;
+&lt;li&gt;在模型外部监听数据库事件，仅当 markdown 文本出现变动时调用渲染方法。&lt;/li&gt;
+&lt;li&gt;修改模板以显示服务端返回的 html 文本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然而预览器过于简陋，也很难修改。在github仓库上发现该插件也是本教程作者写的，已经很久没有维护。顿时对本书作者有些不满。&lt;/p&gt;
+&lt;h2 id=&#34;0x06-模块化应用功能解耦&#34;&gt;0x06 模块化应用：功能解耦&lt;/h2&gt;
+&lt;p&gt;保持 app 作为全局变量的模式，可能会给后续引入新功能和单元测试带来麻烦。
+要适应大型项目需求，需要把网站功能拆分成独立的模块。&lt;/p&gt;
+&lt;h3 id=&#34;blueprint化&#34;&gt;Blueprint化&lt;/h3&gt;
+&lt;p&gt;要实现解耦，一种功能的相关代码可以借助Blueprint归类到一个包里。其文件结构大致如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;app/ 
+    some_fuction/                       &amp;lt;-- blueprint package
+        __init__.py                     &amp;lt;-- blueprint creation
+        ... other code ...
+    templates/
+        some_fuction/                   &amp;lt;--  templates
+    __init__.py                         &amp;lt;-- blueprint registration
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;创建blueprint与创建应用非常相似。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;flask&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Blueprint&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;bp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Blueprint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;func&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;app.func&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Func&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;而消灭了&lt;code&gt;app&lt;/code&gt;，蓝图内部的引用统一变成了蓝图名。而外部诸如&lt;code&gt;url_for&lt;/code&gt;的参数则需要加上&lt;code&gt;包名.&lt;/code&gt;做前缀。&lt;/p&gt;
+&lt;h3 id=&#34;应用工厂模式&#34;&gt;应用工厂模式&lt;/h3&gt;
+&lt;p&gt;工厂函数是一个外部函数，在这个函数内部执行插件注册和配置工作，并通过他返回应用实例。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# app/__init__.py&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SQLAlchemy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;create_app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config_class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;from_object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config_class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;init_app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;返回后，flask提供的上下文对象&lt;code&gt;current_app&lt;/code&gt;将指向应用实例。详见官方文档：&lt;a class=&#34;link&#34; href=&#34;http://docs.jinkan.org/docs/flask/appcontext.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;应用上下文&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;多线程&#34;&gt;多线程&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;current_app&lt;/code&gt;是线程绑定的，若要在诸如邮件服务的位于其他线程的功能调用他，则会发现没有赋值。
+需要使用&lt;code&gt;current_app._get_current_object()&lt;/code&gt;表达式。&lt;/p&gt;
+&lt;h4 id=&#34;python概念辨析包库插件&#34;&gt;Python概念辨析：包，库，插件&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;包 (package) 是指一种代码结构，只要有文件夹和 &lt;code&gt;__init__.py&lt;/code&gt; 都是包。
+库 (library) 和插件 (plugin) 都是从外部引入的包，区别在于，插件要集成进应用，所以需要注册等步骤；而库更独立，可以随时随地调用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;0x07-开发帮手&#34;&gt;0x07 开发帮手&lt;/h2&gt;
+&lt;p&gt;本节讲解一些杂项。&lt;/p&gt;
+&lt;h4 id=&#34;调试&#34;&gt;调试&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;flask shell&lt;/code&gt;命令：为避免每次调试都要重新import app，使用上下文调用解释器，用&lt;code&gt;@app.shell_context_processor&lt;/code&gt;装饰上下文函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;单元测试&#34;&gt;单元测试&lt;/h4&gt;
+&lt;p&gt;unittest 库，详见&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;下一篇&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;记录日志到文件&#34;&gt;记录日志到文件&lt;/h4&gt;
+&lt;p&gt;logger 库&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;debug&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;logs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mkdir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;logs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;file_handler&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RotatingFileHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;logs/microblog.log&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxBytes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10240&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                           &lt;span class=&#34;n&#34;&gt;backupCount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;file_handler&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setFormatter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logging&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Formatter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+            &lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%(asctime)s&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%(levelname)s&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%(message)s&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; [in &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%(pathname)s&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%(lineno)d&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;file_handler&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setLevel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logging&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;INFO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file_handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+        &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setLevel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logging&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;INFO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Microblog startup&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;requirementtxt&#34;&gt;requirement.txt&lt;/h4&gt;
+&lt;p&gt;装的库太多怎么办？只需要两条命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;pip freeze &amp;gt; requirements.txt
+pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;0x08-网站上线&#34;&gt;0x08 网站上线&lt;/h2&gt;
+&lt;p&gt;最后简单列出几种网站部署的方法，详情参考本教程或自行搜索。&lt;/p&gt;
+&lt;h4 id=&#34;native模式&#34;&gt;native模式&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;买主机
+&lt;ul&gt;
+&lt;li&gt;连主机：ssh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;买域名
+&lt;ul&gt;
+&lt;li&gt;配域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;配环境
+&lt;ul&gt;
+&lt;li&gt;数据库&lt;/li&gt;
+&lt;li&gt;服务器&lt;/li&gt;
+&lt;li&gt;其他依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;持续运维&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;容器化技术docker&#34;&gt;容器化技术：docker&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;写dockerfile&lt;/li&gt;
+&lt;li&gt;docker-compose up &amp;ndash;build -d&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;云技术paas&#34;&gt;云技术：PaaS&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;注册云平台账户&lt;/li&gt;
+&lt;li&gt;写Procfile&lt;/li&gt;
+&lt;li&gt;git push&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

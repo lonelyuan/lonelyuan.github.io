@@ -15,19 +15,11 @@
         <description></description>
         </item>
         <item>
-        <title>Web</title>
-        <link>https://lonelyuan.github.io/tags/web/</link>
+        <title>Hugo</title>
+        <link>https://lonelyuan.github.io/tags/hugo/</link>
         <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/tags/web/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>CS</title>
-        <link>https://lonelyuan.github.io/tags/cs/</link>
-        <pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate>
-        
-        <guid>https://lonelyuan.github.io/tags/cs/</guid>
+        <guid>https://lonelyuan.github.io/tags/hugo/</guid>
         <description></description>
         </item>
         <item>
@@ -47,6 +39,14 @@
         <description></description>
         </item>
         <item>
+        <title>flask</title>
+        <link>https://lonelyuan.github.io/tags/flask/</link>
+        <pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/flask/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Life</title>
         <link>https://lonelyuan.github.io/tags/life/</link>
         <pubDate>Sat, 03 Jul 2021 19:51:14 +0000</pubDate>
@@ -63,11 +63,11 @@
         <description></description>
         </item>
         <item>
-        <title>CTF</title>
-        <link>https://lonelyuan.github.io/tags/ctf/</link>
-        <pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate>
+        <title>CS</title>
+        <link>https://lonelyuan.github.io/tags/cs/</link>
+        <pubDate>Wed, 09 Jun 2021 17:14:19 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/tags/ctf/</guid>
+        <guid>https://lonelyuan.github.io/tags/cs/</guid>
         <description></description>
         </item>
         <item>

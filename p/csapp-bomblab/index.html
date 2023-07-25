@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。
-文件结构：
-1 2 3 4  bomb ├── README ├── bomb └── bomb.c   只有一个程序，给的源码基本没用，我们要用逆向工程的方法理解程序，找到正确的字符串。
-讲反汇编器的结果导出：objdump -d bomb &amp;gt; bomb.txt
-可以看到有6关，每一关接受一个字符串，若跳转到explode_bomb函数，则答案错误。
-第一关：字符串比较 1 2 3 4  0000000000400ee0 &amp;lt;phase_1&amp;gt;: 400ee0:	48 83 ec 08 sub $0x8,%rsp 400ee4:	be 00 24 40 00 mov $0x402400,%esi 400ee9:	e8 4a 04 00 00 callq 401338 &amp;lt;strings_not_equal&amp;gt;   逻辑是直接比较字符串是否相等，不过$0x402400不是程序内地址，说明答案被藏在了我们看不到的内存位置。
-于是上GDB，在&amp;lt;phase_1&amp;gt;下断点，stepi单步执行到callq之前，查看寄存器:x\s $esi，得到答案。（每台电脑的答案都不一样）
-第二关：循环 1 2 3 4 5 6  0000000000400efc &amp;lt;phase_2&amp;gt;: 400efc:	55 push %rbp //压栈 400efd:	53 push %rbx 400efe:	48 83 ec 28 sub $0x28,%rsp //开辟栈帧 400f02:	48 89 e6 mov %rsp,%rsi//栈顶地址→rsi参数二 400f05:	e8 52 05 00 00 callq 40145c &amp;lt;read_six_numbers&amp;gt;   如函数名所示，读6个数字，为什么是6呢，大概是因为存放参数的寄存器总共有6个吧。（然而并不）'><title>CSAPP - Bomblab</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。 文件结构： 1 2 3 4 bomb ├── README ├── bomb └── bomb.c 只有一个程序，给的源码基本没用，'>
+<title>CSAPP - Bomblab</title>
 
 <link rel='canonical' href='https://lonelyuan.github.io/p/csapp-bomblab/'>
 
-<link rel="stylesheet" href="/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css"><meta property='og:title' content='CSAPP - Bomblab'>
-<meta property='og:description' content='CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。
-文件结构：
-1 2 3 4  bomb ├── README ├── bomb └── bomb.c   只有一个程序，给的源码基本没用，我们要用逆向工程的方法理解程序，找到正确的字符串。
-讲反汇编器的结果导出：objdump -d bomb &amp;gt; bomb.txt
-可以看到有6关，每一关接受一个字符串，若跳转到explode_bomb函数，则答案错误。
-第一关：字符串比较 1 2 3 4  0000000000400ee0 &amp;lt;phase_1&amp;gt;: 400ee0:	48 83 ec 08 sub $0x8,%rsp 400ee4:	be 00 24 40 00 mov $0x402400,%esi 400ee9:	e8 4a 04 00 00 callq 401338 &amp;lt;strings_not_equal&amp;gt;   逻辑是直接比较字符串是否相等，不过$0x402400不是程序内地址，说明答案被藏在了我们看不到的内存位置。
-于是上GDB，在&amp;lt;phase_1&amp;gt;下断点，stepi单步执行到callq之前，查看寄存器:x\s $esi，得到答案。（每台电脑的答案都不一样）
-第二关：循环 1 2 3 4 5 6  0000000000400efc &amp;lt;phase_2&amp;gt;: 400efc:	55 push %rbp //压栈 400efd:	53 push %rbx 400efe:	48 83 ec 28 sub $0x28,%rsp //开辟栈帧 400f02:	48 89 e6 mov %rsp,%rsi//栈顶地址→rsi参数二 400f05:	e8 52 05 00 00 callq 40145c &amp;lt;read_six_numbers&amp;gt;   如函数名所示，读6个数字，为什么是6呢，大概是因为存放参数的寄存器总共有6个吧。（然而并不）'>
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='CSAPP - Bomblab'>
+<meta property='og:description' content='CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。 文件结构： 1 2 3 4 bomb ├── README ├── bomb └── bomb.c 只有一个程序，给的源码基本没用，'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/csapp-bomblab/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CSAPP' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2020-02-27T22:43:31&#43;00:00'/><meta property='article:modified_time' content='2020-02-27T22:43:31&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CSAPP' /><meta property='article:published_time' content='2020-02-27T22:43:31&#43;00:00'/><meta property='article:modified_time' content='2020-02-27T22:43:31&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
 <meta name="twitter:title" content="CSAPP - Bomblab">
-<meta name="twitter:description" content="CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。
-文件结构：
-1 2 3 4  bomb ├── README ├── bomb └── bomb.c   只有一个程序，给的源码基本没用，我们要用逆向工程的方法理解程序，找到正确的字符串。
-讲反汇编器的结果导出：objdump -d bomb &amp;gt; bomb.txt
-可以看到有6关，每一关接受一个字符串，若跳转到explode_bomb函数，则答案错误。
-第一关：字符串比较 1 2 3 4  0000000000400ee0 &amp;lt;phase_1&amp;gt;: 400ee0:	48 83 ec 08 sub $0x8,%rsp 400ee4:	be 00 24 40 00 mov $0x402400,%esi 400ee9:	e8 4a 04 00 00 callq 401338 &amp;lt;strings_not_equal&amp;gt;   逻辑是直接比较字符串是否相等，不过$0x402400不是程序内地址，说明答案被藏在了我们看不到的内存位置。
-于是上GDB，在&amp;lt;phase_1&amp;gt;下断点，stepi单步执行到callq之前，查看寄存器:x\s $esi，得到答案。（每台电脑的答案都不一样）
-第二关：循环 1 2 3 4 5 6  0000000000400efc &amp;lt;phase_2&amp;gt;: 400efc:	55 push %rbp //压栈 400efd:	53 push %rbx 400efe:	48 83 ec 28 sub $0x28,%rsp //开辟栈帧 400f02:	48 89 e6 mov %rsp,%rsi//栈顶地址→rsi参数二 400f05:	e8 52 05 00 00 callq 40145c &amp;lt;read_six_numbers&amp;gt;   如函数名所示，读6个数字，为什么是6呢，大概是因为存放参数的寄存器总共有6个吧。（然而并不）"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="CSAPP：Bomblab 逆向的传统艺能拆炸弹，👴的青春回来了。 文件结构： 1 2 3 4 bomb ├── README ├── bomb └── bomb.c 只有一个程序，给的源码基本没用，"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
     </head>
     <body class="
     article-page
@@ -100,6 +91,7 @@
                         href='https://github.com/lonelyuan'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -119,6 +111,7 @@
                         href='https://twitter.com/FTrumpyeah'
                         target="_blank"
                         title="Twitter"
+                        rel="me"
                     >
                         
                         
@@ -137,7 +130,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -158,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/about-me/' >
                 
@@ -178,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -199,9 +189,8 @@
         </li>
         
         
-
         <li >
-            <a href='/cs/' >
+            <a href='/categories/cs/' >
                 
                 
                 
@@ -221,9 +210,8 @@
         </li>
         
         
-
         <li >
-            <a href='/ctf/' >
+            <a href='/categories/ctf/' >
                 
                 
                 
@@ -240,7 +228,6 @@
         </li>
         
         
-
         <li >
             <a href='/todo/' >
                 
@@ -261,7 +248,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -281,7 +267,6 @@
         </li>
         
         
-
         <li >
             <a href='/links/' >
                 
@@ -327,11 +312,64 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#第一关字符串比较">第一关：字符串比较</a></li>
+        <li><a href="#第二关循环">第二关：循环</a></li>
+        <li><a href="#第三关分支">第三关：分支</a></li>
+        <li><a href="#第四关递归">第四关：递归</a></li>
+        <li><a href="#第五关">第五关</a></li>
+        <li><a href="#第六关">第六关</a></li>
+        <li><a href="#隐藏关">隐藏关</a></li>
+      </ol>
+    </li>
+    <li><a href="#gdb使用">GDB使用：</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/cs/" >
+                CS
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -342,6 +380,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -379,6 +420,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -977,8 +1019,6 @@ i : info
         
             <a href="/tags/csapp/">CSAPP</a>
         
-            <a href="/tags/cs/">CS</a>
-        
     </section>
 
 
@@ -1004,9 +1044,9 @@ i : info
 
     
 
-<aside class="related-contents--wrapper">
-    <h2 class="section-title">Related contents</h2>
-    <div class="related-contents">
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
         <div class="flex article-list--tile">
             
                 
@@ -1020,6 +1060,70 @@ i : info
         </div>
     </a>
 </article>
+
+            
+                
+<article class="">
+    <a href="/p/mospi-chcore-lab-1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MOSPI-ChCore lab (1)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从scapy和wireshark学计算机网络</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.ae9e65f17ef552903af86fc5d22a0b9b_hu41671eab994e10b990ecc8a898c73896_308650_250x150_fill_q75_box_smart1.jfif" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"
+                        
+                        data-hash="md5-rp5l8X71UpA6&#43;G/F0ioLmw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">深度学习入门——jetbot智能小车尝鲜（二）</h2>
+        </div>
+    </a>
+</article>
+
             
         </div>
     </div>
@@ -1072,7 +1176,7 @@ i : info
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1149,60 +1253,16 @@ i : info
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#第一关字符串比较">第一关：字符串比较</a></li>
-        <li><a href="#第二关循环">第二关：循环</a></li>
-        <li><a href="#第三关分支">第三关：分支</a></li>
-        <li><a href="#第四关递归">第四关：递归</a></li>
-        <li><a href="#第五关">第五关</a></li>
-        <li><a href="#第六关">第六关</a></li>
-        <li><a href="#隐藏关">隐藏关</a></li>
-      </ol>
-    </li>
-    <li><a href="#gdb使用">GDB使用：</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>
