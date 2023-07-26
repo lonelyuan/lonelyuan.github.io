@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='是不是搞fuzz的都在搞rust Fuzzing101是大名鼎鼎的 Fuzzing 学习材料。👴之前搞过一点，故这次整点花活，看到有个叫epi052的大佬整了'>
+<title>libAFL速通Fuzzing101</title>
+
+<link rel='canonical' href='https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101/'>
+
+<link rel="stylesheet" href="/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css"><meta property='og:title' content='libAFL速通Fuzzing101'>
+<meta property='og:description' content='是不是搞fuzz的都在搞rust Fuzzing101是大名鼎鼎的 Fuzzing 学习材料。👴之前搞过一点，故这次整点花活，看到有个叫epi052的大佬整了'>
+<meta property='og:url' content='https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101/'>
+<meta property='og:site_name' content='lonelyuan&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='fuzz' /><meta property='article:tag' content='rust' /><meta property='article:published_time' content='2023-07-26T02:54:55&#43;08:00'/><meta property='article:modified_time' content='2023-07-26T02:54:55&#43;08:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta name="twitter:title" content="libAFL速通Fuzzing101">
+<meta name="twitter:description" content="是不是搞fuzz的都在搞rust Fuzzing101是大名鼎鼎的 Fuzzing 学习材料。👴之前搞过一点，故这次整点花活，看到有个叫epi052的大佬整了"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://lonelyuan.github.io/' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BLVC1PKZKD', { 'anonymize_ip': false });
+}
+</script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-BLVC1PKZKD', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/rick_hubede16acaa63e012983e5eadbe210d5c_33168_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">lonelyuan&#39;s Blog</a></h1>
+            <h2 class="site-description"> &gt;&gt; 不要恐慌 | Don&#39;t Panic </h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/lonelyuan'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/FTrumpyeah'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/cs/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>CS</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/ctf/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+                
+                <span>CTF</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/sec/' >
+                
+                
+                
+                    <svg data-immersive-translate-effect="1" data-immersive_translate_walked="0b66fd33-9d65-4c0d-a958-cdfe41102bc1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" data-immersive-translate-effect="1" data-immersive_translate_walked="0b66fd33-9d65-4c0d-a958-cdfe41102bc1"></path>
+</svg>
+                
+                <span>Sec</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/todo/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                
+                <span>TODO</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>Search</label>
+            <input name="keyword" required placeholder="Type something..." />
+        
+            <button title="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#是不是搞fuzz的都在搞rust">是不是搞fuzz的都在搞rust</a></li>
+    <li><a href="#execise-1-xpdf">Execise-1 xpdf</a>
+      <ol>
+        <li><a href="#rust-基础之-cargo">Rust 基础之 Cargo</a>
+          <ol>
+            <li><a href="#cargotoml">Cargo.toml</a></li>
+            <li><a href="#buildrs">build.rs</a></li>
+          </ol>
+        </li>
+        <li><a href="#libafl-组装">LibAFL 组装</a>
+          <ol>
+            <li><a href="#组件fuzzer">组件：Fuzzer</a></li>
+            <li><a href="#组件state">组件：State</a></li>
+            <li><a href="#组件observer--feedback">组件：Observer &amp; Feedback</a></li>
+            <li><a href="#组件executor">组件：Executor</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#跑">跑</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">Categories</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/cs/" class="font_size_7">
+                CS
+            </a>
+        
+            <a href="/categories/web/" class="font_size_3">
+                Web
+            </a>
+        
+            <a href="/categories/ctf/" class="font_size_1">
+                CTF
+            </a>
+        
+            <a href="/categories/sec/" class="font_size_1">
+                Sec
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">Tags</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/tags/csapp/" class="font_size_2">
+                CSAPP
+            </a>
+        
+            <a href="/tags/flask/" class="font_size_2">
+                flask
+            </a>
+        
+            <a href="/tags/jetbot/" class="font_size_2">
+                jetbot
+            </a>
+        
+            <a href="/tags/life/" class="font_size_2">
+                Life
+            </a>
+        
+            <a href="/tags/awd/" class="font_size_1">
+                AWD
+            </a>
+        
+    </div>
+</section>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sec/" >
+                Sec
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/libafl%E9%80%9F%E9%80%9Afuzzing101/">libAFL速通Fuzzing101</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 26, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="是不是搞fuzz的都在搞rust">是不是搞fuzz的都在搞rust</h2>
+<p><a class="link" href="https://github.com/antonio-morales/Fuzzing101"  target="_blank" rel="noopener"
+    >Fuzzing101</a>是大名鼎鼎的 Fuzzing 学习材料。👴之前搞过一点，故这次整点花活，看到有个叫<a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/"  target="_blank" rel="noopener"
+    >epi052</a>的大佬整了个用 LibAFL 做 Fuzzing101 的活。于是👴也跟着学一波rust。</p>
+<p><a class="link" href="https://github.com/AFLplusplus/LibAFL"  target="_blank" rel="noopener"
+    >LibAFL</a>是用 Rust 写的 Fuzzing 框架，主要贡献在于给出了一套 Fuzzer 的标准化定义，以此试图改善当今 Fuzzing 研究界成果倍出但互不兼容，经常重复造轮子的现象。</p>
+<p>LibAFL 隶属于 AFL++ 项目组，故需要先配置 AFL++ 。而 AFL++ 的官方 Docker 镜像就包含了 Rust 环境，所以使用 Docker 配环境就只需一句话：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run -ti -v ./Fuzzing101:/fuzzing101 aflplusplus/aflplusplus
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="execise-1-xpdf">Execise-1 xpdf</h2>
+<p>练习一主要是熟悉基本流程。使用AFL主要有以下步骤：</p>
+<ul>
+<li>目标编译插桩。如：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">LLVM_CONFIG</span><span class="o">=</span>llvm-config-15
+<span class="nv">CC</span><span class="o">=</span>afl-clang-fast <span class="nv">CXX</span><span class="o">=</span>afl-clang-fast++ ./configure --prefix<span class="o">=</span>./install
+make
+make install
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>语料库准备</li>
+<li>执行afl-fuzz</li>
+</ul>
+<p>Let&rsquo;s see 如何用Rust完成上述步骤。</p>
+<h3 id="rust-基础之-cargo">Rust 基础之 Cargo</h3>
+<h4 id="cargotoml">Cargo.toml</h4>
+<p>Rust 使用 Cargo 作为包管理器。使用<code>cargo new</code>时，会生成<code>Cargo.toml</code>作为配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># execise-1/Cargo.toml</span>
+<span class="p">[</span><span class="nx">package</span><span class="p">]</span>
+<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;exercise-1&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.1.0&#34;</span>
+<span class="nx">edition</span> <span class="p">=</span> <span class="s2">&#34;2021&#34;</span>
+<span class="nx">build</span> <span class="p">=</span> <span class="s2">&#34;build.rs&#34;</span>
+
+<span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+<span class="nx">libafl</span> <span class="p">=</span> <span class="s2">&#34;0.10.1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>本项目首先规定了构建脚本为<code>build.rs</code>，然后引入了 libafl 依赖，build 时 Cargo 会自行下载安装。(这就是现代语言给我带来的自信)</p>
+<h4 id="buildrs">build.rs</h4>
+<p>构建脚本是为了方便 Rust 项目与第三方工具的集成。比如上文中目标编译的几条指令，就可以用 Rust std 库中的Command类来执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// make clean; 
+</span><span class="c1"></span><span class="n">Command</span>::<span class="n">new</span><span class="p">(</span><span class="s">&#34;make&#34;</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="n">arg</span><span class="p">(</span><span class="s">&#34;clean&#34;</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="n">current_dir</span><span class="p">(</span><span class="n">xpdf_dir</span><span class="p">.</span><span class="n">clone</span><span class="p">())</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="n">status</span><span class="p">()</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Couldn&#39;t clean xpdf directory&#34;</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>使用构建脚本还有许多好处，可以利用 Cargo 采取更灵活的构建策略。构建脚本的输出可以被 Cargo 解释，只需打印以<code>cargo:</code> 开头的指令。如下面两行输出向 Cargo 表明仅在这两个文件发生改动时执行构建脚本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;cargo:rerun-if-changed=build.rs&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;cargo:rerun-if-changed=src/main.rs&#34;</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="libafl-组装">LibAFL 组装</h3>
+<p>上述还是甜点，下面进入正菜环节。 LibAFL 将 Fuzzer 定义为9个组件，分别是：</p>
+<blockquote>
+<p>摘自<a class="link" href="https://chinggg.github.io/post/libafl/"  target="_blank" rel="noopener"
+    >这篇博客</a>。</p>
+</blockquote>
+<ul>
+<li>Input：程序的输入。
+<ul>
+<li>重点是格式，最常见的就是 byte array，也有AST等。</li>
+</ul>
+</li>
+<li>Corpus：输入和其附属元数据的存储。
+<ul>
+<li>存储有位于内存和位于硬盘两种，后者更广泛。输入也可分为有助于进化的 interesting testcase 和最终触发 crash 的 solution。</li>
+</ul>
+</li>
+<li>Scheduler：从 corpus 中选取 testcase 的调度策略。
+<ul>
+<li>最朴素的即先进先出或随机选择，也可引入优先级算法。</li>
+</ul>
+</li>
+<li>Stage：定义对 testcase 进行的操作（action）。
+<ul>
+<li>往往会进行多阶段的操作。如 AFL 中的 random havoc stage。</li>
+</ul>
+</li>
+<li>Observer：提供一次执行目标程序的信息。
+<ul>
+<li>常用的 coverage map 就是一种 observer。</li>
+</ul>
+</li>
+<li>Executor：用 fuzzer 的输入来执行目标程序。
+<ul>
+<li>不同 fuzzer 在这方面区别很大。</li>
+</ul>
+</li>
+<li>Feedback：将程序执行的结果分类以决定是否将其加入 corpus。
+<ul>
+<li>feedback 通常处理一个或多个 observer 报告的信息来判断 execution 是否 “interesting”，是否是满足条件的 solution，比如可观测的 crash。</li>
+</ul>
+</li>
+<li>Mutator：从一个或多个输入生成新的 testcase。
+<ul>
+<li>通常是最常改动的，不同 mutator 可以组合，往往还和特定的输入类型绑定。</li>
+</ul>
+</li>
+<li>Generator：凭空产生新的输入。
+<ul>
+<li>有随机生成的，也有 Nautilus 这种基于语法的。</li>
+</ul>
+</li>
+</ul>
+<p>除此之外，在 LibAFL 实现中还有若干重要组件：</p>
+<blockquote>
+<p><a class="link" href="https://docs.rs/libafl/0.10.1/libafl/"  target="_blank" rel="noopener"
+    >API文档</a> <br>
+请  参阅</p>
+</blockquote>
+<ul>
+<li>State: 包含了运行时的所有元数据，包括 Corpus、RNG 等。</li>
+<li>Bolts: 工具库，实现了诸如共享内存的支持。</li>
+<li>Monitor: 向用户打印log之类。</li>
+<li>Events: 组件之间通信</li>
+<li>Fuzzer: 顶层组件，把一切组织起来</li>
+</ul>
+<p>本文参考的<a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/"  target="_blank" rel="noopener"
+    >教程</a>的讲解很详细，且提供了完整代码。因此，本文采试图换一个思路，从自顶向下的角度拆解代码：</p>
+<h4 id="组件fuzzer">组件：Fuzzer</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleMonitor</span>::<span class="n">new</span><span class="p">(</span><span class="o">|</span><span class="n">s</span><span class="o">|</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;{s}&#34;</span><span class="p">));</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">mgr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleEventManager</span>::<span class="n">new</span><span class="p">(</span><span class="n">monitor</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IndexesLenTimeMinimizerScheduler</span>::<span class="n">new</span><span class="p">(</span><span class="n">QueueScheduler</span>::<span class="n">new</span><span class="p">());</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">mutator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StdScheduledMutator</span>::<span class="n">new</span><span class="p">(</span><span class="n">havoc_mutations</span><span class="p">());</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">stages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tuple_list</span><span class="o">!</span><span class="p">(</span><span class="n">StdMutationalStage</span>::<span class="n">new</span><span class="p">(</span><span class="n">mutator</span><span class="p">));</span><span class="w">
+</span><span class="w">    </span><span class="o">-------------</span><span class="mi">8</span><span class="o">&lt;-------------</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">fuzzer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StdFuzzer</span>::<span class="n">new</span><span class="p">(</span><span class="n">scheduler</span><span class="p">,</span><span class="w"> </span><span class="n">feedback</span><span class="p">,</span><span class="w"> </span><span class="n">objective</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="n">fuzzer</span><span class="p">.</span><span class="n">fuzz_loop</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">stages</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">executor</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">mgr</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到 <code>StdFuzzer</code> 串联起了全部组件。<code>mgr</code>、<code>scheduler</code>、<code>mutator</code>、<code>stages</code> 都是使用库中自带的类，下面详述复杂些的组件。</p>
+<h4 id="组件state">组件：State</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StdState</span>::<span class="n">new</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">StdRand</span>::<span class="n">with_seed</span><span class="p">(</span><span class="n">current_nanos</span><span class="p">()),</span><span class="w">
+</span><span class="w">        </span><span class="n">input_corpus</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="n">timeouts_corpus</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">feedback</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">objective</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>查阅文档可知<code>StdState</code>的成员含义，这些成员就是Fuzzer的全部状态了。一个可能的疑惑是为什么会有<code>feedback</code>、<code>objective</code>两种 Feedback，让我们继续向上检阅代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">pub fn new&lt;F, O&gt;(
+    rand: R,
+    corpus: C,
+    solutions: SC,
+    feedback: &amp;mut F,
+    objective: &amp;mut O
+) -&gt; Result&lt;Self, Error&gt;
+where
+    F: Feedback&lt;Self&gt;,
+    O: Feedback&lt;Self&gt;,
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="组件observer--feedback">组件：Observer &amp; Feedback</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">time_observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TimeObserver</span>::<span class="n">new</span><span class="p">(</span><span class="s">&#34;time&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">    
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">edges_observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">HitcountsMapObserver</span>::<span class="n">new</span><span class="p">(</span><span class="n">StdMapObserver</span>::<span class="n">new</span><span class="p">(</span><span class="s">&#34;shared_mem&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">shmem_buf</span><span class="p">))</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">feedback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">feedback_or</span><span class="o">!</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">MaxMapFeedback</span>::<span class="n">tracking</span><span class="p">(</span><span class="o">&amp;</span><span class="n">edges_observer</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="n">TimeFeedback</span>::<span class="n">with_observer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">time_observer</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="w">        </span><span class="n">feedback_and_fast</span><span class="o">!</span><span class="p">(</span><span class="w">
+</span><span class="w">            </span><span class="n">TimeoutFeedback</span>::<span class="n">new</span><span class="p">(),</span><span class="w"> 
+</span><span class="w">            </span><span class="n">MaxMapFeedback</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">edges_observer</span><span class="p">)</span><span class="w">
+</span><span class="w">            </span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>如定义所言，Observer 仅提供信息，Feedback 将观察到的信息进行判断。
+在本例中，首先定义的两个Observer分别提供了代码运行时间和便覆盖率的信息。
+然后分布对他们进行了不同的反馈判断。<code>feedback_or</code>和<code>feedback_and_fast</code>是逻辑判断宏。因此可以解读他们的逻辑：</p>
+<ul>
+<li>
+<p><code>feedback</code>的条件是覆盖了新的分支 或 “运行时间反馈”。故反馈的是有趣的样例（interesting testcase ）</p>
+</li>
+<li>
+<p><code>objective</code>的条件是覆盖了新的分支 且 运行超时。故反馈的是能触发无限递归漏洞的样例，即我们想要的结果（solution）</p>
+</li>
+</ul>
+<p>实际上“运行时间反馈”永远不会有反馈，需要配合其他反馈使用。这里仅作示例。</p>
+<h4 id="组件executor">组件：Executor</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">fork_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ForkserverExecutor</span>::<span class="n">builder</span><span class="p">()</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">program</span><span class="p">(</span><span class="s">&#34;./xpdf/install/bin/pdftotext&#34;</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">parse_afl_cmdline</span><span class="p">([</span><span class="s">&#34;@@&#34;</span><span class="p">])</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">coverage_map_size</span><span class="p">(</span><span class="n">MAP_SIZE</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">tuple_list</span><span class="o">!</span><span class="p">(</span><span class="n">time_observer</span><span class="p">,</span><span class="w"> </span><span class="n">edges_observer</span><span class="p">))</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TimeoutForkserverExecutor</span>::<span class="n">new</span><span class="p">(</span><span class="n">fork_server</span><span class="p">,</span><span class="w"> </span><span class="n">timeout</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>构建执行器时，首先加入了两个 Observer ，然后指定了超时时间，有助于增加fuzz吞吐量。</p>
+<h2 id="跑">跑</h2>
+<p>总之借助 LibAFL 的框架，写一个 Fuzzer 还是很清晰的。（或许若干年后的 Fuzzing 学习者就不用啃AFL的1000行源码了😭）</p>
+<p>最后跑出来一个死循环。👴宣布实验一完成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[AFL++ 798a8ebfa8a4] /fuzzing101/exercise-1 # ./xpdf/install/bin/pdftotext ./timeouts/c497979e26a808e9
+Error: PDF file is damaged - attempting to reconstruct xref table...
+Error (2459): Dictionary key must be a name object
+Error (2465): Illegal character &#39;&gt;&#39;
+Error (2468): Dictionary key must be a name object
+Error (2471): Dictionary key must be a name object
+Error (2486): Dictionary key must be a name object
+Error (2488): Illegal character &lt;2f&gt; in hex string
+Error (2489): Illegal character &lt;78&gt; in hex string
+Error (2490): Illegal character &lt;6d&gt; in hex string
+Error (2491): Illegal character &lt;70&gt; in hex string
+Error (2492): Illegal character &lt;3a&gt; in hex string
+Error (2493): Illegal character &lt;4d&gt; in hex string
+Error (2494): Illegal character &lt;6f&gt; in hex string
+Error (2496): Illegal character &lt;69&gt; in hex string
+Error (2498): Illegal character &lt;79&gt; in hex string
+Error (2501): Illegal character &lt;74&gt; in hex string
+Error (2503): Dictionary key must be a name object
+-------------8&lt;-------------
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/fuzz/">fuzz</a>
+        
+            <a href="/tags/rust/">rust</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "51da5c60f4f56c7257ec",
+        clientSecret: "c6208164907a36b5b54077802ac3319a9dc833f9",
+        repo: "gitalk_comments",
+        owner: "lonelyuan",
+        admin: ["lonelyuan"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 lonelyuan&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.17.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

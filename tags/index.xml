@@ -6,7 +6,23 @@
         <description>Recent content in Tags on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 26 Jul 2023 02:54:55 +0800</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>fuzz</title>
+        <link>https://lonelyuan.github.io/tags/fuzz/</link>
+        <pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/fuzz/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>rust</title>
+        <link>https://lonelyuan.github.io/tags/rust/</link>
+        <pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/rust/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Blog</title>
         <link>https://lonelyuan.github.io/tags/blog/</link>
         <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
