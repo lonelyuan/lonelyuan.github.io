@@ -880,9 +880,11 @@ rm -rvf libexif
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">edges_observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HitcountsMapObserver</span>::<span class="n">new</span><span class="p">(</span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std_edges_map_observer</span><span class="p">(</span><span class="s">&#34;edges&#34;</span><span class="p">)</span><span class="w"> </span><span class="p">});</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">edges_observer</span><span class="w"> </span><span class="o">=</span><span class="w"> 
+</span><span class="w">    </span><span class="n">HitcountsMapObserver</span>::<span class="n">new</span><span class="p">(</span><span class="k">unsafe</span><span class="p">{</span><span class="n">std_edges_map_observer</span><span class="p">(</span><span class="s">&#34;edges&#34;</span><span class="p">)});</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>此外，简单的超时反馈也改为了真正的崩溃反馈：<code>CrashFeedback</code>。</p>
@@ -892,8 +894,8 @@ rm -rvf libexif
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w">
-</span><span class="w">        </span><span class="n">feedback_and_fast</span><span class="o">!</span><span class="p">(</span><span class="n">CrashFeedback</span>::<span class="n">new</span><span class="p">(),</span><span class="w"> </span><span class="n">MaxMapFeedback</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">edges_observer</span><span class="p">));</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="w">    </span><span class="n">feedback_and_fast</span><span class="o">!</span><span class="p">(</span><span class="n">CrashFeedback</span>::<span class="n">new</span><span class="p">(),</span><span class="w"> </span><span class="n">MaxMapFeedback</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">edges_observer</span><span class="p">));</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div><h4 id="组件monitor--eventmanager--status">组件：Monitor &amp; EventManager &amp; Status</h4>
@@ -1178,7 +1180,7 @@ Aborted
 </ul>
 <p>那么基本确认是内存溢出的问题。👴的16G属实不堪大用，这下不得不买内存条了。</p>
 <p>那么基本确认问题无解了吗？👴开始怀疑问题出在Docker上。于是👴回到宿主机 WSL2 上重新配环境。还是在执行<code>cp build/libexercisetwo.a libexif</code>之后成功编译。</p>
-<p>这次能够稳定运行一段时间了，并且成功获得objective。</p>
+<p>这次能够稳定运行一段时间了，并且成功获得objective。👴就是个睿智。</p>
 <p><img src="/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png"
 	width="1366"
 	height="584"
@@ -1271,7 +1273,7 @@ afltriage_ASAN_unknown-crash_WRITE_exif_mnote_data_olympus_save_1e4a69a1a4d7585d
 afltriage_SIGSEGV___memmove_sse2_unaligned_erms_b1cfe4f5c38c4991e7c55dccdfb06372.txt
 </code></pre></td></tr></table>
 </div>
-</div><p>👴还有点怀疑ASAN的输出好像都是fuzzer里面的bug，但是阅读报告之后发现确实是target里面的。</p>
+</div><p>👴还有点怀疑ASAN的输出好像都是fuzzer里面的bug，但是阅读报告之后发现确实是target里面的。只是原博客的ASAN能够指出Target源代码的行号，👴的只能拿到二进制地址。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1291,15 +1293,15 @@ afltriage_SIGSEGV___memmove_sse2_unaligned_erms_b1cfe4f5c38c4991e7c55dccdfb06372
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Summary: ASAN detected heap-buffer-overflow in exif_entry_get_value after a READ leading to SIGABRT (si_signo=6) / SI_TKILL (si_code=-6)
 -------------8&lt;-------------
 #10 0x0000555555695c85 in exif_entry_get_value (/home/czy/fuzzing-101-solutions/exercise-2/build/triager)
-                       542: const exif_entry_get_value(e = (ExifEntry *)0x604000000350, val = (char *)&lt;optimized out&gt;, maxlen = (unsigned int)1999) {
-                       |||:
-                       |||: /* Local reference: ExifEntry * e = 0x604000000350; */
-                       682: 		 */
-                       683: 		if (e-&gt;size &amp;&amp; e-&gt;data &amp;&amp;
-                       684: 		    (strspn ((char *)e-&gt;data, &#34; &#34;) != strlen ((char *) e-&gt;data)))
-                       |||:
-                       ---: }
-                       at exif-entry.c:684
+    542: const exif_entry_get_value(e = (ExifEntry *)0x604000000350, val = (char *)&lt;optimized out&gt;, maxlen = (unsigned int)1999) {
+    |||:
+    |||: /* Local reference: ExifEntry * e = 0x604000000350; */
+    682: 		 */
+    683: 		if (e-&gt;size &amp;&amp; e-&gt;data &amp;&amp;
+    684: 		    (strspn ((char *)e-&gt;data, &#34; &#34;) != strlen ((char *) e-&gt;data)))
+    |||:
+    ---: }
+    at exif-entry.c:684
 </code></pre></td></tr></table>
 </div>
 </div><p>只能说👴的环境还是有点毛病， WSL2 里面跑比 WSL2+Docker 里面跑，稳定运行时间长，但也不超过三分钟。👴只能手动断断续续的重新跑，这样fuzzer的状态其实是丢失了的。后面的实验还是别折腾我这个破本子了。</p>

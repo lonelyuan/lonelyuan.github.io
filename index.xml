@@ -308,9 +308,11 @@ rm -rvf libexif
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edges_observer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HitcountsMapObserver&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;unsafe&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std_edges_map_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;edges&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edges_observer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HitcountsMapObserver&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;unsafe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std_edges_map_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;edges&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)});&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;此外，简单的超时反馈也改为了真正的崩溃反馈：&lt;code&gt;CrashFeedback&lt;/code&gt;。&lt;/p&gt;
@@ -320,8 +322,8 @@ rm -rvf libexif
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;objective&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feedback_and_fast&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CrashFeedback&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MaxMapFeedback&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edges_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;objective&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feedback_and_fast&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CrashFeedback&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MaxMapFeedback&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edges_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;组件monitor--eventmanager--status&#34;&gt;组件：Monitor &amp;amp; EventManager &amp;amp; Status&lt;/h4&gt;
@@ -606,7 +608,7 @@ Aborted
 &lt;/ul&gt;
 &lt;p&gt;那么基本确认是内存溢出的问题。👴的16G属实不堪大用，这下不得不买内存条了。&lt;/p&gt;
 &lt;p&gt;那么基本确认问题无解了吗？👴开始怀疑问题出在Docker上。于是👴回到宿主机 WSL2 上重新配环境。还是在执行&lt;code&gt;cp build/libexercisetwo.a libexif&lt;/code&gt;之后成功编译。&lt;/p&gt;
-&lt;p&gt;这次能够稳定运行一段时间了，并且成功获得objective。&lt;/p&gt;
+&lt;p&gt;这次能够稳定运行一段时间了，并且成功获得objective。👴就是个睿智。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png&#34;
 	width=&#34;1366&#34;
 	height=&#34;584&#34;
@@ -699,7 +701,7 @@ afltriage_ASAN_unknown-crash_WRITE_exif_mnote_data_olympus_save_1e4a69a1a4d7585d
 afltriage_SIGSEGV___memmove_sse2_unaligned_erms_b1cfe4f5c38c4991e7c55dccdfb06372.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;👴还有点怀疑ASAN的输出好像都是fuzzer里面的bug，但是阅读报告之后发现确实是target里面的。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;👴还有点怀疑ASAN的输出好像都是fuzzer里面的bug，但是阅读报告之后发现确实是target里面的。只是原博客的ASAN能够指出Target源代码的行号，👴的只能拿到二进制地址。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -719,15 +721,15 @@ afltriage_SIGSEGV___memmove_sse2_unaligned_erms_b1cfe4f5c38c4991e7c55dccdfb06372
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Summary: ASAN detected heap-buffer-overflow in exif_entry_get_value after a READ leading to SIGABRT (si_signo=6) / SI_TKILL (si_code=-6)
 -------------8&amp;lt;-------------
 #10 0x0000555555695c85 in exif_entry_get_value (/home/czy/fuzzing-101-solutions/exercise-2/build/triager)
-                       542: const exif_entry_get_value(e = (ExifEntry *)0x604000000350, val = (char *)&amp;lt;optimized out&amp;gt;, maxlen = (unsigned int)1999) {
-                       |||:
-                       |||: /* Local reference: ExifEntry * e = 0x604000000350; */
-                       682: 		 */
-                       683: 		if (e-&amp;gt;size &amp;amp;&amp;amp; e-&amp;gt;data &amp;amp;&amp;amp;
-                       684: 		    (strspn ((char *)e-&amp;gt;data, &amp;#34; &amp;#34;) != strlen ((char *) e-&amp;gt;data)))
-                       |||:
-                       ---: }
-                       at exif-entry.c:684
+    542: const exif_entry_get_value(e = (ExifEntry *)0x604000000350, val = (char *)&amp;lt;optimized out&amp;gt;, maxlen = (unsigned int)1999) {
+    |||:
+    |||: /* Local reference: ExifEntry * e = 0x604000000350; */
+    682: 		 */
+    683: 		if (e-&amp;gt;size &amp;amp;&amp;amp; e-&amp;gt;data &amp;amp;&amp;amp;
+    684: 		    (strspn ((char *)e-&amp;gt;data, &amp;#34; &amp;#34;) != strlen ((char *) e-&amp;gt;data)))
+    |||:
+    ---: }
+    at exif-entry.c:684
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;只能说👴的环境还是有点毛病， WSL2 里面跑比 WSL2+Docker 里面跑，稳定运行时间长，但也不超过三分钟。👴只能手动断断续续的重新跑，这样fuzzer的状态其实是丢失了的。后面的实验还是别折腾我这个破本子了。&lt;/p&gt;
