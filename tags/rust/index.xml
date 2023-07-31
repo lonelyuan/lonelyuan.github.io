@@ -7,24 +7,31 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Wed, 26 Jul 2023 02:54:55 +0800</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>libAFL速通Fuzzing101</title>
-        <link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101/</link>
+        <title>libAFL速通Fuzzing101 (1)</title>
+        <link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</link>
         <pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate>
         
-        <guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101/</guid>
-        <description>&lt;h2 id=&#34;是不是搞fuzz的都在搞rust&#34;&gt;是不是搞fuzz的都在搞rust&lt;/h2&gt;
+        <guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</guid>
+        <description>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/exe1.png" alt="Featured image of post libAFL速通Fuzzing101 (1)" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本系列是学习&lt;a class=&#34;link&#34; href=&#34;https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;《Fuzzing101 with LibAFL》&lt;/a&gt;系列博客（后文称：原博客）的笔记分享。
+前置知识： fuzz基础，AFL基本使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;是不是搞fuzz的都在搞rust&#34;&gt;是不是搞fuzz的都在搞rust&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/antonio-morales/Fuzzing101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Fuzzing101&lt;/a&gt;是大名鼎鼎的 Fuzzing 学习材料。👴之前搞过一点，故这次整点花活，看到有个叫&lt;a class=&#34;link&#34; href=&#34;https://epi052.gitlab.io/notes-to-self/blog/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;epi052&lt;/a&gt;的大佬整了个用 LibAFL 做 Fuzzing101 的活。于是👴也跟着学一波rust。&lt;/p&gt;
+    &gt;Fuzzing101&lt;/a&gt;是大名鼎鼎的 Fuzzing 入门教程。👴之前搞过一点，故这次整点花活。看到有个叫&lt;a class=&#34;link&#34; href=&#34;https://epi052.gitlab.io/notes-to-self/blog/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;epi052&lt;/a&gt;的大佬用 LibAFL 做 Fuzzing101，于是👴也跟着学一波rust。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/AFLplusplus/LibAFL&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;LibAFL&lt;/a&gt;是用 Rust 写的 Fuzzing 框架，主要贡献在于给出了一套 Fuzzer 的标准化定义，以此试图改善当今 Fuzzing 研究界成果倍出但互不兼容，经常重复造轮子的现象。&lt;/p&gt;
-&lt;p&gt;LibAFL 隶属于 AFL++ 项目组，故需要先配置 AFL++ 。而 AFL++ 的官方 Docker 镜像就包含了 Rust 环境，所以使用 Docker 配环境就只需一句话：&lt;/p&gt;
+&lt;p&gt;LibAFL 隶属于 AFL++ 项目组，故需要先配置 AFL++ 。而 AFL++ 的官方 Docker 镜像就包含了 Rust 环境，所以使用 Docker 配 LibAFL 环境就只需一句话：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker run -ti -v ./Fuzzing101:/fuzzing101 aflplusplus/aflplusplus
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker pull aflplusplus/aflplusplus
+docker run -ti -v ./Fuzzing101:/fuzzing101 aflplusplus/aflplusplus
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;execise-1-xpdf&#34;&gt;Execise-1 xpdf&lt;/h2&gt;
@@ -176,8 +183,7 @@ make install
 &lt;li&gt;Events: 组件之间通信&lt;/li&gt;
 &lt;li&gt;Fuzzer: 顶层组件，把一切组织起来&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本文参考的&lt;a class=&#34;link&#34; href=&#34;https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;教程&lt;/a&gt;的讲解很详细，且提供了完整代码。因此，本文采试图换一个思路，从自顶向下的角度拆解代码：&lt;/p&gt;
+&lt;p&gt;因原博客的讲解很详细，且提供了完整代码。故本文试图切换视角，从自顶向下的角度拆解代码：&lt;/p&gt;
 &lt;h4 id=&#34;组件fuzzer&#34;&gt;组件：Fuzzer&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -201,7 +207,7 @@ make install
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fuzzer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fuzz_loop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;stages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mgr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;可以看到 &lt;code&gt;StdFuzzer&lt;/code&gt; 串联起了全部组件。&lt;code&gt;mgr&lt;/code&gt;、&lt;code&gt;scheduler&lt;/code&gt;、&lt;code&gt;mutator&lt;/code&gt;、&lt;code&gt;stages&lt;/code&gt; 都是使用库中自带的类，下面详述复杂些的组件。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;可以看到 &lt;code&gt;StdFuzzer&lt;/code&gt; 串联起了全部组件。&lt;code&gt;mgr&lt;/code&gt;、&lt;code&gt;scheduler&lt;/code&gt;、&lt;code&gt;mutator&lt;/code&gt;、&lt;code&gt;stages&lt;/code&gt; 都是使用库自带的类，固省略之，下面详述复杂些的组件。&lt;/p&gt;
 &lt;h4 id=&#34;组件state&#34;&gt;组件：State&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -250,7 +256,69 @@ where
     O: Feedback&amp;lt;Self&amp;gt;,
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;组件observer--feedback&#34;&gt;组件：Observer &amp;amp; Feedback&lt;/h4&gt;
+&lt;/div&gt;&lt;h4 id=&#34;rust-基础之所有权&#34;&gt;Rust 基础之所有权&lt;/h4&gt;
+&lt;p&gt;所有权，是 Rust 特有的设计，在无GC的前提下实现内存安全与高性能。基本规则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Rust 中每一个值都被一个变量所拥有，该变量被称为值的所有者&lt;/li&gt;
+&lt;li&gt;一个值同时只能被一个变量所拥有，或者说一个值只能拥有一个所有者&lt;/li&gt;
+&lt;li&gt;当所有者(变量)离开作用域范围时，这个值将被丢弃(drop)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于这些原则，当一个值被另一个变量使用时，会发生所有权的转移，先前的变量便不能访问该值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;fm&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;{}, world!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 报错！
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;fm&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;{}, world!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 不报错
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;fm&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;x = {}, y = {}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 不报错
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;转移(move) 和 拷贝(copy)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;let s2 = s1;&lt;/code&gt;在 Rust 中被称为变量绑定，代表s1被移动到了s2。&lt;/p&gt;
+&lt;p&gt;如果想要访问相同值，需要对变量进行拷贝。在上面的例子中，int类型没有拷贝也不报错，这是因为基本类型的大小是已知的，且分配在栈上，对他的拷贝比较简单，故 Rust 自动实现了拷贝。而String是复杂类型，必须显式的拷贝。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;引用(reference) 和 借用(borrowing)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将值在变量之间传来传去确实比较麻烦。 Rust实现了2种引用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt;: 不可变引用，允许使用值但不获取所有权。可以有多个。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;mut&lt;/code&gt;: 可变引用。仅能存在一个。&lt;/li&gt;
+&lt;li&gt;可变引用与不可变引用不能同时存在。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;获取变量的引用，就称为借用。显然，在离开作用域后所有权将被归还。引用的作用域从创建一直持续到它最后一次使用，而变量的作用域从创建持续到某一个花括号&lt;code&gt;}&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;对引用有效性的检查是 Rust 解决数据竞争，悬垂指针等安全问题的重要机制。&lt;/p&gt;
+&lt;p&gt;在本项目中，需要&lt;code&gt;feedback&lt;/code&gt;和&lt;code&gt;objective&lt;/code&gt;随着&lt;code&gt;state&lt;/code&gt;更新而不断积累，因此使用可变引用。而其他成员和&lt;code&gt;state&lt;/code&gt;相关，故直接将所有权移交给&lt;code&gt;state&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;参考文档：https://course.rs/basic/ownership/ownership.html&lt;/p&gt;
+&lt;h4 id=&#34;组件observer--feedback&#34;&gt;组件：Observer &amp;amp; Feedback&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -287,14 +355,13 @@ where
 在本例中，首先定义的两个Observer分别提供了代码运行时间和便覆盖率的信息。
 然后分布对他们进行了不同的反馈判断。&lt;code&gt;feedback_or&lt;/code&gt;和&lt;code&gt;feedback_and_fast&lt;/code&gt;是逻辑判断宏。因此可以解读他们的逻辑：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;feedback&lt;/code&gt;的条件是覆盖了新的分支 或 “运行时间反馈”。故反馈的是有趣的样例（interesting testcase ）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;objective&lt;/code&gt;的条件是覆盖了新的分支 且 运行超时。故反馈的是能触发无限递归漏洞的样例，即我们想要的结果（solution）&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;feedback&lt;/code&gt;的条件是覆盖了新的分支 或 “运行时间反馈”。故反馈的是有趣的样例(interesting testcase)
+&lt;ul&gt;
+&lt;li&gt;实际上，“运行时间反馈”永远不会真的反馈，需要配合其他反馈使用。这里仅作示例。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;实际上“运行时间反馈”永远不会有反馈，需要配合其他反馈使用。这里仅作示例。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;objective&lt;/code&gt;的条件是覆盖了新的分支 且 运行超时。故反馈的是能触发无限递归漏洞的样例，即我们想要的结果（solution）&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&#34;组件executor&#34;&gt;组件：Executor&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -312,12 +379,12 @@ where
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parse_afl_cmdline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;@@&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coverage_map_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MAP_SIZE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tuple_list&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edges_observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Duration&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;from_secs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;mut&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;executor&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TimeoutForkserverExecutor&lt;/span&gt;::&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fork_server&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;构建执行器时，首先加入了两个 Observer ，然后指定了超时时间，有助于增加fuzz吞吐量。&lt;/p&gt;
-&lt;h2 id=&#34;跑&#34;&gt;跑&lt;/h2&gt;
+&lt;/div&gt;&lt;p&gt;我们的 Executor 还是采用经典的 forkserver 架构，构建 Executor 时，首先加入了两个 Observer ，然后指定了超时时间，有助于增加fuzz吞吐量。&lt;/p&gt;
+&lt;h3 id=&#34;跑&#34;&gt;跑🏃‍&lt;/h3&gt;
 &lt;p&gt;总之借助 LibAFL 的框架，写一个 Fuzzer 还是很清晰的。（或许若干年后的 Fuzzing 学习者就不用啃AFL的1000行源码了😭）&lt;/p&gt;
 &lt;p&gt;最后跑出来一个死循环。👴宣布实验一完成。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
