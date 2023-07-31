@@ -400,7 +400,7 @@ if (!doNotTrack) {
           <ol>
             <li><a href="#组件observer--feedback">组件：Observer &amp; Feedback</a></li>
             <li><a href="#组件monitor--eventmanager--status">组件：Monitor &amp; EventManager &amp; Status</a></li>
-            <li><a href="#rust-基础之函数返回值与错误处理">Rust 基础之函数返回值与错误处理</a></li>
+            <li><a href="#rust-基础之函数返回值模式匹配与错误处理">Rust 基础之函数返回值、模式匹配与错误处理</a></li>
             <li><a href="#组件harness--executor">组件：Harness &amp; Executor</a></li>
             <li><a href="#rust-基础之闭包">Rust 基础之闭包</a></li>
           </ol>
@@ -569,7 +569,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    10 minute read
+                    11 minute read
                 </time>
             </div>
         
@@ -949,47 +949,110 @@ rm -rvf libexif
 </span><span class="w">    </span><span class="p">});</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
-</div><h4 id="rust-基础之函数返回值与错误处理">Rust 基础之函数返回值与错误处理</h4>
+</div><h4 id="rust-基础之函数返回值模式匹配与错误处理">Rust 基础之函数返回值、模式匹配与错误处理</h4>
+<p>本例中的<code>mgr</code>是一个经典的match用法，用match处理函数的返回值。下面把概念捋一遍：</p>
+<h5 id="函数">函数</h5>
+<p>Rust 的函数体由一系列语句组成，最后由表达式结尾。必须严格分别表达式和语句。因为表达式代表一个返回值，而语句不返回。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">add</span><span class="p">(</span><span class="n">i</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">j</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w">
-</span><span class="w">   </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">FUNC</span><span class="p">(</span><span class="n">PARAM</span>: <span class="nc">TYPE</span><span class="p">,</span><span class="w"> </span><span class="n">PARAM</span>: <span class="nc">TYPE</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="p">.)</span><span class="w"> </span>-&gt; <span class="nc">RETURN_TYPE</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">STATEMANT</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">EXPRESSION</span><span class="w">
 </span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
-</div><p>Rust 的函数体是由一系列语句组成，最后由表达式结尾。必须严格分别表达式和语句。因为表达式代表一个返回值，而语句不返回。</p>
+</div><ul>
+<li><code>;</code>: 标识一条语句。表达式没有分号。</li>
+<li><code>!</code>: 标识发散函数(diverge function)，没有返回值。如<code>println!(&quot;{}&quot;, s)</code>，<code>panic!()</code>
 <ul>
-<li><code>;</code>：标识一条语句。表达式没有分号。</li>
-<li><code>!</code>：标识发散函数(diverge function)，没有返回值</li>
-<li><code>()</code>: 表示无返回值。空元组，不占用内存</li>
-</ul>
-<p>返回值有以下类型：</p>
-<ul>
-<li><code>Option&lt;T&gt;</code>：标识可空变量
-<ul>
-<li>可选值：<code>Some&lt;T&gt;</code>或<code>None</code></li>
+<li><code>panic!()</code>: 线程恐慌。单线程程序即报错退出。</li>
 </ul>
 </li>
-<li><code>Result&lt;T,E&gt;</code>：标识正常或错误
+<li><code>()</code>: 空元组，不占用内存。无返回值时的返回值。</li>
+</ul>
+<h5 id="模式匹配">模式匹配</h5>
+<p>match相当于switch的加强版：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">match</span><span class="w"> </span><span class="n">VALUE</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">PATTERN</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">EXPRESSION</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">PATTERN</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">EXPRESSION</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="o">..</span><span class="p">.</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>_</code>: 表示剩余情况的PATTERN。</li>
+<li>exhaustive特性：变量的所有可能性必须全部被覆盖。</li>
+</ul>
+<h5 id="错误处理">错误处理</h5>
+<p>函数返回值常用两类泛型枚举进行包装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 可选值
+</span><span class="c1"></span><span class="w">    </span><span class="nb">None</span><span class="p">,</span><span class="w"> </span><span class="c1">// 可以没有值。适用于许多情况：初始值，可选参数，错误(不会panic!)
+</span><span class="c1"></span><span class="w">    </span><span class="nb">Some</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="w"> </span><span class="c1">// 必须有值
+</span><span class="c1"></span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="k">enum</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 返回值
+</span><span class="c1"></span><span class="w">   </span><span class="nb">Ok</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="w">
+</span><span class="w">   </span><span class="nb">Err</span><span class="p">(</span><span class="n">E</span><span class="p">),</span><span class="w"> </span><span class="c1">// Err可以不panic!
+</span><span class="c1"></span><span class="p">}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Rust对Result实现了许多方便的方法，详情请参阅文档。</p>
 <ul>
-<li>可选值：<code>Ok(T)</code>或<code>Err(E)</code></li>
+<li><code>unwrap()</code>：解包Result，才能获取值
+<ul>
+<li>对<code>None</code>执行则panic!</li>
 </ul>
 </li>
-<li><code>unwrap()</code>：解包Result
-<ul>
-<li>Err则执行<code>panic!</code></li>
+<li><code>?</code>：语法糖，将Err对象传播出来，进一步使代码简洁。</li>
 </ul>
-</li>
-<li><code>?</code>：语法糖，故障时返回Err对象
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">FUNC</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">};</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FUNC</span><span class="p">()</span><span class="o">?</span><span class="p">;</span><span class="w"> </span><span class="c1">//等价
+</span></code></pre></td></tr></table>
+</div>
+</div><p>参考文档：</p>
 <ul>
-<li>Err可以不<code>panic!</code></li>
-</ul>
-</li>
+<li><a class="link" href="https://rustwiki.org/zh-CN/std/option/index.html"  target="_blank" rel="noopener"
+    >https://rustwiki.org/zh-CN/std/option/index.html</a></li>
+<li><a class="link" href="https://rustwiki.org/zh-CN/std/result/index.html"  target="_blank" rel="noopener"
+    >https://rustwiki.org/zh-CN/std/result/index.html</a></li>
 </ul>
 <h4 id="组件harness--executor">组件：Harness &amp; Executor</h4>
 <p>在fuzzer侧，<code>LLVMFuzzerTestOneInput()</code>对应<code>libfuzzer_test_one_input()</code>函数</p>
@@ -1029,14 +1092,14 @@ rm -rvf libexif
 </div>
 </div><p>fuzzer写完了，善！</p>
 <h4 id="rust-基础之闭包">Rust 基础之闭包</h4>
-<p>闭包(closure)，即 lambda 表达式或匿名函数，加上有能力捕获外部环境中的变量。</p>
+<p>闭包(closure)，一般语言的闭包就是 lambda 表达式或匿名函数，在Rust中还要加上捕获外部环境中的变量的能力。</p>
 <p>闭包捕获变量的方式分为三类：按顺序捕获</p>
 <ul>
 <li>Fn：表示捕获方式为通过不可变引用（&amp;T）的闭包</li>
 <li>FnMut：表示捕获方式为通过可变引用（&amp;mut T）的闭包</li>
 <li>FnOnce：表示捕获方式为通过值（T）的闭包</li>
 </ul>
-<p>实际上，闭包就是这三种Trait的语法糖。</p>
+<p>实际上，闭包就是这三种Trait的语法糖。关于Trait目前大致理解成某种规定泛型对象的行为的东西。如上面的三类函数，不同程度上约束了泛型。深度内容留待后文学习。</p>
 <p>究竟何为“捕获”？Rust是没有垃圾回收的语言，取而代之的是生命周期。引用时，会自动分析变量生命周期，以决定使用哪个Trait。</p>
 <p>还可以使用关键字<code>move</code>强制转移所有权到闭包中</p>
 <p>参考文档：https://rustwiki.org/zh-CN/rust-by-example/fn/closures/capture.html</p>
