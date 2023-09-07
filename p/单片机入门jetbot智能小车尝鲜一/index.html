@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。 小车的核心是NVIDIA家的jetson-nano开发板，'>
 <title>单片机入门——jetbot智能小车尝鲜(一)</title>
@@ -429,12 +429,12 @@ if (!doNotTrack) {
                 CS
             </a>
         
-            <a href="/categories/web/" class="font_size_3">
-                Web
+            <a href="/categories/sec/" class="font_size_3">
+                Sec
             </a>
         
-            <a href="/categories/sec/" class="font_size_2">
-                Sec
+            <a href="/categories/web/" class="font_size_3">
+                Web
             </a>
         
             <a href="/categories/ctf/" class="font_size_1">
@@ -462,24 +462,24 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/fuzz/" class="font_size_3">
+                fuzz
+            </a>
+        
+            <a href="/tags/fuzzing101/" class="font_size_3">
+                fuzzing101
+            </a>
+        
+            <a href="/tags/libafl/" class="font_size_3">
+                Libafl
+            </a>
+        
+            <a href="/tags/rust/" class="font_size_3">
+                rust
+            </a>
+        
             <a href="/tags/csapp/" class="font_size_2">
                 CSAPP
-            </a>
-        
-            <a href="/tags/flask/" class="font_size_2">
-                flask
-            </a>
-        
-            <a href="/tags/jetbot/" class="font_size_2">
-                jetbot
-            </a>
-        
-            <a href="/tags/life/" class="font_size_2">
-                Life
-            </a>
-        
-            <a href="/tags/awd/" class="font_size_1">
-                AWD
             </a>
         
     </div>
@@ -544,9 +544,13 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     8 minute read
+                    <span class="post-word-count">, 3939 words</span> 
+
                 </time>
             </div>
+            
         
+
     </footer>
     
 
@@ -644,16 +648,16 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
-  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
-  70: 70 -- -- -- -- -- -- --
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+</span></span><span class="line"><span class="cl">  00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">  10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">  20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">  30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --（led）
+</span></span><span class="line"><span class="cl">  40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">  50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">  60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --（电机驱动）
+</span></span><span class="line"><span class="cl">  70: 70 -- -- -- -- -- -- --
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -695,10 +699,10 @@ if (!doNotTrack) {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt-get install tightvncserver
-sudo apt-get install xrdp
-sudo apt-get install vnc4server tightvncserver
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt-get install tightvncserver
+</span></span><span class="line"><span class="cl">sudo apt-get install xrdp
+</span></span><span class="line"><span class="cl">sudo apt-get install vnc4server tightvncserver
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -720,8 +724,8 @@ sudo apt-get install vnc4server tightvncserver
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OSError: [Errno 121] Remote I/O error
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">OSError: [Errno 121] Remote I/O error
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>沿着jupyter notebook的报错一直走,一直到了最底层,向设备写入数据报错,<code>remote IO error</code>.</p>
 <p>看起来像是硬件的问题。一步一步排查呗</p>
@@ -756,16 +760,16 @@ sudo apt-get install vnc4server tightvncserver
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+</span></span><span class="line"><span class="cl">00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
+</span></span><span class="line"><span class="cl">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+</span></span><span class="line"><span class="cl">70: -- -- -- -- -- -- -- --
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>

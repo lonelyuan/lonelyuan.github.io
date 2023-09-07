@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='如果这句话还在说明作者最近不是闲来无事，这很合理'>
 <title>闲来无事，倒腾博客</title>
@@ -10,7 +10,7 @@
 <meta property='og:description' content='如果这句话还在说明作者最近不是闲来无事，这很合理'>
 <meta property='og:url' content='https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/'>
 <meta property='og:site_name' content='lonelyuan&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Blog' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2021-11-07T14:19:11&#43;00:00'/><meta property='article:modified_time' content='2021-11-07T14:19:11&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Blog' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2021-11-07T14:19:11&#43;00:00'/><meta property='article:modified_time' content='2023-08-05T15:08:28&#43;00:00'/><meta property='og:image' content='https://lonelyuan.github.io/' />
 <meta name="twitter:title" content="闲来无事，倒腾博客">
 <meta name="twitter:description" content="如果这句话还在说明作者最近不是闲来无事，这很合理"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://lonelyuan.github.io/' />
@@ -390,6 +390,7 @@ if (!doNotTrack) {
         </li>
         <li><a href="#主题调教">主题调教</a></li>
         <li><a href="#你这静态网站不是很静态啊">你这静态网站不是很静态啊</a></li>
+        <li><a href="#front-matter-插件这不cms吗">Front Matter 插件：这不CMS吗</a></li>
       </ol>
     </li>
   </ol>
@@ -421,12 +422,12 @@ if (!doNotTrack) {
                 CS
             </a>
         
-            <a href="/categories/web/" class="font_size_3">
-                Web
+            <a href="/categories/sec/" class="font_size_3">
+                Sec
             </a>
         
-            <a href="/categories/sec/" class="font_size_2">
-                Sec
+            <a href="/categories/web/" class="font_size_3">
+                Web
             </a>
         
             <a href="/categories/ctf/" class="font_size_1">
@@ -454,24 +455,24 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/fuzz/" class="font_size_3">
+                fuzz
+            </a>
+        
+            <a href="/tags/fuzzing101/" class="font_size_3">
+                fuzzing101
+            </a>
+        
+            <a href="/tags/libafl/" class="font_size_3">
+                Libafl
+            </a>
+        
+            <a href="/tags/rust/" class="font_size_3">
+                rust
+            </a>
+        
             <a href="/tags/csapp/" class="font_size_2">
                 CSAPP
-            </a>
-        
-            <a href="/tags/flask/" class="font_size_2">
-                flask
-            </a>
-        
-            <a href="/tags/jetbot/" class="font_size_2">
-                jetbot
-            </a>
-        
-            <a href="/tags/life/" class="font_size_2">
-                Life
-            </a>
-        
-            <a href="/tags/awd/" class="font_size_1">
-                AWD
             </a>
         
     </div>
@@ -540,9 +541,13 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     4 minute read
+                    <span class="post-word-count">, 1565 words</span> 
+
                 </time>
             </div>
+            
         
+
     </footer>
     
 
@@ -610,16 +615,16 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">├── archetypes          # .md 模板
-│   └── default.md      
-├── config.toml         # 配置文件
-├── content             # 在这写东西
-├── data                # 更多配置文件
-├── layouts             # .html 模板
-├── public              # 渲染好的网站
-├── static              # 静态文件，hugo会全部复制
-└── themes              # 博客主题
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── archetypes          # .md 模板
+</span></span><span class="line"><span class="cl">│   └── default.md      
+</span></span><span class="line"><span class="cl">├── config.toml         # 配置文件
+</span></span><span class="line"><span class="cl">├── content             # 在这写东西
+</span></span><span class="line"><span class="cl">├── data                # 更多配置文件
+</span></span><span class="line"><span class="cl">├── layouts             # .html 模板
+</span></span><span class="line"><span class="cl">├── public              # 渲染好的网站
+</span></span><span class="line"><span class="cl">├── static              # 静态文件，hugo会全部复制
+</span></span><span class="line"><span class="cl">└── themes              # 博客主题
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="content">content</h4>
 <p>这里是 Hugo 的输入，存放<code>.md</code>格式的文章。使用<code>hugo new</code>命令时，会尝试从<code>archetypes</code>目录寻找对应的模板，模板通常仅包含front matter，定义了文章的元属性。语法如下：</p>
@@ -638,6 +643,7 @@ if (!doNotTrack) {
 <p>【To be continued】</p>
 <ul>
 <li><input disabled="" type="checkbox"> 主题配色，字体</li>
+<li><input disabled="" type="checkbox"> 代码块：行号，突出行</li>
 <li><input disabled="" type="checkbox"> 词云——js引入</li>
 </ul>
 <!-- ### 从 front matter 到 
@@ -665,6 +671,8 @@ https://gohugo.io/content-management/front-matter/
 <li><input disabled="" type="checkbox"> </li>
 </ul>
 <p>【To be continued，如果这句话还在说明作者最近不是闲来无事，这很合理】</p>
+<h3 id="front-matter-插件这不cms吗">Front Matter 插件：这不CMS吗</h3>
+<p>自动更新，不是很合理</p>
 
 </section>
 
@@ -692,7 +700,19 @@ https://gohugo.io/content-management/front-matter/
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Aug 05, 2023 15:08 UTC
+        </span>
+    </section></footer>
 
 
     

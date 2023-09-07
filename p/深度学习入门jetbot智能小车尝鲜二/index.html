@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。 怎样才能让ai程序发挥好的效果呢？众所周知，所'>
 <title>深度学习入门——jetbot智能小车尝鲜（二）</title>
@@ -418,12 +418,12 @@ if (!doNotTrack) {
                 CS
             </a>
         
-            <a href="/categories/web/" class="font_size_3">
-                Web
+            <a href="/categories/sec/" class="font_size_3">
+                Sec
             </a>
         
-            <a href="/categories/sec/" class="font_size_2">
-                Sec
+            <a href="/categories/web/" class="font_size_3">
+                Web
             </a>
         
             <a href="/categories/ctf/" class="font_size_1">
@@ -451,24 +451,24 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/fuzz/" class="font_size_3">
+                fuzz
+            </a>
+        
+            <a href="/tags/fuzzing101/" class="font_size_3">
+                fuzzing101
+            </a>
+        
+            <a href="/tags/libafl/" class="font_size_3">
+                Libafl
+            </a>
+        
+            <a href="/tags/rust/" class="font_size_3">
+                rust
+            </a>
+        
             <a href="/tags/csapp/" class="font_size_2">
                 CSAPP
-            </a>
-        
-            <a href="/tags/flask/" class="font_size_2">
-                flask
-            </a>
-        
-            <a href="/tags/jetbot/" class="font_size_2">
-                jetbot
-            </a>
-        
-            <a href="/tags/life/" class="font_size_2">
-                Life
-            </a>
-        
-            <a href="/tags/awd/" class="font_size_1">
-                AWD
             </a>
         
     </div>
@@ -533,9 +533,13 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     7 minute read
+                    <span class="post-word-count">, 3203 words</span> 
+
                 </time>
             </div>
+            
         
+
     </footer>
     
 
@@ -644,15 +648,15 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ipywidgets.widgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1">#图像模块</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>   <span class="c1">#ipy的显示模块</span>
-<span class="kn">import</span> <span class="nn">traitlets</span>                      
-<span class="kn">from</span> <span class="nn">jetbot</span> <span class="kn">import</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">bgr8_to_jpeg</span> <span class="c1">#摄像头驱动，图像格式转换</span>
-<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="c1">#初始化摄像头对象</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span><span class="c1">#创建图像</span>
-<span class="n">camera_link</span> <span class="o">=</span> <span class="n">traitlets</span><span class="o">.</span><span class="n">dlink</span><span class="p">((</span><span class="n">camera</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">bgr8_to_jpeg</span><span class="p">)</span>     <span class="c1">#连接摄像头到图像</span>
-<span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  <span class="c1">#显示图像</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ipywidgets.widgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1">#图像模块</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>   <span class="c1">#ipy的显示模块</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">traitlets</span>                      
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">jetbot</span> <span class="kn">import</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">bgr8_to_jpeg</span> <span class="c1">#摄像头驱动，图像格式转换</span>
+</span></span><span class="line"><span class="cl"><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="c1">#初始化摄像头对象</span>
+</span></span><span class="line"><span class="cl"><span class="n">image</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpeg&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span><span class="c1">#创建图像</span>
+</span></span><span class="line"><span class="cl"><span class="n">camera_link</span> <span class="o">=</span> <span class="n">traitlets</span><span class="o">.</span><span class="n">dlink</span><span class="p">((</span><span class="n">camera</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">bgr8_to_jpeg</span><span class="p">)</span>     <span class="c1">#连接摄像头到图像</span>
+</span></span><span class="line"><span class="cl"><span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  <span class="c1">#显示图像</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>尝试从camera.py里调用原始api。得到报错：<code>Each object must be HasTraits, not &lt;class 'NoneType'&gt;</code>，是说必须为对象指定类型。那么HasTraits这个类型是啥？文档说:任何具有trait属性的类都必须从 <code>HasTraits</code> 继承。</p>
 <p>再次梳理调用摄像头的流程：</p>
@@ -669,11 +673,11 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
-	<span class="o">...</span><span class="c1">#此处为模型执行函数，将输入图像预处理后，执行模型</span>
-<span class="n">update</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">})</span>  <span class="c1">#初始化该函数</span>
-<span class="n">camera</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>  <span class="c1">#将update函数设为camera.value的observer</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span><span class="c1">#此处为模型执行函数，将输入图像预处理后，执行模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">update</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">})</span>  <span class="c1">#初始化该函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">camera</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>  <span class="c1">#将update函数设为camera.value的observer</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>研究一下observe用法：当对象发生变化时调用函数。</p>
 <p><a class="link" href="https://traitlets.readthedocs.io/en/stable/using_traitlets.html#validation"  target="_blank" rel="noopener"
@@ -693,17 +697,17 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ipywidgets.widgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1">#图像模块</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>   <span class="c1">#ipy的显示模块</span>
-<span class="kn">import</span> <span class="nn">traitlets</span>                      
-<span class="kn">from</span> <span class="nn">jetbot</span> <span class="kn">import</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">bgr8_to_jpeg</span> <span class="c1">#摄像头驱动，图像格式转换</span>
-<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="c1">#初始化摄像头对象</span>
-<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
-	<span class="n">x</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span> 
-	<span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1">#显示图像</span>
-<span class="n">update</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">})</span>  
-<span class="n">camera</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ipywidgets.widgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1">#图像模块</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>   <span class="c1">#ipy的显示模块</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">traitlets</span>                      
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">jetbot</span> <span class="kn">import</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">bgr8_to_jpeg</span> <span class="c1">#摄像头驱动，图像格式转换</span>
+</span></span><span class="line"><span class="cl"><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="c1">#初始化摄像头对象</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">x</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1">#显示图像</span>
+</span></span><span class="line"><span class="cl"><span class="n">update</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">})</span>  
+</span></span><span class="line"><span class="cl"><span class="n">camera</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出一大堆数组，说明camera.value是这一大堆像素。而且observe正常运行，数据一直冒出。</p>
 <div class="highlight"><div class="chroma">
@@ -722,19 +726,19 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">array([[[122, 116, 130],
-        [126, 113, 127],
-        [125, 117, 129],
-        ...,
-        [ 84,  96, 107],
-        [ 82,  96, 113],
-        [ 93,  93, 113]],
-
-       [[120, 119, 130],
-        [122, 120, 119],
-        [118, 123, 130],
-        ...,
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">array([[[122, 116, 130],
+</span></span><span class="line"><span class="cl">        [126, 113, 127],
+</span></span><span class="line"><span class="cl">        [125, 117, 129],
+</span></span><span class="line"><span class="cl">        ...,
+</span></span><span class="line"><span class="cl">        [ 84,  96, 107],
+</span></span><span class="line"><span class="cl">        [ 82,  96, 113],
+</span></span><span class="line"><span class="cl">        [ 93,  93, 113]],
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       [[120, 119, 130],
+</span></span><span class="line"><span class="cl">        [122, 120, 119],
+</span></span><span class="line"><span class="cl">        [118, 123, 130],
+</span></span><span class="line"><span class="cl">        ...,
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然而就是不实时更新数据，卒。</p>
 <p>👴佛了。</p>

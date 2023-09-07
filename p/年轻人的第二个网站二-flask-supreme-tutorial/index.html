@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='上回书说到，网站初具雏形，但经高人指点，还是有很多不足。 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。 所以，不要停下来啊！👆（指开发 0x00 蓝'>
 <title>年轻人的第二个网站（二） - flask-supreme-tutorial</title>
@@ -425,12 +425,12 @@ if (!doNotTrack) {
                 CS
             </a>
         
-            <a href="/categories/web/" class="font_size_3">
-                Web
+            <a href="/categories/sec/" class="font_size_3">
+                Sec
             </a>
         
-            <a href="/categories/sec/" class="font_size_2">
-                Sec
+            <a href="/categories/web/" class="font_size_3">
+                Web
             </a>
         
             <a href="/categories/ctf/" class="font_size_1">
@@ -458,24 +458,24 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/fuzz/" class="font_size_3">
+                fuzz
+            </a>
+        
+            <a href="/tags/fuzzing101/" class="font_size_3">
+                fuzzing101
+            </a>
+        
+            <a href="/tags/libafl/" class="font_size_3">
+                Libafl
+            </a>
+        
+            <a href="/tags/rust/" class="font_size_3">
+                rust
+            </a>
+        
             <a href="/tags/csapp/" class="font_size_2">
                 CSAPP
-            </a>
-        
-            <a href="/tags/flask/" class="font_size_2">
-                flask
-            </a>
-        
-            <a href="/tags/jetbot/" class="font_size_2">
-                jetbot
-            </a>
-        
-            <a href="/tags/life/" class="font_size_2">
-                Life
-            </a>
-        
-            <a href="/tags/awd/" class="font_size_1">
-                AWD
             </a>
         
     </div>
@@ -540,9 +540,13 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     5 minute read
+                    <span class="post-word-count">, 2402 words</span> 
+
                 </time>
             </div>
+            
         
+
     </footer>
     
 
@@ -598,8 +602,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ImportError: cannot import name &#39;secure_filename&#39; from &#39;werkzeug&#39; 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ImportError: cannot import name &#39;secure_filename&#39; from &#39;werkzeug&#39; 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查阅Stackoverflow得知是PYPI源上的Flask_uploads插件不再维护了，于是和 werkzeug 库的api不兼容，是插件内在的bug。网上的解决方法有二：</p>
 <ul>
@@ -613,8 +617,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">werkzeug.routing.BuildError: Could not build url for endpoint &#39;_uploads.uploaded_file&#39; with values [&#39;filename&#39;, &#39;setname&#39;]. 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">werkzeug.routing.BuildError: Could not build url for endpoint &#39;_uploads.uploaded_file&#39; with values [&#39;filename&#39;, &#39;setname&#39;]. 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>UploadSet.url()</code>方法返回对应文件的可访问url，返回的url默认带有<code>_upload/</code>前缀，这是 Flask-Uploads 自带的路由，也被称为 autoserve 。
 然而官方文档里有这样一句话</p>
@@ -686,16 +690,16 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">view_dialogue</span><span class="p">(</span><span class="n">c_id</span><span class="p">):</span>
-        <span class="n">dialogue</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_id</span><span class="p">]</span>
-        <span class="k">while</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;comment&#39;</span><span class="p">:</span>
-            <span class="n">c_id</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">reply_id</span>
-            <span class="k">if</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">dialogue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dialogue</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="nd">@staticmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">view_dialogue</span><span class="p">(</span><span class="n">c_id</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dialogue</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_id</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;comment&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c_id</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span><span class="o">.</span><span class="n">reply_id</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dialogue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dialogue</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x03-网站后台">0x03 网站后台</h2>
 <p>网站的后台通常给管理员提供统一监管数据库的界面。有以下插件帮助实现：</p>

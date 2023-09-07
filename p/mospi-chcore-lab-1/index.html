@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱： 那个额'>
 <title>MOSPI-ChCore lab (1)</title>
@@ -421,12 +421,12 @@ if (!doNotTrack) {
                 CS
             </a>
         
-            <a href="/categories/web/" class="font_size_3">
-                Web
+            <a href="/categories/sec/" class="font_size_3">
+                Sec
             </a>
         
-            <a href="/categories/sec/" class="font_size_2">
-                Sec
+            <a href="/categories/web/" class="font_size_3">
+                Web
             </a>
         
             <a href="/categories/ctf/" class="font_size_1">
@@ -454,24 +454,24 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
+            <a href="/tags/fuzz/" class="font_size_3">
+                fuzz
+            </a>
+        
+            <a href="/tags/fuzzing101/" class="font_size_3">
+                fuzzing101
+            </a>
+        
+            <a href="/tags/libafl/" class="font_size_3">
+                Libafl
+            </a>
+        
+            <a href="/tags/rust/" class="font_size_3">
+                rust
+            </a>
+        
             <a href="/tags/csapp/" class="font_size_2">
                 CSAPP
-            </a>
-        
-            <a href="/tags/flask/" class="font_size_2">
-                flask
-            </a>
-        
-            <a href="/tags/jetbot/" class="font_size_2">
-                jetbot
-            </a>
-        
-            <a href="/tags/life/" class="font_size_2">
-                Life
-            </a>
-        
-            <a href="/tags/awd/" class="font_size_1">
-                AWD
             </a>
         
     </div>
@@ -536,9 +536,13 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     10 minute read
+                    <span class="post-word-count">, 4743 words</span> 
+
                 </time>
             </div>
+            
         
+
     </footer>
     
 
@@ -571,10 +575,10 @@ MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/</p>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">$ qemu-system-aarch64 --version
-QEMU emulator version 4.2.0
-Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ qemu-system-aarch64 --version
+</span></span><span class="line"><span class="cl">QEMU emulator version 4.2.0
+</span></span><span class="line"><span class="cl">Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>5个实验在源码仓库分别以5个分支存在。 git clone  -b即可。</p>
 <p>内核构建和调试：</p>
@@ -631,31 +635,31 @@ Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">root@lastyear:~/chcore-lab# readelf -S build/kernel.img
-There are <span class="m">9</span> section headers, starting at offset 0x20cd8:
-
-Section Headers:
-  <span class="o">[</span>Nr<span class="o">]</span> Name              Type             Address           Offset
-       Size              EntSize          Flags  Link  Info  Align
-  <span class="o">[</span> 0<span class="o">]</span>                   NULL             <span class="m">0000000000000000</span>  <span class="m">00000000</span>
-       <span class="m">0000000000000000</span>  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
-  <span class="o">[</span> 1<span class="o">]</span> init              PROGBITS         <span class="m">0000000000080000</span>  <span class="m">00010000</span>
-       000000000000b5b0  <span class="m">0000000000000008</span> WAX       <span class="m">0</span>     <span class="m">0</span>     <span class="m">4096</span>
-  <span class="o">[</span> 2<span class="o">]</span> .text             PROGBITS         ffffff000008c000  0001c000
-       00000000000011dc  <span class="m">0000000000000000</span>  AX       <span class="m">0</span>     <span class="m">0</span>     <span class="m">8</span>
-  <span class="o">[</span> 3<span class="o">]</span> .rodata           PROGBITS         ffffff0000090000  <span class="m">00020000</span>
-       00000000000000f8  <span class="m">0000000000000001</span> AMS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">8</span>
-  <span class="o">[</span> 4<span class="o">]</span> .bss              NOBITS           ffffff0000090100  000200f8
-       <span class="m">0000000000008000</span>  <span class="m">0000000000000000</span>  WA       <span class="m">0</span>     <span class="m">0</span>     <span class="m">16</span>
-  <span class="o">[</span> 5<span class="o">]</span> .comment          PROGBITS         <span class="m">0000000000000000</span>  000200f8
-       <span class="m">0000000000000032</span>  <span class="m">0000000000000001</span>  MS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-  <span class="o">[</span> 6<span class="o">]</span> .symtab           SYMTAB           <span class="m">0000000000000000</span>  <span class="m">00020130</span>
-       <span class="m">0000000000000858</span>  <span class="m">0000000000000018</span>           <span class="m">7</span>    <span class="m">46</span>     <span class="m">8</span>
-  <span class="o">[</span> 7<span class="o">]</span> .strtab           STRTAB           <span class="m">0000000000000000</span>  <span class="m">00020988</span>
-       000000000000030f  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-  <span class="o">[</span> 8<span class="o">]</span> .shstrtab         STRTAB           <span class="m">0000000000000000</span>  00020c97
-       000000000000003c  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">root@lastyear:~/chcore-lab# readelf -S build/kernel.img
+</span></span><span class="line"><span class="cl">There are <span class="m">9</span> section headers, starting at offset 0x20cd8:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section Headers:
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>Nr<span class="o">]</span> Name              Type             Address           Offset
+</span></span><span class="line"><span class="cl">       Size              EntSize          Flags  Link  Info  Align
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 0<span class="o">]</span>                   NULL             <span class="m">0000000000000000</span>  <span class="m">00000000</span>
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000000000</span>  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 1<span class="o">]</span> init              PROGBITS         <span class="m">0000000000080000</span>  <span class="m">00010000</span>
+</span></span><span class="line"><span class="cl">       000000000000b5b0  <span class="m">0000000000000008</span> WAX       <span class="m">0</span>     <span class="m">0</span>     <span class="m">4096</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 2<span class="o">]</span> .text             PROGBITS         ffffff000008c000  0001c000
+</span></span><span class="line"><span class="cl">       00000000000011dc  <span class="m">0000000000000000</span>  AX       <span class="m">0</span>     <span class="m">0</span>     <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 3<span class="o">]</span> .rodata           PROGBITS         ffffff0000090000  <span class="m">00020000</span>
+</span></span><span class="line"><span class="cl">       00000000000000f8  <span class="m">0000000000000001</span> AMS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 4<span class="o">]</span> .bss              NOBITS           ffffff0000090100  000200f8
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000008000</span>  <span class="m">0000000000000000</span>  WA       <span class="m">0</span>     <span class="m">0</span>     <span class="m">16</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 5<span class="o">]</span> .comment          PROGBITS         <span class="m">0000000000000000</span>  000200f8
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000000032</span>  <span class="m">0000000000000001</span>  MS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 6<span class="o">]</span> .symtab           SYMTAB           <span class="m">0000000000000000</span>  <span class="m">00020130</span>
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000000858</span>  <span class="m">0000000000000018</span>           <span class="m">7</span>    <span class="m">46</span>     <span class="m">8</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 7<span class="o">]</span> .strtab           STRTAB           <span class="m">0000000000000000</span>  <span class="m">00020988</span>
+</span></span><span class="line"><span class="cl">       000000000000030f  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span> 8<span class="o">]</span> .shstrtab         STRTAB           <span class="m">0000000000000000</span>  00020c97
+</span></span><span class="line"><span class="cl">       000000000000003c  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>看到init段的起始地址是<code>0x80000</code>，和<code>readelf -h</code>中的 Entry point address 一致，也和 GDB 刚进入时<code>where</code>的输出一致。</p>
 <div class="highlight"><div class="chroma">
@@ -665,10 +669,10 @@ Section Headers:
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">0x0000000000080000 in ?? <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> where
-<span class="c1">#0  0x0000000000080000 in _start ()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">0x0000000000080000 in ?? <span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>gdb<span class="o">)</span> where
+</span></span><span class="line"><span class="cl"><span class="c1">#0  0x0000000000080000 in _start ()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下面寻找<code>_start</code>的定义，在<code>CMakeLists.txt</code>中找到<code>_start</code>，</p>
 <div class="highlight"><div class="chroma">
@@ -682,14 +686,14 @@ Section Headers:
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">set_property<span class="o">(</span>
-    TARGET kernel.img
-    APPEND_STRING
-    PROPERTY
-        LINK_FLAGS
-        <span class="s2">&#34;-T </span><span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">link_script</span><span class="si">}</span><span class="s2"> -e _start&#34;</span>
-<span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">set_property<span class="o">(</span>
+</span></span><span class="line"><span class="cl">    TARGET kernel.img
+</span></span><span class="line"><span class="cl">    APPEND_STRING
+</span></span><span class="line"><span class="cl">    PROPERTY
+</span></span><span class="line"><span class="cl">        LINK_FLAGS
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;-T </span><span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">link_script</span><span class="si">}</span><span class="s2"> -e _start&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里为<code>kernel.img</code>指定了链接器脚本(-T)和入口函数(-e)。</p>
 <p>于是跟随link_script：</p>
@@ -699,9 +703,9 @@ Section Headers:
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">set<span class="o">(</span>link_script <span class="s2">&#34;linker.lds&#34;</span><span class="o">)</span>
-configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aarch64.lds.in&#34;</span> <span class="s2">&#34;linker.lds.S&#34;</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">set<span class="o">(</span>link_script <span class="s2">&#34;linker.lds&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aarch64.lds.in&#34;</span> <span class="s2">&#34;linker.lds.S&#34;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>进入脚本linker-aarch64.lds.in：</p>
 <div class="highlight"><div class="chroma">
@@ -718,17 +722,17 @@ configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aar
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;../boot/image.h&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="n">SECTIONS</span>
-<span class="p">{</span>
-    <span class="p">.</span> <span class="o">=</span> <span class="n">TEXT_OFFSET</span><span class="p">;</span>
-    <span class="n">img_start</span> <span class="o">=</span> <span class="p">.;</span>
-    <span class="nl">init</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="err">$</span><span class="p">{</span><span class="n">init_object</span><span class="p">}</span>
-    <span class="p">}</span>
-<span class="c1">// ...
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;../boot/image.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">SECTIONS</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="o">=</span> <span class="n">TEXT_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img_start</span> <span class="o">=</span> <span class="p">.;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">init</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="p">{</span><span class="n">init_object</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中<code>init</code>段指定了加载<code>init_object</code>，它表示bootloader的所有目标文件集合。其定义回到<code>CmakeLists.txt</code>：</p>
 <div class="highlight"><div class="chroma">
@@ -742,14 +746,14 @@ configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aar
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">set<span class="o">(</span>init_object
-        <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/start.S.o
-</span><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/mmu.c.o
-</span><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/tools.S.o
-</span><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/init_c.c.o
-</span><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/uart.c.o&#34;</span>
-    <span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">set<span class="o">(</span>init_object
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;</span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/start.S.o
+</span></span></span><span class="line"><span class="cl"><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/mmu.c.o
+</span></span></span><span class="line"><span class="cl"><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/tools.S.o
+</span></span></span><span class="line"><span class="cl"><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/init_c.c.o
+</span></span></span><span class="line"><span class="cl"><span class="s2">        </span><span class="si">${</span><span class="nv">BINARY_KERNEL_IMG_PATH</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">BOOTLOADER_PATH</span><span class="si">}</span><span class="s2">/uart.c.o&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可发现<code>/boot/start.S</code>定义了<code>_start</code>。</p>
 <p>下面继续寻找地址，在链接器脚本引用了<code>image.h</code>，其中有<code>TEXT_OFFSET</code>的定义：</p>
@@ -764,14 +768,14 @@ configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aar
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#pragma once
-</span><span class="cp"></span>
-<span class="cp">#define SZ_16K                  0x4000
-</span><span class="cp">#define SZ_64K                  0x10000
-</span><span class="cp"></span>
-<span class="cp">#define KERNEL_VADDR            0xffffff0000000000
-</span><span class="cp">#define TEXT_OFFSET             0x80000
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#pragma once
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define SZ_16K                  0x4000
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SZ_64K                  0x10000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define KERNEL_VADDR            0xffffff0000000000
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define TEXT_OFFSET             0x80000
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>一切终于串起来了：</p>
 <ul>
@@ -818,25 +822,25 @@ configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aar
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">BEGIN_FUNC</span><span class="p">(</span><span class="n">_start</span><span class="p">)</span>
-        <span class="n">mrs</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">mpidr_el1</span>
-        <span class="n">and</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">x8</span><span class="p">,</span> <span class="err">#</span><span class="mh">0xFF</span>
-        <span class="n">cbz</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">primary</span>
-  <span class="cm">/* hang all secondary processors before we intorduce multi-processors */</span>
-<span class="nl">secondary_hang</span><span class="p">:</span>
-        <span class="n">bl</span> <span class="n">secondary_hang</span>
-<span class="nl">primary</span><span class="p">:</span>
-        <span class="cm">/* Turn to el1 from other exception levels. */</span>
-        <span class="n">bl</span>      <span class="n">arm64_elX_to_el1</span>
-        <span class="cm">/* Prepare stack pointer and jump to C. */</span>
-        <span class="n">adr</span>     <span class="n">x0</span><span class="p">,</span> <span class="n">boot_cpu_stack</span>
-        <span class="n">add</span>     <span class="n">x0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="err">#</span><span class="mh">0x1000</span>
-        <span class="n">mov</span>     <span class="n">sp</span><span class="p">,</span> <span class="n">x0</span>
-        <span class="n">bl</span>      <span class="n">init_c</span>
-        <span class="cm">/* Should never be here */</span>
-        <span class="n">b</span>       <span class="p">.</span>
-<span class="n">END_FUNC</span><span class="p">(</span><span class="n">_start</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">BEGIN_FUNC</span><span class="p">(</span><span class="n">_start</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mrs</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">mpidr_el1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">and</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">x8</span><span class="p">,</span> <span class="err">#</span><span class="mh">0xFF</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cbz</span>     <span class="n">x8</span><span class="p">,</span> <span class="n">primary</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* hang all secondary processors before we intorduce multi-processors */</span>
+</span></span><span class="line"><span class="cl"><span class="nl">secondary_hang</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bl</span> <span class="n">secondary_hang</span>
+</span></span><span class="line"><span class="cl"><span class="nl">primary</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/* Turn to el1 from other exception levels. */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bl</span>      <span class="n">arm64_elX_to_el1</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/* Prepare stack pointer and jump to C. */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">adr</span>     <span class="n">x0</span><span class="p">,</span> <span class="n">boot_cpu_stack</span>
+</span></span><span class="line"><span class="cl">        <span class="n">add</span>     <span class="n">x0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="err">#</span><span class="mh">0x1000</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">sp</span><span class="p">,</span> <span class="n">x0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bl</span>      <span class="n">init_c</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/* Should never be here */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span>       <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">END_FUNC</span><span class="p">(</span><span class="n">_start</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="练习4-lma和vma">练习4-LMA和VMA</h3>
 <div class="highlight"><div class="chroma">
@@ -859,23 +863,23 @@ configure_file<span class="o">(</span><span class="s2">&#34;./scripts/linker-aar
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">root@lastyear:~/chcore-lab# objdump -h build/kernel.img
-
-build/kernel.img:     file format elf64-little
-
-Sections:
-Idx Name          Size      VMA               LMA               File off  Algn
-  <span class="m">0</span> init          0000b5b0  <span class="m">0000000000080000</span>  <span class="m">0000000000080000</span>  <span class="m">00010000</span>  2**12
-                  CONTENTS, ALLOC, LOAD, CODE
-  <span class="m">1</span> .text         000011dc  ffffff000008c000  000000000008c000  0001c000  2**3
-                  CONTENTS, ALLOC, LOAD, READONLY, CODE
-  <span class="m">2</span> .rodata       000000f8  ffffff0000090000  <span class="m">0000000000090000</span>  <span class="m">00020000</span>  2**3
-                  CONTENTS, ALLOC, LOAD, READONLY, DATA
-  <span class="m">3</span> .bss          <span class="m">00008000</span>  ffffff0000090100  <span class="m">0000000000090100</span>  000200f8  2**4
-                  ALLOC
-  <span class="m">4</span> .comment      <span class="m">00000032</span>  <span class="m">0000000000000000</span>  <span class="m">0000000000000000</span>  000200f8  2**0
-                  CONTENTS, READONLY
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">root@lastyear:~/chcore-lab# objdump -h build/kernel.img
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">build/kernel.img:     file format elf64-little
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Sections:
+</span></span><span class="line"><span class="cl">Idx Name          Size      VMA               LMA               File off  Algn
+</span></span><span class="line"><span class="cl">  <span class="m">0</span> init          0000b5b0  <span class="m">0000000000080000</span>  <span class="m">0000000000080000</span>  <span class="m">00010000</span>  2**12
+</span></span><span class="line"><span class="cl">                  CONTENTS, ALLOC, LOAD, CODE
+</span></span><span class="line"><span class="cl">  <span class="m">1</span> .text         000011dc  ffffff000008c000  000000000008c000  0001c000  2**3
+</span></span><span class="line"><span class="cl">                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+</span></span><span class="line"><span class="cl">  <span class="m">2</span> .rodata       000000f8  ffffff0000090000  <span class="m">0000000000090000</span>  <span class="m">00020000</span>  2**3
+</span></span><span class="line"><span class="cl">                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+</span></span><span class="line"><span class="cl">  <span class="m">3</span> .bss          <span class="m">00008000</span>  ffffff0000090100  <span class="m">0000000000090100</span>  000200f8  2**4
+</span></span><span class="line"><span class="cl">                  ALLOC
+</span></span><span class="line"><span class="cl">  <span class="m">4</span> .comment      <span class="m">00000032</span>  <span class="m">0000000000000000</span>  <span class="m">0000000000000000</span>  000200f8  2**0
+</span></span><span class="line"><span class="cl">                  CONTENTS, READONLY
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以发现只有init段的VMA和LMA相同。其赋值还是回到lds脚本：</p>
 <div class="highlight"><div class="chroma">
@@ -913,38 +917,38 @@ Idx Name          Size      VMA               LMA               File off  Algn
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">SECTIONS</span>
-<span class="p">{</span>
-    <span class="p">.</span> <span class="o">=</span> <span class="n">TEXT_OFFSET</span><span class="p">;</span>
-    <span class="n">img_start</span> <span class="o">=</span> <span class="p">.;</span>
-    <span class="nl">init</span> <span class="p">:</span> <span class="p">{</span> <span class="c1">//init段VMA==VMA
-</span><span class="c1"></span>        <span class="err">$</span><span class="p">{</span><span class="n">init_object</span><span class="p">}</span>
-    <span class="p">}</span>
-    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">SZ_16K</span><span class="p">);</span> <span class="c1">// 对齐16k
-</span><span class="c1"></span>    <span class="n">init_end</span> <span class="o">=</span> <span class="n">ABSOLUTE</span><span class="p">(.);</span> <span class="c1">// init段结束
-</span><span class="c1"></span>    <span class="c1">// KERNEL_VADDR在image.h定义为0xffffff0000000000
-</span><span class="c1"></span>    <span class="p">.</span><span class="n">text</span> <span class="n">KERNEL_VADDR</span> <span class="o">+</span> <span class="nl">init_end</span> <span class="p">:</span> <span class="n">AT</span><span class="p">(</span><span class="n">init_end</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// AT指定LMA
-</span><span class="c1"></span>        <span class="o">*</span><span class="p">(.</span><span class="n">text</span><span class="o">*</span><span class="p">)</span>
-    <span class="p">}</span> <span class="c1">// .text段：VMA = KERNEL_VADDR + init_end; LMA = init_end
-</span><span class="c1"></span>    <span class="c1">// 后面的段，全部按顺序对齐并递增，此时VMA和LMA已经不同，故后面的段也全都不同
-</span><span class="c1"></span>    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
-    <span class="p">.</span><span class="nl">data</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="o">*</span><span class="p">(.</span><span class="n">data</span><span class="o">*</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
-    <span class="p">.</span><span class="nl">rodata</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="o">*</span><span class="p">(.</span><span class="n">rodata</span><span class="o">*</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">_edata</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span> <span class="c1">// 这些外部变量指的是LMA，则减去虚拟地址头
-</span><span class="c1"></span>    <span class="n">_bss_start</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
-    <span class="p">.</span><span class="nl">bss</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="o">*</span><span class="p">(.</span><span class="n">bss</span><span class="o">*</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">_bss_end</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
-    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
-    <span class="n">img_end</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SECTIONS</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="o">=</span> <span class="n">TEXT_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img_start</span> <span class="o">=</span> <span class="p">.;</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">init</span> <span class="p">:</span> <span class="p">{</span> <span class="c1">//init段VMA==VMA
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="err">$</span><span class="p">{</span><span class="n">init_object</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="o">=</span> <span class="nf">ALIGN</span><span class="p">(</span><span class="n">SZ_16K</span><span class="p">);</span> <span class="c1">// 对齐16k
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">init_end</span> <span class="o">=</span> <span class="nf">ABSOLUTE</span><span class="p">(.);</span> <span class="c1">// init段结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// KERNEL_VADDR在image.h定义为0xffffff0000000000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="n">text</span> <span class="n">KERNEL_VADDR</span> <span class="o">+</span> <span class="nl">init_end</span> <span class="p">:</span> <span class="nf">AT</span><span class="p">(</span><span class="n">init_end</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// AT指定LMA
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">*</span><span class="p">(.</span><span class="n">text</span><span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="c1">// .text段：VMA = KERNEL_VADDR + init_end; LMA = init_end
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 后面的段，全部按顺序对齐并递增，此时VMA和LMA已经不同，故后面的段也全都不同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span> <span class="o">=</span> <span class="nf">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nl">data</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="p">(.</span><span class="n">data</span><span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="o">=</span> <span class="nf">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nl">rodata</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="p">(.</span><span class="n">rodata</span><span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_edata</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span> <span class="c1">// 这些外部变量指的是LMA，则减去虚拟地址头
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">_bss_start</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nl">bss</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="p">(.</span><span class="n">bss</span><span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_bss_end</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="o">=</span> <span class="nf">ALIGN</span><span class="p">(</span><span class="n">SZ_64K</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img_end</span> <span class="o">=</span> <span class="p">.</span> <span class="o">-</span> <span class="n">KERNEL_VADDR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>回答问题：</p>
 <ul>
@@ -975,11 +979,11 @@ Idx Name          Size      VMA               LMA               File off  Algn
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">        /* Prepare stack pointer and jump to C. */
-        adr     x0, boot_cpu_stack
-        add     x0, x0, #0x1000
-        mov     sp, x0 /* sp = boot_cpu_stack + 0x1000 */
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">        /* Prepare stack pointer and jump to C. */
+</span></span><span class="line"><span class="cl">        adr     x0, boot_cpu_stack
+</span></span><span class="line"><span class="cl">        add     x0, x0, #0x1000
+</span></span><span class="line"><span class="cl">        mov     sp, x0 /* sp = boot_cpu_stack + 0x1000 */
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>boot_cpu_stack</code>在<code>init.c</code></p>
 <div class="highlight"><div class="chroma">
@@ -988,9 +992,9 @@ Idx Name          Size      VMA               LMA               File off  Algn
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define INIT_STACK_SIZE 0x1000
-</span><span class="cp"></span><span class="kt">char</span> <span class="n">boot_cpu_stack</span><span class="p">[</span><span class="n">PLAT_CPU_NUMBER</span><span class="p">][</span><span class="n">INIT_STACK_SIZE</span><span class="p">]</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define INIT_STACK_SIZE 0x1000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">char</span> <span class="n">boot_cpu_stack</span><span class="p">[</span><span class="n">PLAT_CPU_NUMBER</span><span class="p">][</span><span class="n">INIT_STACK_SIZE</span><span class="p">]</span> <span class="nf">ALIGN</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于<code>PLAT_CPU_NUMBER</code>被定义为4，故<code>boot_cpu_stack</code>大小为4*4096，可供四个CPU使用。sp初始化后指向第一个4069，也就是第一个cpu内核栈的最高位。初始化时，fp=sp。</p>
 <p>但这是bootloader的栈。后续进入内核后，会重新分配内核栈，参见<code>head.S</code>：</p>
@@ -1006,15 +1010,15 @@ Idx Name          Size      VMA               LMA               File off  Algn
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">BEGIN_FUNC(start_kernel)
-    mov     x3, #0
-    msr     TPIDR_EL1, x3
-    ldr     x2, =kernel_stack
-    add     x2, x2, KERNEL_STACK_SIZE
-    mov     sp, x2 
-    bl      main
-END_FUNC(start_kernel)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BEGIN_FUNC(start_kernel)
+</span></span><span class="line"><span class="cl">    mov     x3, #0
+</span></span><span class="line"><span class="cl">    msr     TPIDR_EL1, x3
+</span></span><span class="line"><span class="cl">    ldr     x2, =kernel_stack
+</span></span><span class="line"><span class="cl">    add     x2, x2, KERNEL_STACK_SIZE
+</span></span><span class="line"><span class="cl">    mov     sp, x2 
+</span></span><span class="line"><span class="cl">    bl      main
+</span></span><span class="line"><span class="cl">END_FUNC(start_kernel)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是内核栈的定义在start_kernel函数。</p>
 <p>有关内核栈的位置，因为kernel_stack是全局数组，且未初始化，因而位于.bss。同时没有其他未初始化变量，因此首地址在<code>.bss + KERNEL_STACK_SIZE</code>。</p>
@@ -1025,9 +1029,9 @@ END_FUNC(start_kernel)
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gef➤  x/g $sp
-0xffffff0000092100 &lt;kernel_stack+8192&gt;: 0x0
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gef➤  x/g $sp
+</span></span><span class="line"><span class="cl">0xffffff0000092100 &lt;kernel_stack+8192&gt;: 0x0
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="练习7-调用惯例">练习7-调用惯例</h3>
 <p>先看stack_test函数。这里gdb安装了gef插件：</p>
@@ -1067,39 +1071,39 @@ END_FUNC(start_kernel)
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gef➤ b stack_test
-Breakpoint 1 at 0xffffff000008c020
-gef➤ disas
-Dump of assembler code for function stack_test:
-=&gt; 0xffffff000008c020 &lt;+0&gt;:     stp     x29, x30, [sp, #-32]! /* FP、LR 入栈 */
-   0xffffff000008c024 &lt;+4&gt;:     mov     x29, sp
-   0xffffff000008c028 &lt;+8&gt;:     str     x19, [sp, #16] /* x 入栈 */
-   0xffffff000008c02c &lt;+12&gt;:    mov     x19, x0
-   0xffffff000008c030 &lt;+16&gt;:    mov     x1, x0
-   0xffffff000008c034 &lt;+20&gt;:    adrp    x0, 0xffffff0000090000 # 计算偏移
-   0xffffff000008c038 &lt;+24&gt;:    add     x0, x0, #0x0
-   0xffffff000008c03c &lt;+28&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
-   0xffffff000008c040 &lt;+32&gt;:    cmp     x19, #0x0
-   0xffffff000008c044 &lt;+36&gt;:    b.gt    0xffffff000008c068 &lt;stack_test+72&gt; # greater than /* 递归 */
-   0xffffff000008c048 &lt;+40&gt;:    bl      0xffffff000008c0dc &lt;stack_backtrace&gt; 
-   0xffffff000008c04c &lt;+44&gt;:    mov     x1, x19
-   0xffffff000008c050 &lt;+48&gt;:    adrp    x0, 0xffffff0000090000
-   0xffffff000008c054 &lt;+52&gt;:    add     x0, x0, #0x20
-   0xffffff000008c058 &lt;+56&gt;:    bl      0xffffff000008c620 &lt;printk&gt; 
-   0xffffff000008c05c &lt;+60&gt;:    ldr     x19, [sp, #16] # x19 = sp + 16 /* x 出栈 */
-   0xffffff000008c060 &lt;+64&gt;:    ldp     x29, x30, [sp], #32 # load pair  /* FP、LR 出栈 */
-   0xffffff000008c064 &lt;+68&gt;:    ret
-   0xffffff000008c068 &lt;+72&gt;:    sub     x0, x19, #0x1
-   0xffffff000008c06c &lt;+76&gt;:    bl      0xffffff000008c020 &lt;stack_test&gt;
-   0xffffff000008c070 &lt;+80&gt;:    mov     x1, x19
-   0xffffff000008c074 &lt;+84&gt;:    adrp    x0, 0xffffff0000090000
-   0xffffff000008c078 &lt;+88&gt;:    add     x0, x0, #0x20
-   0xffffff000008c07c &lt;+92&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
-   0xffffff000008c080 &lt;+96&gt;:    ldr     x19, [sp, #16]
-   0xffffff000008c084 &lt;+100&gt;:   ldp     x29, x30, [sp], #32
-   0xffffff000008c088 &lt;+104&gt;:   ret
-End of assembler dump.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gef➤ b stack_test
+</span></span><span class="line"><span class="cl">Breakpoint 1 at 0xffffff000008c020
+</span></span><span class="line"><span class="cl">gef➤ disas
+</span></span><span class="line"><span class="cl">Dump of assembler code for function stack_test:
+</span></span><span class="line"><span class="cl">=&gt; 0xffffff000008c020 &lt;+0&gt;:     stp     x29, x30, [sp, #-32]! /* FP、LR 入栈 */
+</span></span><span class="line"><span class="cl">   0xffffff000008c024 &lt;+4&gt;:     mov     x29, sp
+</span></span><span class="line"><span class="cl">   0xffffff000008c028 &lt;+8&gt;:     str     x19, [sp, #16] /* x 入栈 */
+</span></span><span class="line"><span class="cl">   0xffffff000008c02c &lt;+12&gt;:    mov     x19, x0
+</span></span><span class="line"><span class="cl">   0xffffff000008c030 &lt;+16&gt;:    mov     x1, x0
+</span></span><span class="line"><span class="cl">   0xffffff000008c034 &lt;+20&gt;:    adrp    x0, 0xffffff0000090000 # 计算偏移
+</span></span><span class="line"><span class="cl">   0xffffff000008c038 &lt;+24&gt;:    add     x0, x0, #0x0
+</span></span><span class="line"><span class="cl">   0xffffff000008c03c &lt;+28&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
+</span></span><span class="line"><span class="cl">   0xffffff000008c040 &lt;+32&gt;:    cmp     x19, #0x0
+</span></span><span class="line"><span class="cl">   0xffffff000008c044 &lt;+36&gt;:    b.gt    0xffffff000008c068 &lt;stack_test+72&gt; # greater than /* 递归 */
+</span></span><span class="line"><span class="cl">   0xffffff000008c048 &lt;+40&gt;:    bl      0xffffff000008c0dc &lt;stack_backtrace&gt; 
+</span></span><span class="line"><span class="cl">   0xffffff000008c04c &lt;+44&gt;:    mov     x1, x19
+</span></span><span class="line"><span class="cl">   0xffffff000008c050 &lt;+48&gt;:    adrp    x0, 0xffffff0000090000
+</span></span><span class="line"><span class="cl">   0xffffff000008c054 &lt;+52&gt;:    add     x0, x0, #0x20
+</span></span><span class="line"><span class="cl">   0xffffff000008c058 &lt;+56&gt;:    bl      0xffffff000008c620 &lt;printk&gt; 
+</span></span><span class="line"><span class="cl">   0xffffff000008c05c &lt;+60&gt;:    ldr     x19, [sp, #16] # x19 = sp + 16 /* x 出栈 */
+</span></span><span class="line"><span class="cl">   0xffffff000008c060 &lt;+64&gt;:    ldp     x29, x30, [sp], #32 # load pair  /* FP、LR 出栈 */
+</span></span><span class="line"><span class="cl">   0xffffff000008c064 &lt;+68&gt;:    ret
+</span></span><span class="line"><span class="cl">   0xffffff000008c068 &lt;+72&gt;:    sub     x0, x19, #0x1
+</span></span><span class="line"><span class="cl">   0xffffff000008c06c &lt;+76&gt;:    bl      0xffffff000008c020 &lt;stack_test&gt;
+</span></span><span class="line"><span class="cl">   0xffffff000008c070 &lt;+80&gt;:    mov     x1, x19
+</span></span><span class="line"><span class="cl">   0xffffff000008c074 &lt;+84&gt;:    adrp    x0, 0xffffff0000090000
+</span></span><span class="line"><span class="cl">   0xffffff000008c078 &lt;+88&gt;:    add     x0, x0, #0x20
+</span></span><span class="line"><span class="cl">   0xffffff000008c07c &lt;+92&gt;:    bl      0xffffff000008c620 &lt;printk&gt;
+</span></span><span class="line"><span class="cl">   0xffffff000008c080 &lt;+96&gt;:    ldr     x19, [sp, #16]
+</span></span><span class="line"><span class="cl">   0xffffff000008c084 &lt;+100&gt;:   ldp     x29, x30, [sp], #32
+</span></span><span class="line"><span class="cl">   0xffffff000008c088 &lt;+104&gt;:   ret
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行，观察栈的变化，这里省略部分输出：</p>
 <div class="highlight"><div class="chroma">
@@ -1163,64 +1167,64 @@ End of assembler dump.
 </span><span class="lnt">57
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">gef➤  c
-───────────────────────────────────────── registers ────
-$x0  : 0x0000000000000005  # 这一层函数的输入值
-$x19 : 0x0000000000000000  # 上一层函数的返回值
-$x29 : 0xffffff00000920f0                # FP
-$x30 : 0xffffff000008c0d4  → &lt;main+72&gt;   # LR
-$sp  : 0xffffff00000920f0 
-───────────────────────────────────────────── stack ────
-0xffffff00000920f0│+0x0000: 0x0000000000000000
-0xffffff00000920f8│+0x0008: 0xffffff000008c018 # 栈头，可能是栈初始化的数据结构
-──────────────────────────────────────────── trace ────
-[#0] 0xffffff000008c020 → stack_test()
-[#1] 0xffffff000008c0d4 → main()
-───────────────────────────────────────────────────────
-gef➤  c
-───────────────────────────────────────── registers ────
-$x0  : 0x0000000000000004 
-$x19 : 0x0000000000000005 
-$x29 : 0xffffff00000920d0  
-$x30 : 0xffffff000008c070  #→  &lt;stack_test+80&gt;
-$sp  : 0xffffff00000920d0  →  0xffffff00000920f0  
-───────────────────────────────────────────── stack ────
-0xffffff00000920d0│+0x0000: 0xffffff00000920f0 ─┐  # FP
-0xffffff00000920d8│+0x0008: 0xffffff000008c0d4  │  # LR
-0xffffff00000920e0│+0x0010: 0x0000000000000000  │
-0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
-0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ 
-0xffffff00000920f8│+0x0028: 0xffffff000008c018  
-───────────────────────────────────────────── trace ────
-[#0] 0xffffff000008c020 → stack_test()
-[#1] 0xffffff000008c070 → stack_test()
-[#2] 0xffffff000008c0d4 → main()
-────────────────────────────────────────────────────────
-gef➤  c
-───────────────────────────────────────── registers ────
-$x0  : 0x0000000000000003  
-$x19 : 0x0000000000000004  
-$x29 : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
-$x30 : 0xffffff000008c070  
-$sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
-──────────────────────────────────────────── stack ────
-0xffffff00000920b0│+0x0000: 0xffffff00000920d0 ─┐ # [#1] 
-0xffffff00000920b8│+0x0008: 0xffffff000008c070  │
-0xffffff00000920c0│+0x0010: 0x0000000000000005  │  
-0xffffff00000920c8│+0x0018: 0x00000000ffffffc0  │  
-0xffffff00000920d0│+0x0020: 0xffffff00000920f0 ◄┘ # [#2]
-0xffffff00000920d8│+0x0028: 0xffffff000008c0d4  │
-0xffffff00000920e0│+0x0010: 0x0000000000000000  │
-0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
-0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ # [#3]
-0xffffff00000920f8│+0x0028: 0xffffff000008c018  
-─────────────────────────────────────────── trace ────
-[#0] 0xffffff000008c020 → stack_test()
-[#1] 0xffffff000008c070 → stack_test()
-[#2] 0xffffff000008c070 → stack_test()
-[#3] 0xffffff000008c0d4 → main()
-──────────────────────────────────────────────────────
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gef➤  c
+</span></span><span class="line"><span class="cl">───────────────────────────────────────── registers ────
+</span></span><span class="line"><span class="cl">$x0  : 0x0000000000000005  # 这一层函数的输入值
+</span></span><span class="line"><span class="cl">$x19 : 0x0000000000000000  # 上一层函数的返回值
+</span></span><span class="line"><span class="cl">$x29 : 0xffffff00000920f0                # FP
+</span></span><span class="line"><span class="cl">$x30 : 0xffffff000008c0d4  → &lt;main+72&gt;   # LR
+</span></span><span class="line"><span class="cl">$sp  : 0xffffff00000920f0 
+</span></span><span class="line"><span class="cl">───────────────────────────────────────────── stack ────
+</span></span><span class="line"><span class="cl">0xffffff00000920f0│+0x0000: 0x0000000000000000
+</span></span><span class="line"><span class="cl">0xffffff00000920f8│+0x0008: 0xffffff000008c018 # 栈头，可能是栈初始化的数据结构
+</span></span><span class="line"><span class="cl">──────────────────────────────────────────── trace ────
+</span></span><span class="line"><span class="cl">[#0] 0xffffff000008c020 → stack_test()
+</span></span><span class="line"><span class="cl">[#1] 0xffffff000008c0d4 → main()
+</span></span><span class="line"><span class="cl">───────────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl">gef➤  c
+</span></span><span class="line"><span class="cl">───────────────────────────────────────── registers ────
+</span></span><span class="line"><span class="cl">$x0  : 0x0000000000000004 
+</span></span><span class="line"><span class="cl">$x19 : 0x0000000000000005 
+</span></span><span class="line"><span class="cl">$x29 : 0xffffff00000920d0  
+</span></span><span class="line"><span class="cl">$x30 : 0xffffff000008c070  #→  &lt;stack_test+80&gt;
+</span></span><span class="line"><span class="cl">$sp  : 0xffffff00000920d0  →  0xffffff00000920f0  
+</span></span><span class="line"><span class="cl">───────────────────────────────────────────── stack ────
+</span></span><span class="line"><span class="cl">0xffffff00000920d0│+0x0000: 0xffffff00000920f0 ─┐  # FP
+</span></span><span class="line"><span class="cl">0xffffff00000920d8│+0x0008: 0xffffff000008c0d4  │  # LR
+</span></span><span class="line"><span class="cl">0xffffff00000920e0│+0x0010: 0x0000000000000000  │
+</span></span><span class="line"><span class="cl">0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
+</span></span><span class="line"><span class="cl">0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ 
+</span></span><span class="line"><span class="cl">0xffffff00000920f8│+0x0028: 0xffffff000008c018  
+</span></span><span class="line"><span class="cl">───────────────────────────────────────────── trace ────
+</span></span><span class="line"><span class="cl">[#0] 0xffffff000008c020 → stack_test()
+</span></span><span class="line"><span class="cl">[#1] 0xffffff000008c070 → stack_test()
+</span></span><span class="line"><span class="cl">[#2] 0xffffff000008c0d4 → main()
+</span></span><span class="line"><span class="cl">────────────────────────────────────────────────────────
+</span></span><span class="line"><span class="cl">gef➤  c
+</span></span><span class="line"><span class="cl">───────────────────────────────────────── registers ────
+</span></span><span class="line"><span class="cl">$x0  : 0x0000000000000003  
+</span></span><span class="line"><span class="cl">$x19 : 0x0000000000000004  
+</span></span><span class="line"><span class="cl">$x29 : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
+</span></span><span class="line"><span class="cl">$x30 : 0xffffff000008c070  
+</span></span><span class="line"><span class="cl">$sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0 
+</span></span><span class="line"><span class="cl">──────────────────────────────────────────── stack ────
+</span></span><span class="line"><span class="cl">0xffffff00000920b0│+0x0000: 0xffffff00000920d0 ─┐ # [#1] 
+</span></span><span class="line"><span class="cl">0xffffff00000920b8│+0x0008: 0xffffff000008c070  │
+</span></span><span class="line"><span class="cl">0xffffff00000920c0│+0x0010: 0x0000000000000005  │  
+</span></span><span class="line"><span class="cl">0xffffff00000920c8│+0x0018: 0x00000000ffffffc0  │  
+</span></span><span class="line"><span class="cl">0xffffff00000920d0│+0x0020: 0xffffff00000920f0 ◄┘ # [#2]
+</span></span><span class="line"><span class="cl">0xffffff00000920d8│+0x0028: 0xffffff000008c0d4  │
+</span></span><span class="line"><span class="cl">0xffffff00000920e0│+0x0010: 0x0000000000000000  │
+</span></span><span class="line"><span class="cl">0xffffff00000920e8│+0x0018: 0x00000000ffffffc0  │
+</span></span><span class="line"><span class="cl">0xffffff00000920f0│+0x0020: 0x0000000000000000 ◄┘ # [#3]
+</span></span><span class="line"><span class="cl">0xffffff00000920f8│+0x0028: 0xffffff000008c018  
+</span></span><span class="line"><span class="cl">─────────────────────────────────────────── trace ────
+</span></span><span class="line"><span class="cl">[#0] 0xffffff000008c020 → stack_test()
+</span></span><span class="line"><span class="cl">[#1] 0xffffff000008c070 → stack_test()
+</span></span><span class="line"><span class="cl">[#2] 0xffffff000008c070 → stack_test()
+</span></span><span class="line"><span class="cl">[#3] 0xffffff000008c0d4 → main()
+</span></span><span class="line"><span class="cl">──────────────────────────────────────────────────────
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到每次递归调用压栈4个64位字，分别是：上一层FP，LR，参数x和0x00000000ffffffc0。最后一个64位字用途未知。</p>
 <h3 id="练习9-backtrace">练习9-backtrace</h3>
@@ -1234,12 +1238,12 @@ $sp  : 0xffffff00000920b0  →  0xffffff00000920d0  →  0xffffff00000920f0
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">	<span class="n">u64</span><span class="o">*</span> <span class="n">fp</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span><span class="p">((</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="n">read_fp</span><span class="p">());</span> <span class="c1">// 双层指针，因为第一层是本函数
-</span><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="n">fp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> 
-        <span class="n">printk</span><span class="p">(</span><span class="s">&#34;LR %lx FP %lx Args %d %d %d %d %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fp</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">//为什么5个参数是fp-2到fp+2？样例只包括一个参数，只要出现fp+2就能测试通过
-</span><span class="c1"></span>        <span class="n">fp</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span> <span class="c1">//下一层
-</span><span class="c1"></span>	<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">	<span class="n">u64</span><span class="o">*</span> <span class="n">fp</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span><span class="p">((</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span><span class="nf">read_fp</span><span class="p">());</span> <span class="c1">// 双层指针，因为第一层是本函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="n">fp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="nf">printk</span><span class="p">(</span><span class="s">&#34;LR %lx FP %lx Args %d %d %d %d %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fp</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">//为什么5个参数是fp-2到fp+2？样例只包括一个参数，只要出现fp+2就能测试通过
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">fp</span> <span class="o">=</span> <span class="p">(</span><span class="n">u64</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span> <span class="c1">//下一层
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>满分通过，懒得贴图了。</p>
 <hr>
