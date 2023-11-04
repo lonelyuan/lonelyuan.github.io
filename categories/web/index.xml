@@ -12,12 +12,13 @@
         <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid>
-        <description>&lt;h1 id=&#34;你们-cli-确实比-gui-有点素质&#34;&gt;你们 CLI 确实比 GUI 有点素质&lt;/h1&gt;
+        <description>&lt;h2 id=&#34;历史篇&#34;&gt;历史篇&lt;/h2&gt;
+&lt;h3 id=&#34;你们-cli-确实比-gui-有点素质&#34;&gt;你们 CLI 确实比 GUI 有点素质&lt;/h3&gt;
 &lt;p&gt;要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这点屁事我为什么不发秋秋空间/微博？&lt;/li&gt;
 &lt;li&gt;只有我看我为什么不记 Onenote/Notion ？&lt;/li&gt;
-&lt;li&gt;想要流量我为什么不发知乎/简书/掘金/西埃斯弟恩……？&lt;/li&gt;
+&lt;li&gt;想要流量我为什么不发知乎/简书/西埃斯弟恩……？&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 &lt;a class=&#34;link&#34; href=&#34;https://phuker.github.io/posts/web-feed.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;RSS&lt;/a&gt; ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p&gt;
@@ -37,7 +38,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：&lt;/p&gt;
 &lt;hr&gt;
-&lt;h1 id=&#34;你们-js-确实比-go-有点素质&#34;&gt;你们 Js 确实比 Go 有点素质&lt;/h1&gt;
+&lt;h3 id=&#34;你们-js-确实比-go-有点素质&#34;&gt;你们 JS 确实比 Go 有点素质&lt;/h3&gt;
 &lt;p&gt;于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道……&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg&#34;
 	width=&#34;1280&#34;
@@ -51,10 +52,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;以下内容适合已了解 Hugo 基本使用之后的进一步学习。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;hugo-框架结构&#34;&gt;Hugo 框架结构&lt;/h3&gt;
+&lt;h2 id=&#34;原理篇&#34;&gt;原理篇&lt;/h2&gt;
+&lt;h3 id=&#34;hugo-项目结构&#34;&gt;Hugo 项目结构&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -87,18 +86,97 @@
 &lt;p&gt;这里是 Hugo 的输出，存放完整的 HTML 静态网页。使用&lt;code&gt;hugo&lt;/code&gt;命令时，会尝试从&lt;code&gt;layouts&lt;/code&gt;目录寻找对应的模板， HTML 模板均以 GO 模板语法编写。在写文章时也可使用模板来避免写 HTML 的繁杂，如 Hugo 提供的各种 &lt;a class=&#34;link&#34; href=&#34;https://stack.jimmycai.com/writing/shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;shortcode&lt;/a&gt; 。&lt;/p&gt;
 &lt;p&gt;以 Github Page 为例，部署时仅需将这个文件夹同步至 github.io 仓库即可。&lt;/p&gt;
-&lt;h3 id=&#34;主题调教&#34;&gt;主题调教&lt;/h3&gt;
-&lt;p&gt;如何优雅的二次开发？观察&lt;code&gt;theme&lt;/code&gt;的内容，会发现除了没有&lt;code&gt;content&lt;/code&gt;目录之外和网站根目录结构完全一致。由此我们猜测，所谓&lt;code&gt;theme&lt;/code&gt;也是一个 site，使用&lt;code&gt;theme&lt;/code&gt;就是用其模板覆盖我们的网站。&lt;/p&gt;
-&lt;p&gt;那么，能否直接修改&lt;code&gt;theme&lt;/code&gt;目录里的内容？自然可行，但如果需要升级主题，则会产生许多讨厌的merge问题。如何实现数据和配置的解耦？实际上，上述关于覆盖顺序的猜想并不准确，实际顺序是：&lt;code&gt;本地模板→主题模板→默认模板&lt;/code&gt;。故而，在本地模板中添加相同路径下的同名模板文件，即可覆盖掉主题模板的配置。&lt;/p&gt;
+&lt;h3 id=&#34;hugo-设计理念&#34;&gt;Hugo 设计理念&lt;/h3&gt;
+&lt;p&gt;【To be continued】翻译翻译官方文档&lt;/p&gt;
+&lt;h2 id=&#34;开发篇&#34;&gt;开发篇&lt;/h2&gt;
+&lt;h3 id=&#34;如何优雅的二次开发&#34;&gt;如何优雅的二次开发？&lt;/h3&gt;
+&lt;p&gt;观察&lt;code&gt;theme&lt;/code&gt;的内容，会发现除了没有&lt;code&gt;content&lt;/code&gt;目录之外和网站根目录结构完全一致。由此猜测，所谓&lt;code&gt;theme&lt;/code&gt;也是一个 site，使用&lt;code&gt;theme&lt;/code&gt;就是用其模板覆盖我们的网站。&lt;/p&gt;
+&lt;p&gt;那么，直接修改&lt;code&gt;theme&lt;/code&gt;目录里的内容自然可行，但如果需要升级主题，则会产生许多讨厌的merge问题。如何实现数据和配置的解耦？实际上，上述关于覆盖顺序的猜想并不准确，实际顺序是：&lt;code&gt;本地模板→主题模板→默认模板&lt;/code&gt;。故而，在本地模板中添加相同路径下的同名模板文件，即可覆盖掉主题模板的配置。&lt;/p&gt;
 &lt;p&gt;以 Stack 主题为例，其在许多位置都存在着诸如&lt;code&gt;hugo-theme-stack\assets\scss\custom.scss&lt;/code&gt;的空白文件，只需要在根目录新建&lt;code&gt;\assets\scss\custom.scss&lt;/code&gt;即可添加对 CSS 的改动。&lt;/p&gt;
 &lt;p&gt;一般来说，仿照主题提供的demo网站即可满足一般的二次开发需求。关于模板查找顺序还有诸多细节，请参阅官方文档：&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/lookup-order/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Template lookup order&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;article元信息lastmodwordcount&#34;&gt;article元信息：lastmod，wordcount&lt;/h4&gt;
+&lt;p&gt;Hugo 本身为每篇文章都统计了相关变量，但 Stack 主题没有展示。从F12定位到相关元素，其模板在：&lt;code&gt;\themes\hugo-theme-stack\layouts\partials\article\components\details.html&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;footer&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-time&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {{ if $showDate }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;date&amp;#34; }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-time--published&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    {{- .Date.Format (&amp;#34;2006-1-1&amp;#34;) -}} &lt;span class=&#34;ni&#34;&gt;&amp;amp;nbsp;&lt;/span&gt;published
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                {{- if ne .Lastmod .Date -}} 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-time--published&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    {{- .Lastmod.Format (&amp;#34;2006-1-1&amp;#34;) -}} &lt;span class=&#34;ni&#34;&gt;&amp;amp;nbsp;&lt;/span&gt;last modified 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    {{- end -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {{ end }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {{ if $showReadingTime }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;clock&amp;#34; }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;article-time--reading&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    {{ T &amp;#34;article.readingTime&amp;#34; .ReadingTime }}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;post-word-count&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;, {{ .WordCount }} words&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {{ end }}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;代码块行号突出行&#34;&gt;代码块：行号，突出行&lt;/h4&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;h4 id=&#34;配色字体&#34;&gt;配色，字体&lt;/h4&gt;
+&lt;p&gt;【To be continued】&lt;/p&gt;
+&lt;h4 id=&#34;富文本js花活&#34;&gt;富文本——js花活&lt;/h4&gt;
 &lt;p&gt;【To be continued】&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 主题配色，字体&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 代码块：行号，突出行&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 词云——js引入&lt;/li&gt;
+&lt;li&gt;导图&lt;/li&gt;
+&lt;li&gt;词云&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;你这静态网站不是很静态啊&#34;&gt;你这静态网站不是很静态啊&lt;/h3&gt;
+&lt;h4 id=&#34;评论&#34;&gt;评论&lt;/h4&gt;
+&lt;p&gt;教程一大把，👴作为完全白嫖党当然要选择Gittalk。&lt;/p&gt;
+&lt;h4 id=&#34;网站统计&#34;&gt;网站统计&lt;/h4&gt;
+&lt;p&gt;教程一大把，搞定科学上网就没问题。&lt;/p&gt;
+&lt;p&gt;然后你就会发现并没有人来访问。&lt;/p&gt;
+&lt;p&gt;统计平台：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://analytics.google.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://analytics.google.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cloudflare.com/zh-cn/web-analytics/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cloudflare.com/zh-cn/web-analytics/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;github-action-收集-lastmodify&#34;&gt;Github Action 收集 lastmodify&lt;/h4&gt;
+&lt;p&gt;使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p&gt;
 &lt;!-- ### 从 front matter 到 
 
 Hugo 中对于文章的分类高度可定制，存在三个层次的概念：
@@ -116,17 +194,9 @@ https://www.jianshu.com/p/e1f9123c721a
 https://gohugo.io/content-management/front-matter/
 
 --&gt;
-&lt;h3 id=&#34;你这静态网站不是很静态啊&#34;&gt;你这静态网站不是很静态啊&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 评论系统&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Google Analysis 收集 访问量&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Github Action 收集 lastmodify&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;【To be continued，如果这句话还在说明作者最近不是闲来无事，这很合理】&lt;/p&gt;
-&lt;h3 id=&#34;front-matter-插件这不cms吗&#34;&gt;Front Matter 插件：这不CMS吗&lt;/h3&gt;
-&lt;p&gt;自动更新，不是很合理&lt;/p&gt;
-</description>
+&lt;!-- ## Front Matter 插件：这不CMS吗
+
+自动更新，不是很合理 --&gt;</description>
         </item>
         <item>
         <title>年轻人的第二个网站（二） - flask-supreme-tutorial</title>
