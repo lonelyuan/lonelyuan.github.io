@@ -2718,17 +2718,31 @@ https://gohugo.io/content-management/front-matter/
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- name: Deploy Web
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- name: Build with Hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> env: # ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> run: |
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hugo \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --minify \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --baseURL &amp;#34;https://lonelyuan.github.io/&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- name: Deploy Web
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: peaceiris/actions-gh-pages@v3
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> with:
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -2739,7 +2753,13 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
-&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
 &lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>MOSPI-ChCore lab (1)</title><link>https://lonelyuan.github.io/p/mospi-chcore-lab-1/</link><pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate><guid>https://lonelyuan.github.io/p/mospi-chcore-lab-1/</guid><description>&lt;p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：&lt;/p>
 &lt;p>那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲&lt;strong>虚拟内存&lt;/strong>，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个&lt;strong>多线程&lt;/strong>，看到没，线程上下文切换了。我特么直接三段&lt;strong>系统调度&lt;/strong>（短期，中期，长期），然后我直接~就一个多核调度，我就调度到&lt;strong>IPC&lt;/strong>，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出&lt;strong>信号量&lt;/strong>直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，&lt;strong>文件系统&lt;/strong>！加三段系统&lt;strong>虚拟化&lt;/strong>（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。&lt;/p>

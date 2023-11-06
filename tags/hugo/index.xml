@@ -226,17 +226,31 @@ https://gohugo.io/content-management/front-matter/
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- name: Deploy Web
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- name: Build with Hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> env: # ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> run: |
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hugo \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --minify \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --baseURL &amp;#34;https://lonelyuan.github.io/&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- name: Deploy Web
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: peaceiris/actions-gh-pages@v3
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> with:
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -247,6 +261,12 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
-&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
 &lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item></channel></rss>
