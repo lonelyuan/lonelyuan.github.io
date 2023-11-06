@@ -311,9 +311,11 @@
 &lt;/span>&lt;span class="lnt">10
 &lt;/span>&lt;span class="lnt">11
 &lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// v0.3 55/70
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ...
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ...
@@ -357,9 +359,11 @@
 &lt;/span>&lt;span class="lnt">23
 &lt;/span>&lt;span class="lnt">24
 &lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">doit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">cfd&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// v0.4 70/70
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="nf">doit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">cfd&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">char&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">];&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="cm">/* (1) client -&amp;gt; proxy */&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">read_req&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cfd&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">);&lt;/span>
@@ -386,7 +390,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现。不过考试就考这个LRU、OPT啥的，还是得理解一下。下面是基于循环链表的LRU策略实现：&lt;/p>
+&lt;/div>&lt;p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现就可以满分。不过考试就考这个LRU、OPT啥的，还是得理解一下。&lt;/p>
+&lt;p>下面是👴让gpt写的基于循环链表的LRU策略的缓存系统：&lt;/p>
 &lt;ul>
 &lt;li>数据结构&lt;/li>
 &lt;/ul>
@@ -585,14 +590,56 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分基础下的代码极简主义。如果想学到跟多可以自己增加要求，如：&lt;/p>
+&lt;/div>&lt;p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分前提下的代码极简主义。&lt;/p>
+&lt;h2 id="结束了吗">结束了吗&lt;/h2>
+&lt;p>实际上，生产级代理服务器需要考虑的远比本实验复杂几个数量级，在此提出几个思路以抛砖引玉：&lt;/p>
 &lt;ul>
-&lt;li>tiny仅支持GET——增加对不同HTTP方法的支持&lt;/li>
-&lt;li>支持对长报文分块(chunk)的处理&lt;/li>
-&lt;li>增强并发性能，使用信号量代替互斥锁，使用线程池等等&lt;/li>
-&lt;li>增强缓存性能，使用哈希表等高效数据结构&lt;/li>
+&lt;li>完备的协议支持：
+&lt;ul>
+&lt;li>tiny仅支持GET方法，且不支持请求头，这实际上是被称为HTTP 0.9的一个历史版本。而目前最广泛使用的HTTP 1.1，为了实现对它的兼容，需要实现以下特性：
+&lt;ul>
+&lt;li>增加HEAD、POST方法，支持头域（HTTP 1.0中被引入）&lt;/li>
+&lt;li>支持&lt;code>Keep-Alive&lt;/code>头，满足http请求重用tcp连接&lt;/li>
+&lt;li>支持&lt;code>Transfer-Encoding: chunked&lt;/code>头，实现分块传输编码，满足大文件请求的需求&lt;/li>
+&lt;li>支持&lt;code>Accept-Ranges&lt;/code>头，实现字节范围请求&lt;/li>
+&lt;li>支持请求流水线等其他特性&lt;/li>
 &lt;/ul>
-&lt;p>实际上，生产级代理服务器考虑的远比这些复杂。路由规则，加密协议等等&lt;/p></description></item><item><title>从scapy和wireshark学计算机网络</title><link>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link><pubDate>Fri, 22 Oct 2021 23:55:54 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid><description>&lt;p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。&lt;/p>
+&lt;/li>
+&lt;li>虽然实现HTTP协议是服务器的任务，但是对代理服务器的稳健性提出了更高的要求。&lt;/li>
+&lt;li>另外，本实验实现的proxy基本上是明文http代理。然而在实际应用中https才是更常用的协议。为此代理需要实现对SSL的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>更高的性能
+&lt;ul>
+&lt;li>我们完全可以自己修改评分脚本，把对缓存的考察上点强度。为了满足更高的性能，需要更高效的数据结构，如：
+&lt;ul>
+&lt;li>使用信号量代替互斥锁，使用读者写者模型&lt;/li>
+&lt;li>使用哈希表，红黑树等高级数据结构，提高查询速度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>从更实际的开发的角度，不必将目光局限于c语言。有大量的其他语言生态的高性能库供我们挑选。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>加密传输
+&lt;ul>
+&lt;li>保密性也是一个重要需求。更常见的代理架构是客户端和服务器都运行着代理服务器进程，在本地代理和远程代理之间运行着私有的加密通信协议。(Shadowsocks(R), VMess/VLess, Trojan&amp;hellip;)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>路由规则
+&lt;ul>
+&lt;li>本地代理统管着所有出网流量，但客户端不希望所有请求都经过代理。为此需要为不同目标的流量设计不同的路由规则。&lt;/li>
+&lt;li>另一方面，客户端还希望管理多个代理服务器(clash)&lt;/li>
+&lt;li>VPN和代理服务器原理不同，VPN是如何实现路由的？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>猫鼠游戏
+&lt;ul>
+&lt;li>想象你是局域网管理员，你观察到网络中某些IP的大部分流量都集中至一个外部IP的特定高位端口，你能否判断这些IP存在异常行为？&lt;/li>
+&lt;li>你观察到某些IP的流量不再通往高位端口了，反而都是通往443端口的https流量，该外部IP运行着一个简单的网站，如何判断？&lt;/li>
+&lt;li>详情自行搜索相关论文。&lt;del>关键词：GFW&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>从scapy和wireshark学计算机网络</title><link>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link><pubDate>Fri, 22 Oct 2021 23:55:54 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid><description>&lt;p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。&lt;/p>
 &lt;p>但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。&lt;/p>
 &lt;hr>
 &lt;p>主要工具：&lt;/p>

@@ -311,9 +311,11 @@
 &lt;/span>&lt;span class="lnt">10
 &lt;/span>&lt;span class="lnt">11
 &lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// v0.3 55/70
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ...
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ...
@@ -357,9 +359,11 @@
 &lt;/span>&lt;span class="lnt">23
 &lt;/span>&lt;span class="lnt">24
 &lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">doit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">cfd&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// v0.4 70/70
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="nf">doit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">cfd&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">char&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">MAXLINE&lt;/span>&lt;span class="p">];&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="cm">/* (1) client -&amp;gt; proxy */&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">read_req&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cfd&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">);&lt;/span>
@@ -386,7 +390,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现。不过考试就考这个LRU、OPT啥的，还是得理解一下。下面是基于循环链表的LRU策略实现：&lt;/p>
+&lt;/div>&lt;p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现就可以满分。不过考试就考这个LRU、OPT啥的，还是得理解一下。&lt;/p>
+&lt;p>下面是👴让gpt写的基于循环链表的LRU策略的缓存系统：&lt;/p>
 &lt;ul>
 &lt;li>数据结构&lt;/li>
 &lt;/ul>
@@ -585,14 +590,56 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分基础下的代码极简主义。如果想学到跟多可以自己增加要求，如：&lt;/p>
+&lt;/div>&lt;p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分前提下的代码极简主义。&lt;/p>
+&lt;h2 id="结束了吗">结束了吗&lt;/h2>
+&lt;p>实际上，生产级代理服务器需要考虑的远比本实验复杂几个数量级，在此提出几个思路以抛砖引玉：&lt;/p>
 &lt;ul>
-&lt;li>tiny仅支持GET——增加对不同HTTP方法的支持&lt;/li>
-&lt;li>支持对长报文分块(chunk)的处理&lt;/li>
-&lt;li>增强并发性能，使用信号量代替互斥锁，使用线程池等等&lt;/li>
-&lt;li>增强缓存性能，使用哈希表等高效数据结构&lt;/li>
+&lt;li>完备的协议支持：
+&lt;ul>
+&lt;li>tiny仅支持GET方法，且不支持请求头，这实际上是被称为HTTP 0.9的一个历史版本。而目前最广泛使用的HTTP 1.1，为了实现对它的兼容，需要实现以下特性：
+&lt;ul>
+&lt;li>增加HEAD、POST方法，支持头域（HTTP 1.0中被引入）&lt;/li>
+&lt;li>支持&lt;code>Keep-Alive&lt;/code>头，满足http请求重用tcp连接&lt;/li>
+&lt;li>支持&lt;code>Transfer-Encoding: chunked&lt;/code>头，实现分块传输编码，满足大文件请求的需求&lt;/li>
+&lt;li>支持&lt;code>Accept-Ranges&lt;/code>头，实现字节范围请求&lt;/li>
+&lt;li>支持请求流水线等其他特性&lt;/li>
 &lt;/ul>
-&lt;p>实际上，生产级代理服务器考虑的远比这些复杂。路由规则，加密协议等等&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
+&lt;/li>
+&lt;li>虽然实现HTTP协议是服务器的任务，但是对代理服务器的稳健性提出了更高的要求。&lt;/li>
+&lt;li>另外，本实验实现的proxy基本上是明文http代理。然而在实际应用中https才是更常用的协议。为此代理需要实现对SSL的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>更高的性能
+&lt;ul>
+&lt;li>我们完全可以自己修改评分脚本，把对缓存的考察上点强度。为了满足更高的性能，需要更高效的数据结构，如：
+&lt;ul>
+&lt;li>使用信号量代替互斥锁，使用读者写者模型&lt;/li>
+&lt;li>使用哈希表，红黑树等高级数据结构，提高查询速度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>从更实际的开发的角度，不必将目光局限于c语言。有大量的其他语言生态的高性能库供我们挑选。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>加密传输
+&lt;ul>
+&lt;li>保密性也是一个重要需求。更常见的代理架构是客户端和服务器都运行着代理服务器进程，在本地代理和远程代理之间运行着私有的加密通信协议。(Shadowsocks(R), VMess/VLess, Trojan&amp;hellip;)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>路由规则
+&lt;ul>
+&lt;li>本地代理统管着所有出网流量，但客户端不希望所有请求都经过代理。为此需要为不同目标的流量设计不同的路由规则。&lt;/li>
+&lt;li>另一方面，客户端还希望管理多个代理服务器(clash)&lt;/li>
+&lt;li>VPN和代理服务器原理不同，VPN是如何实现路由的？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>猫鼠游戏
+&lt;ul>
+&lt;li>想象你是局域网管理员，你观察到网络中某些IP的大部分流量都集中至一个外部IP的特定高位端口，你能否判断这些IP存在异常行为？&lt;/li>
+&lt;li>你观察到某些IP的流量不再通往高位端口了，反而都是通往443端口的https流量，该外部IP运行着一个简单的网站，如何判断？&lt;/li>
+&lt;li>详情自行搜索相关论文。&lt;del>关键词：GFW&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -2625,14 +2672,16 @@ https://gohugo.io/content-management/front-matter/
 >https://www.cloudflare.com/zh-cn/web-analytics/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="工作流篇">工作流篇&lt;/h2>
-&lt;p>这一节介绍从撰写到部署用到的工具&lt;/p>
+&lt;p>这一节介绍从撰写到部署踩坑过的工具环境&lt;/p>
+&lt;h3 id="编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗&lt;/h3>
+&lt;p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。&lt;/p>
 &lt;h3 id="github-pages--github-action-自动部署">Github Pages + Github Action 自动部署&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener"
 >https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>部署之后却发现总是带有项目名作为子路径（即&lt;code>xxx.github.io/xxx&lt;/code>）。这就很让人不爽了。纵观全网的博客大多都带着这个尾巴，表示怀疑这些人究竟是不是一直这么用的。&lt;/p>
-&lt;p>于是👴开始找怎么设置，，，&lt;/p>
+&lt;p>hugo官方给出的workflow中，最后一步是这样的&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2661,7 +2710,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: actions/deploy-pages@v2
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>👴直接🐏url，但是&lt;code>${{ steps.deployment.outputs.page_url }}&lt;/code>是个用来输出的东西，直接改为定值没用。应该是&lt;code>actions/deploy-pages@v2&lt;/code>这个action本身的问题。&lt;/p>
+&lt;/div>&lt;p>👴直接🐏url，但是&lt;code>${{ steps.deployment.outputs.page_url }}&lt;/code>是个用来输出的东西，改它没用。应该是&lt;code>actions/deploy-pages@v2&lt;/code>这个action本身的问题。&lt;/p>
 &lt;p>于是👴参考了22年的几篇博客：&lt;/p>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://client.sspai.com/post/73512#" target="_blank" rel="noopener"
@@ -2689,11 +2738,10 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> commit_message: ${{ github.event.head_commit.message }}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。&lt;/p>
+&lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
+&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
-&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p>
-&lt;h3 id="vscode插件-front-matter这不cms吗">vscode插件 Front Matter：这不CMS吗&lt;/h3>
-&lt;p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。&lt;/p></description></item><item><title>MOSPI-ChCore lab (1)</title><link>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</link><pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</guid><description>&lt;p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：&lt;/p>
+&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>MOSPI-ChCore lab (1)</title><link>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</link><pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</guid><description>&lt;p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：&lt;/p>
 &lt;p>那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲&lt;strong>虚拟内存&lt;/strong>，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个&lt;strong>多线程&lt;/strong>，看到没，线程上下文切换了。我特么直接三段&lt;strong>系统调度&lt;/strong>（短期，中期，长期），然后我直接~就一个多核调度，我就调度到&lt;strong>IPC&lt;/strong>，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出&lt;strong>信号量&lt;/strong>直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，&lt;strong>文件系统&lt;/strong>！加三段系统&lt;strong>虚拟化&lt;/strong>（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。&lt;/p>
 &lt;p>&lt;em>圣经原文：&lt;/em>&lt;a class="link" href="https://www.bilibili.com/video/BV1Jf4y1L7EZ" target="_blank" rel="noopener"
 >拖更云的鹰佐教学&lt;/a>&lt;/p>

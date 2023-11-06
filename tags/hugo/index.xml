@@ -180,14 +180,16 @@ https://gohugo.io/content-management/front-matter/
 >https://www.cloudflare.com/zh-cn/web-analytics/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="工作流篇">工作流篇&lt;/h2>
-&lt;p>这一节介绍从撰写到部署用到的工具&lt;/p>
+&lt;p>这一节介绍从撰写到部署踩坑过的工具环境&lt;/p>
+&lt;h3 id="编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗&lt;/h3>
+&lt;p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。&lt;/p>
 &lt;h3 id="github-pages--github-action-自动部署">Github Pages + Github Action 自动部署&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener"
 >https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>部署之后却发现总是带有项目名作为子路径（即&lt;code>xxx.github.io/xxx&lt;/code>）。这就很让人不爽了。纵观全网的博客大多都带着这个尾巴，表示怀疑这些人究竟是不是一直这么用的。&lt;/p>
-&lt;p>于是👴开始找怎么设置，，，&lt;/p>
+&lt;p>hugo官方给出的workflow中，最后一步是这样的&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -216,7 +218,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: actions/deploy-pages@v2
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>👴直接🐏url，但是&lt;code>${{ steps.deployment.outputs.page_url }}&lt;/code>是个用来输出的东西，直接改为定值没用。应该是&lt;code>actions/deploy-pages@v2&lt;/code>这个action本身的问题。&lt;/p>
+&lt;/div>&lt;p>👴直接🐏url，但是&lt;code>${{ steps.deployment.outputs.page_url }}&lt;/code>是个用来输出的东西，改它没用。应该是&lt;code>actions/deploy-pages@v2&lt;/code>这个action本身的问题。&lt;/p>
 &lt;p>于是👴参考了22年的几篇博客：&lt;/p>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://client.sspai.com/post/73512#" target="_blank" rel="noopener"
@@ -244,8 +246,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> commit_message: ${{ github.event.head_commit.message }}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。&lt;/p>
+&lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
+&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
-&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p>
-&lt;h3 id="vscode插件-front-matter这不cms吗">vscode插件 Front Matter：这不CMS吗&lt;/h3>
-&lt;p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。&lt;/p></description></item></channel></rss>
+&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item></channel></rss>
