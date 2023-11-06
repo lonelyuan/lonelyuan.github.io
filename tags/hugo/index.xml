@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/tags/hugo/</link><description>Recent content in Hugo on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on lonelyuan's Blog</title><link>https://lonelyuan.github.io/tags/hugo/</link><description>Recent content in Hugo on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
 &lt;h3 id="你们-cli-确实比-gui-有点素质">你们 CLI 确实比 GUI 有点素质&lt;/h3>
 &lt;p>要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p>
 &lt;ul>
@@ -10,10 +10,10 @@
 >RSS&lt;/a> ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p>
 &lt;p>但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class="link" href="https://gridea.dev/" target="_blank" rel="noopener"
 >Gridea&lt;/a> ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
 width="1920"
 height="1080"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -23,10 +23,10 @@ data-flex-basis="426px"
 &lt;hr>
 &lt;h3 id="你们-js-确实比-go-有点素质">你们 JS 确实比 Go 有点素质&lt;/h3>
 &lt;p>于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
 width="1280"
 height="720"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"

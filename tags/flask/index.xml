@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>flask on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/tags/flask/</link><description>Recent content in flask on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Sep 2021 12:43:23 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/tags/flask/index.xml" rel="self" type="application/rss+xml"/><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>flask on lonelyuan's Blog</title><link>https://lonelyuan.github.io/tags/flask/</link><description>Recent content in flask on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Sep 2021 12:43:23 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/flask/index.xml" rel="self" type="application/rss+xml"/><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://lonelyuan.github.io/post/flask-mega-tutorial/" target="_blank" rel="noopener"
 >上回书&lt;/a>说到，网站初具雏形，但经高人指点，还是有很多不足。
 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。
@@ -154,7 +154,7 @@
 &lt;h2 id="不要让开发停下来">不要让开发停下来&lt;/h2>
 &lt;p>可以加的功能还有很多：时间线，emoji支持，多媒体，前后端分离(Vue)，，&lt;/p>
 &lt;p>除了功能，当面对更高量级的流量时，网站性能便更加重要，这时候消息队列，PRC，微服务/分布式，，，更让人头秃。&lt;/p>
-&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
+&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
 &lt;p>本文为 Flask 框架学习笔记，主要参考了 &lt;a class="link" href="https://luhuisicnu.gitbook.io/the-flask-mega-tutorial-zh" target="_blank" rel="noopener"
 >The-Flask-Mega-Tutorial&lt;/a> 和 《Flask Web开发：基于Python的Web应用开发实战》两本书，并在原项目的基础上拓展。（下文统称这两个资源为“本教程”）
 不熟悉 Flask 框架请先阅读&lt;a class="link" href="https://dormousehole.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener"
@@ -276,10 +276,10 @@
 &lt;h3 id="sqlalchemymodel层">SQLalchemy：model层&lt;/h3>
 &lt;h4 id="模型定义">模型定义&lt;/h4>
 &lt;p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
+&lt;img src="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
 width="760"
 height="229"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="331"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/categories/web/</link><description>Recent content in Web on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/categories/web/index.xml" rel="self" type="application/rss+xml"/><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on lonelyuan's Blog</title><link>https://lonelyuan.github.io/categories/web/</link><description>Recent content in Web on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/web/index.xml" rel="self" type="application/rss+xml"/><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
 &lt;h3 id="你们-cli-确实比-gui-有点素质">你们 CLI 确实比 GUI 有点素质&lt;/h3>
 &lt;p>要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p>
 &lt;ul>
@@ -10,10 +10,10 @@
 >RSS&lt;/a> ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p>
 &lt;p>但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class="link" href="https://gridea.dev/" target="_blank" rel="noopener"
 >Gridea&lt;/a> ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
 width="1920"
 height="1080"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -23,10 +23,10 @@ data-flex-basis="426px"
 &lt;hr>
 &lt;h3 id="你们-js-确实比-go-有点素质">你们 JS 确实比 Go 有点素质&lt;/h3>
 &lt;p>于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
 width="1280"
 height="720"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -249,7 +249,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
 &lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
-&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
+&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://lonelyuan.github.io/post/flask-mega-tutorial/" target="_blank" rel="noopener"
 >上回书&lt;/a>说到，网站初具雏形，但经高人指点，还是有很多不足。
 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。
@@ -405,7 +405,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;h2 id="不要让开发停下来">不要让开发停下来&lt;/h2>
 &lt;p>可以加的功能还有很多：时间线，emoji支持，多媒体，前后端分离(Vue)，，&lt;/p>
 &lt;p>除了功能，当面对更高量级的流量时，网站性能便更加重要，这时候消息队列，PRC，微服务/分布式，，，更让人头秃。&lt;/p>
-&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
+&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
 &lt;p>本文为 Flask 框架学习笔记，主要参考了 &lt;a class="link" href="https://luhuisicnu.gitbook.io/the-flask-mega-tutorial-zh" target="_blank" rel="noopener"
 >The-Flask-Mega-Tutorial&lt;/a> 和 《Flask Web开发：基于Python的Web应用开发实战》两本书，并在原项目的基础上拓展。（下文统称这两个资源为“本教程”）
 不熟悉 Flask 框架请先阅读&lt;a class="link" href="https://dormousehole.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener"
@@ -527,10 +527,10 @@ https://gohugo.io/content-management/front-matter/
 &lt;h3 id="sqlalchemymodel层">SQLalchemy：model层&lt;/h3>
 &lt;h4 id="模型定义">模型定义&lt;/h4>
 &lt;p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
+&lt;img src="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
 width="760"
 height="229"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="331"

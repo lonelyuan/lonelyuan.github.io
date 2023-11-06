@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/page/</link><description>Recent content in Pages on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://lonelyuan.github.io/HugoBlog/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/archives/</guid><description/></item><item><title>TODO</title><link>https://lonelyuan.github.io/HugoBlog/todo/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/todo/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>About Me</title><link>https://lonelyuan.github.io/HugoBlog/about-me/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/about-me/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on lonelyuan's Blog</title><link>https://lonelyuan.github.io/page/</link><description>Recent content in Pages on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://lonelyuan.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/archives/</guid><description/></item><item><title>TODO</title><link>https://lonelyuan.github.io/todo/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/todo/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>About Me</title><link>https://lonelyuan.github.io/about-me/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/about-me/</guid><description>&lt;blockquote>
 &lt;p>Do not go gentle into that good night,&lt;/p>
 &lt;p>Old age should burn and rave at close of day;&lt;/p>
 &lt;p>Rage, rage against the dying of the light.&lt;/p>
@@ -26,10 +26,10 @@
 &lt;li>感知即存在，存在先于意义。&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575.png"
+&lt;li>&lt;img src="https://lonelyuan.github.io/about-me/1623380216575.png"
 width="300"
 height="92"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="326"
@@ -66,4 +66,4 @@ data-flex-basis="782px"
 - 是否敢于走出自闭，建立真实深刻的社会关系？
 - 是否相信人类意志的成长性，不断逼近生理和心理的极限？
 - 是否敢于自我解构，而不放弃探求生活的真相？
-- 是否接受人生的无意义，并选择继续热爱这一切？ --></description></item><item><title>Links</title><link>https://lonelyuan.github.io/HugoBlog/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/links/</guid><description/></item><item><title>Search</title><link>https://lonelyuan.github.io/HugoBlog/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/search/</guid><description/></item></channel></rss>
+- 是否接受人生的无意义，并选择继续热爱这一切？ --></description></item><item><title>Links</title><link>https://lonelyuan.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/links/</guid><description/></item><item><title>Search</title><link>https://lonelyuan.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/search/</guid><description/></item></channel></rss>

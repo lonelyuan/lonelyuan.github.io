@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sec on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/categories/sec/</link><description>Recent content in Sec on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/categories/sec/index.xml" rel="self" type="application/rss+xml"/><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sec on lonelyuan's Blog</title><link>https://lonelyuan.github.io/categories/sec/</link><description>Recent content in Sec on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/sec/index.xml" rel="self" type="application/rss+xml"/><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -582,7 +582,7 @@ https://github.com/the-tcpdump-group/tcpdump/commit/29e5470e6ab84badbc31f4532bb7
 &lt;/div>
 &lt;/div>&lt;p>不过还是找到了对应的位置，向&lt;code>write_buf()&lt;/code>插入固定的头部即可。&lt;/p>
 &lt;p>👴觉得这样不够优雅，于是寻思能否进行一个类重写。&lt;/p>
-&lt;p>【To be continue】&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (2)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</link><pubDate>Sun, 30 Jul 2023 02:45:31 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png" alt="Featured image of post libAFL速通Fuzzing101 (2)" />&lt;blockquote>
+&lt;p>【To be continue】&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (2)</title><link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</link><pubDate>Sun, 30 Jul 2023 02:45:31 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</guid><description>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png" alt="Featured image of post libAFL速通Fuzzing101 (2)" />&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -1172,10 +1172,10 @@ make install 安装：将可执行文件复制到正确的地方&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (CLIENT) corpus: 4, objectives: 0, executions: 8, exec/sec: 0.000, edges: 9/10 (90%)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash.png"
+&lt;/div>&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash.png"
 width="1533"
 height="1012"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="151"
@@ -1229,10 +1229,10 @@ data-flex-basis="363px"
 &lt;p>👴：你根本不在工作目录，你躲哪去了 &lt;br>
 cargo make: 我不到啊&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge.png"
 width="480"
 height="532"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="90"
@@ -1281,10 +1281,10 @@ data-flex-basis="216px"
 &lt;p>那么基本确认是内存溢出的问题。👴的16G属实不堪大用，这下不得不买内存条了。&lt;/p>
 &lt;p>那么基本确认问题无解了吗？👴开始怀疑问题出在Docker上。于是👴回到宿主机 WSL2 上重新配环境。还是在执行&lt;code>cp build/libexercisetwo.a libexif&lt;/code>之后成功编译。&lt;/p>
 &lt;p>这次能够稳定运行一段时间了，并且成功获得objective。👴就是个睿智。&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png"
 width="1366"
 height="584"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="233"
@@ -1345,10 +1345,10 @@ data-flex-basis="561px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>最后执行AFLTriage：&lt;code>../AFLTriage/target/release/afltriage -i ./solutions/ -o ./reports/ ./build/triager @@&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige.png"
 width="1252"
 height="587"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="213"
@@ -1399,7 +1399,7 @@ data-flex-basis="511px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>只能说👴的环境还是有点毛病， WSL2 里面跑比 WSL2+Docker 里面跑，稳定运行时间长，但也不超过三分钟。👴只能手动断断续续的重新跑，这样fuzzer的状态其实是丢失了的。后面的实验还是别折腾我这个破本子了。&lt;/p>
-&lt;p>而且跑出来的crash👴看着也不像预期要挖的那俩CVE。但是这些都不影响👴再次宣布实验2完成。&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (1)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</link><pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/exe1.png" alt="Featured image of post libAFL速通Fuzzing101 (1)" />&lt;blockquote>
+&lt;p>而且跑出来的crash👴看着也不像预期要挖的那俩CVE。但是这些都不影响👴再次宣布实验2完成。&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (1)</title><link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</link><pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</guid><description>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/exe1.png" alt="Featured image of post libAFL速通Fuzzing101 (1)" />&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>

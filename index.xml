@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/</link><description>Recent content on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/index.xml" rel="self" type="application/rss+xml"/><item><title>CSAPP - Proxylab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-proxylab/</link><pubDate>Thu, 05 Oct 2023 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-proxylab/</guid><description>&lt;p>挂梯子每个人都玩过，但你知道梯子的原理吗。最后一个lab，实现一个HTTP代理服务器。本实验难度相对前面两个lab有所下降，但综合性比较强，涉及教材最后三章的所有内容以及malloc和cache两个lab。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>lonelyuan's Blog</title><link>https://lonelyuan.github.io/</link><description>Recent content on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>CSAPP - Proxylab</title><link>https://lonelyuan.github.io/p/csapp-proxylab/</link><pubDate>Thu, 05 Oct 2023 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-proxylab/</guid><description>&lt;p>挂梯子每个人都玩过，但你知道梯子的原理吗。最后一个lab，实现一个HTTP代理服务器。本实验难度相对前面两个lab有所下降，但综合性比较强，涉及教材最后三章的所有内容以及malloc和cache两个lab。&lt;/p>
 &lt;h2 id="项目结构">项目结构&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -639,7 +639,7 @@
 &lt;li>详情自行搜索相关论文。&lt;del>关键词：GFW&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
+&lt;/ul></description></item><item><title>libAFL速通Fuzzing101 (3)</title><link>https://lonelyuan.github.io/p/libafl-fuzzing101-3/</link><pubDate>Wed, 02 Aug 2023 02:00:36 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl-fuzzing101-3/</guid><description>&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -1223,7 +1223,7 @@ https://github.com/the-tcpdump-group/tcpdump/commit/29e5470e6ab84badbc31f4532bb7
 &lt;/div>
 &lt;/div>&lt;p>不过还是找到了对应的位置，向&lt;code>write_buf()&lt;/code>插入固定的头部即可。&lt;/p>
 &lt;p>👴觉得这样不够优雅，于是寻思能否进行一个类重写。&lt;/p>
-&lt;p>【To be continue】&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (2)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</link><pubDate>Sun, 30 Jul 2023 02:45:31 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png" alt="Featured image of post libAFL速通Fuzzing101 (2)" />&lt;blockquote>
+&lt;p>【To be continue】&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (2)</title><link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</link><pubDate>Sun, 30 Jul 2023 02:45:31 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/</guid><description>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png" alt="Featured image of post libAFL速通Fuzzing101 (2)" />&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -1813,10 +1813,10 @@ make install 安装：将可执行文件复制到正确的地方&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (CLIENT) corpus: 4, objectives: 0, executions: 8, exec/sec: 0.000, edges: 9/10 (90%)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash.png"
+&lt;/div>&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash.png"
 width="1533"
 height="1012"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/crash_hu8fed232e790a612be86a124f44e3115c_224593_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="151"
@@ -1870,10 +1870,10 @@ data-flex-basis="363px"
 &lt;p>👴：你根本不在工作目录，你躲哪去了 &lt;br>
 cargo make: 我不到啊&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge.png"
 width="480"
 height="532"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/daoge_hucb44c3664558582803009d3f384168af_251000_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="90"
@@ -1922,10 +1922,10 @@ data-flex-basis="216px"
 &lt;p>那么基本确认是内存溢出的问题。👴的16G属实不堪大用，这下不得不买内存条了。&lt;/p>
 &lt;p>那么基本确认问题无解了吗？👴开始怀疑问题出在Docker上。于是👴回到宿主机 WSL2 上重新配环境。还是在执行&lt;code>cp build/libexercisetwo.a libexif&lt;/code>之后成功编译。&lt;/p>
 &lt;p>这次能够稳定运行一段时间了，并且成功获得objective。👴就是个睿智。&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final.png"
 width="1366"
 height="584"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/final_hu189931506a8648410d5552fb49660c91_955953_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="233"
@@ -1986,10 +1986,10 @@ data-flex-basis="561px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>最后执行AFLTriage：&lt;code>../AFLTriage/target/release/afltriage -i ./solutions/ -o ./reports/ ./build/triager @@&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige.png"
 width="1252"
 height="587"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-2/traige_hu377d03d0596fd3cb6672fca4fa7c6181_590421_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="213"
@@ -2040,7 +2040,7 @@ data-flex-basis="511px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>只能说👴的环境还是有点毛病， WSL2 里面跑比 WSL2+Docker 里面跑，稳定运行时间长，但也不超过三分钟。👴只能手动断断续续的重新跑，这样fuzzer的状态其实是丢失了的。后面的实验还是别折腾我这个破本子了。&lt;/p>
-&lt;p>而且跑出来的crash👴看着也不像预期要挖的那俩CVE。但是这些都不影响👴再次宣布实验2完成。&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (1)</title><link>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</link><pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/exe1.png" alt="Featured image of post libAFL速通Fuzzing101 (1)" />&lt;blockquote>
+&lt;p>而且跑出来的crash👴看着也不像预期要挖的那俩CVE。但是这些都不影响👴再次宣布实验2完成。&lt;/p></description></item><item><title>libAFL速通Fuzzing101 (1)</title><link>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</link><pubDate>Wed, 26 Jul 2023 02:54:55 +0800</pubDate><guid>https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/</guid><description>&lt;img src="https://lonelyuan.github.io/p/libafl%E9%80%9F%E9%80%9Afuzzing101-1/exe1.png" alt="Featured image of post libAFL速通Fuzzing101 (1)" />&lt;blockquote>
 &lt;p>本系列是学习&lt;a class="link" href="https://epi052.gitlab.io/notes-to-self/blog/2021-11-01-fuzzing-101-with-libafl/" target="_blank" rel="noopener"
 >《Fuzzing101 with LibAFL》&lt;/a>系列博客（后文统称：原博客）的笔记分享，在学习介绍 LibAFL 用法的同时总结 Rust 知识点。&lt;br>
 &lt;strong>前置知识&lt;/strong>： fuzz基本概念、AFL基本使用 &lt;br>
@@ -2482,7 +2482,7 @@ data-flex-basis="511px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-------------8&amp;lt;-------------
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>《所以你想做安保工作?》读后感</title><link>https://lonelyuan.github.io/HugoBlog/p/%E6%89%80%E4%BB%A5%E4%BD%A0%E6%83%B3%E5%81%9A%E5%AE%89%E4%BF%9D%E5%B7%A5%E4%BD%9C%E8%AF%BB%E5%90%8E%E6%84%9F/</link><pubDate>Fri, 07 Jul 2023 20:29:12 +0800</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E6%89%80%E4%BB%A5%E4%BD%A0%E6%83%B3%E5%81%9A%E5%AE%89%E4%BF%9D%E5%B7%A5%E4%BD%9C%E8%AF%BB%E5%90%8E%E6%84%9F/</guid><description>&lt;p>这个&lt;a class="link" href="http://ifsec.blogspot.com/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>《所以你想做安保工作?》读后感</title><link>https://lonelyuan.github.io/p/%E6%89%80%E4%BB%A5%E4%BD%A0%E6%83%B3%E5%81%9A%E5%AE%89%E4%BF%9D%E5%B7%A5%E4%BD%9C%E8%AF%BB%E5%90%8E%E6%84%9F/</link><pubDate>Fri, 07 Jul 2023 20:29:12 +0800</pubDate><guid>https://lonelyuan.github.io/p/%E6%89%80%E4%BB%A5%E4%BD%A0%E6%83%B3%E5%81%9A%E5%AE%89%E4%BF%9D%E5%B7%A5%E4%BD%9C%E8%AF%BB%E5%90%8E%E6%84%9F/</guid><description>&lt;p>这个&lt;a class="link" href="http://ifsec.blogspot.com/" target="_blank" rel="noopener"
 >《伊万·弗拉特里克的安全博客》&lt;/a>啊，确实是个好博客。这篇&lt;a class="link" href="http://ifsec.blogspot.com/2018/02/so-you-want-to-work-in-security-and-for.html" target="_blank" rel="noopener"
 >《所以你想做安保工作?》&lt;/a>啊，确实是篇好文章。那么我一个新世纪理工科战士，怎么开始写读后感了呢？老板的任务罢了。&lt;/p>
 &lt;p>伊万老哥是谷歌的安全研究员，代表作有winafl等。能上大厂当研究员，已经是我对职业生涯的理想了。文章说，对大部分人来说，安全首先是一个爱好然后才是工作。诚然，没有纯粹的爱好是无法提供长时间坐冷板凳的自驱力的。但或许大部分人并没有对某一件事的狂热爱好，在褪去光鲜外表后，大部分人都是三分钟热度。人们常说“兴趣大于天赋”，或许浓厚的兴趣本身就是一种稀有的天赋。&lt;/p>
@@ -2490,7 +2490,7 @@ data-flex-basis="511px"
 &lt;p>Don’t look now but getting started is more difficult now than it was 10 years ago&lt;/p>
 &lt;/blockquote>
 &lt;p>安全研究的入门难度比十年前更高。而本文发布于2018年，那时我正值高考，国内CTF形势方兴未艾，现在网络上随处可见的入门知识，都是当时的热门考点。文章说CTF是很好的入门方式，可以减缓学习曲线的陡峭程度。而现在，又过去了半个十年，我也紧赶慢赶步入研究生阶段。这个结论能否适用于当下的入门者，恐怕难以下定论。（仅限于中国大陆）（只是因为作者没有去过其他国家，没有说中国大陆不好的意思）。&lt;/p>
-&lt;p>当然我也不是输出负能量，面对越来越卷的市场，面对全球经济发展下行的环境，面对没有原始资本的自己，唯一能做的就是尽可能学习免费的知识和技能，静观其变。作者最后说，搞安全需要长时间坐电脑，并且&amp;quot;quite intellectually challenging&amp;quot;，经常&amp;quot;mentally exhausting&amp;quot;。此言诚然，要做好长时间得不到回报的觉悟，寻找和培养正反馈；同时也要加强锻炼，身体健康和精神健康两手抓。&lt;/p></description></item><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
+&lt;p>当然我也不是输出负能量，面对越来越卷的市场，面对全球经济发展下行的环境，面对没有原始资本的自己，唯一能做的就是尽可能学习免费的知识和技能，静观其变。作者最后说，搞安全需要长时间坐电脑，并且&amp;quot;quite intellectually challenging&amp;quot;，经常&amp;quot;mentally exhausting&amp;quot;。此言诚然，要做好长时间得不到回报的觉悟，寻找和培养正反馈；同时也要加强锻炼，身体健康和精神健康两手抓。&lt;/p></description></item><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
 &lt;h3 id="你们-cli-确实比-gui-有点素质">你们 CLI 确实比 GUI 有点素质&lt;/h3>
 &lt;p>要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p>
 &lt;ul>
@@ -2502,10 +2502,10 @@ data-flex-basis="511px"
 >RSS&lt;/a> ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p>
 &lt;p>但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class="link" href="https://gridea.dev/" target="_blank" rel="noopener"
 >Gridea&lt;/a> ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
 width="1920"
 height="1080"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -2515,10 +2515,10 @@ data-flex-basis="426px"
 &lt;hr>
 &lt;h3 id="你们-js-确实比-go-有点素质">你们 JS 确实比 Go 有点素质&lt;/h3>
 &lt;p>于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道……&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
 width="1280"
 height="720"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -2741,7 +2741,7 @@ https://gohugo.io/content-management/front-matter/
 &lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
 &lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
 &lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
-&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>MOSPI-ChCore lab (1)</title><link>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</link><pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/mospi-chcore-lab-1/</guid><description>&lt;p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：&lt;/p>
+&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item><item><title>MOSPI-ChCore lab (1)</title><link>https://lonelyuan.github.io/p/mospi-chcore-lab-1/</link><pubDate>Fri, 29 Oct 2021 17:03:14 +0000</pubDate><guid>https://lonelyuan.github.io/p/mospi-chcore-lab-1/</guid><description>&lt;p>由于👴觉得👴学校的操作系统讲了个🔨，慕名而来学习上交的 MOSPI 课程。银杏书看完之后👴发现👴学校的OS确实讲了个🔨。我直接当场来一段圣经吟唱：&lt;/p>
 &lt;p>那个额西电操作系统嗷，不会写教材可以不写，害特么在弄你那个管程，来我教你啊，看好了啊。首先 M.A.L.H. 原则，看懂了吗，然后开讲&lt;strong>虚拟内存&lt;/strong>，哎我就不虚拟，我就讲那个空闲链表。哎，再扎个&lt;strong>多线程&lt;/strong>，看到没，线程上下文切换了。我特么直接三段&lt;strong>系统调度&lt;/strong>（短期，中期，长期），然后我直接~就一个多核调度，我就调度到&lt;strong>IPC&lt;/strong>，进程现在已经可以通信了啊！别怪我没有教好你，进程通信了之后干什么，憋特么讲你那破几把处理机了。看好啊，讲出锁（嬉皮笑脸），讲出&lt;strong>信号量&lt;/strong>直接就扔到互斥资源身上，就疯狂的进入他的临界区。然后我再一个，&lt;strong>文件系统&lt;/strong>！加三段系统&lt;strong>虚拟化&lt;/strong>（CPU虚拟化、内存虚拟化、IO虚拟化），全部吃满，完成强杀，你唛璧你懂个der，讲寄吧OS，我爱你。&lt;/p>
 &lt;p>&lt;em>圣经原文：&lt;/em>&lt;a class="link" href="https://www.bilibili.com/video/BV1Jf4y1L7EZ" target="_blank" rel="noopener"
 >拖更云的鹰佐教学&lt;/a>&lt;/p>
@@ -3436,7 +3436,7 @@ MOSPI在线网站：https://ipads.se.sjtu.edu.cn/mospi/&lt;/p>
 &lt;hr>
 &lt;p>看到大佬写的，瞬间不想写了，寄。
 &lt;a class="link" href="https://www.cnblogs.com/kangyupl/p/chcore_lab1.html" target="_blank" rel="noopener"
->https://www.cnblogs.com/kangyupl/p/chcore_lab1.html&lt;/a>&lt;/p></description></item><item><title>从scapy和wireshark学计算机网络</title><link>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link><pubDate>Fri, 22 Oct 2021 23:55:54 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid><description>&lt;p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。&lt;/p>
+>https://www.cnblogs.com/kangyupl/p/chcore_lab1.html&lt;/a>&lt;/p></description></item><item><title>从scapy和wireshark学计算机网络</title><link>https://lonelyuan.github.io/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link><pubDate>Fri, 22 Oct 2021 23:55:54 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid><description>&lt;p>众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。&lt;/p>
 &lt;p>但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。&lt;/p>
 &lt;hr>
 &lt;p>主要工具：&lt;/p>
@@ -4171,7 +4171,7 @@ TCP session hijacking反弹shell （重点）&lt;/p>
 - mitnick攻击
 - BGP
 - 802.11
-- --></description></item><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
+- --></description></item><item><title>年轻人的第二个网站（二） - flask-supreme-tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</link><pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99%E4%BA%8C-flask-supreme-tutorial/</guid><description>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://lonelyuan.github.io/post/flask-mega-tutorial/" target="_blank" rel="noopener"
 >上回书&lt;/a>说到，网站初具雏形，但经高人指点，还是有很多不足。
 本文将大胆扩充网站结构，目标是将网站拓展成一个 CMS 。
@@ -4327,7 +4327,7 @@ TCP session hijacking反弹shell （重点）&lt;/p>
 &lt;h2 id="不要让开发停下来">不要让开发停下来&lt;/h2>
 &lt;p>可以加的功能还有很多：时间线，emoji支持，多媒体，前后端分离(Vue)，，&lt;/p>
 &lt;p>除了功能，当面对更高量级的流量时，网站性能便更加重要，这时候消息队列，PRC，微服务/分布式，，，更让人头秃。&lt;/p>
-&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
+&lt;p>Web开发之路，道阻且长。但是，只要开发不停下来，道路就会不断延申。。。（希望之花.mp3）&lt;/p></description></item><item><title>年轻人的第二个网站 - The Flask Mega Tutorial</title><link>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</link><pubDate>Thu, 09 Sep 2021 20:18:56 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/</guid><description>&lt;blockquote>
 &lt;p>本文为 Flask 框架学习笔记，主要参考了 &lt;a class="link" href="https://luhuisicnu.gitbook.io/the-flask-mega-tutorial-zh" target="_blank" rel="noopener"
 >The-Flask-Mega-Tutorial&lt;/a> 和 《Flask Web开发：基于Python的Web应用开发实战》两本书，并在原项目的基础上拓展。（下文统称这两个资源为“本教程”）
 不熟悉 Flask 框架请先阅读&lt;a class="link" href="https://dormousehole.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener"
@@ -4449,10 +4449,10 @@ TCP session hijacking反弹shell （重点）&lt;/p>
 &lt;h3 id="sqlalchemymodel层">SQLalchemy：model层&lt;/h3>
 &lt;h4 id="模型定义">模型定义&lt;/h4>
 &lt;p>使用类和类属性代表 table 和 colunm ，便可轻松编写数据模型。SQLalchemy 的概念抽象如下图：
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
+&lt;img src="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306.png"
 width="760"
 height="229"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E7%BD%91%E7%AB%99-the-flask-mega-tutorial/1631793936306_hu7f25cecc8aefde770917be517cb2f54b_27444_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="331"
@@ -5003,12 +5003,12 @@ loading="lazy"
 &lt;li>注册云平台账户&lt;/li>
 &lt;li>写Procfile&lt;/li>
 &lt;li>git push&lt;/li>
-&lt;/ul></description></item><item><title>CISCN2021华东百赛区分区选拔赛AWD复盘</title><link>https://lonelyuan.github.io/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</link><pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif" alt="Featured image of post CISCN2021华东百赛区分区选拔赛AWD复盘" />&lt;h2 id="heading">🛁&lt;/h2>
+&lt;/ul></description></item><item><title>CISCN2021华东百赛区分区选拔赛AWD复盘</title><link>https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</link><pubDate>Wed, 16 Jun 2021 16:54:30 +0000</pubDate><guid>https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/</guid><description>&lt;img src="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/awd-da-pian.jfif" alt="Featured image of post CISCN2021华东百赛区分区选拔赛AWD复盘" />&lt;h2 id="heading">🛁&lt;/h2>
 &lt;p>这是👴第一次打高达80支队伍的大型AWD，👴此行的目标就是称霸酒店的游泳池。后来发现游泳池要钱，👴只能遗憾败北。（后来发现情报出了问题，根本不要钱，血亏）总的来说，酒店浴缸很带，主办方态度很好，赛场很清真，参赛体验很爽，赚了。&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015.gif"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015.gif"
 width="553"
 height="398"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_480x0_resize_box_1.gif 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_1024x0_resize_box_1.gif 1024w"
+srcset="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_480x0_resize_box_1.gif 480w, https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624254620015_hu71762a94476e0f7d3b604d446863041c_696119_1024x0_resize_box_1.gif 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="138"
@@ -5109,10 +5109,10 @@ data-flex-basis="333px"
 &lt;li>改数据库密码：&lt;code>mysql&amp;gt;SET PASSWORD FOR ctf@localhost=PASSWORD('newpass');&lt;/code>
 &lt;ul>
 &lt;li>结果&lt;code>&amp;gt; Permission Denied&lt;/code>，(╯▔皿▔)╯玩nm
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126.gif"
+&lt;img src="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126.gif"
 width="226"
 height="171"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_480x0_resize_box_1.gif 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_1024x0_resize_box_1.gif 1024w"
+srcset="https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_480x0_resize_box_1.gif 480w, https://lonelyuan.github.io/p/ciscn2021%E5%8D%8E%E4%B8%9C%E7%99%BE%E8%B5%9B%E5%8C%BA%E5%88%86%E5%8C%BA%E9%80%89%E6%8B%94%E8%B5%9Bawd%E5%A4%8D%E7%9B%98/1624253899126_hu2892bfd7e7ddde818291317a22bc7d44_927840_1024x0_resize_box_1.gif 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="132"
@@ -5270,7 +5270,7 @@ data-flex-basis="317px"
 &lt;li>尽量避免被打+被宕，扣双倍分数属实是血亏。如果决定宕机，先摸清check的时间和结算的时间，最好在新一轮结算后立即删站down自己。&lt;/li>
 &lt;li>当然，如果您能挖到洞，宁就是垂直上分的👴。&lt;/li>
 &lt;/ul>
-&lt;p>从8点半到6点半，打10个小时的AWD，要全程保持敏感和机智，确实对身体素质有些要求。👴坐高铁到合肥坐了6小时，打比赛坐了10小时，好悬没给我痔疮坐出来。晚上回到青岛并进行最后一次夜店，快进到《考试周破防》。&lt;/p></description></item><item><title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/</link><pubDate>Wed, 09 Jun 2021 17:14:19 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.jfif" alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释" />&lt;blockquote>
+&lt;p>从8点半到6点半，打10个小时的AWD，要全程保持敏感和机智，确实对身体素质有些要求。👴坐高铁到合肥坐了6小时，打比赛坐了10小时，好悬没给我痔疮坐出来。晚上回到青岛并进行最后一次夜店，快进到《考试周破防》。&lt;/p></description></item><item><title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</title><link>https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/</link><pubDate>Wed, 09 Jun 2021 17:14:19 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/</guid><description>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.jfif" alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释" />&lt;blockquote>
 &lt;p>本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统”
 项目官网： &lt;a class="link" href="http://www.loongson.cn/business/general/teach/356.html" target="_blank" rel="noopener"
 >http://www.loongson.cn/business/general/teach/356.html&lt;/a>；
@@ -5306,10 +5306,10 @@ PS：标题可简记为《基于基于的一种基于的一种实现》&lt;/p>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775.png"
 width="284"
 height="898"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="31"
@@ -5618,20 +5618,20 @@ EDA：电子设计自动化。&lt;/p>
 这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。&lt;/p>
 &lt;h3 id="编写代码并仿真">编写代码并仿真&lt;/h3>
 &lt;p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，&lt;code>resetn&lt;/code>应该为&lt;code>{4{resetn}}&lt;/code>，写使能位宽应为为4。
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932.png"
+&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932.png"
 width="1127"
 height="171"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="659"
 data-flex-basis="1581px"
 >&lt;/p>
 &lt;p>下面讲解一下项目结构，所有实验都是类似的：
-&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604.png"
+&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604.png"
 width="685"
 height="892"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="76"
@@ -5646,10 +5646,10 @@ data-flex-basis="184px"
 &lt;li>蓝色的Z代表信号休眠。&lt;/li>
 &lt;/ul>
 &lt;p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380.png"
 width="1000"
 height="757"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="132"
@@ -5677,20 +5677,20 @@ data-flex-basis="317px"
 &lt;li>.xdc 管脚约束文件。在Implementation用到，此处按下不表。&lt;/li>
 &lt;/ul>
 &lt;p>这几种文件格式都是可以直接Add Source添加进来的。实验老师同时提供dcp和xci文件，添加dcp崩屎了，原因估计如上。添加xci之后，提示我将IP更新为core cointainer的形式&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417.png"
 width="669"
 height="513"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="130"
 data-flex-basis="312px"
 >&lt;/p>
 &lt;p>更新就完了。然后需要等一会，IP还要执行一步synth，这段时间里IP属于锁住的状态，不能修改配置。&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565.png"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565.png"
 width="429"
 height="113"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="379"
@@ -5699,10 +5699,10 @@ data-flex-basis="911px"
 &lt;p>注意更换器件后，IP核都会锁住。这表示IP的配置和当前环境不匹配。对所有IP锁住的问题，只需要点击菜单栏Reports→Reports IP Status，然后点upgrade即可解除锁定。&lt;/p>
 &lt;h3 id="我直接上板">我直接上板&lt;/h3>
 &lt;p>直接点生成比特流，会一步步的按工作流向下运行，等待几分钟就能愉快的收获你的报错了！&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063.jpg"
 width="1440"
 height="1080"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="133"
@@ -5710,10 +5710,10 @@ data-flex-basis="320px"
 >&lt;/p>
 &lt;p>在把上文提到的坑都踩过一遍之后，终于没有critical warning，泪目。&lt;/p>
 &lt;p>但是此时实验课已经结束了，👴偷溜到没人的实验室，并留下以下珍贵画面&lt;/p>
-&lt;p>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894.jpg"
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894.jpg"
 width="2340"
 height="1080"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="216"
@@ -5721,10 +5721,10 @@ data-flex-basis="520px"
 >&lt;/p>
 &lt;p>然后👴发现data_ram写入失败。但是👴没时间搞了，👴还是滚去复习课本吧。&lt;/p>
 &lt;h2 id="多周期流水线cpu原理">🗿多周期流水线CPU原理&lt;/h2>
-&lt;p>最后，继续复习计组。&lt;br>&lt;/p></description></item><item><title>我和拖延症的战争</title><link>https://lonelyuan.github.io/HugoBlog/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/</link><pubDate>Thu, 15 Apr 2021 23:01:29 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/</guid><description>&lt;img src="https://lonelyuan.github.io/HugoBlog/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/ProcrastinationWar.jfif" alt="Featured image of post 我和拖延症的战争" />&lt;p>// 笑死，根本赢不了。受不鸟，直接投降~&lt;/p>
+&lt;p>最后，继续复习计组。&lt;br>&lt;/p></description></item><item><title>我和拖延症的战争</title><link>https://lonelyuan.github.io/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/</link><pubDate>Thu, 15 Apr 2021 23:01:29 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/</guid><description>&lt;img src="https://lonelyuan.github.io/p/%E6%88%91%E5%92%8C%E6%8B%96%E5%BB%B6%E7%97%87%E7%9A%84%E6%88%98%E4%BA%89/ProcrastinationWar.jfif" alt="Featured image of post 我和拖延症的战争" />&lt;p>// 笑死，根本赢不了。受不鸟，直接投降~&lt;/p>
 &lt;p>0x01 | 拖延症的生理基础&lt;/p>
 &lt;p>0x02 | 对拖延症的方法论综述&lt;/p>
-&lt;p>0x03 | 西西弗斯计划&lt;/p></description></item><item><title>CSAPP - Bomblab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-bomblab/</link><pubDate>Thu, 27 Feb 2020 22:43:31 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-bomblab/</guid><description>&lt;h1 id="csappbomblab">CSAPP：Bomblab&lt;/h1>
+&lt;p>0x03 | 西西弗斯计划&lt;/p></description></item><item><title>CSAPP - Bomblab</title><link>https://lonelyuan.github.io/p/csapp-bomblab/</link><pubDate>Thu, 27 Feb 2020 22:43:31 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-bomblab/</guid><description>&lt;h1 id="csappbomblab">CSAPP：Bomblab&lt;/h1>
 &lt;p>逆向的传统艺能拆炸弹，👴的青春回来了。&lt;/p>
 &lt;p>文件结构：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -6306,7 +6306,7 @@ data-flex-basis="520px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">bt : backtrace//显示堆栈
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>CSAPP - Datalab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-datalab/</link><pubDate>Tue, 21 Jan 2020 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-datalab/</guid><description>&lt;p>第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。这些函数都是非常基本的功能，正如书名《CS:APP》所示，启发我们从程序员视角理解计算机的深层更深层。&lt;/p>
+&lt;/div></description></item><item><title>CSAPP - Datalab</title><link>https://lonelyuan.github.io/p/csapp-datalab/</link><pubDate>Tue, 21 Jan 2020 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-datalab/</guid><description>&lt;p>第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。这些函数都是非常基本的功能，正如书名《CS:APP》所示，启发我们从程序员视角理解计算机的深层更深层。&lt;/p>
 &lt;p>README中说明了项目结构。直接读&lt;code>bits.c&lt;/code>，只需要填充其中的函数。每次测试程序都要先make一下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -6818,7 +6818,7 @@ data-flex-basis="520px"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>太史公曰：前面几个考察int的题目层层深入，从掩码思想到条件判断，每个新题目都可以用到前面题目的思路。只有howManyBits需要想到如何用移位构造迭代，有一定的难度。相比而言最后的浮点数题目由于放开了诸多限制，变成了一般的编程题，只需要熟练掌握浮点数规则即可作答。&lt;/p></description></item><item><title>深度学习入门——jetbot智能小车尝鲜（二）</title><link>https://lonelyuan.github.io/HugoBlog/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/</link><pubDate>Tue, 01 Oct 2019 00:26:38 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/</guid><description>&lt;p>那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。&lt;/p>
+&lt;/div>&lt;p>太史公曰：前面几个考察int的题目层层深入，从掩码思想到条件判断，每个新题目都可以用到前面题目的思路。只有howManyBits需要想到如何用移位构造迭代，有一定的难度。相比而言最后的浮点数题目由于放开了诸多限制，变成了一般的编程题，只需要熟练掌握浮点数规则即可作答。&lt;/p></description></item><item><title>深度学习入门——jetbot智能小车尝鲜（二）</title><link>https://lonelyuan.github.io/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/</link><pubDate>Tue, 01 Oct 2019 00:26:38 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%BA%8C/</guid><description>&lt;p>那个男孩不想玩人工智能呢？在玄学修bug之后，我终于跑通了jetbot自带的深度学习demo。&lt;/p>
 &lt;p>怎样才能让ai程序发挥好的效果呢？众所周知，所谓人工智能，有多少人工就有多智能。&lt;/p>
 &lt;p>AI的发展离不开三个要素：&lt;strong>算力&lt;/strong>，&lt;strong>算法&lt;/strong>和&lt;strong>算材&lt;/strong>。根据摩尔定律，算力的发展是不会停滞的（虽然定律快失效了）；进几年来的AI热正是算法的突破，即深度学习相关算法的突飞猛进；而算材就是用来训练模型的数据，未来几年AI应用的进一步落地离不开算材的进一步开发（中国在AI方面的最大优势正在于此）。数据集的丰富程度和有效程度直接影响了AI应用的效果，我将在下文详细说明。&lt;/p>
 &lt;p>在jetbot项目中，我们也能体验到用“人工”换“智能”的快乐。作为视觉识别类的AI应用，我们要在预设环境里创建数据集，并为其标注。有了数据集，jetbot搭载的NVIDIA牌GPU在方寸之间就能完成海量计算，仅用一颗摄像头就能实现自动避障，目标追踪，自动巡线等等炫酷功能！不要1999，也不要999，只要99！99刀NVIDIA计算卡带回家！（妮维雅打钱）&lt;/p>
@@ -7011,7 +7011,7 @@ data-flex-basis="520px"
 &lt;p>👴佛了。&lt;/p>
 &lt;h3 id="神经网络笔记">神经网络笔记&lt;/h3>
 &lt;h3 id="alexnetcnn">AlexNet——CNN&lt;/h3>
-&lt;p>2012年由Hinton学生Alex提出，是Lenet加宽版。其采用了一系列的新技术：成功的引用了relu、dropout和lrn等trick，首次采用gpu加速。其包含65万神经元，5个卷积层，三个后面带有池化层，最后用了三个全链接。&lt;/p></description></item><item><title>单片机入门——jetbot智能小车尝鲜(一)</title><link>https://lonelyuan.github.io/HugoBlog/p/%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%B8%80/</link><pubDate>Fri, 20 Sep 2019 00:25:55 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%B8%80/</guid><description>&lt;p>那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。&lt;/p>
+&lt;p>2012年由Hinton学生Alex提出，是Lenet加宽版。其采用了一系列的新技术：成功的引用了relu、dropout和lrn等trick，首次采用gpu加速。其包含65万神经元，5个卷积层，三个后面带有池化层，最后用了三个全链接。&lt;/p></description></item><item><title>单片机入门——jetbot智能小车尝鲜(一)</title><link>https://lonelyuan.github.io/p/%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%B8%80/</link><pubDate>Fri, 20 Sep 2019 00:25:55 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E5%8D%95%E7%89%87%E6%9C%BA%E5%85%A5%E9%97%A8jetbot%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%E5%B0%9D%E9%B2%9C%E4%B8%80/</guid><description>&lt;p>那个男孩不想玩树莓派呢？机缘巧合之下，我得到了一台价值上百美元的智能小车的使用权。&lt;/p>
 &lt;p>小车的核心是NVIDIA家的jetson-nano开发板，这款19年三月才发布的微型AI计算机可谓是平民级核弹，四核A57的CPU，128核心Maxwell架构的GPU，4g内存，支持4k视频解码，而且这只五脏俱全的麻雀只需要5W的电源支持，任何一支充电宝都可以胜任。而它的定位是用它简单的搭建人工智能应用，非常的amazing。&lt;/p>
 &lt;p>本文的目的,不完全是新手教程,还有自己学习过程的记录和分享.初次接触,多有疏漏,欢迎指教.&lt;/p>
 &lt;p>【图片：主板证件照】&lt;/p>
@@ -7246,7 +7246,7 @@ data-flex-basis="520px"
 &lt;p>&lt;a class="link" href="http://www.gpus.cn/gpus_list_page_techno_support_content?id=50" target="_blank" rel="noopener"
 >http://www.gpus.cn/gpus_list_page_techno_support_content?id=50&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.jianshu.com/p/789944463fd7" target="_blank" rel="noopener"
->https://www.jianshu.com/p/789944463fd7&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://lonelyuan.github.io/HugoBlog/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/archives/</guid><description/></item><item><title>TODO</title><link>https://lonelyuan.github.io/HugoBlog/todo/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/todo/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>About Me</title><link>https://lonelyuan.github.io/HugoBlog/about-me/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/about-me/</guid><description>&lt;blockquote>
+>https://www.jianshu.com/p/789944463fd7&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://lonelyuan.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/archives/</guid><description/></item><item><title>TODO</title><link>https://lonelyuan.github.io/todo/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/todo/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>About Me</title><link>https://lonelyuan.github.io/about-me/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/about-me/</guid><description>&lt;blockquote>
 &lt;p>Do not go gentle into that good night,&lt;/p>
 &lt;p>Old age should burn and rave at close of day;&lt;/p>
 &lt;p>Rage, rage against the dying of the light.&lt;/p>
@@ -7274,10 +7274,10 @@ data-flex-basis="520px"
 &lt;li>感知即存在，存在先于意义。&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;img src="https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575.png"
+&lt;li>&lt;img src="https://lonelyuan.github.io/about-me/1623380216575.png"
 width="300"
 height="92"
-srcset="https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/HugoBlog/HugoBlog/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
+srcset="https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="326"
@@ -7314,4 +7314,4 @@ data-flex-basis="782px"
 - 是否敢于走出自闭，建立真实深刻的社会关系？
 - 是否相信人类意志的成长性，不断逼近生理和心理的极限？
 - 是否敢于自我解构，而不放弃探求生活的真相？
-- 是否接受人生的无意义，并选择继续热爱这一切？ --></description></item><item><title>Links</title><link>https://lonelyuan.github.io/HugoBlog/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/links/</guid><description/></item><item><title>Search</title><link>https://lonelyuan.github.io/HugoBlog/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/search/</guid><description/></item></channel></rss>
+- 是否接受人生的无意义，并选择继续热爱这一切？ --></description></item><item><title>Links</title><link>https://lonelyuan.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/links/</guid><description/></item><item><title>Search</title><link>https://lonelyuan.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/search/</guid><description/></item></channel></rss>

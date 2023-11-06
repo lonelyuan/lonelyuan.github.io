@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on lonelyuan's Blog</title><link>https://lonelyuan.github.io/HugoBlog/tags/csapp/</link><description>Recent content in CSAPP on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/HugoBlog/tags/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CSAPP - Proxylab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-proxylab/</link><pubDate>Thu, 05 Oct 2023 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-proxylab/</guid><description>&lt;p>挂梯子每个人都玩过，但你知道梯子的原理吗。最后一个lab，实现一个HTTP代理服务器。本实验难度相对前面两个lab有所下降，但综合性比较强，涉及教材最后三章的所有内容以及malloc和cache两个lab。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSAPP on lonelyuan's Blog</title><link>https://lonelyuan.github.io/tags/csapp/</link><description>Recent content in CSAPP on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/csapp/index.xml" rel="self" type="application/rss+xml"/><item><title>CSAPP - Proxylab</title><link>https://lonelyuan.github.io/p/csapp-proxylab/</link><pubDate>Thu, 05 Oct 2023 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-proxylab/</guid><description>&lt;p>挂梯子每个人都玩过，但你知道梯子的原理吗。最后一个lab，实现一个HTTP代理服务器。本实验难度相对前面两个lab有所下降，但综合性比较强，涉及教材最后三章的所有内容以及malloc和cache两个lab。&lt;/p>
 &lt;h2 id="项目结构">项目结构&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -639,7 +639,7 @@
 &lt;li>详情自行搜索相关论文。&lt;del>关键词：GFW&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>CSAPP - Bomblab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-bomblab/</link><pubDate>Thu, 27 Feb 2020 22:43:31 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-bomblab/</guid><description>&lt;h1 id="csappbomblab">CSAPP：Bomblab&lt;/h1>
+&lt;/ul></description></item><item><title>CSAPP - Bomblab</title><link>https://lonelyuan.github.io/p/csapp-bomblab/</link><pubDate>Thu, 27 Feb 2020 22:43:31 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-bomblab/</guid><description>&lt;h1 id="csappbomblab">CSAPP：Bomblab&lt;/h1>
 &lt;p>逆向的传统艺能拆炸弹，👴的青春回来了。&lt;/p>
 &lt;p>文件结构：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1221,7 +1221,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">bt : backtrace//显示堆栈
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>CSAPP - Datalab</title><link>https://lonelyuan.github.io/HugoBlog/p/csapp-datalab/</link><pubDate>Tue, 21 Jan 2020 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/HugoBlog/p/csapp-datalab/</guid><description>&lt;p>第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。这些函数都是非常基本的功能，正如书名《CS:APP》所示，启发我们从程序员视角理解计算机的深层更深层。&lt;/p>
+&lt;/div></description></item><item><title>CSAPP - Datalab</title><link>https://lonelyuan.github.io/p/csapp-datalab/</link><pubDate>Tue, 21 Jan 2020 00:00:03 +0000</pubDate><guid>https://lonelyuan.github.io/p/csapp-datalab/</guid><description>&lt;p>第一个lab，关于位运算。通过受限制的c语言编程实现函数功能。这些函数都是非常基本的功能，正如书名《CS:APP》所示，启发我们从程序员视角理解计算机的深层更深层。&lt;/p>
 &lt;p>README中说明了项目结构。直接读&lt;code>bits.c&lt;/code>，只需要填充其中的函数。每次测试程序都要先make一下。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
