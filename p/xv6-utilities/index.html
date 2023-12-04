@@ -551,7 +551,7 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     8 minute read
-                    <span class="post-word-count">, 3884 words</span> 
+                    <span class="post-word-count">, 3885 words</span> 
                 </time>
             </div>
             
@@ -1297,15 +1297,10 @@ if (!doNotTrack) {
 </div><p>而match函数随便写一个字符串匹配或者KMP算法即可。</p>
 <h4 id="extrafind支持正则"><em>Extra</em>：find支持正则</h4>
 <p>给了<code>grep.c</code>，直接调接口</p>
-<p>👴懒得写了</p>
 <h3 id="xargs">xargs</h3>
 <p><code>xargs command</code>命令的参数同样是shell指令，它读取stdout作为参数指令的参数。简单来说，xargs把左边指令的输出放到最右边当作输入。但在我们的实现中，还有诸多细节：</p>
 <ul>
-<li>stdout中每一行作为一个参数，也就是需要以<code>\n</code>分割
-<ul>
-<li>这里xv6并没有方便的库函数读取一行输入，需要自己实现readline()</li>
-</ul>
-</li>
+<li>stdout中每一行作为一个参数，也就是需要以<code>\n</code>分割。然而这里xv6并没有方便的库函数读取一行输入，需要自己实现readline()</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1459,9 +1454,11 @@ if (!doNotTrack) {
 </span><span class="lnt">32
 </span><span class="lnt">33
 </span><span class="lnt">34
+</span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">getcmd</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nbuf</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// user/sh.c:134
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">getcmd</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nbuf</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;$ &#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 加入判断逻辑
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">memset</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nbuf</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">nbuf</span><span class="p">);</span>
