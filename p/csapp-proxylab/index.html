@@ -395,6 +395,7 @@ if (!doNotTrack) {
     </li>
     <li><a href="#part2-concurrency">Part2: Concurrency</a></li>
     <li><a href="#part3-cache">Part3: Cache</a></li>
+    <li><a href="#结束了吗">结束了吗</a></li>
   </ol>
 </nav>
         </div>
@@ -420,7 +421,7 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/cs/" class="font_size_8">
+            <a href="/categories/cs/" class="font_size_9">
                 CS
             </a>
         
@@ -539,8 +540,8 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    7 minute read
-                    <span class="post-word-count">, 3417 words</span> 
+                    9 minute read
+                    <span class="post-word-count">, 4203 words</span> 
                 </time>
             </div>
             
@@ -870,9 +871,11 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// v0.3 55/70
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// ...
@@ -916,9 +919,11 @@ if (!doNotTrack) {
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">doit</span><span class="p">(</span><span class="kt">int</span> <span class="n">cfd</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// v0.4 70/70
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">doit</span><span class="p">(</span><span class="kt">int</span> <span class="n">cfd</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">request</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">],</span> <span class="n">host</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">],</span><span class="n">port</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">],</span> <span class="n">path</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="cm">/* (1) client -&gt; proxy */</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">read_req</span><span class="p">(</span><span class="n">cfd</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
@@ -945,7 +950,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现。不过考试就考这个LRU、OPT啥的，还是得理解一下。下面是基于循环链表的LRU策略实现：</p>
+</div><p>具体到缓存设计这里可以自由发挥。如果面向评测脚本编程，只需要缓存容量为3，连缓存删除的策略都不用实现就可以满分。不过考试就考这个LRU、OPT啥的，还是得理解一下。</p>
+<p>下面是👴让gpt写的基于循环链表的LRU策略的缓存系统：</p>
 <ul>
 <li>数据结构</li>
 </ul>
@@ -1144,12 +1150,55 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分基础下的代码极简主义。如果想学到跟多可以自己增加要求，如：</p>
+</div><p>评价：最后一个实验满分的要求还是很低的。由于c语言编程实在繁琐，👴这个实验追求的是满分前提下的代码极简主义。</p>
+<h2 id="结束了吗">结束了吗</h2>
+<p>实际上，生产级代理服务器需要考虑的远比本实验复杂几个数量级，在此提出几个思路以抛砖引玉：</p>
 <ul>
-<li>tiny仅支持GET——增加对不同HTTP方法的支持</li>
-<li>支持对长报文分块(chunk)的处理</li>
-<li>增强并发性能，使用信号量代替互斥锁，使用线程池等等</li>
-<li>增强缓存性能，使用哈希表等高效数据结构</li>
+<li>完备的协议支持：
+<ul>
+<li>tiny仅支持GET方法，且不支持请求头，这实际上是被称为HTTP 0.9的一个历史版本。而目前最广泛使用的HTTP 1.1，为了实现对它的兼容，需要实现以下特性：
+<ul>
+<li>增加HEAD、POST方法，支持头域（HTTP 1.0中被引入）</li>
+<li>支持<code>Keep-Alive</code>头，满足http请求重用tcp连接</li>
+<li>支持<code>Transfer-Encoding: chunked</code>头，实现分块传输编码，满足大文件请求的需求</li>
+<li>支持<code>Accept-Ranges</code>头，实现字节范围请求</li>
+<li>支持请求流水线等其他特性</li>
+</ul>
+</li>
+<li>虽然实现HTTP协议是服务器的任务，但是对代理服务器的稳健性提出了更高的要求。</li>
+<li>另外，本实验实现的proxy基本上是明文http代理。然而在实际应用中https才是更常用的协议。为此代理需要实现对TLS的支持。</li>
+</ul>
+</li>
+<li>更高的性能
+<ul>
+<li>我们完全可以自己修改评分脚本，把对缓存的考察上点强度。为了满足更高的性能，需要更高效的数据结构，如：
+<ul>
+<li>使用信号量代替互斥锁，使用读者写者模型</li>
+<li>使用哈希表，红黑树等高级数据结构，提高查询速度</li>
+</ul>
+</li>
+<li>从更实际的开发的角度，不必将目光局限于c语言。有大量的其他语言生态的高性能库供我们挑选。</li>
+</ul>
+</li>
+<li>加密传输
+<ul>
+<li>保密性也是一个重要需求。更常见的代理架构是客户端和服务器都运行着代理服务器进程，在本地代理和远程代理之间运行着私有的加密通信协议。(Shadowsocks(R), VMess/VLess, Trojan&hellip;)</li>
+</ul>
+</li>
+<li>路由规则
+<ul>
+<li>本地代理统管着所有出网流量，但客户端不希望所有请求都经过代理。为此需要为不同目标的流量设计不同的路由规则。</li>
+<li>另一方面，客户端还希望管理多个代理服务器(clash)</li>
+<li>VPN和代理服务器原理不同，VPN是如何实现路由的？</li>
+</ul>
+</li>
+<li>猫鼠游戏
+<ul>
+<li>想象你是局域网管理员，你观察到网络中某些IP的大部分流量都集中至一个外部IP的特定高位端口，你能否判断这些IP存在异常行为？</li>
+<li>你观察到某些IP的流量不再通往高位端口了，反而都是通往443端口的https流量，该外部IP运行着一个简单的网站，如何判断？</li>
+<li>详情自行搜索相关论文。<del>关键词：GFW</del></li>
+</ul>
+</li>
 </ul>
 
 </section>
@@ -1246,36 +1295,25 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/mospi-chcore-lab-1/">
+    <a href="/p/xv6-utilities/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">MOSPI-ChCore lab (1)</h2>
+            <h2 class="article-title">XV6 Lab - Utilities</h2>
         </div>
     </a>
 </article>
 
             
                 
-<article class="has-image">
-    <a href="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/">
+<article class="">
+    <a href="/p/mospi-chcore-lab-1/">
         
-        
-            <div class="article-image">
-                <img src="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.ae9e65f17ef552903af86fc5d22a0b9b_hu41671eab994e10b990ecc8a898c73896_308650_250x150_fill_q75_box_smart1.jfif" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"
-                        
-                        data-hash="md5-rp5l8X71UpA6&#43;G/F0ioLmw==">
-                
-            </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</h2>
+            <h2 class="article-title">MOSPI-ChCore lab (1)</h2>
         </div>
     </a>
 </article>

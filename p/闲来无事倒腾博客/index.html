@@ -409,8 +409,17 @@ if (!doNotTrack) {
         </li>
         <li><a href="#你这静态网站不是很静态啊">你这静态网站不是很静态啊</a>
           <ol>
-            <li><a href="#评论">评论</a></li>
+            <li><a href="#评论系统">评论系统</a></li>
             <li><a href="#网站统计">网站统计</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#工作流篇">工作流篇</a>
+      <ol>
+        <li><a href="#编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗</a></li>
+        <li><a href="#github-pages--github-action-自动部署">Github Pages + Github Action 自动部署</a>
+          <ol>
             <li><a href="#github-action-收集-lastmodify">Github Action 收集 lastmodify</a></li>
           </ol>
         </li>
@@ -441,7 +450,7 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/cs/" class="font_size_8">
+            <a href="/categories/cs/" class="font_size_9">
                 CS
             </a>
         
@@ -564,8 +573,8 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    4 minute read
-                    <span class="post-word-count">, 1907 words</span> 
+                    6 minute read
+                    <span class="post-word-count">, 2649 words</span> 
                 </time>
             </div>
             
@@ -658,6 +667,23 @@ if (!doNotTrack) {
 <p>以 Github Page 为例，部署时仅需将这个文件夹同步至 github.io 仓库即可。</p>
 <h3 id="hugo-设计理念">Hugo 设计理念</h3>
 <p>【To be continued】翻译翻译官方文档</p>
+<!-- ### 从 front matter 到 
+
+Hugo 中对于文章的分类高度可定制，存在三个层次的概念：
+
+- Taxonomy 分类法，分类的标准的集合，又或者是元分类。
+    - 在配置文件中定义
+- Term 分类标准
+    - 如 Tags 、 Category 是 Hugo 默认支持的分类
+- Value 分类的具体值
+    - 在文章的front matter 中定义
+
+Hugo 会为各种分类法生成列表页，方便检索文章。
+
+https://www.jianshu.com/p/e1f9123c721a
+https://gohugo.io/content-management/front-matter/
+
+-->
 <h2 id="开发篇">开发篇</h2>
 <h3 id="如何优雅的二次开发">如何优雅的二次开发？</h3>
 <p>观察<code>theme</code>的内容，会发现除了没有<code>content</code>目录之外和网站根目录结构完全一致。由此猜测，所谓<code>theme</code>也是一个 site，使用<code>theme</code>就是用其模板覆盖我们的网站。</p>
@@ -733,8 +759,20 @@ if (!doNotTrack) {
 <li></li>
 </ul>
 <h3 id="你这静态网站不是很静态啊">你这静态网站不是很静态啊</h3>
-<h4 id="评论">评论</h4>
-<p>教程一大把，👴作为完全白嫖党当然要选择Gittalk。</p>
+<h4 id="评论系统">评论系统</h4>
+<p>👴作为白嫖怪，既然选择了Github Pages当然要选择同生态的方案。目前有基于issue的 Gitalk 和 Giscus 两种方案。</p>
+<ul>
+<li>
+<p>Gitalk：基于issue，和仓库绑定</p>
+</li>
+<li>
+<p><a class="link" href="https://giscus.app/zh-CN"  target="_blank" rel="noopener"
+    >Giscus</a>：基于GitHub Discussions</p>
+</li>
+<li>
+<p>其他Stack主题支持的评论系统：https://stack.jimmycai.com/config/comments</p>
+</li>
+</ul>
 <h4 id="网站统计">网站统计</h4>
 <p>教程一大把，搞定科学上网就没问题。</p>
 <p>然后你就会发现并没有人来访问。</p>
@@ -745,28 +783,98 @@ if (!doNotTrack) {
 <li><a class="link" href="https://www.cloudflare.com/zh-cn/web-analytics/"  target="_blank" rel="noopener"
     >https://www.cloudflare.com/zh-cn/web-analytics/</a></li>
 </ul>
+<h2 id="工作流篇">工作流篇</h2>
+<p>这一节介绍从撰写到部署踩坑过的工具环境</p>
+<h3 id="编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗</h3>
+<p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。</p>
+<h3 id="github-pages--github-action-自动部署">Github Pages + Github Action 自动部署</h3>
+<ul>
+<li><a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/"  target="_blank" rel="noopener"
+    >https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
+</ul>
+<p>部署之后却发现总是带有项目名作为子路径（即<code>xxx.github.io/xxx</code>）。这就很让人不爽了。纵观全网的博客大多都带着这个尾巴，表示怀疑这些人究竟是不是一直这么用的。</p>
+<p>hugo官方给出的workflow中，最后一步是这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  # Deployment job
+</span></span><span class="line"><span class="cl">  deploy:
+</span></span><span class="line"><span class="cl">    environment:
+</span></span><span class="line"><span class="cl">      name: github-pages
+</span></span><span class="line"><span class="cl">      url: ${{ steps.deployment.outputs.page_url }}
+</span></span><span class="line"><span class="cl">    runs-on: ubuntu-latest
+</span></span><span class="line"><span class="cl">    needs: build
+</span></span><span class="line"><span class="cl">    steps:
+</span></span><span class="line"><span class="cl">      - name: Deploy to GitHub Pages
+</span></span><span class="line"><span class="cl">        id: deployment
+</span></span><span class="line"><span class="cl">        uses: actions/deploy-pages@v2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>👴直接🐏url，但是<code>${{ steps.deployment.outputs.page_url }}</code>是个用来输出的东西，改它没用。应该是<code>actions/deploy-pages@v2</code>这个action本身的问题。</p>
+<p>于是👴参考了22年的几篇博客：</p>
+<ul>
+<li><a class="link" href="https://client.sspai.com/post/73512#"  target="_blank" rel="noopener"
+    >https://client.sspai.com/post/73512#</a>!</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- name: Build with Hugo
+</span></span><span class="line"><span class="cl">  env: # ...
+</span></span><span class="line"><span class="cl">  run: |
+</span></span><span class="line"><span class="cl">    hugo \
+</span></span><span class="line"><span class="cl">      --minify \
+</span></span><span class="line"><span class="cl">      --baseURL &#34;https://lonelyuan.github.io/&#34; # fxxk
+</span></span><span class="line"><span class="cl">$ ...
+</span></span><span class="line"><span class="cl">- name: Deploy Web
+</span></span><span class="line"><span class="cl">    uses: peaceiris/actions-gh-pages@v3
+</span></span><span class="line"><span class="cl">    with:
+</span></span><span class="line"><span class="cl">        PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+</span></span><span class="line"><span class="cl">        EXTERNAL_REPOSITORY: pseudoyu/pseudoyu.github.io
+</span></span><span class="line"><span class="cl">        PUBLISH_BRANCH: master
+</span></span><span class="line"><span class="cl">        PUBLISH_DIR: ./public
+</span></span><span class="line"><span class="cl">        commit_message: ${{ github.event.head_commit.message }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成<code>peaceiris/actions-gh-pages@v3</code>后，可以成功在主域名更新了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><p>虽然但是，目前的操作从<code>写博客→hugo→git push</code>变成了<code>写博客→hugo server(总得预览一下吧)→git push</code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。</p>
 <h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify</h4>
 <p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。</p>
-<!-- ### 从 front matter 到 
 
-Hugo 中对于文章的分类高度可定制，存在三个层次的概念：
-
-- Taxonomy 分类法，分类的标准的集合，又或者是元分类。
-    - 在配置文件中定义
-- Term 分类标准
-    - 如 Tags 、 Category 是 Hugo 默认支持的分类
-- Value 分类的具体值
-    - 在文章的front matter 中定义
-
-Hugo 会为各种分类法生成列表页，方便检索文章。
-
-https://www.jianshu.com/p/e1f9123c721a
-https://gohugo.io/content-management/front-matter/
-
--->
-<!-- ## Front Matter 插件：这不CMS吗
-
-自动更新，不是很合理 -->
 </section>
 
 
