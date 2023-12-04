@@ -1,69 +1,128 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on lonelyuan's Blog</title><link>https://lonelyuan.github.io/page/</link><description>Recent content in Pages on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://lonelyuan.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/archives/</guid><description/></item><item><title>TODO</title><link>https://lonelyuan.github.io/todo/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/todo/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>About Me</title><link>https://lonelyuan.github.io/about-me/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/about-me/</guid><description>&lt;blockquote>
-&lt;p>Do not go gentle into that good night,&lt;/p>
-&lt;p>Old age should burn and rave at close of day;&lt;/p>
-&lt;p>Rage, rage against the dying of the light.&lt;/p>
-&lt;/blockquote>
-&lt;h1 id="我是谁">🐭我是谁&lt;/h1>
-&lt;ul>
-&lt;li>CS研究生，&lt;a class="link" href="https://blue-whale.me/" target="_blank" rel="noopener"
->Blue-Whale&lt;/a> 成员
-&lt;ul>
-&lt;li>想理解计算机的一切。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>MBTI：什么赛博星座。
-&lt;ul>
-&lt;li>（不信这玩意的属于什么类型&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>拖延症晚期。
-&lt;ul>
-&lt;li>yysy，不拖延你也不会变成xx。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>存在主义者。
-&lt;ul>
-&lt;li>感知即存在，存在先于意义。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;img src="https://lonelyuan.github.io/about-me/1623380216575.png"
-width="300"
-height="92"
-srcset="https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="326"
-data-flex-basis="782px"
->&lt;/li>
-&lt;/ul>
-&lt;h1 id="本博客宗旨">🍌本博客宗旨&lt;/h1>
-&lt;ul>
-&lt;li>尽量不制造垃圾。
-&lt;ul>
-&lt;li>什么是垃圾：过时的，无趣的，信息密度低的&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>争取周更。
-&lt;ul>
-&lt;li>草稿也算周更！程序员的事，能叫拖更吗？&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h1 id="同好检测器">🤺同好检测器&lt;/h1>
-&lt;ul>
-&lt;li>&lt;strong>文&lt;/strong>：大刘、王小波、……&lt;/li>
-&lt;li>&lt;strong>影&lt;/strong>：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人……&lt;/li>
-&lt;li>&lt;strong>游&lt;/strong>：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……&lt;/li>
-&lt;/ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pages on lonelyuan&#39;s Blog</title>
+        <link>https://lonelyuan.github.io/page/</link>
+        <description>Recent content in Pages on lonelyuan&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Archives</title>
+        <link>https://lonelyuan.github.io/archives/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>TODO</title>
+        <link>https://lonelyuan.github.io/todo/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/todo/</guid>
+        <description>&lt;p&gt;TODO&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>About Me</title>
+        <link>https://lonelyuan.github.io/about-me/</link>
+        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/about-me/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;Do not go gentle into that good night,&lt;/p&gt;
+&lt;p&gt;Old age should burn and rave at close of day;&lt;/p&gt;
+&lt;p&gt;Rage, rage against the dying of the light.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;我是谁&#34;&gt;🐭我是谁&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;CS研究生，&lt;a class=&#34;link&#34; href=&#34;https://blue-whale.me/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Blue-Whale&lt;/a&gt; 成员
+&lt;ul&gt;
+&lt;li&gt;想理解计算机的一切。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MBTI：什么赛博星座。
+&lt;ul&gt;
+&lt;li&gt;（不信这玩意的属于什么类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;拖延症晚期。
+&lt;ul&gt;
+&lt;li&gt;yysy，不拖延你也不会变成xx。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;存在主义者。
+&lt;ul&gt;
+&lt;li&gt;感知即存在，存在先于意义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;img src=&#34;https://lonelyuan.github.io/about-me/1623380216575.png&#34;
+	width=&#34;300&#34;
+	height=&#34;92&#34;
+	srcset=&#34;https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/about-me/1623380216575_hu2593cce796e5ebe456dceba028d22bcd_10011_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;326&#34;
+		data-flex-basis=&#34;782px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;本博客宗旨&#34;&gt;🍌本博客宗旨&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;尽量不制造垃圾。
+&lt;ul&gt;
+&lt;li&gt;什么是垃圾：过时的，无趣的，信息密度低的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;争取周更。
+&lt;ul&gt;
+&lt;li&gt;草稿也算周更！程序员的事，能叫拖更吗？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;同好检测器&#34;&gt;🤺同好检测器&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文&lt;/strong&gt;：大刘、王小波、……&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;影&lt;/strong&gt;：Re:0、爱死机、R&amp;amp;M、无职转生、灵能百分百、進撃の巨人……&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;游&lt;/strong&gt;：Minecraft、Bioshock: Infinity、Celeste、Outer Wilds、戴森球计划、oxygen not include、《原》、《崩》……&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- # 🌌三观
+
 ### world view | 放眼寰宇
-> 资本主义秩序下的世界无可避免地走到周期的末尾，而第四次工业革命依然前途渺茫，所谓百年未有之大变革，人类文明正走向混沌的路口。
+
+&gt; 资本主义秩序下的世界无可避免地走到周期的末尾，而第四次工业革命依然前途渺茫，所谓百年未有之大变革，人类文明正走向混沌的路口。
+
 ### outlook on life and value | 聚焦个人：
-> 当赛博朋克悄然成为现实，当手机成为不可或缺的器官，当消费主义暴打了理想、蒙骗了爱情，当记录了你的喜怒哀乐的数据比你更值钱；
-> 作为信息时代原住民的我们，作为被资本主义异化、被互联网原子化了的个体，作为在内卷或被内卷中焦虑挣扎的普通人——
+
+&gt;   当赛博朋克悄然成为现实，当手机成为不可或缺的器官，当消费主义暴打了理想、蒙骗了爱情，当记录了你的喜怒哀乐的数据比你更值钱；
+&gt;   作为信息时代原住民的我们，作为被资本主义异化、被互联网原子化了的个体，作为在内卷或被内卷中焦虑挣扎的普通人——
 - 是否有勇气走出舒适区，向无处不在的信息茧房说不？
 - 是否愿意审视自我的成见，尝试理解他人？
 - 是否敢于走出自闭，建立真实深刻的社会关系？
 - 是否相信人类意志的成长性，不断逼近生理和心理的极限？
 - 是否敢于自我解构，而不放弃探求生活的真相？
-- 是否接受人生的无意义，并选择继续热爱这一切？ --></description></item><item><title>Links</title><link>https://lonelyuan.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/links/</guid><description/></item><item><title>Search</title><link>https://lonelyuan.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/search/</guid><description/></item></channel></rss>
+- 是否接受人生的无意义，并选择继续热爱这一切？ --&gt;
+</description>
+        </item>
+        <item>
+        <title>Links</title>
+        <link>https://lonelyuan.github.io/links/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/links/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>https://lonelyuan.github.io/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
