@@ -385,12 +385,25 @@ if (!doNotTrack) {
     <li><a href="#xv6启动">XV6，启动！</a></li>
     <li><a href="#lab1-utils">Lab1 Utils</a>
       <ol>
-        <li><a href="#sleep">sleep</a></li>
+        <li><a href="#sleep">sleep</a>
+          <ol>
+            <li><a href="#extra-uptime"><em>Extra:</em> uptime</a></li>
+          </ol>
+        </li>
         <li><a href="#pingpong">pingpong</a></li>
         <li><a href="#primes">primes</a></li>
-        <li><a href="#find">find</a></li>
-        <li><a href="#xargs">xargs</a></li>
-        <li><a href="#optional-challenge">Optional challenge</a></li>
+        <li><a href="#find">find</a>
+          <ol>
+            <li><a href="#extrafind支持正则"><em>Extra</em>：find支持正则</a></li>
+          </ol>
+        </li>
+        <li><a href="#xargs">xargs</a>
+          <ol>
+            <li><a href="#extra还说的事"><em>Extra</em>：还说🔪的事</a></li>
+          </ol>
+        </li>
+        <li><a href="#extrash"><em>Extra</em>：sh</a></li>
+        <li><a href="#打个分">打个分⑧：</a></li>
       </ol>
     </li>
   </ol>
@@ -537,8 +550,8 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    7 minute read
-                    <span class="post-word-count">, 3441 words</span> 
+                    8 minute read
+                    <span class="post-word-count">, 3884 words</span> 
                 </time>
             </div>
             
@@ -927,6 +940,28 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    (Old xv6.out.sleep failure log removed)
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h4 id="extra-uptime"><em>Extra:</em> uptime</h4>
+<p>实验文档中的最后给出了一些隐藏关，第一关要求实现uptime，也是掉接口，比sleep更简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;uptime: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">uptime</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h3 id="pingpong">pingpong</h3>
 <p><code>pingpong</code>命令将创建两个进程，并通过管道在两个进程间通信一个字节。官方文档对这个命令的实现描述的很清楚了：</p>
 <blockquote>
@@ -1260,6 +1295,9 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>而match函数随便写一个字符串匹配或者KMP算法即可。</p>
+<h4 id="extrafind支持正则"><em>Extra</em>：find支持正则</h4>
+<p>给了<code>grep.c</code>，直接调接口</p>
+<p>👴懒得写了</p>
 <h3 id="xargs">xargs</h3>
 <p><code>xargs command</code>命令的参数同样是shell指令，它读取stdout作为参数指令的参数。简单来说，xargs把左边指令的输出放到最右边当作输入。但在我们的实现中，还有诸多细节：</p>
 <ul>
@@ -1366,7 +1404,111 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>打个分⑧：</p>
+</div><h4 id="extra还说的事"><em>Extra</em>：还说🔪的事</h4>
+<p>在当前实现里，每exec一个shell都会打印一个<code>$</code>，导致运行test脚本时的输出实际上是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sh &lt; xargstest.sh
+</span></span><span class="line"><span class="cl">$ $ $ $ $ $ hello
+</span></span><span class="line"><span class="cl">hello
+</span></span><span class="line"><span class="cl">hello
+</span></span><span class="line"><span class="cl">$ $ 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了消除烦人的<code>$</code>，我们需要修改shell源码，让其判断是否从文件中打开。相关逻辑位于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">getcmd</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nbuf</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;$ &#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 加入判断逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">memset</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nbuf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">nbuf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// EOF
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">static</span> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Ensure that three file descriptors are open.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">while</span><span class="p">((</span><span class="n">fd</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="s">&#34;console&#34;</span><span class="p">,</span> <span class="n">O_RDWR</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">fd</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Read and run input commands.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">while</span><span class="p">(</span><span class="nf">getcmd</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;c&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;d&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">buf</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// Chdir must be called by the parent, not the child.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">buf</span><span class="p">[</span><span class="nf">strlen</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// chop \n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">if</span><span class="p">(</span><span class="nf">chdir</span><span class="p">(</span><span class="n">buf</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;cannot cd %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">fork1</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">runcmd</span><span class="p">(</span><span class="nf">parsecmd</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">wait</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只需要加入一个状态变量判断是否经过fork即可。</p>
+<h3 id="extrash"><em>Extra</em>：sh</h3>
+<p><code>user/sh.c</code>作为shell功能很受限，可以为其添加更多常用功能，如：</p>
+<ul>
+<li>支持wait</li>
+<li>支持<code>;</code></li>
+<li>支持子shell：<code>(</code>，<code>)</code></li>
+<li>支持tab自动补全</li>
+<li>支持history
+详情请参考《CSAPP-shellLab》</li>
+</ul>
+<h3 id="打个分">打个分⑧：</h3>
 <p><img src="/p/xv6-utilities/util-grade.png"
 	width="737"
 	height="276"
@@ -1379,21 +1521,6 @@ if (!doNotTrack) {
 		data-flex-basis="640px"
 	
 ></p>
-<h3 id="optional-challenge">Optional challenge</h3>
-<ul>
-<li>uptime</li>
-<li>find支持正则</li>
-<li>补全shell功能
-<ul>
-<li>支持wait</li>
-<li>支持<code>;</code></li>
-<li>支持子shell：<code>(</code>，<code>)</code></li>
-<li>支持tab自动补全</li>
-<li>支持history</li>
-<li></li>
-</ul>
-</li>
-</ul>
 
 </section>
 
