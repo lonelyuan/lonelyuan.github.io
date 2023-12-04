@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
@@ -300,3 +301,277 @@ https://gohugo.io/content-management/front-matter/
         
     </channel>
 </rss>
+=======
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on lonelyuan's Blog</title><link>https://lonelyuan.github.io/tags/hugo/</link><description>Recent content in Hugo on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 07 Nov 2021 14:19:11 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>闲来无事，倒腾博客</title><link>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="历史篇">历史篇&lt;/h2>
+&lt;h3 id="你们-cli-确实比-gui-有点素质">你们 CLI 确实比 GUI 有点素质&lt;/h3>
+&lt;p>要论计算机人的典中典，还得是n年不更新只有寥寥几篇文章的 Hexo 博客。它代表着命令行初学者的兴奋，第一次配 node 环境成功后的喜悦，以及一个月之后的疑问：&lt;/p>
+&lt;ul>
+&lt;li>这点屁事我为什么不发秋秋空间/微博？&lt;/li>
+&lt;li>只有我看我为什么不记 Onenote/Notion ？&lt;/li>
+&lt;li>想要流量我为什么不发知乎/简书/西埃斯弟恩……？&lt;/li>
+&lt;/ul>
+&lt;p>尽管从现在看仿佛是前朝遗老，个人博客依旧是不存在于中文互联网中的极少数高质量中文内容。它代表着 &lt;a class="link" href="https://phuker.github.io/posts/web-feed.html" target="_blank" rel="noopener"
+>RSS&lt;/a> ，代表着永远不用担心跑路和审查，是 geek 们的精神自留地。&lt;/p>
+&lt;p>但是👴还是觉得发一篇博客敲好几条命令麻烦的要死。大概是👴不再年轻了，👴开始追求简单安逸，像挨了锤的牛一样。于是👴最终选用 &lt;a class="link" href="https://gridea.dev/" target="_blank" rel="noopener"
+>Gridea&lt;/a> ，一个博客客户端，可一键推送到 Github Page。这玩意有些不太趁手的地方，等👴闲来无事的时候搞一搞二次开发……&lt;/p>
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML.jpg"
+width="1920"
+height="1080"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/MML_hudd718c4853e7b37b7be00e1d7a560003_150859_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>然而，👴还没等到闲来无事的时候，发觉Gridea作者弃坑了。。。其客户端（electron害人不浅）编辑体验差，git更新老出毛病。作者现在只更新web端，托管到他的云服务下面。👴还是更相信github不会跑路，所以👴还是赶紧跑路吧。于是：&lt;/p>
+&lt;hr>
+&lt;h3 id="你们-js-确实比-go-有点素质">你们 JS 确实比 Go 有点素质&lt;/h3>
+&lt;p>于是👴最终选用 Hugo 做博客，因为与 Hexo 相比 Hugo 的运行速度和空间占用都十分轻量。最重要的是，作为 Go 开发的项目，可以直接下载可执行文件，不需要恼人的配环境环节。👴看中了 Stack 主题，但是这个主题用的人不少，有些千篇一律的尴尬。为此👴决定深耕换皮之道……&lt;/p>
+&lt;p>&lt;img src="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L.jpg"
+width="1280"
+height="720"
+srcset="https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_480x0_resize_q75_box.jpg 480w, https://lonelyuan.github.io/p/%E9%97%B2%E6%9D%A5%E6%97%A0%E4%BA%8B%E5%80%92%E8%85%BE%E5%8D%9A%E5%AE%A2/L_hu370e1e5aa388fd67190c4efe195d2393_378413_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="原理篇">原理篇&lt;/h2>
+&lt;h3 id="hugo-项目结构">Hugo 项目结构&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">├── archetypes # .md 模板
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── default.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── config.toml # 配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── content # 在这写东西
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── data # 更多配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── layouts # .html 模板
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── public # 渲染好的网站
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── static # 静态文件，hugo会全部复制
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── themes # 博客主题
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="content">content&lt;/h4>
+&lt;p>这里是 Hugo 的输入，存放&lt;code>.md&lt;/code>格式的文章。使用&lt;code>hugo new&lt;/code>命令时，会尝试从&lt;code>archetypes&lt;/code>目录寻找对应的模板，模板通常仅包含front matter，定义了文章的元属性。语法如下：&lt;/p>
+&lt;p>&lt;code>hugo new &amp;lt;SECTIONNAME&amp;gt;/&amp;lt;FILENAME&amp;gt;.&amp;lt;FORMAT&amp;gt;&lt;/code>&lt;/p>
+&lt;p>&lt;code>content&lt;/code>中的子文件夹称为 sections ，它们是网站内容的基本分块。分块的目的是分配不同的处理方式，如post需要展示文章列表，page仅展示单独页面等。配置中的&lt;code>permalinks&lt;/code>项就是以分块为单位分配URL。&lt;/p>
+&lt;h4 id="public">public&lt;/h4>
+&lt;p>这里是 Hugo 的输出，存放完整的 HTML 静态网页。使用&lt;code>hugo&lt;/code>命令时，会尝试从&lt;code>layouts&lt;/code>目录寻找对应的模板， HTML 模板均以 GO 模板语法编写。在写文章时也可使用模板来避免写 HTML 的繁杂，如 Hugo 提供的各种 &lt;a class="link" href="https://stack.jimmycai.com/writing/shortcodes" target="_blank" rel="noopener"
+>shortcode&lt;/a> 。&lt;/p>
+&lt;p>以 Github Page 为例，部署时仅需将这个文件夹同步至 github.io 仓库即可。&lt;/p>
+&lt;h3 id="hugo-设计理念">Hugo 设计理念&lt;/h3>
+&lt;p>【To be continued】翻译翻译官方文档&lt;/p>
+&lt;!-- ### 从 front matter 到
+Hugo 中对于文章的分类高度可定制，存在三个层次的概念：
+- Taxonomy 分类法，分类的标准的集合，又或者是元分类。
+- 在配置文件中定义
+- Term 分类标准
+- 如 Tags 、 Category 是 Hugo 默认支持的分类
+- Value 分类的具体值
+- 在文章的front matter 中定义
+Hugo 会为各种分类法生成列表页，方便检索文章。
+https://www.jianshu.com/p/e1f9123c721a
+https://gohugo.io/content-management/front-matter/
+-->
+&lt;h2 id="开发篇">开发篇&lt;/h2>
+&lt;h3 id="如何优雅的二次开发">如何优雅的二次开发？&lt;/h3>
+&lt;p>观察&lt;code>theme&lt;/code>的内容，会发现除了没有&lt;code>content&lt;/code>目录之外和网站根目录结构完全一致。由此猜测，所谓&lt;code>theme&lt;/code>也是一个 site，使用&lt;code>theme&lt;/code>就是用其模板覆盖我们的网站。&lt;/p>
+&lt;p>那么，直接修改&lt;code>theme&lt;/code>目录里的内容自然可行，但如果需要升级主题，则会产生许多讨厌的merge问题。如何实现数据和配置的解耦？实际上，上述关于覆盖顺序的猜想并不准确，实际顺序是：&lt;code>本地模板→主题模板→默认模板&lt;/code>。故而，在本地模板中添加相同路径下的同名模板文件，即可覆盖掉主题模板的配置。&lt;/p>
+&lt;p>以 Stack 主题为例，其在许多位置都存在着诸如&lt;code>hugo-theme-stack\assets\scss\custom.scss&lt;/code>的空白文件，只需要在根目录新建&lt;code>\assets\scss\custom.scss&lt;/code>即可添加对 CSS 的改动。&lt;/p>
+&lt;p>一般来说，仿照主题提供的demo网站即可满足一般的二次开发需求。关于模板查找顺序还有诸多细节，请参阅官方文档：&lt;a class="link" href="https://gohugo.io/templates/lookup-order/" target="_blank" rel="noopener"
+>Template lookup order&lt;/a>。&lt;/p>
+&lt;h4 id="article元信息lastmodwordcount">article元信息：lastmod，wordcount&lt;/h4>
+&lt;p>Hugo 本身为每篇文章都统计了相关变量，但 Stack 主题没有展示。从F12定位到相关元素，其模板在：&lt;code>\themes\hugo-theme-stack\layouts\partials\article\components\details.html&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">footer&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;article-time&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ if $showDate }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;date&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">time&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;article-time--published&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- .Date.Format (&amp;#34;2006-1-1&amp;#34;) -}} &lt;span class="ni">&amp;amp;nbsp;&lt;/span>published
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">time&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- if ne .Lastmod .Date -}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">time&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;article-time--published&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- .Lastmod.Format (&amp;#34;2006-1-1&amp;#34;) -}} &lt;span class="ni">&amp;amp;nbsp;&lt;/span>last modified
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- end -}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">time&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ end }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ if $showReadingTime }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ partial &amp;#34;helper/icon&amp;#34; &amp;#34;clock&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">time&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;article-time--reading&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ T &amp;#34;article.readingTime&amp;#34; .ReadingTime }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;post-word-count&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>, {{ .WordCount }} words&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">time&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ end }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="代码块行号突出行">代码块：行号，突出行&lt;/h4>
+&lt;p>【To be continued】&lt;/p>
+&lt;h4 id="配色字体">配色，字体&lt;/h4>
+&lt;p>【To be continued】&lt;/p>
+&lt;h4 id="富文本js花活">富文本——js花活&lt;/h4>
+&lt;p>【To be continued】&lt;/p>
+&lt;ul>
+&lt;li>导图&lt;/li>
+&lt;li>词云&lt;/li>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;h3 id="你这静态网站不是很静态啊">你这静态网站不是很静态啊&lt;/h3>
+&lt;h4 id="评论系统">评论系统&lt;/h4>
+&lt;p>👴作为白嫖怪，既然选择了Github Pages当然要选择同生态的方案。目前有基于issue的 Gitalk 和 Giscus 两种方案。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Gitalk：基于issue，和仓库绑定&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://giscus.app/zh-CN" target="_blank" rel="noopener"
+>Giscus&lt;/a>：基于GitHub Discussions&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>其他Stack主题支持的评论系统：https://stack.jimmycai.com/config/comments&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="网站统计">网站统计&lt;/h4>
+&lt;p>教程一大把，搞定科学上网就没问题。&lt;/p>
+&lt;p>然后你就会发现并没有人来访问。&lt;/p>
+&lt;p>统计平台：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://analytics.google.com/" target="_blank" rel="noopener"
+>https://analytics.google.com/&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.cloudflare.com/zh-cn/web-analytics/" target="_blank" rel="noopener"
+>https://www.cloudflare.com/zh-cn/web-analytics/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="工作流篇">工作流篇&lt;/h2>
+&lt;p>这一节介绍从撰写到部署踩坑过的工具环境&lt;/p>
+&lt;h3 id="编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗&lt;/h3>
+&lt;p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。&lt;/p>
+&lt;h3 id="github-pages--github-action-自动部署">Github Pages + Github Action 自动部署&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener"
+>https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>部署之后却发现总是带有项目名作为子路径（即&lt;code>xxx.github.io/xxx&lt;/code>）。这就很让人不爽了。纵观全网的博客大多都带着这个尾巴，表示怀疑这些人究竟是不是一直这么用的。&lt;/p>
+&lt;p>hugo官方给出的workflow中，最后一步是这样的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> # Deployment job
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> deploy:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name: github-pages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> url: ${{ steps.deployment.outputs.page_url }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> runs-on: ubuntu-latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> needs: build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> steps:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: Deploy to GitHub Pages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id: deployment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: actions/deploy-pages@v2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>👴直接🐏url，但是&lt;code>${{ steps.deployment.outputs.page_url }}&lt;/code>是个用来输出的东西，改它没用。应该是&lt;code>actions/deploy-pages@v2&lt;/code>这个action本身的问题。&lt;/p>
+&lt;p>于是👴参考了22年的几篇博客：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://client.sspai.com/post/73512#" target="_blank" rel="noopener"
+>https://client.sspai.com/post/73512#&lt;/a>!&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- name: Build with Hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> env: # ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> run: |
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hugo \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --minify \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> --baseURL &amp;#34;https://lonelyuan.github.io/&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- name: Deploy Web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: peaceiris/actions-gh-pages@v3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> with:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> EXTERNAL_REPOSITORY: pseudoyu/pseudoyu.github.io
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PUBLISH_BRANCH: master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PUBLISH_DIR: ./public
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> commit_message: ${{ github.event.head_commit.message }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成&lt;code>peaceiris/actions-gh-pages@v3&lt;/code>后，可以成功在主域名更新了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>虽然但是，目前的操作从&lt;code>写博客→hugo→git push&lt;/code>变成了&lt;code>写博客→hugo server(总得预览一下吧)→git push&lt;/code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。&lt;/p>
+&lt;h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify&lt;/h4>
+&lt;p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。&lt;/p></description></item></channel></rss>
+>>>>>>> 1eb967b30a9b0b3039c34741396094790bd6aaf1

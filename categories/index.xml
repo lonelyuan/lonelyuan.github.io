@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
@@ -42,3 +43,6 @@
         
     </channel>
 </rss>
+=======
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on lonelyuan's Blog</title><link>https://lonelyuan.github.io/categories/</link><description>Recent content in Categories on lonelyuan's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Web</title><link>https://lonelyuan.github.io/categories/web/</link><pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate><guid>https://lonelyuan.github.io/categories/web/</guid><description/></item><item><title>CS</title><link>https://lonelyuan.github.io/categories/cs/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/categories/cs/</guid><description>&lt;img src="https://lonelyuan.github.io/categories/cs/power.png" alt="Featured image of post CS" />&lt;p>太美丽了CS&lt;/p></description></item><item><title>CTF</title><link>https://lonelyuan.github.io/categories/ctf/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/categories/ctf/</guid><description/></item><item><title>Sec</title><link>https://lonelyuan.github.io/categories/sec/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://lonelyuan.github.io/categories/sec/</guid><description/></item></channel></rss>
+>>>>>>> 1eb967b30a9b0b3039c34741396094790bd6aaf1
