@@ -946,9 +946,9 @@
 &lt;li&gt;支持&lt;code&gt;;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;支持子shell：&lt;code&gt;(&lt;/code&gt;，&lt;code&gt;)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;支持tab自动补全&lt;/li&gt;
-&lt;li&gt;支持history
-详情请参考《CSAPP-shellLab》&lt;/li&gt;
+&lt;li&gt;支持history&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;详情请参考《CSAPP-shellLab》&lt;/p&gt;
 &lt;h3 id=&#34;打个分&#34;&gt;打个分⑧：&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/xv6-utilities/util-grade.png&#34;
 	width=&#34;737&#34;
