@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
@@ -571,58 +572,32 @@ if (!doNotTrack) {
 <p>本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统”
 项目官网： <a class="link" href="http://www.loongson.cn/business/general/teach/356.html"  target="_blank" rel="noopener"
     >http://www.loongson.cn/business/general/teach/356.html</a>；
+=======
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统” 项目官网： http://www.loongson."><title>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</title><link rel=canonical href=https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/><link rel=stylesheet href=/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css><meta property="og:title" content="基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"><meta property="og:description" content="本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统” 项目官网： http://www.loongson."><meta property="og:url" content="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/"><meta property="og:site_name" content="lonelyuan's Blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="vivado"><meta property="article:published_time" content="2021-06-09T17:14:19+00:00"><meta property="article:modified_time" content="2021-06-09T17:14:19+00:00"><meta property="og:image" content="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.jfif"><meta name=twitter:title content="基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"><meta name=twitter:description content="本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统” 项目官网： http://www.loongson."><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://lonelyuan.github.io/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu.jfif"><script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVC1PKZKD"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-BLVC1PKZKD",{anonymize_ip:!1})}</script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","G-BLVC1PKZKD","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/rick_hubede16acaa63e012983e5eadbe210d5c_33168_300x0_resize_q75_box.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>👴</span></figure><div class=site-meta><h1 class=site-name><a href=/>lonelyuan's Blog</a></h1><h2 class=site-description>>> 不要恐慌 | Don't Panic</h2></div></header><ol class=social-menu><li><a href=https://github.com/lonelyuan target=_blank title=GitHub rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com/FTrumpyeah target=_blank title=Twitter rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/about-me/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About Me</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/categories/cs/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><span>CS</span></a></li><li><a href=/categories/ctf/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M9.828 9.172a4 4 0 100 5.656A10 10 0 0012 12a10 10 0 012.172-2.828 4 4 0 110 5.656A10 10 0 0112 12 10 10 0 009.828 9.172"/></svg><span>CTF</span></a></li><li><a href=/categories/sec/><svg data-immersive-translate-effect="1" data-immersive_translate_walked="0b66fd33-9d65-4c0d-a958-cdfe41102bc1" fill="none" stroke="currentcolor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959.0 013.598 6 11.99 11.99.0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622.0-1.31-.21-2.571-.598-3.751h-.152c-3.196.0-6.1-1.248-8.25-3.285z" data-immersive-translate-effect="1" data-immersive_translate_walked="0b66fd33-9d65-4c0d-a958-cdfe41102bc1"/></svg><span>Sec</span></a></li><li><a href=/todo/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><span>TODO</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg><span>Links</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><aside class="sidebar right-sidebar sticky"><form action=/search/ class="search-form widget"><p><label>Search</label>
+<input name=keyword required placeholder="Type something...">
+<button title=Search><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button></p></form><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#吐槽时间>🤓吐槽时间</a></li><li><a href=#-用计算机造计算机>🔧 “用”计算机→“造”计算机</a></li><li><a href=#高贵的ic工程师都用啥轮子>🔮高贵的IC工程师都用啥轮子</a></li><li><a href=#mips指令集格式>📌MIPS指令集格式</a></li><li><a href=#vivado使用>🆒Vivado使用</a><ol><li><a href=#创建项目>创建项目</a></li><li><a href=#编写代码并仿真>编写代码并仿真</a></li><li><a href=#引入ip核>引入IP核</a></li><li><a href=#我直接上板>我直接上板</a></li></ol></li><li><a href=#多周期流水线cpu原理>🗿多周期流水线CPU原理</a></li></ol></nav></div></section><section class="widget tagCloud"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Categories</h2><div class=tagCloud-tags><a href=/categories/cs/ class=font_size_9>CS</a>
+<a href=/categories/sec/ class=font_size_3>Sec</a>
+<a href=/categories/web/ class=font_size_3>Web</a>
+<a href=/categories/ctf/ class=font_size_1>CTF</a></div></section><section class="widget tagCloud"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg></div><h2 class="widget-title section-title">Tags</h2><div class=tagCloud-tags><a href=/tags/csapp/ class=font_size_3>CSAPP</a>
+<a href=/tags/fuzz/ class=font_size_3>fuzz</a>
+<a href=/tags/fuzzing101/ class=font_size_3>fuzzing101</a>
+<a href=/tags/libafl/ class=font_size_3>Libafl</a>
+<a href=/tags/rust/ class=font_size_3>rust</a></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu_hu41671eab994e10b990ecc8a898c73896_308650_800x0_resize_q75_box.jfif srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu_hu41671eab994e10b990ecc8a898c73896_308650_800x0_resize_q75_box.jfif 800w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/mips_pipeline_cpu_hu41671eab994e10b990ecc8a898c73896_308650_1600x0_resize_q75_box.jfif 1600w" width=800 height=600 loading=lazy alt="Featured image of post 基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释"></a></div><div class=article-details><header class=article-category><a href=/categories/cs/>CS</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/>基于vivado的基于FPGA的一种基于MIPS的一种五级流水线CPU实现的注释</a></h2></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>2021-6-6&nbsp;published</time></time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>9 minute read
+<span class=post-word-count>, 4196 words</span></time></div></footer></div></header><section class=article-content><blockquote><p>本文所述为计算机组成原理课拓展实验的相关记录，基于“龙芯体系结构与CPU设计教学实验系统”
+项目官网： <a class=link href=http://www.loongson.cn/business/general/teach/356.html target=_blank rel=noopener>http://www.loongson.cn/business/general/teach/356.html</a>；
+>>>>>>> c299a18a604c29ea9bc9290079d2cccbbd9506ef
 相关资料代码：#TODO:: github仓库
-PS：标题可简记为《基于基于的一种基于的一种实现》</p>
-</blockquote>
-<h2 id="吐槽时间">🤓吐槽时间</h2>
-<p>快考试了，👴发觉👴计组学了个🔨，👴去年也学了个🔨，但是去年可以归因于晦气的晦气，今年只能说自己晦气。难道还要重蹈去年的晦气吗？👴本应该回去背课本，刷考研题，但是👴一看ppt就想起我们敬爱的《计算机组成原理》课的任课老师，丐哥反复强调的至理名言：“听不懂的举手（无停顿）都没举手，都听懂了，非常好。”本人十分钦佩丐哥老师对幽默感的独特理解。<br></p>
-<p><em>（但是特此声明：本人不了解、不认同其关于&quot;5G是个几把&quot;，&ldquo;高晓松很nb这个人&rdquo;，&ldquo;钱=浪漫&quot;等议题的看法）</em><br></p>
-<p>而且👴这人很怪，课本上的重点，不好玩；选做的实验，好玩！哎就是玩，怪不得卷不过别人，你也配卷？滚去考研吧。<br></p>
-<p>众所周知，计算机学生的本科生涯，如果能做到在自己设计的CPU上运行自己写的操作系统并用自己写的编译器跑代码，那就非常成功了。👴差不多，👴能在自己搜的代码上写自己的注释并用自己的电脑截图，都是三个&quot;自己&rdquo;。那么今天给大家爆个啥捏，流水线奥。<br></p>
-<h2 id="-用计算机造计算机">🔧 “用”计算机→“造”计算机</h2>
-<p>上回书说到（#TODO:: CSAPP大篇），汇编器(as)让我们得到了机器能看懂的比特流，最后一步只需要连接器(ld)将其和其他调用一起载入内存。这回答了程序如何在CPU这个平台上运行的问题，然而一个更基本的问题是，这个现有的平台是如何实现的？一个粗略的认识是，我们知道这些足以实现CPU的复杂的逻辑，其最小单元总对应到简单的诸如逻辑门上面，但是落实到真正的物理实现之上，如何使效率最高？功耗最小？这些问题所跨越的复杂度的量级依然是一片巨大的迷雾。照亮这片迷雾的知识，大概隶属于IC学科。<br></p>
-<p>However，作为CS专业而不是IC专业，我们的目标仅在于理解所谓“组成原理”。在IC产业的复杂度规模数轴上，向下是专有芯片（又称嵌入式？），功能专用，规模较小；向上是通用芯片，即手机电脑等的核心，其难度不言而喻。位于中间的FPGA则既兼顾了自由度也考虑了速度，因此，这玩意能满足CS本科教学的需要（主要是便宜耐操）。<br></p>
-<h2 id="高贵的ic工程师都用啥轮子">🔮高贵的IC工程师都用啥轮子</h2>
-<p>Vivado是一个FPGA集成设计平台（也算一个EDA？），他主界面左侧的工作流窗口很好的概括了利用FPGA开发的基本流程。即</p>
-<ul>
-<li>编写设计源码(Source)：使用Verilog语言编写逻辑或引入IP
-<ul>
-<li>设计仿真模拟(Simulation)：通过观察仿真波形图和编写testbench来对设计进行debug
-<ul>
-<li>综合(Systhesis)门级网表：从RTL级描述降维到门级网表
-<ul>
-<li>生成(Implementation)布局布线：根据管脚约束，将依然是虚拟的门级连线落实为实际的线路
-<ul>
-<li>进行硬件编程(program)：生成比特流并写入目标设备</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775.png"
-	width="284"
-	height="898"
-	srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_1024x0_resize_box_3.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="31"
-		data-flex-basis="75px"
-	
-></p>
-<blockquote>
-<p>名词解释：
+PS：标题可简记为《基于基于的一种基于的一种实现》</p></blockquote><h2 id=吐槽时间>🤓吐槽时间</h2><p>快考试了，👴发觉👴计组学了个🔨，👴去年也学了个🔨，但是去年可以归因于晦气的晦气，今年只能说自己晦气。难道还要重蹈去年的晦气吗？👴本应该回去背课本，刷考研题，但是👴一看ppt就想起我们敬爱的《计算机组成原理》课的任课老师，丐哥反复强调的至理名言：“听不懂的举手（无停顿）都没举手，都听懂了，非常好。”本人十分钦佩丐哥老师对幽默感的独特理解。<br></p><p><em>（但是特此声明：本人不了解、不认同其关于"5G是个几把"，&ldquo;高晓松很nb这个人&rdquo;，&ldquo;钱=浪漫"等议题的看法）</em><br></p><p>而且👴这人很怪，课本上的重点，不好玩；选做的实验，好玩！哎就是玩，怪不得卷不过别人，你也配卷？滚去考研吧。<br></p><p>众所周知，计算机学生的本科生涯，如果能做到在自己设计的CPU上运行自己写的操作系统并用自己写的编译器跑代码，那就非常成功了。👴差不多，👴能在自己搜的代码上写自己的注释并用自己的电脑截图，都是三个"自己&rdquo;。那么今天给大家爆个啥捏，流水线奥。<br></p><h2 id=-用计算机造计算机>🔧 “用”计算机→“造”计算机</h2><p>上回书说到（#TODO:: CSAPP大篇），汇编器(as)让我们得到了机器能看懂的比特流，最后一步只需要连接器(ld)将其和其他调用一起载入内存。这回答了程序如何在CPU这个平台上运行的问题，然而一个更基本的问题是，这个现有的平台是如何实现的？一个粗略的认识是，我们知道这些足以实现CPU的复杂的逻辑，其最小单元总对应到简单的诸如逻辑门上面，但是落实到真正的物理实现之上，如何使效率最高？功耗最小？这些问题所跨越的复杂度的量级依然是一片巨大的迷雾。照亮这片迷雾的知识，大概隶属于IC学科。<br></p><p>However，作为CS专业而不是IC专业，我们的目标仅在于理解所谓“组成原理”。在IC产业的复杂度规模数轴上，向下是专有芯片（又称嵌入式？），功能专用，规模较小；向上是通用芯片，即手机电脑等的核心，其难度不言而喻。位于中间的FPGA则既兼顾了自由度也考虑了速度，因此，这玩意能满足CS本科教学的需要（主要是便宜耐操）。<br></p><h2 id=高贵的ic工程师都用啥轮子>🔮高贵的IC工程师都用啥轮子</h2><p>Vivado是一个FPGA集成设计平台（也算一个EDA？），他主界面左侧的工作流窗口很好的概括了利用FPGA开发的基本流程。即</p><ul><li>编写设计源码(Source)：使用Verilog语言编写逻辑或引入IP<ul><li>设计仿真模拟(Simulation)：通过观察仿真波形图和编写testbench来对设计进行debug<ul><li>综合(Systhesis)门级网表：从RTL级描述降维到门级网表<ul><li>生成(Implementation)布局布线：根据管脚约束，将依然是虚拟的门级连线落实为实际的线路<ul><li>进行硬件编程(program)：生成比特流并写入目标设备</li></ul></li></ul></li></ul></li></ul></li></ul><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775.png width=284 height=898 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623373911775_huf28bb0831bd4f5e30206b091a37b5db9_21335_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=31 data-flex-basis=75px></p><blockquote><p>名词解释：
 IC：集成电路
 FPGA：现场可编程门阵列
 Verilog：一种硬件描述语言，语法涵盖了自顶向下五个抽象层面：系统级、算法级、RTL级、门级、开关级。
 RTL：寄存器传输级。一般使用最多的就是RTL级。
 IP：Intellectual Property内核模块，可以理解为将代码封装为函数。分为，软IP内核(soft IP core)，固IP内核(firm IP core)和硬IP内核(hard IP core)3个层次，相当于集成电路的毛坯、半成品和成品。
 SoC：片上系统，大概是芯片及其装载的第一层软件接口的集合，很宽泛的概念。
+<<<<<<< HEAD
 EDA：电子设计自动化。</p>
 </blockquote>
 <p>由此，我们可以大致探清了这片迷雾，CPU的设计如何从高抽象层次的逻辑，梳理成最底层的逻辑门，再实现为小小的芯片。那么我们有了轮子，要造一个CPU，还要确定目标指令集。由于本项目由龙芯公司赞助，那必然要选MIPS了。</p>
@@ -1344,3 +1319,284 @@ EDA：电子设计自动化。</p>
 
     </body>
 </html>
+=======
+EDA：电子设计自动化。</p></blockquote><p>由此，我们可以大致探清了这片迷雾，CPU的设计如何从高抽象层次的逻辑，梳理成最底层的逻辑门，再实现为小小的芯片。那么我们有了轮子，要造一个CPU，还要确定目标指令集。由于本项目由龙芯公司赞助，那必然要选MIPS了。</p><h2 id=mips指令集格式>📌MIPS指令集格式</h2><p>啥叫指令集呢，学过几种语言就不难理解。高级程序语言规定每个ascii码的组合所对应的含义，指令集规定0和1的组合所对应的寄存器，ALU的各种信号。MIPS指令集从属于RISC系列，最基本的指令有31条。<br></p><p>//讲到这里本应该打个表展示31条指令，但是👴懒得打了。<br></p><p>Vivado中，.coe文件用于初始化IP核，本实验给出的.coe文件中存放了几条指令，不过是16进制数字，写个小脚本打印成可读的形式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># mips_dump.py</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>path</span><span class=p>,</span><span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>hex_list</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>bin_list</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span><span class=nb>bin</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=mi>16</span><span class=p>)),</span><span class=n>hex_list</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=c1># bin_code_list = [&#34;{:0&gt;32}&#34;.format(i[2:],&#39;b&#39;) for i in bin_list]</span>
+</span></span><span class=line><span class=cl>    <span class=n>bin_code_list</span> <span class=o>=</span> <span class=p>[</span><span class=n>i</span><span class=p>[</span><span class=mi>2</span><span class=p>:]</span><span class=o>.</span><span class=n>zfill</span><span class=p>(</span><span class=mi>32</span><span class=p>)</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>bin_list</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>IType_op_dict</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001000&#39;</span><span class=p>:</span><span class=s1>&#39;addi&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001001&#39;</span><span class=p>:</span><span class=s1>&#39;addiu&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001100&#39;</span><span class=p>:</span><span class=s1>&#39;ori&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001101&#39;</span><span class=p>:</span><span class=s1>&#39;xori&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001111&#39;</span><span class=p>:</span><span class=s1>&#39;lui&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100011&#39;</span><span class=p>:</span><span class=s1>&#39;lw&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;101011&#39;</span><span class=p>:</span><span class=s1>&#39;sw&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000100&#39;</span><span class=p>:</span><span class=s1>&#39;beq&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000101&#39;</span><span class=p>:</span><span class=s1>&#39;bne&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001010&#39;</span><span class=p>:</span><span class=s1>&#39;slti&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001011&#39;</span><span class=p>:</span><span class=s1>&#39;sltiu&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>RType_func_dict</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100000&#39;</span><span class=p>:</span><span class=s1>&#39;add&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100001&#39;</span><span class=p>:</span><span class=s1>&#39;addu&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100010&#39;</span><span class=p>:</span><span class=s1>&#39;sub&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100011&#39;</span><span class=p>:</span><span class=s1>&#39;subu&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100100&#39;</span><span class=p>:</span><span class=s1>&#39;and&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100101&#39;</span><span class=p>:</span><span class=s1>&#39;or&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100110&#39;</span><span class=p>:</span><span class=s1>&#39;xor&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;100111&#39;</span><span class=p>:</span><span class=s1>&#39;nor&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;101010&#39;</span><span class=p>:</span><span class=s1>&#39;slt&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;101011&#39;</span><span class=p>:</span><span class=s1>&#39;sltu&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000000&#39;</span><span class=p>:</span><span class=s1>&#39;sll&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000010&#39;</span><span class=p>:</span><span class=s1>&#39;srl&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000011&#39;</span><span class=p>:</span><span class=s1>&#39;sra&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000100&#39;</span><span class=p>:</span><span class=s1>&#39;sllv&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000110&#39;</span><span class=p>:</span><span class=s1>&#39;srlv&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;000111&#39;</span><span class=p>:</span><span class=s1>&#39;srav&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;001000&#39;</span><span class=p>:</span><span class=s1>&#39;jr&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>f_hex</span><span class=p>(</span><span class=n>ori</span><span class=p>,</span> <span class=n>width</span><span class=p>):</span> <span class=c1># bin-&gt;hex</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;0x&#34;</span><span class=o>+</span><span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>ori</span><span class=p>,</span><span class=mi>2</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span><span class=o>.</span><span class=n>zfill</span><span class=p>(</span><span class=n>width</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>f_reg</span><span class=p>(</span><span class=n>ori</span><span class=p>):</span> <span class=c1># print register num</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;$&#34;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>ori</span><span class=p>,</span><span class=mi>2</span><span class=p>))</span><span class=o>.</span><span class=n>zfill</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>code_dump</span><span class=p>(</span><span class=nb>type</span><span class=p>:</span><span class=nb>str</span><span class=p>,</span><span class=n>inst</span><span class=p>:</span><span class=nb>str</span><span class=p>,</span><span class=n>params</span><span class=p>:</span><span class=nb>list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>type</span> <span class=o>==</span> <span class=s1>&#39;R&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>s</span> <span class=o>=</span> <span class=n>inst</span><span class=o>.</span><span class=n>ljust</span><span class=p>(</span><span class=mi>6</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;, &#34;</span><span class=o>.</span><span class=n>join</span><span class=p>([</span><span class=n>f_reg</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>0</span><span class=p>]),</span><span class=n>f_reg</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>1</span><span class=p>]),</span><span class=n>f_reg</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>2</span><span class=p>]),</span><span class=n>f_hex</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>3</span><span class=p>],</span><span class=mi>2</span><span class=p>)])</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=nb>type</span> <span class=o>==</span> <span class=s1>&#39;I&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>s</span> <span class=o>=</span> <span class=n>inst</span><span class=o>.</span><span class=n>ljust</span><span class=p>(</span><span class=mi>6</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;, &#34;</span><span class=o>.</span><span class=n>join</span><span class=p>([</span><span class=n>f_reg</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>0</span><span class=p>]),</span><span class=n>f_reg</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>1</span><span class=p>]),</span><span class=n>f_hex</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>2</span><span class=p>],</span><span class=mi>8</span><span class=p>)])</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>s</span> <span class=o>=</span> <span class=n>inst</span><span class=o>.</span><span class=n>ljust</span><span class=p>(</span><span class=mi>6</span><span class=p>)</span> <span class=o>+</span><span class=s1>&#39;0x&#39;</span><span class=o>+</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>params</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=mi>2</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span><span class=o>.</span><span class=n>zfill</span><span class=p>(</span><span class=mi>8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>assembly_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=n>bin_code_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>op</span> <span class=o>=</span> <span class=n>_</span><span class=p>[:</span><span class=mi>6</span><span class=p>]</span> <span class=c1># public field</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>op</span> <span class=o>==</span> <span class=s1>&#39;000000&#39;</span><span class=p>:</span> <span class=c1># R-Type</span>
+</span></span><span class=line><span class=cl>            <span class=n>rs</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>11</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>rt</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>11</span><span class=p>:</span><span class=mi>16</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>rd</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>16</span><span class=p>:</span><span class=mi>21</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>shamt</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>21</span><span class=p>:</span><span class=mi>26</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>func</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>26</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>            <span class=n>assembly_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>code_dump</span><span class=p>(</span><span class=s1>&#39;R&#39;</span><span class=p>,</span><span class=n>RType_func_dict</span><span class=p>[</span><span class=n>func</span><span class=p>],[</span><span class=n>rs</span><span class=p>,</span><span class=n>rt</span><span class=p>,</span><span class=n>rd</span><span class=p>,</span><span class=n>shamt</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=k>elif</span> <span class=n>op</span> <span class=ow>in</span> <span class=p>[</span><span class=s1>&#39;000010&#39;</span><span class=p>,</span> <span class=s1>&#39;000011&#39;</span><span class=p>]:</span>  <span class=c1># J-Type</span>
+</span></span><span class=line><span class=cl>            <span class=n>target</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>6</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>            <span class=n>assembly_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>code_dump</span><span class=p>(</span><span class=s1>&#39;J&#39;</span><span class=p>,</span><span class=s1>&#39;j&#39;</span><span class=p>,[</span><span class=n>target</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span> <span class=c1># I-Type</span>
+</span></span><span class=line><span class=cl>            <span class=n>rs</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>12</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>rt</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>18</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>imm</span> <span class=o>=</span> <span class=n>_</span><span class=p>[</span><span class=mi>18</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>            <span class=n>assembly_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>code_dump</span><span class=p>(</span><span class=s1>&#39;I&#39;</span><span class=p>,</span><span class=n>IType_op_dict</span><span class=p>[</span><span class=n>op</span><span class=p>],[</span><span class=n>rs</span><span class=p>,</span> <span class=n>rt</span><span class=p>,</span> <span class=n>imm</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>assembly_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;***** decode error! *****&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>head</span> <span class=o>=</span> <span class=s2>&#34;+---hexdump----|--------- assembly ---------+&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>head</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>addr</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>bin_code_list</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;|&#34;</span><span class=o>+</span> <span class=n>f_hex</span><span class=p>(</span><span class=nb>bin</span><span class=p>(</span><span class=n>addr</span><span class=p>),</span><span class=mi>2</span><span class=p>)</span> <span class=o>+</span><span class=s2>&#34; &#34;</span><span class=o>+</span> <span class=n>hex_list</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>+</span><span class=s2>&#34; | &#34;</span><span class=o>+</span> <span class=n>assembly_list</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>.</span><span class=n>ljust</span><span class=p>(</span><span class=mi>26</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34; |&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>addr</span> <span class=o>+=</span> <span class=mi>4</span>
+</span></span><span class=line><span class=cl><span class=n>tail</span> <span class=o>=</span> <span class=s2>&#34;+&#34;</span><span class=o>+</span><span class=s2>&#34;-&#34;</span><span class=o>*</span><span class=mi>43</span><span class=o>+</span><span class=s2>&#34;+&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>tail</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>打印出来👴傻了，怎么还有不在31条范围里的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>+---hexdump----|--------- assembly ---------+
+</span></span><span class=line><span class=cl>|0x00 24010001 | addiu $00, $04, 0x00000001 |
+</span></span><span class=line><span class=cl>|0x04 00011100 | sll   $00, $01, $02, 0x04  |
+</span></span><span class=line><span class=cl>|0x08 00411821 | addu  $02, $01, $03, 0x00  |
+</span></span><span class=line><span class=cl>|0x0c 00022082 | srl   $00, $02, $04, 0x02  |
+</span></span><span class=line><span class=cl>|0x10 28990005 | slti  $09, $36, 0x00000005 |
+</span></span><span class=line><span class=cl>|0x14 07210010 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x18 00642823 | subu  $03, $04, $05, 0x00  |
+</span></span><span class=line><span class=cl>|0x1c AC050014 | sw    $00, $20, 0x00000014 |
+</span></span><span class=line><span class=cl>|0x20 00A23027 | nor   $05, $02, $06, 0x00  |
+</span></span><span class=line><span class=cl>|0x24 00C33825 | or    $06, $03, $07, 0x00  |
+</span></span><span class=line><span class=cl>|0x28 00E64026 | xor   $07, $06, $08, 0x00  |
+</span></span><span class=line><span class=cl>|0x2c AC08001C | sw    $00, $32, 0x0000001c |
+</span></span><span class=line><span class=cl>|0x30 11030002 | beq   $16, $12, 0x00000002 |
+</span></span><span class=line><span class=cl>|0x34 00C7482A | slt   $06, $07, $09, 0x00  |
+</span></span><span class=line><span class=cl>|0x38 24010008 | addiu $00, $04, 0x00000008 |
+</span></span><span class=line><span class=cl>|0x3c 8C2A0014 | lw    $02, $40, 0x00000014 |
+</span></span><span class=line><span class=cl>|0x40 15450004 | bne   $20, $20, 0x00000004 |
+</span></span><span class=line><span class=cl>|0x44 00415824 | and   $02, $01, $11, 0x00  |
+</span></span><span class=line><span class=cl>|0x48 AC2B001C | sw    $02, $44, 0x0000001c |
+</span></span><span class=line><span class=cl>|0x4c AC240010 | sw    $02, $16, 0x00000010 |
+</span></span><span class=line><span class=cl>|0x50 0C000019 | j     0x00000019           |
+</span></span><span class=line><span class=cl>|0x54 3C0C000C | lui   $00, $48, 0x0000000c |
+</span></span><span class=line><span class=cl>|0x58 004CD007 | srav  $02, $12, $26, 0x00  |
+</span></span><span class=line><span class=cl>|0x5c 003AD804 | sllv  $01, $26, $27, 0x00  |
+</span></span><span class=line><span class=cl>|0x60 0360F809 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x64 A07A0005 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x68 0063682B | sltu  $03, $03, $13, 0x00  |
+</span></span><span class=line><span class=cl>|0x6c 1DA00003 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x70 00867004 | sllv  $04, $06, $14, 0x00  |
+</span></span><span class=line><span class=cl>|0x74 000E7883 | sra   $00, $14, $15, 0x02  |
+</span></span><span class=line><span class=cl>|0x78 002F8006 | srlv  $01, $15, $16, 0x00  |
+</span></span><span class=line><span class=cl>|0x7c 1A000008 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x80 002F8007 | srav  $01, $15, $16, 0x00  |
+</span></span><span class=line><span class=cl>|0x84 240B008C | addiu $00, $44, 0x0000008c |
+</span></span><span class=line><span class=cl>|0x88 06000006 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x8c 8D5C0003 | lw    $21, $48, 0x00000003 |
+</span></span><span class=line><span class=cl>|0x90 179D0007 | bne   $57, $52, 0x00000007 |
+</span></span><span class=line><span class=cl>|0x94 A0AF0008 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x98 80B20008 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0x9c 90B30008 | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0xa0 2DF8FFFF | sltiu $31, $35, 0x00003fff |
+</span></span><span class=line><span class=cl>|0xa4 0185E825 | or    $12, $05, $29, 0x00  |
+</span></span><span class=line><span class=cl>|0xa8 01600008 | jr    $11, $00, $00, 0x00  |
+</span></span><span class=line><span class=cl>|0xac 31F4FFFF | ori   $31, $19, 0x00003fff |
+</span></span><span class=line><span class=cl>|0xb0 35F5FFFF | xori  $31, $23, 0x00003fff |
+</span></span><span class=line><span class=cl>|0xb4 39F6FFFF | ***** decode error! *****  |
+</span></span><span class=line><span class=cl>|0xb8 08000000 | j     0x00000000           |
+</span></span><span class=line><span class=cl>+-------------------------------------------+
+</span></span></code></pre></td></tr></table></div></div><p>总之，代码都给你了，下面给出一个vivado实验的完整流程，不全面，但是都是踩坑经验。</p><h2 id=vivado使用>🆒Vivado使用</h2><p>本流程环境：Vivado 2020.2<br>开发板型号：LS-CPU-EXB-1<br></p><h3 id=创建项目>创建项目</h3><p>下一步，下一步，下一步，，，确认。
+这一步只需要注意选器件，一定要选对。否则有可能在Implementation遇到“端口电平不匹配”“端口数量不足”等硬件问题。当然，有可能型号相近的性能规格也差不多，这属于玄学问题了。实验书上选择的的型号应该是“xc7a200tfbg676-2”，但是👴用的是“xc7a200tfbv676-2”也能成功写入比特流。</p><h3 id=编写代码并仿真>编写代码并仿真</h3><p>本实验的代码大多来自“2016-04-14”，那就是龙芯公司给的源代码。在该系列代码中有一处bug，位于“单周期CPU实验”的single_cycle_cpu.v中。214行，<code>resetn</code>应该为<code>{4{resetn}}</code>，写使能位宽应为为4。
+<img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932.png width=1127 height=171 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379687932_hufe86cef61ae65608cb32f2b7a6318565_35328_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=659 data-flex-basis=1581px></p><p>下面讲解一下项目结构，所有实验都是类似的：
+<img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604.png width=685 height=892 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623374928604_hu98bc94ba53dca30899515e8f1ad871e0_210347_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=76 data-flex-basis=184px>
+三个顶层文件夹分别对应Add Source里的三类源文件：添加设计，添加仿真，添加约束。如果不需要上板，只完成仿真，那么只需要添加设计（几个.v），添加仿真（testbench.v/tb.v）就足够了，xxx_display.v也是上板需要的故而可以忽略。（实际上，图中我用箭头标记的都用不到）。</p><p>编写tb，无非是给tb里声明为input的信号赋值，还可以使用<code>#xx</code>，让tb等待一段时间。</p><p>点击Run Simulation，等一会就能看到波形图。波形图有三种颜色：</p><ul><li>绿色代表信号正常正常；</li><li>红色的X代表信号不确定；</li><li>蓝色的Z代表信号休眠。</li></ul><p>一般遇到红X，都是未初始化问题。蓝Z大概是没有模块调用这些信号。Vivado波形图的操作极其难用，这里介绍一个相对好用的操作：左键从左向右水平划，会直接缩放到鼠标滑过的这一段。右键选择进制等操作略。</p><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380.png width=1000 height=757 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623378896380_hue25177b2e4edfc44898f590de0dbab08_40422_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=132 data-flex-basis=317px></p><p>仿真需要注意的问题：</p><ul><li>如果文件没问题，模块调用层次会被自动解析从而呈现成一棵树，而不是好几个顶层文件。</li><li>注意set as top，应该设为根部模块（调用其他模块的）和tb<ul><li>//如果设错了可能在Implementation会出现“端口未赋初值”的报错。</li></ul></li><li>中文乱码是经典字符集问题，有可能在换行处导致语法错误。建议统一换成utf-8。<ul><li>简单解决方法：从vscode里复制。</li></ul></li></ul><h3 id=引入ip核>引入IP核</h3><p>对于流水线CPU，data_ram和inst_rom需要同步写，自己实现比较复杂，故直接实例化封装好的内存块IP。如何引入？首先说明几种文件格式：</p><ul><li>.dcp 原意为checkpoints文件，是一种加密压缩文件。用于封装模块方便调用，但对版本要求极其敏感。</li><li>.xci/.xcix IP核配置文件，本质是一个xml。是Vivado在新版本提倡使用xci而不是dcp。</li><li>.xdc 管脚约束文件。在Implementation用到，此处按下不表。</li></ul><p>这几种文件格式都是可以直接Add Source添加进来的。实验老师同时提供dcp和xci文件，添加dcp崩屎了，原因估计如上。添加xci之后，提示我将IP更新为core cointainer的形式</p><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417.png width=669 height=513 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377228417_hu3723a569f5da7a4a86a5166afb1cfa77_35011_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=130 data-flex-basis=312px></p><p>更新就完了。然后需要等一会，IP还要执行一步synth，这段时间里IP属于锁住的状态，不能修改配置。</p><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565.png width=429 height=113 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_480x0_resize_box_3.png 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623377562565_hu20944bb791fcafc19453988e909e4c86_6875_1024x0_resize_box_3.png 1024w" loading=lazy class=gallery-image data-flex-grow=379 data-flex-basis=911px></p><p>注意更换器件后，IP核都会锁住。这表示IP的配置和当前环境不匹配。对所有IP锁住的问题，只需要点击菜单栏Reports→Reports IP Status，然后点upgrade即可解除锁定。</p><h3 id=我直接上板>我直接上板</h3><p>直接点生成比特流，会一步步的按工作流向下运行，等待几分钟就能愉快的收获你的报错了！</p><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063.jpg width=1440 height=1080 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_480x0_resize_q75_box.jpg 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379096063_hu89db98ea66f840c7603fe283c7e8a11b_471271_1024x0_resize_q75_box.jpg 1024w" loading=lazy class=gallery-image data-flex-grow=133 data-flex-basis=320px></p><p>在把上文提到的坑都踩过一遍之后，终于没有critical warning，泪目。</p><p>但是此时实验课已经结束了，👴偷溜到没人的实验室，并留下以下珍贵画面</p><p><img src=/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894.jpg width=2340 height=1080 srcset="/p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_480x0_resize_q75_box.jpg 480w, /p/%E5%9F%BA%E4%BA%8Evivado%E7%9A%84%E5%9F%BA%E4%BA%8Efpga%E7%9A%84%E4%B8%80%E7%A7%8D%E5%9F%BA%E4%BA%8Emips%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BFcpu%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B3%A8%E9%87%8A/1623379266894_hu51bb5a7a2a7c819eb623949b43a1f068_1273620_1024x0_resize_q75_box.jpg 1024w" loading=lazy class=gallery-image data-flex-grow=216 data-flex-basis=520px></p><p>然后👴发现data_ram写入失败。但是👴没时间搞了，👴还是滚去复习课本吧。</p><h2 id=多周期流水线cpu原理>🗿多周期流水线CPU原理</h2><p>最后，继续复习计组。<br></p></section><footer class=article-footer><section class=article-tags><a href=/tags/vivado/>vivado</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/xv6-utilities/><div class=article-image><img src=/p/xv6-utilities/util-grade.200bc8b6f60d3c52fa78c92c944b4df4_hu29693ed85ff5987b48267af9c379c744_33770_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post XV6 Lab - Utilities" data-key=xv6-utilities data-hash="md5-IAvItvYNPFL6eMkslEtN9A=="></div><div class=article-details><h2 class=article-title>XV6 Lab - Utilities</h2></div></a></article><article><a href=/p/csapp-proxylab/><div class=article-details><h2 class=article-title>CSAPP - Proxylab</h2></div></a></article><article><a href=/p/mospi-chcore-lab-1/><div class=article-details><h2 class=article-title>MOSPI-ChCore lab (1)</h2></div></a></article><article><a href=/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/><div class=article-details><h2 class=article-title>从scapy和wireshark学计算机网络</h2></div></a></article><article><a href=/p/csapp-bomblab/><div class=article-details><h2 class=article-title>CSAPP - Bomblab</h2></div></a></article></div></div></aside><script src=https://giscus.app/client.js data-repo=lonelyuan/giscus-comment data-repo-id=R_kgDOK1hIpw data-category=Announcements data-category-id=DIC_kwDOK1hIp84Cbey0 data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light data-lang=zh-CN crossorigin=anonymous async></script>
+<script>function setGiscusTheme(e){let t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}(function(){addEventListener("message",t=>{if(event.origin!=="https://giscus.app")return;e()}),window.addEventListener("onColorSchemeChange",e);function e(){setGiscusTheme(document.documentElement.dataset.scheme==="light"?"light":"dark_dimmed")}})()</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 lonelyuan's Blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.20.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
+>>>>>>> c299a18a604c29ea9bc9290079d2cccbbd9506ef
