@@ -8,11 +8,11 @@
         <language>en</language>
         <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/mit_ose/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>XV6 Lab - Utilities</title>
-        <link>https://lonelyuan.github.io/p/xv6-utilities/</link>
+        <link>https://lonelyuan.github.io/p/xv6-util/</link>
         <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://lonelyuan.github.io/p/xv6-utilities/</guid>
-        <description>&lt;img src="https://lonelyuan.github.io/p/xv6-utilities/util-grade.png" alt="Featured image of post XV6 Lab - Utilities" /&gt;&lt;h2 id=&#34;csapp排第一6828排第二&#34;&gt;《CSAPP排第一，6.828排第二》&lt;/h2&gt;
+        <guid>https://lonelyuan.github.io/p/xv6-util/</guid>
+        <description>&lt;img src="https://lonelyuan.github.io/p/xv6-util/util-grade.png" alt="Featured image of post XV6 Lab - Utilities" /&gt;&lt;h2 id=&#34;csapp排第一6828排第二&#34;&gt;《CSAPP排第一，6.828排第二》&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;课程简介：&lt;a class=&#34;link&#34; href=&#34;https://csdiy.wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/MIT6.S081/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MIT 6.S081: Operating System Engineering - CS自学指南 (csdiy.wiki)&lt;/a&gt;&lt;/li&gt;
@@ -40,7 +40,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;配环境&#34;&gt;配环境&lt;/h2&gt;
+&lt;h2 id=&#34;配环境基于docker的实验环境搭建&#34;&gt;配环境：基于Docker的实验环境搭建&lt;/h2&gt;
 &lt;p&gt;官网文档十分详细：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://pdos.csail.mit.edu/6.828/2023/labs/util.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -82,7 +82,26 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;于是要切换到某个实验只需&lt;code&gt;git switch -c &amp;lt;branch&amp;gt;&lt;/code&gt;切换分支即可。当然要注意保存当前branch的结果。&lt;/p&gt;
-&lt;h2 id=&#34;xv6启动&#34;&gt;XV6，启动！&lt;/h2&gt;
+&lt;p&gt;最后给出我的dockerfile：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; ubuntu:20.04&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noninteractive
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&amp;#39;&lt;/span&gt; /etc/apt/sources.list&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; apt-get update&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; apt-get install -y git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; git clone git://g.csail.mit.edu/xv6-labs-2023 &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; xv6-labs-2023&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;xv6启动&#34;&gt;XV6，启动！&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;QEMU（Quick Emulator）是一个开源的虚拟化和模拟器工具，它可以模拟多个硬件架构，包括x86、ARM、MIPS等。QEMU支持在主机系统上模拟虚拟机，并提供了一种灵活的方式来进行虚拟化开发和测试。——from GPT&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -948,12 +967,12 @@
 &lt;li&gt;支持tab自动补全&lt;/li&gt;
 &lt;li&gt;支持history&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;详情请参考《CSAPP-shellLab》&lt;/p&gt;
+&lt;p&gt;详情请参考《CSAPP-shellLab》，👴懒得写了&lt;/p&gt;
 &lt;h3 id=&#34;打个分&#34;&gt;打个分⑧：&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/xv6-utilities/util-grade.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/xv6-util/util-grade.png&#34;
 	width=&#34;737&#34;
 	height=&#34;276&#34;
-	srcset=&#34;https://lonelyuan.github.io/p/xv6-utilities/util-grade_hu29693ed85ff5987b48267af9c379c744_33770_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/xv6-utilities/util-grade_hu29693ed85ff5987b48267af9c379c744_33770_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://lonelyuan.github.io/p/xv6-util/util-grade_hu29693ed85ff5987b48267af9c379c744_33770_480x0_resize_box_3.png 480w, https://lonelyuan.github.io/p/xv6-util/util-grade_hu29693ed85ff5987b48267af9c379c744_33770_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

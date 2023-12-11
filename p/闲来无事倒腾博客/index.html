@@ -404,7 +404,10 @@ if (!doNotTrack) {
             <li><a href="#article元信息lastmodwordcount">article元信息：lastmod，wordcount</a></li>
             <li><a href="#代码块行号突出行">代码块：行号，突出行</a></li>
             <li><a href="#配色字体">配色，字体</a></li>
-            <li><a href="#富文本js花活">富文本——js花活</a></li>
+            <li><a href="#标题跳转">标题跳转</a></li>
+            <li><a href="#信息块">信息块</a></li>
+            <li><a href="#版权块">版权块</a></li>
+            <li><a href="#富文本">富文本</a></li>
           </ol>
         </li>
         <li><a href="#你这静态网站不是很静态啊">你这静态网站不是很静态啊</a>
@@ -417,7 +420,12 @@ if (!doNotTrack) {
     </li>
     <li><a href="#工作流篇">工作流篇</a>
       <ol>
-        <li><a href="#编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗</a></li>
+        <li><a href="#idevscode天下第一">IDE：vscode天下第一</a>
+          <ol>
+            <li><a href="#vscode插件-front-matter这不cms吗">vscode插件 Front Matter：这不CMS吗</a></li>
+            <li><a href="#obsdian">obsdian</a></li>
+          </ol>
+        </li>
         <li><a href="#github-pages--github-action-自动部署">Github Pages + Github Action 自动部署</a>
           <ol>
             <li><a href="#github-action-收集-lastmodify">Github Action 收集 lastmodify</a></li>
@@ -450,7 +458,7 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/cs/" class="font_size_9">
+            <a href="/categories/cs/" class="font_size_10">
                 CS
             </a>
         
@@ -503,8 +511,8 @@ if (!doNotTrack) {
                 Libafl
             </a>
         
-            <a href="/tags/rust/" class="font_size_3">
-                rust
+            <a href="/tags/os/" class="font_size_3">
+                OS
             </a>
         
     </div>
@@ -573,8 +581,8 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    6 minute read
-                    <span class="post-word-count">, 2649 words</span> 
+                    7 minute read
+                    <span class="post-word-count">, 3266 words</span> 
                 </time>
             </div>
             
@@ -748,30 +756,76 @@ https://gohugo.io/content-management/front-matter/
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="代码块行号突出行">代码块：行号，突出行</h4>
-<p>【To be continued】</p>
+<p>hugo框架本身就支持：（为避免转解析加了空格）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{ {<span class="p">&lt;</span> <span class="nt">highlight</span> <span class="na">go-html-template</span> <span class="err">&#34;</span><span class="na">lineNos</span><span class="o">=</span><span class="s">inline,</span> <span class="na">lineNoStart</span><span class="o">=</span><span class="s">42,</span> <span class="na">hl_Lines</span><span class="o">=</span><span class="s">1&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">{{ range .Pages }}
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .RelPermalink }}&#34;</span><span class="p">&gt;</span>{{ .LinkTitle }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{ end }}
+</span></span><span class="line"><span class="cl">{ {<span class="p">&lt;</span> <span class="p">/</span><span class="nt">highlight</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>预览：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line hl"><span class="ln">42</span><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="na">.Pages</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.RelPermalink</span><span class="w"> </span><span class="cp">}}</span><span class="s">&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.LinkTitle</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="cp">}}</span></span></span></code></pre></div>
+<p>默认代码高亮是真够吧丑，赶紧改改css。</p>
 <h4 id="配色字体">配色，字体</h4>
 <p>【To be continued】</p>
-<h4 id="富文本js花活">富文本——js花活</h4>
+<h4 id="标题跳转">标题跳转</h4>
+<p>这slack主题居然标签旁边没有跳转的小链接我也是没想到的。</p>
+<p>【To be continued】</p>
+<h4 id="信息块">信息块</h4>
+<p>slack主题里也没有，那没事了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{\&lt;note info &gt;}}
+</span></span><span class="line"><span class="cl">  书写表达的信息
+</span></span><span class="line"><span class="cl">  支持 Markdown 语法
+</span></span><span class="line"><span class="cl">{{\&lt; /note &gt;}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>【To be continued】</p>
+<h4 id="版权块">版权块</h4>
+<p>【To be continued】</p>
+<h4 id="富文本">富文本</h4>
 <p>【To be continued】</p>
 <ul>
 <li>导图</li>
 <li>词云</li>
-<li></li>
 </ul>
 <h3 id="你这静态网站不是很静态啊">你这静态网站不是很静态啊</h3>
 <h4 id="评论系统">评论系统</h4>
-<p>👴作为白嫖怪，既然选择了Github Pages当然要选择同生态的方案。目前有基于issue的 Gitalk 和 Giscus 两种方案。</p>
+<p>Stack主题支持的评论系统：</p>
 <ul>
-<li>
-<p>Gitalk：基于issue，和仓库绑定</p>
-</li>
-<li>
-<p><a class="link" href="https://giscus.app/zh-CN"  target="_blank" rel="noopener"
-    >Giscus</a>：基于GitHub Discussions</p>
-</li>
-<li>
-<p>其他Stack主题支持的评论系统：https://stack.jimmycai.com/config/comments</p>
-</li>
+<li><a class="link" href="https://stack.jimmycai.com/config/comments"  target="_blank" rel="noopener"
+    >https://stack.jimmycai.com/config/comments</a></li>
+</ul>
+<p>👴作为白嫖怪，既然选择了Github Pages当然要选择同生态的方案。目前有两种方案：</p>
+<ul>
+<li>Gitalk：基于issue，和仓库绑定</li>
+<li><a class="link" href="https://giscus.app/zh-CN"  target="_blank" rel="noopener"
+    >Giscus</a>：基于GitHub Discussions</li>
+</ul>
+<p>gitalk对每个文章需要管理员新建issue才能评论实在8太好使。Giucus配置起来更方便：</p>
+<ul>
+<li>首先创建一个公开仓库(直接用page仓库也可，或许)，按官网说的打开Discussion功能，并安装Giscus app</li>
+<li>然后把仓库路径填进官网，后面全默认或选第一个，就得到了一串配置信息。</li>
+<li>把里面的配置加入hugo配置文件即可（删掉配置变量的data-前缀）</li>
 </ul>
 <h4 id="网站统计">网站统计</h4>
 <p>教程一大把，搞定科学上网就没问题。</p>
@@ -784,9 +838,25 @@ https://gohugo.io/content-management/front-matter/
     >https://www.cloudflare.com/zh-cn/web-analytics/</a></li>
 </ul>
 <h2 id="工作流篇">工作流篇</h2>
-<p>这一节介绍从撰写到部署踩坑过的工具环境</p>
-<h3 id="编写vscode插件-front-matter这不cms吗">编写：vscode插件 Front Matter：这不CMS吗</h3>
-<p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是其功能性只能说聊胜于无。</p>
+<blockquote>
+<p>这一节介绍从撰写到部署踩坑过的工具/环境</p>
+</blockquote>
+<h3 id="idevscode天下第一">IDE：vscode天下第一</h3>
+<p>IDE最重要的是避免重复劳动，包括写作，多媒体管理，保存，部署等等。
+由于vscode跟github现在都姓了微软了，他们简直亲如一家。</p>
+<p>具体来说，使用vscode写博客的姿势be like：</p>
+<ul>
+<li>GUI丝滑git同步</li>
+<li>终端一键预览，发布（甚至可以写配置加一个绿色小三角）</li>
+<li>markdown支持：图片复制自动插入正文并复制到同路径下</li>
+</ul>
+<p>还可以进一步丝滑的需求比如模板文件等</p>
+<h4 id="vscode插件-front-matter这不cms吗">vscode插件 Front Matter：这不CMS吗</h4>
+<p>这个插件乍一看挺厉害，实则一拖四。提供了一个类似CMS的界面，可以自动化配置一些些Front Matter，比如日期。但是用了一会其作用不说如虎添翼吧也可以算得上聊胜于无。</p>
+<h4 id="obsdian">obsdian</h4>
+<p>使用obsdian比vscode强的地方在于原生支持front matter丝滑管理。
+另一个原因是，敲代码已经打开一个vscode图标了容易混淆。
+但是在markdown渲染方面有些割裂。希望未来有合适插件出现。</p>
 <h3 id="github-pages--github-action-自动部署">Github Pages + Github Action 自动部署</h3>
 <ul>
 <li><a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/"  target="_blank" rel="noopener"
@@ -865,13 +935,7 @@ https://gohugo.io/content-management/front-matter/
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这种方法涉及两个仓库，因此需要额外配置token。按照博客的方法替换成<code>peaceiris/actions-gh-pages@v3</code>后，可以成功在主域名更新了。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
-</div>
-</div><p>虽然但是，目前的操作从<code>写博客→hugo→git push</code>变成了<code>写博客→hugo server(总得预览一下吧)→git push</code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。</p>
+<p>虽然但是，目前的操作从<code>写博客→hugo→git push</code>变成了<code>写博客→hugo server(总得预览一下吧)→git push</code>，似乎并没有什么简化，，，虽然可以依靠编辑器的自动git commit的插件，但是👴还是不想每次保存都commit。</p>
 <h4 id="github-action-收集-lastmodify">Github Action 收集 lastmodify</h4>
 <p>使用 Github 的 CI/CD 管线可以在更新时绑定到commit号，但是👴觉得没太大用。改一个字就更新lastmod过于粗粒度，遂还是采用手动展示👴想展示的日期。</p>
 

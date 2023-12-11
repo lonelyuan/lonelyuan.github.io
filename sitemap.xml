@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lonelyuan.github.io/p/xv6-utilities/</loc>
+    <loc>https://lonelyuan.github.io/p/xv6-syscall/</loc>
+    <lastmod>2023-10-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lonelyuan.github.io/p/xv6-util/</loc>
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lonelyuan.github.io/</loc>
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lonelyuan.github.io/categories/</loc>
-    <lastmod>2023-12-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://lonelyuan.github.io/tags/mit_ose/</loc>
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lonelyuan.github.io/tags/os/</loc>
@@ -21,6 +21,9 @@
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lonelyuan.github.io/tags/</loc>
+    <lastmod>2023-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://lonelyuan.github.io/tags/mit_ose/</loc>
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://lonelyuan.github.io/tags/cn/</loc>
