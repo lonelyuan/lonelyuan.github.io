@@ -5,7 +5,7 @@
         <link>https://lonelyuan.github.io/tags/cn/</link>
         <description>Recent content in CN on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>en-us</language>
         <lastBuildDate>Thu, 05 Oct 2023 00:00:03 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CSAPP - Proxylab</title>
         <link>https://lonelyuan.github.io/p/csapp-proxylab/</link>
@@ -663,7 +663,7 @@
         
         <guid>https://lonelyuan.github.io/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
         <description>&lt;p&gt;众所周知，计网被评为最困的计算机专业课，俗称计算机中的语文。👴看了《计算机网络－自顶向下方法》（后文简称CNTDA）之后，觉得翻译就像汤姆叔叔的烂苹果派一样糟糕，上帝啊，我发誓会狠狠踢他的屁股。建议带🔥去看英文原版。&lt;/p&gt;
-&lt;p&gt;但是👴最近接触的许多实验还是很好玩的，于是本文试图通过全程动手实操学习计网。&lt;/p&gt;
+&lt;p&gt;但是👴最近接触的许多实验还是很好玩的，于是本文面向对计算机网络完全0基础的同学，试图通过全程动手实操学习计网。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;主要工具：&lt;/p&gt;
 &lt;ul&gt;
@@ -688,21 +688,12 @@
 中文版：&lt;a class=&#34;link&#34; href=&#34;https://www.osgeo.cn/scapy/introduction.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.osgeo.cn/scapy/introduction.html&lt;/a&gt; //有些翻译错误&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;最后有一个敲代码顺手的python环境和一个能正常监听的wireshark就可以了。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;计网基本概念&#34;&gt;计网基本概念&lt;/h2&gt;
 &lt;h3 id=&#34;包package&#34;&gt;💣包(package)&lt;/h3&gt;
-&lt;p&gt;等等，啥是“抓包”？啥是“发包”？啥是“包”？&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/post-images/1635925682452.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;原来这就是“包”&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;当然，包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。&lt;/p&gt;
+&lt;p&gt;等等，啥是“抓包”？啥是“发包”？我只知道A大下包。&lt;/p&gt;
+&lt;p&gt;当然，下包不仅仅是一个 CSGO 术语，在计算机网络中，包(package)有多个近义词，包括：报文/数据报(Datagram)，分组/封包(Packet)……根据语境不同而区分，但大致指的是同一件事情：即网络中真正流动着的东西，我们希望网络来传递的东西。只不过“包”是最通俗的叫法，那么抓包和发包就不难理解了。&lt;/p&gt;
 &lt;p&gt;你还想问，包到底长什么样？众所周知，快递由包装和里面的东西组成，其实网络上的封包也差不多，也大致都有两部分：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;包头，学名首部(Header)——快递包装上的标签，写着目的地址，联系电话，快递号等信息&lt;/li&gt;
@@ -769,7 +760,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;偶剋！你已经了解了分层思想，下面来设计互联网吧！（迫真）&lt;/p&gt;
+&lt;p&gt;偶剋！你已经了解了分层思想，下面来设计互联网吧！&lt;/p&gt;
 &lt;h2 id=&#34;开始实验&#34;&gt;⌚️开始实验&lt;/h2&gt;
 &lt;p&gt;有关计网的学习顺序自古就有自顶向下还是自底向上的分歧，余以为只要理解了分层思想，顺序便不算很重要。本系列实验将遵从浅入深出的原则，从应用层逐步深入到链路层再返回应用层，同时难度不断加大。&lt;/p&gt;
 &lt;p&gt;实验来源：&lt;/p&gt;
@@ -792,13 +783,10 @@
 &lt;p&gt;//【想看哪个没更新的可以催👴】&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;0x10-应用层-server--&#34;&gt;0x10 应用层: Server | ⭐&lt;/h3&gt;
-&lt;h4 id=&#34;intro&#34;&gt;Intro&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;p&gt;目标：用scapy/socket做一个静态服务器。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;实际上，python3已经自带了一个简易http服务器：&lt;/p&gt;
+&lt;li&gt;实际上，python3已经自带了一个简易http服务器：&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -811,36 +799,26 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;127.0.0.1 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;10/Nov/2021 14:51:57&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET / HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; -
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;浏览器访问：&lt;code&gt;localhost:8000&lt;/code&gt;，如果当前目录下有&lt;code&gt;index.html&lt;/code&gt;文件，浏览器即可显示该html文档。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;该http服务器也是基于另一个python标准库socket编写的，本实验我们直接用socket实现一个更简单的http服务器。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;前置：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;此时浏览器访问：&lt;code&gt;localhost:8000&lt;/code&gt;，如果当前目录下有&lt;code&gt;index.html&lt;/code&gt;文件，浏览器即可显示该html文档。这条命令表明，调用python标准库&lt;code&gt;http&lt;/code&gt;的server方法，默认会在8000端口启动一个http服务器。该服务器也是基于另一个python标准库&lt;code&gt;socket&lt;/code&gt;编写的，本实验的目标即是自己实现类似的功能。&lt;/p&gt;
+&lt;p&gt;但首先我们需要了解一些前置知识：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;术语：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;C/S架构(client-server)：互联网的基本模型。通信的双方通常分成两个角色：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;C/S架构(client-server)&lt;/strong&gt;：互联网的基本模型。通信的双方通常分成两个角色：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;发起的一方称为客户端(C)，即前端。&lt;/li&gt;
-&lt;li&gt;接收的一方称为服务端(C)，即后端。为了保证随时接收请求，服务端需要持久监听某通信端口&lt;/li&gt;
+&lt;li&gt;接收的一方称为服务端(S)，即后端。为了保证随时接收请求，服务端需要持久监听某通信端口&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;URL：统一资源标识符。也就是互联网上的地址，网址。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;URL(统一资源标识符)&lt;/strong&gt;：俗称的网址，也就是互联网上的地址。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;完整语法：&lt;code&gt;[协议名]://[用户名]:[密码]@[服务器地址]:[服务器端口号]/[路径]?[查询字符串]#[片段]&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;HTTP协议：应用层最普遍的文本协议之一。文本协议表示其所有内容都是可读的，其主要格式如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HTTP协议&lt;/strong&gt;：应用层最普遍的文本协议之一。文本协议表示其所有内容都是可读的，其主要格式如下：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -850,21 +828,16 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET / HTTP/1.1\r\n                                           /* 一个状态行 */
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host: localhost\r\n                                          /* 多个首部行 */
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection: close\r\n\r\n       /* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;html&amp;gt;... &amp;lt;/html&amp;gt;                                              /* payload */
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-h&#34; data-lang=&#34;h&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GET&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HTTP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;                                           &lt;span class=&#34;cm&#34;&gt;/* 一个状态行 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nl&#34;&gt;Host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;localhost&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;                                          &lt;span class=&#34;cm&#34;&gt;/* 多个首部行 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nl&#34;&gt;Connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;       &lt;span class=&#34;cm&#34;&gt;/* 以两个CRLF(回车换行，编程时用\r\n表示)隔断 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;                                              &lt;span class=&#34;cm&#34;&gt;/* payload */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;HTML：标记语言，用&amp;lt;&amp;gt;组织起网页的骨架。浏览器会把HTML源码渲染成好看的网页。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;socket：逻辑通信的端点。&lt;/p&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HTML&lt;/strong&gt;：标记语言，用&amp;lt;&amp;gt;组织起网页的骨架。浏览器会把HTML源码渲染成好看的网页。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;socket&lt;/strong&gt;：逻辑通信的端点。
 &lt;ul&gt;
 &lt;li&gt;socket是逻辑通信的接口。上文提到网络层为运输层和应用层提供了点到点的逻辑通信服务，该服务的基本接口就是socket。&lt;/li&gt;
 &lt;li&gt;socket是通信端点的抽象。它将进程/应用和&lt;code&gt;(主机host,端口port)&lt;/code&gt; 二元组绑定，于是通过 &lt;code&gt;(host,port)&lt;/code&gt; 即可标记网络上的进程。
@@ -873,17 +846,11 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;socket由操作系统提供。本实验用到的是python对socket的封装，但不管换什么语言本质上都是系统调用。&lt;/li&gt;
-&lt;li&gt;//其翻译“套接字”非常具有误导性，建议直接用英文单词。&lt;/li&gt;
+&lt;li&gt;//其中文翻译“套接字”非常具有误导性，建议直接用英文单词。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;建议花5分钟通读《图解HTTP》前6章（或者《CNTDA》2.1-2.2节），以理解上述术语&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;最后，建议花5分钟通读《图解HTTP》前6章（或者《CNTDA》2.1-2.2节），你就能轻松理解上述术语。&lt;/p&gt;
 &lt;h4 id=&#34;guidelines&#34;&gt;Guidelines&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1074,46 +1041,46 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [2]: a = Ether()/IP(dst=&amp;#34;www.wsnd.com&amp;#34;)/TCP()
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ether&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;www.wsnd.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [3]: a
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Out[3]: &amp;lt;Ether  type=IPv4 |&amp;lt;IP  frag=0 proto=tcp dst=Net(&amp;#34;www.wsnd.com/32&amp;#34;) |&amp;lt;TCP  |&amp;gt;&amp;gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ether&lt;/span&gt;  &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IPv4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IP&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;frag&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;proto&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tcp&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;www.wsnd.com/32&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TCP&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;|&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [4]: a.summary()
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Out[4]: &amp;#39;Ether / IP / TCP 0.0.0.0:ftp_data &amp;gt; Net(&amp;#34;www.wsnd.com/32&amp;#34;):http S&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;summary&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Ether / IP / TCP 0.0.0.0:ftp_data &amp;gt; Net(&amp;#34;www.wsnd.com/32&amp;#34;):http S&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [5]: a.show()
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;###[ Ethernet ]###
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  dst       = ff:ff:ff:ff:ff:ff
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  src       = 00:00:00:00:00:00
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  type      = IPv4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;###[ IP ]###
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     version   = 4
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     proto     = tcp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     chksum    = None
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     src       = 0.0.0.0
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     dst       = Net(&amp;#34;www.wsnd.com/32&amp;#34;)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     \options   \
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;###[ TCP ]###
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        sport     = ftp_data
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        dport     = http
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###[ Ethernet ]###&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IPv4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###[ IP ]###&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt;   &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;proto&lt;/span&gt;     &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tcp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;chksum&lt;/span&gt;    &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.0.0.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;www.wsnd.com/32&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     \&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;   \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###[ TCP ]###&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;sport&lt;/span&gt;     &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ftp_data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;dport&lt;/span&gt;     &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [6]: ls(a)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dst        : DestMACField                        = &amp;#39;ff:ff:ff:ff:ff:ff&amp;#39; (&amp;#39;None&amp;#39;)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;src        : SourceMACField                      = &amp;#39;00:00:00:00:00:00&amp;#39; (&amp;#39;None&amp;#39;)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;type       : XShortEnumField                     = 2048            (&amp;#39;36864&amp;#39;)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ls&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DestMACField&lt;/span&gt;                        &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ff:ff:ff:ff:ff:ff&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;None&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SourceMACField&lt;/span&gt;                      &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;00:00:00:00:00:00&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;None&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;       &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;XShortEnumField&lt;/span&gt;                     &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2048&lt;/span&gt;            &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;36864&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [7]: raw(a)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Out[7]: b&amp;#39;\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x08\x00E\x00\x00(\x00\x01\x00\x00@\x06\xc9\xa8\x00\x00\x00\x00H\ti\x1e\x00\x14\x00P\x00\x00\x00\x00\x00\x00\x00\x00P\x02 \x00\xdeW\x00\x00&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;raw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x08\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x00\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x00\x01\x00\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x06\xc9\xa8\x00\x00\x00\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\t&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x1e\x00\x14\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x00\x00\x00\x00\x00\x00\x00\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x02&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x00\xde&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;W&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\x00\x00&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;In [8]: hexdump(a)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0000  FF FF FF FF FF FF 00 00 00 00 00 00 08 00 45 00  ..............E.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0010  00 28 00 01 00 00 40 06 C9 A8 00 00 00 00 48 09  .(....@.......H.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0020  69 1E 00 14 00 50 00 00 00 00 00 00 00 00 50 02  i....P........P.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0030  20 00 DE 57 00 00                                 ..W..
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;In&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hexdump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;0000&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FF&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;08&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;45&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;..............&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;0010&lt;/span&gt;  &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;28&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;01&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;06&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;C9&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A8&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;48&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;09&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;....@.......&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;0020&lt;/span&gt;  &lt;span class=&#34;mi&#34;&gt;69&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;50&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;50&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;02&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;....&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;........&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;0030&lt;/span&gt;  &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DE&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;57&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;00&lt;/span&gt;                                 &lt;span class=&#34;o&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;W&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;..&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;现在运行服务器，用浏览器访问&lt;code&gt;localhost:8000&lt;/code&gt;，你可以看到大大的“Hello”了！&lt;/p&gt;
@@ -1133,9 +1100,8 @@
 &lt;li&gt;服务器概念辨析：Web初学者容易对服务器概念感到迷惑。软件语境下，服务器指对外提供服务的程序，常用服务器如apache、nginx，tomcat等；硬件语境下则指运行着服务器软件的机器。&lt;/li&gt;
 &lt;li&gt;我们实现的是静态网站，你可能疑惑是不是还有动态网站。当然有，区分动态和静态并不是网页会不会自己动，而是服务器上的数据是否可以动态的改变，而我们的服务器只能被动的显示文件，客户端无法做出任何更改。现代web框架诸如Springboot，Django之类当然是动态网站框架。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;实际上，计网并不关心应用层以上的东西，让我们向下看，探究socket背后的原理吧。&lt;/p&gt;
+&lt;p&gt;实际上，传统计算机网络并不关心应用层以上的东西，让我们向下看，探究socket背后的原理吧。&lt;/p&gt;
 &lt;h3 id=&#34;0x20-传输层socket--&#34;&gt;0x20 传输层：Socket | ⭐&lt;/h3&gt;
-&lt;h4 id=&#34;intro-1&#34;&gt;Intro&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;目标：用 scapy 实现TCP协议，以尽可能替换上一个实验使用的socket模块
 &lt;ul&gt;
@@ -1259,15 +1225,16 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;下面逐个实现socket接口。&lt;/p&gt;
+&lt;p&gt;【to be continued】&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;定制TCP报文&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;连接管理&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;定制TCP报文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;【to be continued】&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;连接管理&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;了解了三次握手，就可以实现connect函数了&lt;/p&gt;
+&lt;p&gt;【to be continued】&lt;/p&gt;
 &lt;h4 id=&#34;task-1&#34;&gt;Task&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;多路复用&lt;/li&gt;
@@ -1286,8 +1253,9 @@
 &lt;li&gt;拓展UDP到你的socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;expand-1&#34;&gt;Expand&lt;/h4&gt;
+&lt;p&gt;【to be continued】&lt;/p&gt;
 &lt;h3 id=&#34;0x30-网络层-路由追踪--&#34;&gt;0x30 网络层: 路由追踪 | ⭐&lt;/h3&gt;
-&lt;h4 id=&#34;intro-2&#34;&gt;Intro&lt;/h4&gt;
+&lt;h4 id=&#34;intro&#34;&gt;Intro&lt;/h4&gt;
 &lt;p&gt;术语：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;IP层：IP协议，ICMP协议，路由协议&lt;/li&gt;
@@ -1369,7 +1337,7 @@
 &lt;/ul&gt;
 &lt;h4 id=&#34;expand-2&#34;&gt;Expand&lt;/h4&gt;
 &lt;h3 id=&#34;0x301-网络层-欺骗ping----todo&#34;&gt;0x301 网络层: 欺骗ping | ⭐ | TODO&lt;/h3&gt;
-&lt;h4 id=&#34;intro-3&#34;&gt;Intro&lt;/h4&gt;
+&lt;h4 id=&#34;intro-1&#34;&gt;Intro&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;来源：https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf&lt;/li&gt;
 &lt;li&gt;术语：&lt;/li&gt;

@@ -5,8 +5,8 @@
         <link>https://lonelyuan.github.io/categories/</link>
         <description>Recent content in Categories on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
-        <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 23 Dec 2023 20:29:12 +0800</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Web</title>
         <link>https://lonelyuan.github.io/categories/web/</link>
         <pubDate>Sun, 07 Nov 2021 14:19:11 +0000</pubDate>
@@ -29,6 +29,14 @@
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/categories/ctf/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Life</title>
+        <link>https://lonelyuan.github.io/categories/life/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/categories/life/</guid>
         <description></description>
         </item>
         <item>

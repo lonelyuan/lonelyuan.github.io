@@ -5,7 +5,7 @@
         <link>https://lonelyuan.github.io/categories/sec/</link>
         <description>Recent content in Sec on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>en-us</language>
         <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/categories/sec/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>libAFL速通Fuzzing101 (3)</title>
         <link>https://lonelyuan.github.io/p/libafl-fuzzing101-3/</link>

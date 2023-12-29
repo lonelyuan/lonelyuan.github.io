@@ -5,21 +5,45 @@
         <link>https://lonelyuan.github.io/tags/</link>
         <description>Recent content in Tags on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
-        <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 23 Dec 2023 20:29:12 +0800</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AWDp</title>
+        <link>https://lonelyuan.github.io/tags/awdp/</link>
+        <pubDate>Sat, 23 Dec 2023 20:29:12 +0800</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/awdp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CTF</title>
+        <link>https://lonelyuan.github.io/tags/ctf/</link>
+        <pubDate>Sat, 23 Dec 2023 20:29:12 +0800</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/ctf/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Life</title>
+        <link>https://lonelyuan.github.io/tags/life/</link>
+        <pubDate>Sat, 23 Dec 2023 20:29:12 +0800</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/life/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>6.828</title>
+        <link>https://lonelyuan.github.io/tags/6.828/</link>
+        <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/tags/6.828/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>OS</title>
         <link>https://lonelyuan.github.io/tags/os/</link>
         <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/tags/os/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>MIT_OSE</title>
-        <link>https://lonelyuan.github.io/tags/mit_ose/</link>
-        <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://lonelyuan.github.io/tags/mit_ose/</guid>
         <description></description>
         </item>
         <item>
@@ -92,14 +116,6 @@
         <pubDate>Thu, 16 Sep 2021 12:43:23 +0000</pubDate>
         
         <guid>https://lonelyuan.github.io/tags/flask/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Life</title>
-        <link>https://lonelyuan.github.io/tags/life/</link>
-        <pubDate>Sat, 03 Jul 2021 19:51:14 +0000</pubDate>
-        
-        <guid>https://lonelyuan.github.io/tags/life/</guid>
         <description></description>
         </item>
         <item>
