@@ -6,7 +6,15 @@
         <description>Recent content in OS on lonelyuan&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 30 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lonelyuan.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>XV6 Lab - PageTables</title>
+        <link>https://lonelyuan.github.io/p/xv6-pagetables/</link>
+        <pubDate>Sat, 30 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://lonelyuan.github.io/p/xv6-pagetables/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>XV6 Lab - SystemCalls</title>
         <link>https://lonelyuan.github.io/p/xv6-syscall/</link>
         <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
