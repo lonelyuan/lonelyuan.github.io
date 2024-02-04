@@ -403,7 +403,7 @@ if (!doNotTrack) {
     <li><a href="#lab2-syscall">Lab2 SysCall</a>
       <ol>
         <li><a href="#填空题">填空题</a></li>
-        <li><a href="#tracing">tracing</a>
+        <li><a href="#lab2-1-tracing">Lab2-1: tracing</a>
           <ol>
             <li><a href="#用户侧">用户侧</a></li>
             <li><a href="#内核侧">内核侧</a></li>
@@ -411,16 +411,16 @@ if (!doNotTrack) {
             <li><a href="#extra打印参数">Extra：打印参数</a></li>
           </ol>
         </li>
-        <li><a href="#sysinfo">sysinfo</a>
+        <li><a href="#lab2-2-sysinfo">Lab2-2: sysinfo</a>
           <ol>
             <li><a href="#free-memory-bytes">free memory bytes</a></li>
             <li><a href="#number-of-process">number of process</a></li>
             <li><a href="#extraload-average">Extra：load average</a></li>
           </ol>
         </li>
-        <li><a href="#打个分">打个分⑧</a></li>
       </ol>
     </li>
+    <li><a href="#打个分">打个分⑧</a></li>
   </ol>
 </nav>
         </div>
@@ -582,7 +582,7 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     7 minute read
-                    <span class="post-word-count">, 3309 words</span> 
+                    <span class="post-word-count">, 3311 words</span> 
                 </time>
             </div>
             
@@ -760,7 +760,7 @@ if (!doNotTrack) {
 <li>
 <p>Q: 瞎几把改下指针让内核崩溃（比如<code>num = * (int *) 0</code>）。记录内核发生 panic 的汇编指令。哪个寄存器对应于变量 num？</p>
 <ul>
-<li>A: spec寄存器表示崩溃指令的地址。def直接查看。也可以查看<code>kernel/kernel.asm</code>
+<li>A: spec寄存器表示崩溃指令的地址。gef直接查看。也可以查看<code>kernel/kernel.asm</code>
 <img src="/p/xv6-syscall/image-2.png"
 	width="807"
 	height="689"
@@ -790,7 +790,7 @@ if (!doNotTrack) {
 </li>
 </ul>
 <p>riscv的中文参考资料：https://blog.csdn.net/zzy980511/article/details/130642258</p>
-<h3 id="tracing">tracing</h3>
+<h3 id="lab2-1-tracing">Lab2-1: tracing</h3>
 <p><code>trace(1 &lt;&lt; SYS_call)</code>系统调用输入一个掩码，表示系统调用号。当执行指定的系统调用时打印点东西，包括pid，第系统调用名和返回值：<code>&lt;pid&gt;:syscall &lt;syscall&gt; -&gt; &lt;ret&gt;</code></p>
 <p>首先梳理一下系统调用的调用链：</p>
 <h4 id="用户侧">用户侧</h4>
@@ -1026,7 +1026,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里只展示了提取一个int，至于更复杂的参数也只是增加处理逻辑而已。</p>
-<h3 id="sysinfo">sysinfo</h3>
+<h3 id="lab2-2-sysinfo">Lab2-2: sysinfo</h3>
 <p><code>sysinfo</code> 系统调用收集运行时系统信息。实验给出了数据结构定义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1182,7 +1182,7 @@ if (!doNotTrack) {
 <p>关于进程数已经实现了，只需要统计<code>SED, SLEEPING, RUNNABLE, RUNNING</code>这些状态的进程即可。</p>
 <p>关于内核数量，<code>kenel/param.h</code>中的<code>NCPU</code>已经指定了最大处理器逻辑核数量。</p>
 <p>计算输出即可。而现代linux系统计算load average一般还要记录3分钟，5分钟，15分钟的数值。vx6对时间的支持并不友好，此题再议。</p>
-<h3 id="打个分">打个分⑧</h3>
+<h2 id="打个分">打个分⑧</h2>
 <p><img src="/p/xv6-syscall/image-3.png"
 	width="803"
 	height="354"
@@ -1276,9 +1276,20 @@ if (!doNotTrack) {
         <div class="flex article-list--tile">
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/xv6-pagetables/">
         
+        
+            <div class="article-image">
+                <img src="/p/xv6-pagetables/address.9d9c2a623bb9a7cfb8cfb873f7cece6a_hud7b2782c39d1dccfcbaf0a73995d96b7_88238_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post XV6 Lab - PageTables"
+                        data-key="xv6-pagetables" 
+                        data-hash="md5-nZwqYju5p8&#43;4z7hz987Oag==">
+                
+            </div>
         
 
         <div class="article-details">

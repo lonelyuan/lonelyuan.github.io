@@ -396,27 +396,27 @@ if (!doNotTrack) {
     <li><a href="#xv6启动">XV6，启动！</a></li>
     <li><a href="#lab1-utils">Lab1 Utils</a>
       <ol>
-        <li><a href="#sleep">sleep</a>
+        <li><a href="#lab1-1-sleep">Lab1-1: sleep</a>
           <ol>
             <li><a href="#extra-uptime"><em>Extra:</em> uptime</a></li>
           </ol>
         </li>
-        <li><a href="#pingpong">pingpong</a></li>
-        <li><a href="#primes">primes</a></li>
-        <li><a href="#find">find</a>
+        <li><a href="#lab1-2-pingpong">Lab1-2: pingpong</a></li>
+        <li><a href="#lab1-3-primes">Lab1-3: primes</a></li>
+        <li><a href="#lab1-4-find">Lab1-4: find</a>
           <ol>
             <li><a href="#extrafind支持正则"><em>Extra</em>：find支持正则</a></li>
           </ol>
         </li>
-        <li><a href="#xargs">xargs</a>
+        <li><a href="#lab1-5-xargs">Lab1-5: xargs</a>
           <ol>
             <li><a href="#extra还说的事"><em>Extra</em>：还说🔪的事</a></li>
           </ol>
         </li>
-        <li><a href="#extrash"><em>Extra</em>：sh</a></li>
-        <li><a href="#打个分">打个分⑧：</a></li>
+        <li><a href="#lab1-e-extrash">Lab1-E: <em>Extra</em>：sh</a></li>
       </ol>
     </li>
+    <li><a href="#打个分">打个分⑧：</a></li>
   </ol>
 </nav>
         </div>
@@ -582,7 +582,7 @@ if (!doNotTrack) {
 
                 <time class="article-time--reading">
                     8 minute read
-                    <span class="post-word-count">, 3940 words</span> 
+                    <span class="post-word-count">, 3948 words</span> 
                 </time>
             </div>
             
@@ -602,7 +602,7 @@ if (!doNotTrack) {
     <ul>
 <li>课程简介：<a class="link" href="https://csdiy.wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/MIT6.S081/"  target="_blank" rel="noopener"
     >MIT 6.S081: Operating System Engineering - CS自学指南 (csdiy.wiki)</a></li>
-<li>MIT的课程体系一直在发展，为避免混淆这里简单梳理一下：
+<li>MIT的CS课程体系一直在发展，为避免混淆这里简单梳理一下：
 <ul>
 <li>6.828：<a class="link" href="https://pdos.csail.mit.edu/6.828/2018/overview.html"  target="_blank" rel="noopener"
     >6.828 / Fall 2018 (mit.edu)</a>
@@ -939,7 +939,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">memcpy</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="n">uint</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="sleep">sleep</h3>
+</div><h3 id="lab1-1-sleep">Lab1-1: sleep</h3>
 <p><code>sleep i</code>命令要求进程暂停一定时间。输入一个整数，表示时间量，其单位则是系统定义的tick。</p>
 <p>天下代码一大抄，我们观察到kill指令的输入和sleep差不多，都是整数，只不过kill可以接受多个输入。而kill和sleep都有系统调用的定义，因此直接抄过来：</p>
 <div class="highlight"><div class="chroma">
@@ -1011,7 +1011,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="pingpong">pingpong</h3>
+</div><h3 id="lab1-2-pingpong">Lab1-2: pingpong</h3>
 <p><code>pingpong</code>命令将创建两个进程，并通过管道在两个进程间通信一个字节。官方文档对这个命令的实现描述的很清楚了：</p>
 <blockquote>
 <ul>
@@ -1076,7 +1076,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="primes">primes</h3>
+</div><h3 id="lab1-3-primes">Lab1-3: primes</h3>
 <p>在上一个程序的基础上，<code>primes</code>希望使用多进程机制实现素数筛。具体流程为：</p>
 <ul>
 <li>每个进程通过管道从其左邻居读取数据，并通过另一个管道写入其右邻居。</li>
@@ -1237,7 +1237,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="find">find</h3>
+</div><h3 id="lab1-4-find">Lab1-4: find</h3>
 <p><code>find</code>指令要求在特定名称的目录树中查找文件。程序大部分可以借鉴<code>ls</code>的实现，只需要在输出的时候执行字符串比较，并且实现递归查找。不过首先要了解文件系统的接口：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1346,7 +1346,7 @@ if (!doNotTrack) {
 </div><p>而match函数随便写一个字符串匹配或者KMP算法即可。</p>
 <h4 id="extrafind支持正则"><em>Extra</em>：find支持正则</h4>
 <p>给了<code>grep.c</code>，直接调接口</p>
-<h3 id="xargs">xargs</h3>
+<h3 id="lab1-5-xargs">Lab1-5: xargs</h3>
 <p><code>xargs command</code>命令的参数同样是shell指令，它读取stdout作为参数指令的参数。简单来说，xargs把左边指令的输出放到最右边当作输入。但在我们的实现中，还有诸多细节：</p>
 <ul>
 <li>stdout中每一行作为一个参数，也就是需要以<code>\n</code>分割。然而这里xv6并没有方便的库函数读取一行输入，需要自己实现readline()</li>
@@ -1544,7 +1544,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>只需要加入一个状态变量判断是否经过fork即可。</p>
-<h3 id="extrash"><em>Extra</em>：sh</h3>
+<h3 id="lab1-e-extrash">Lab1-E: <em>Extra</em>：sh</h3>
 <p><code>user/sh.c</code>作为shell功能很受限，可以为其添加更多常用功能，如：</p>
 <ul>
 <li>支持wait</li>
@@ -1554,7 +1554,7 @@ if (!doNotTrack) {
 <li>支持history</li>
 </ul>
 <p>详情请参考《CSAPP-shellLab》，👴懒得写了</p>
-<h3 id="打个分">打个分⑧：</h3>
+<h2 id="打个分">打个分⑧：</h2>
 <p><img src="/p/xv6-util/util-grade.png"
 	width="737"
 	height="276"
@@ -1644,9 +1644,20 @@ if (!doNotTrack) {
         <div class="flex article-list--tile">
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/xv6-pagetables/">
         
+        
+            <div class="article-image">
+                <img src="/p/xv6-pagetables/address.9d9c2a623bb9a7cfb8cfb873f7cece6a_hud7b2782c39d1dccfcbaf0a73995d96b7_88238_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post XV6 Lab - PageTables"
+                        data-key="xv6-pagetables" 
+                        data-hash="md5-nZwqYju5p8&#43;4z7hz987Oag==">
+                
+            </div>
         
 
         <div class="article-details">

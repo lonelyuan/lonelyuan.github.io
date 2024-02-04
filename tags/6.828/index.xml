@@ -173,7 +173,7 @@
 &lt;li&gt;
 &lt;p&gt;Q: 瞎几把改下指针让内核崩溃（比如&lt;code&gt;num = * (int *) 0&lt;/code&gt;）。记录内核发生 panic 的汇编指令。哪个寄存器对应于变量 num？&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A: spec寄存器表示崩溃指令的地址。def直接查看。也可以查看&lt;code&gt;kernel/kernel.asm&lt;/code&gt;
+&lt;li&gt;A: spec寄存器表示崩溃指令的地址。gef直接查看。也可以查看&lt;code&gt;kernel/kernel.asm&lt;/code&gt;
 &lt;img src=&#34;https://lonelyuan.github.io/p/xv6-syscall/image-2.png&#34;
 	width=&#34;807&#34;
 	height=&#34;689&#34;
@@ -203,7 +203,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;riscv的中文参考资料：https://blog.csdn.net/zzy980511/article/details/130642258&lt;/p&gt;
-&lt;h3 id=&#34;tracing&#34;&gt;tracing&lt;/h3&gt;
+&lt;h3 id=&#34;lab2-1-tracing&#34;&gt;Lab2-1: tracing&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;trace(1 &amp;lt;&amp;lt; SYS_call)&lt;/code&gt;系统调用输入一个掩码，表示系统调用号。当执行指定的系统调用时打印点东西，包括pid，第系统调用名和返回值：&lt;code&gt;&amp;lt;pid&amp;gt;:syscall &amp;lt;syscall&amp;gt; -&amp;gt; &amp;lt;ret&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;首先梳理一下系统调用的调用链：&lt;/p&gt;
 &lt;h4 id=&#34;用户侧&#34;&gt;用户侧&lt;/h4&gt;
@@ -439,7 +439,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这里只展示了提取一个int，至于更复杂的参数也只是增加处理逻辑而已。&lt;/p&gt;
-&lt;h3 id=&#34;sysinfo&#34;&gt;sysinfo&lt;/h3&gt;
+&lt;h3 id=&#34;lab2-2-sysinfo&#34;&gt;Lab2-2: sysinfo&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;sysinfo&lt;/code&gt; 系统调用收集运行时系统信息。实验给出了数据结构定义：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -595,7 +595,7 @@
 &lt;p&gt;关于进程数已经实现了，只需要统计&lt;code&gt;SED, SLEEPING, RUNNABLE, RUNNING&lt;/code&gt;这些状态的进程即可。&lt;/p&gt;
 &lt;p&gt;关于内核数量，&lt;code&gt;kenel/param.h&lt;/code&gt;中的&lt;code&gt;NCPU&lt;/code&gt;已经指定了最大处理器逻辑核数量。&lt;/p&gt;
 &lt;p&gt;计算输出即可。而现代linux系统计算load average一般还要记录3分钟，5分钟，15分钟的数值。vx6对时间的支持并不友好，此题再议。&lt;/p&gt;
-&lt;h3 id=&#34;打个分&#34;&gt;打个分⑧&lt;/h3&gt;
+&lt;h2 id=&#34;打个分&#34;&gt;打个分⑧&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://lonelyuan.github.io/p/xv6-syscall/image-3.png&#34;
 	width=&#34;803&#34;
 	height=&#34;354&#34;
