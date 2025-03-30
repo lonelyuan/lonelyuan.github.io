@@ -442,7 +442,7 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
-            <a href="/categories/cs/" class="font_size_11">
+            <a href="/categories/cs/" class="font_size_12">
                 CS
             </a>
         
@@ -483,12 +483,12 @@ if (!doNotTrack) {
 
     <div class="tagCloud-tags">
         
-            <a href="/tags/life/" class="font_size_4">
-                Life
+            <a href="/tags/os/" class="font_size_5">
+                OS
             </a>
         
-            <a href="/tags/os/" class="font_size_4">
-                OS
+            <a href="/tags/life/" class="font_size_4">
+                Life
             </a>
         
             <a href="/tags/csapp/" class="font_size_3">
@@ -581,8 +581,8 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    8 minute read
-                    <span class="post-word-count">, 3948 words</span> 
+                    9 minute read
+                    <span class="post-word-count">, 4176 words</span> 
                 </time>
             </div>
             
@@ -1552,8 +1552,13 @@ if (!doNotTrack) {
 <li>支持子shell：<code>(</code>，<code>)</code></li>
 <li>支持tab自动补全</li>
 <li>支持history</li>
+<li>……</li>
 </ul>
-<p>详情请参考《CSAPP-shellLab》，👴懒得写了</p>
+<p>详情请参考《CSAPP-shellLab》，👴懒得写了。</p>
+<p>👴唯一想写的就是给shell增加一个退出键ctrl+c或者说关机键，要不然每次得从外面关闭终端，很不优雅。</p>
+<p>但是这个ctrl+c可不是那么好搞的。sh.c里只能处理ANSII字符，我们需要找到更底层的监听键盘事件的库，也就是键盘驱动。然后发现根本没有驱动，可能学到IO那章就会写驱动了吧。</p>
+<p>实在不行我写个&quot;exit&quot;总可以吧。可以是可以，但是不管用。退出sh会无限重启。</p>
+<p>最后👴查到可以ctrl+f，然后按a就能退出qemu了。👴青结。</p>
 <h2 id="打个分">打个分⑧：</h2>
 <p><img src="/p/xv6-util/util-grade.png"
 	width="737"
@@ -1644,6 +1649,19 @@ if (!doNotTrack) {
         <div class="flex article-list--tile">
             
                 
+<article class="">
+    <a href="/p/xv6-utilities/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">XV6 Lab - Traps</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
 <article class="has-image">
     <a href="/p/xv6-pagetables/">
         
@@ -1717,19 +1735,6 @@ if (!doNotTrack) {
 </article>
 
             
-                
-<article class="">
-    <a href="/p/%E4%BB%8Escapy%E5%92%8Cwireshark%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">从scapy和wireshark学计算机网络</h2>
-        </div>
-    </a>
-</article>
-
-            
         </div>
     </div>
 </aside>
@@ -1795,7 +1800,7 @@ if (!doNotTrack) {
         
             2020 - 
         
-        2024 lonelyuan&#39;s Blog
+        2025 lonelyuan&#39;s Blog
     </section>
     
     <section class="powerby">
